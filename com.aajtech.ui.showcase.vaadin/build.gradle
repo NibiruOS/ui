@@ -1,0 +1,9 @@
+apply plugin: "eclipse-wtp"
+apply plugin: "jetty"
+
+dependencies {
+	compile project(":com.aajtech.ui.showcase")
+	compile project(":com.aajtech.ui.vaadin")
+	compile "javax.servlet:servlet-api:2.5"
+	compile "com.google.inject.extensions:guice-servlet:4.0"
+}

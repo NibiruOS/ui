@@ -1,0 +1,8 @@
+jar {
+   from sourceSets.main.java.srcDirs 
+}
+
+dependencies {
+	compile "com.aajtech:com.aajtech.model.core:${aajModelVersion}"
+	compile "javax.inject:javax.inject:1"
+}

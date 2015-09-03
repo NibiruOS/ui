@@ -1,0 +1,15 @@
+package com.aajtech.ui.gwt.ioc;
+
+import com.aajtech.ui.core.api.Label;
+import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.gwt.widget.GwtLabel;
+import com.aajtech.ui.gwt.widget.GwtVerticalPanel;
+import com.google.gwt.inject.client.AbstractGinModule;
+
+public class Module extends AbstractGinModule {
+	@Override
+	protected void configure() {
+		bind(Label.class).to(GwtLabel.class);
+		bind(VerticalPanel.class).to(GwtVerticalPanel.class);
+	}
+}

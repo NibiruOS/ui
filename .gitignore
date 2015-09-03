@@ -1,0 +1,14 @@
+build
+.settings
+.project
+.classpath
+.gradle
+gwt-unitCache
+classes
+bin
+gen
+target
+.DS_Store
+/com.aajtech.ui.showcase.gwt/src/main/webapp/aaj_ui_showcase
+/com.aajtech.ui.showcase.gwt/src/main/webapp/WEB-INF/deploy
+/com.aajtech.ui.showcase.gwt/src/main/webapp/WEB-INF/lib
