@@ -10,6 +10,6 @@ public class AppEntryPoint implements EntryPoint {
 	public void onModuleLoad() {
 		Injector injector = GWT.create(Injector.class);
 		
-		RootPanel.get().add((Widget) injector.mainPage().buildPage());
+		RootPanel.get().add((Widget) injector.mainPage().buildUi().asNative());
 	}
 }

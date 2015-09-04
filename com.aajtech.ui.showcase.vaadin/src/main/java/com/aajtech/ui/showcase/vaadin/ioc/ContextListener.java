@@ -1,6 +1,6 @@
 package com.aajtech.ui.showcase.vaadin.ioc;
 
-import com.aajtech.ui.vaadin.Module;
+import com.aajtech.ui.vaadin.ioc.Module;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;

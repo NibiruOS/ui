@@ -1,4 +1,4 @@
-package com.aajtech.ui.vaadin;
+package com.aajtech.ui.vaadin.widget;
 
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.impl.BaseValue;

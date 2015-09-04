@@ -20,6 +20,6 @@ public class ShowcaseUi extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		setContent((Component) mainPage.buildPage());
+		setContent((Component) mainPage.buildUi().asNative());
 	}
 }
