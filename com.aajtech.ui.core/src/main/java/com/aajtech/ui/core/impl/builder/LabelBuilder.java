@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import com.aajtech.ui.core.api.Label;
 
-public class LabelBuilder extends BaseBuilder<Label> {
+public class LabelBuilder extends BaseValueBuilder<Label, String> {
 	@Inject
 	public LabelBuilder(Label label) {
 		super(label);
