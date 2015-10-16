@@ -1,7 +1,0 @@
-jar {
-   from sourceSets.main.java.srcDirs 
-}
-
-dependencies {
-	compile project(":com.aajtech.ui.core")
-}
