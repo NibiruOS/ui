@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.TextBox;
-import com.aajtech.ui.core.api.Widget;
 
 public abstract class UiModule implements UiCreator {
 	private final UiCreator uiBuilder;
@@ -42,6 +41,4 @@ public abstract class UiModule implements UiCreator {
 	public HorizontalPanelBuilder horizontalPanel() {
 		return uiBuilder.horizontalPanel();
 	}
-
-	public abstract Widget buildUi();
 }

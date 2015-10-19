@@ -6,7 +6,7 @@ import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
 import com.google.gwt.user.client.ui.Label;
 
-public class GwtLabel extends GwtWidget<Label>implements com.aajtech.ui.core.api.Label {
+public class GwtLabel extends GwtWidget<Label> implements com.aajtech.ui.core.api.Label {
 	private final Value<String> value = new BaseValue<String>() {
 
 		@Override

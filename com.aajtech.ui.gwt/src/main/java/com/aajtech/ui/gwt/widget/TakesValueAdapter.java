@@ -25,7 +25,6 @@ public class TakesValueAdapter<T> extends BaseValue<T> {
 	@Override
 	public void set(@Nullable T value) {
 		takesValue.setValue(value);
-
 	}
 
 	@Override
