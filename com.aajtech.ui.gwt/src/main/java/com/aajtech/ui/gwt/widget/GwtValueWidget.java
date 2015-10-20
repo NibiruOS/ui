@@ -6,7 +6,7 @@ import com.aajtech.ui.core.api.ValueWidget;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Widget;
 
-abstract class GwtValueWidget<W extends Widget & HasValue<T>, T> extends GwtWidget<W>implements ValueWidget<T> {
+abstract class GwtValueWidget<W extends Widget & HasValue<T>, T> extends GwtWidget<W> implements ValueWidget<T> {
 	private final TakesValueAdapter<T> value;
 
 	GwtValueWidget(W widget, Type<T> type) {

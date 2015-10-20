@@ -2,6 +2,8 @@ package com.aajtech.ui.vaadin.widget;
 
 import java.io.Serializable;
 
+import javax.annotation.Nullable;
+
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.impl.BaseValue;
 import com.vaadin.data.Property;
@@ -27,12 +29,13 @@ class PropertyValue<T> extends BaseValue<T> implements Serializable {
 	}
 
 	@Override
+	@Nullable
 	public T get() {
 		return property.getValue();
 	}
 
 	@Override
-	public void set(T value) {
+	protected void setValue(@Nullable T value) {
 		property.setValue(value);
 	}
 

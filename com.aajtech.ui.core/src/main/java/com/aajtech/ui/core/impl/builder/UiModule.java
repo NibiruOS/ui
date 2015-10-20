@@ -2,6 +2,8 @@ package com.aajtech.ui.core.impl.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.aajtech.ui.core.api.Button;
+import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.TextBox;
 
@@ -40,5 +42,15 @@ public abstract class UiModule implements UiCreator {
 	@Override
 	public HorizontalPanelBuilder horizontalPanel() {
 		return uiBuilder.horizontalPanel();
+	}
+
+	@Override
+	public ButtonBuilder button() {
+		return uiBuilder.button();
+	}
+
+	@Override
+	public Button button(String text, ClickHandler clickHandler) {
+		return uiBuilder.button(text, clickHandler);
 	}
 }

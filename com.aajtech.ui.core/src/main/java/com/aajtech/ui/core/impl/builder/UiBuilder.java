@@ -5,6 +5,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import com.aajtech.ui.core.api.Button;
+import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.TextBox;
 
@@ -13,15 +15,18 @@ public class UiBuilder implements UiCreator {
 	private final Provider<TextBoxBuilder> textBoxBuilderProvider;
 	private final Provider<VerticalPanelBuilder> verticalPanelBuilderProvider;
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
+	private final Provider<ButtonBuilder> buttonBuilderProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider, Provider<TextBoxBuilder> textBoxBuilderProvider,
 			Provider<VerticalPanelBuilder> verticalPanelBuilderProvider,
-			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider) {
+			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
+			Provider<ButtonBuilder> buttonBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.verticalPanelBuilderProvider = checkNotNull(verticalPanelBuilderProvider);
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
+		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 	}
 
 	@Override
@@ -52,5 +57,15 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public HorizontalPanelBuilder horizontalPanel() {
 		return horizontalPanelBuilderProvider.get();
+	}
+
+	@Override
+	public ButtonBuilder button() {
+		return buttonBuilderProvider.get();
+	}
+
+	@Override
+	public Button button(String text, ClickHandler clickHandler) {
+		return button().text(text).onClick(clickHandler).build();
 	}
 }

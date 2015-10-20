@@ -2,6 +2,9 @@ project.ext {
 	aajModelVersion = '0.1-SNAPSHOT'
 	guavaVersion = '19.0-SNAPSHOT'
 	gwtVersion = '2.8.0-SNAPSHOT'
+	androidVersion = '2.1.2'
+	guiceVersion = '4.0'
+	ginVersion = '2.1.2'
 }
 
 allprojects {

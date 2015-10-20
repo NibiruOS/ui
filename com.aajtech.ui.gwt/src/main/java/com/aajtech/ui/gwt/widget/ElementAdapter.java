@@ -2,6 +2,8 @@ package com.aajtech.ui.gwt.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.annotation.Nullable;
+
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
@@ -15,12 +17,12 @@ public class ElementAdapter extends BaseValue<String> {
 	}
 
 	@Override
-	public void set(String value) {
-		checkNotNull(value);
+	protected void setValue(@Nullable String value) {
 		element.setInnerText(value);
 	}
 
 	@Override
+	@Nullable
 	public String get() {
 		return element.getInnerText();
 	}

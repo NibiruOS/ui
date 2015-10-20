@@ -1,5 +1,8 @@
 rootProject.name = 'aajtechUi'
 
+include ':com.aajtech.ui.android'
 include ':com.aajtech.ui.core'
 include ':com.aajtech.ui.gwt'
+include ':com.aajtech.ui.ios'
+include ':com.aajtech.ui.mgwt'
 include ':com.aajtech.ui.vaadin'

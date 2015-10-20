@@ -18,12 +18,13 @@ public class TakesValueAdapter<T> extends BaseValue<T> {
 	}
 
 	@Override
+	@Nullable
 	public T get() {
 		return takesValue.getValue();
 	}
 
 	@Override
-	public void set(@Nullable T value) {
+	protected void setValue(@Nullable T value) {
 		takesValue.setValue(value);
 	}
 

@@ -1,5 +1,7 @@
 package com.aajtech.ui.gwt.widget;
 
+import javax.annotation.Nullable;
+
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
@@ -10,12 +12,13 @@ public class GwtLabel extends GwtWidget<Label> implements com.aajtech.ui.core.ap
 	private final Value<String> value = new BaseValue<String>() {
 
 		@Override
+		@Nullable 
 		public String get() {
 			return widget.getText();
 		}
 
 		@Override
-		public void set(String value) {
+		protected void setValue(@Nullable String value) {
 			widget.setText(value);
 		}
 

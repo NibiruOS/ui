@@ -1,4 +1,4 @@
-package com.aajtech.ui.gwt.ioc;
+package com.aajtech.ui.mgwt.ioc;
 
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.HorizontalPanel;
