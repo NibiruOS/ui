@@ -1,9 +1,11 @@
 package com.aajtech.ui.android.ioc;
 
+import com.aajtech.ui.android.widget.AndroidButton;
 import com.aajtech.ui.android.widget.AndroidHorizontalPanel;
 import com.aajtech.ui.android.widget.AndroidLabel;
 import com.aajtech.ui.android.widget.AndroidTextBox;
 import com.aajtech.ui.android.widget.AndroidVerticalPanel;
+import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.HorizontalPanel;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.TextBox;
@@ -17,5 +19,6 @@ public class Module extends AbstractModule {
 		bind(TextBox.class).to(AndroidTextBox.class);
 		bind(HorizontalPanel.class).to(AndroidHorizontalPanel.class);
 		bind(VerticalPanel.class).to(AndroidVerticalPanel.class);
+		bind(Button.class).to(AndroidButton.class);
 	}
 }

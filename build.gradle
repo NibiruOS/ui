@@ -22,6 +22,14 @@ allprojects {
 	        url "https://oss.sonatype.org/content/repositories/google-snapshots/"
 	    }
 	}
+	buildscript {
+    	repositories {
+        	mavenCentral()
+    	}
+    	dependencies {
+        	classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+	    }
+	}
 }
 
 subprojects {
