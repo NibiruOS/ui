@@ -5,6 +5,7 @@ project.ext {
 	androidVersion = '2.1.2'
 	guiceVersion = '4.0'
 	ginVersion = '2.1.2'
+	robovmVersion = '1.9.0'
 }
 
 allprojects {

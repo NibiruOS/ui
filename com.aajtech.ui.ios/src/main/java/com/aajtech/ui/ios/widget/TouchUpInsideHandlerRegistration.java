@@ -5,9 +5,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.robovm.apple.uikit.UIControl;
 import org.robovm.apple.uikit.UIControl.OnTouchUpInsideListener;
 
-import ar.com.oxen.nibiru.mobile.core.api.handler.HandlerRegistration;
+import com.aajtech.model.core.api.Registration;
 
-public class TouchUpInsideHandlerRegistration implements HandlerRegistration {
+public class TouchUpInsideHandlerRegistration implements Registration {
 	private final UIControl control;
 	private final OnTouchUpInsideListener listener;
 
@@ -17,7 +17,7 @@ public class TouchUpInsideHandlerRegistration implements HandlerRegistration {
 	}
 
 	@Override
-	public void removeHandler() {
+	public void remove() {
 		control.removeListener(listener);
 	}
 }

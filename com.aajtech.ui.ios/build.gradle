@@ -1,4 +1,6 @@
 dependencies {
 	compile project(":com.aajtech.ui.core")
 	compile "com.google.inject:guice:${guiceVersion}"
+	compile "org.robovm:robovm-cocoatouch:${robovmVersion}"
+	compile "org.robovm:robovm-rt:${robovmVersion}"
 }

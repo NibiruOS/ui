@@ -5,9 +5,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.robovm.apple.uikit.UIControl;
 import org.robovm.apple.uikit.UIControl.OnValueChangedListener;
 
-import ar.com.oxen.nibiru.mobile.core.api.handler.HandlerRegistration;
+import com.aajtech.model.core.api.Registration;
 
-public class ValueChangedHandlerRegistration implements HandlerRegistration {
+public class ValueChangedHandlerRegistration implements Registration {
 	private final UIControl control;
 	private final OnValueChangedListener listener;
 
@@ -18,7 +18,7 @@ public class ValueChangedHandlerRegistration implements HandlerRegistration {
 	}
 
 	@Override
-	public void removeHandler() {
+	public void remove() {
 		control.removeListener(listener);
 	}
 }
