@@ -15,10 +15,10 @@ import com.google.inject.AbstractModule;
 public class Module extends AbstractModule {
 	@Override
 	protected void configure() {
+		bind(Button.class).to(AndroidButton.class);
 		bind(Label.class).to(AndroidLabel.class);
 		bind(TextBox.class).to(AndroidTextBox.class);
 		bind(HorizontalPanel.class).to(AndroidHorizontalPanel.class);
 		bind(VerticalPanel.class).to(AndroidVerticalPanel.class);
-		bind(Button.class).to(AndroidButton.class);
 	}
 }
