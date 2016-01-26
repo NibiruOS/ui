@@ -11,8 +11,6 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
 public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.core.api.Button {
-	private static final long serialVersionUID = 8108921646026099631L;
-
 	public VaadinButton() {
 		super(new Button());
 	}
@@ -41,7 +39,6 @@ public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.
 	@Override
 	public Registration setClickHandler(ClickHandler clickHandler) {
 		ClickListener listener = new ClickListener() {
-			private static final long serialVersionUID = 8623331230581156687L;
 			@Override
 			public void buttonClick(ClickEvent event) {
 				clickHandler.onClick();

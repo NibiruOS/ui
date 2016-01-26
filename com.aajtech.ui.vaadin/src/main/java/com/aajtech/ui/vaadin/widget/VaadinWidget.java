@@ -8,7 +8,6 @@ import com.aajtech.ui.core.api.Widget;
 import com.vaadin.ui.Component;
 
 abstract class VaadinWidget<T extends Component> implements Widget, Serializable {
-	private static final long serialVersionUID = -1979735392364614102L;
 	final T component;
 
 	VaadinWidget(T component) {
