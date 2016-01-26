@@ -8,6 +8,7 @@ import javax.inject.Provider;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Label;
+import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.TextBox;
 
@@ -18,6 +19,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<VerticalPanelBuilder> verticalPanelBuilderProvider;
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
+	private final Provider<ListWidget> listWidgetProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -25,13 +27,15 @@ public class UiBuilder implements UiCreator {
 			Provider<PasswordBoxBuilder> passwordBoxBuilderProvider,
 			Provider<VerticalPanelBuilder> verticalPanelBuilderProvider,
 			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
-			Provider<ButtonBuilder> buttonBuilderProvider) {
+			Provider<ButtonBuilder> buttonBuilderProvider,
+			Provider<ListWidget> listWidgetProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
 		this.verticalPanelBuilderProvider = checkNotNull(verticalPanelBuilderProvider);
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
+		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 	}
 
 	@Override
@@ -82,5 +86,10 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public Button button(String text, ClickHandler clickHandler) {
 		return button().text(text).onClick(clickHandler).build();
+	}
+
+	@Override
+	public ListWidget list() {
+		return listWidgetProvider.get();
 	}
 }

@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Label;
+import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.TextBox;
 
@@ -63,5 +64,10 @@ public abstract class UiModule implements UiCreator {
 	@Override
 	public Button button(String text, ClickHandler clickHandler) {
 		return uiBuilder.button(text, clickHandler);
+	}
+
+	@Override
+	public ListWidget list() {
+		return uiBuilder.list();
 	}
 }
