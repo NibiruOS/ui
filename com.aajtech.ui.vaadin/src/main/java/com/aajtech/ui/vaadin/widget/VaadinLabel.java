@@ -9,6 +9,6 @@ public class VaadinLabel extends VaadinValueWidget<Label, String>implements com.
 	}
 
 	public VaadinLabel(Label label) {
-		super(label, JavaType.STRING);
+		super(label, JavaType.STRING, label.getValue());
 	}
 }

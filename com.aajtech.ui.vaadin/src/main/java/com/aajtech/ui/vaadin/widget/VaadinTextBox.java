@@ -10,7 +10,7 @@ public class VaadinTextBox extends VaadinValueWidget<TextField, String>implement
 	}
 
 	public VaadinTextBox(TextField textField) {
-		super(textField, JavaType.STRING);
+		super(textField, JavaType.STRING, textField.getValue());
 		component.setImmediate(true);
 	}
 }

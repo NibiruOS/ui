@@ -10,10 +10,14 @@ import com.vaadin.ui.Component;
 abstract class VaadinValueWidget<W extends Component & Viewer, T> extends VaadinWidget<W>implements ValueWidget<T> {
 	private final Value<T> value;
 
-	VaadinValueWidget(W component, Type<T> type) {
+	VaadinValueWidget(W component, Type<T> type, T proplValue) {
 		super(component);
-		ObjectProperty<T> property = new ObjectProperty<T>(null, type.cast());
-		component.setPropertyDataSource(property);
+		@SuppressWarnings("unchecked")
+		ObjectProperty<T> property = (ObjectProperty<T>) component.getPropertyDataSource();
+		if (property == null) {
+			property = new ObjectProperty<T>(proplValue, type.cast());
+			component.setPropertyDataSource(property);
+		}
 		value = new PropertyValue<>(property, type);
 	}
 

@@ -10,7 +10,7 @@ public class VaadinPasswordBox extends VaadinValueWidget<PasswordField, String>i
 	}
 
 	public VaadinPasswordBox(PasswordField passwordField) {
-		super(passwordField, JavaType.STRING);
+		super(passwordField, JavaType.STRING, passwordField.getValue());
 		component.setImmediate(true);
 	}
 }
