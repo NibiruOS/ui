@@ -12,7 +12,11 @@ import com.vaadin.ui.Button.ClickListener;
 
 public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.core.api.Button {
 	public VaadinButton() {
-		super(new Button());
+		this(new Button());
+	}
+
+	public VaadinButton(Button button) {
+		super(button);
 	}
 
 	@Override

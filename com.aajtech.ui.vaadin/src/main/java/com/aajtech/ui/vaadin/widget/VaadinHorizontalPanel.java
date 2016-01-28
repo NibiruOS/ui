@@ -5,6 +5,10 @@ import com.vaadin.ui.HorizontalLayout;
 
 public class VaadinHorizontalPanel extends VaadinContainer<HorizontalLayout>implements HorizontalPanel {
 	public VaadinHorizontalPanel() {
-		super(new HorizontalLayout());
+		this(new HorizontalLayout());
+	}
+
+	public VaadinHorizontalPanel(HorizontalLayout horizontalLayout) {
+		super(horizontalLayout);
 	}
 }

@@ -5,6 +5,10 @@ import com.vaadin.ui.Label;
 
 public class VaadinLabel extends VaadinValueWidget<Label, String>implements com.aajtech.ui.core.api.Label {
 	public VaadinLabel() {
-		super(new Label(), JavaType.STRING);
+		this(new Label());
+	}
+
+	public VaadinLabel(Label label) {
+		super(label, JavaType.STRING);
 	}
 }

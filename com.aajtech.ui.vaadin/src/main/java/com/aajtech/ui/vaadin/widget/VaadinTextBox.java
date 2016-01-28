@@ -6,7 +6,11 @@ import com.vaadin.ui.TextField;
 
 public class VaadinTextBox extends VaadinValueWidget<TextField, String>implements TextBox {
 	public VaadinTextBox() {
-		super(new TextField(), JavaType.STRING);
+		this(new TextField());
+	}
+
+	public VaadinTextBox(TextField textField) {
+		super(textField, JavaType.STRING);
 		component.setImmediate(true);
 	}
 }
