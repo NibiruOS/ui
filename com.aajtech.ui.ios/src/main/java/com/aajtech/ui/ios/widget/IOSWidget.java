@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.robovm.apple.uikit.UIView;
 
+import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
 
 abstract class IOSWidget<T extends UIView> implements Widget {
@@ -16,5 +17,10 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 	@Override
 	public Object asNative() {
 		return control;
+	}
+
+	@Override
+	public void setStyle(Style style) {
+		// TODO Auto-generated method stub
 	}
 }

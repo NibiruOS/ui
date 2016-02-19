@@ -2,6 +2,7 @@ package com.aajtech.ui.gwt.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.aajtech.ui.core.api.Style;
 import com.google.gwt.user.client.ui.Widget;
 
 abstract class GwtWidget<T extends Widget> implements com.aajtech.ui.core.api.Widget {
@@ -14,5 +15,10 @@ abstract class GwtWidget<T extends Widget> implements com.aajtech.ui.core.api.Wi
 	@Override
 	public T asNative() {
 		return widget;
+	}
+
+	@Override
+	public void setStyle(Style style) {
+		// TODO Auto-generated method stub
 	}
 }

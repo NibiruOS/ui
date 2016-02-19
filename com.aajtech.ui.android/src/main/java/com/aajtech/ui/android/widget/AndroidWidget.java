@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.aajtech.model.core.api.Registration;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.HasClickHandler;
+import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
 
 import android.view.View;
@@ -44,4 +45,8 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 		return clickRegistration;
 	}
 
+	@Override
+	public void setStyle(Style style) {
+		// TODO Auto-generated method stub
+	}
 }
