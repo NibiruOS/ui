@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
+import com.aajtech.ui.core.api.Color;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
@@ -69,5 +70,20 @@ public abstract class UiModule implements UiCreator {
 	@Override
 	public ListWidget list() {
 		return uiBuilder.list();
+	}
+
+	@Override
+	public StyleBuilder style() {
+		return uiBuilder.style();
+	}
+
+	@Override
+	public Color color(int red, int green, int blue) {
+		return uiBuilder.color(red, green, blue);
+	}
+
+	@Override
+	public Color color(int red, int green, int blue, int alpha) {
+		return uiBuilder.color(red, green, blue, alpha);
 	}
 }

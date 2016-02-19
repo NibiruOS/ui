@@ -10,6 +10,6 @@ abstract class BaseValueBuilder<T extends ValueWidget<V>, V> extends BaseBuilder
 	}
 
 	public Bind<V> bind() {
-		return Bind.on(widget.getValue());
+		return Bind.on(object.getValue());
 	}
 }

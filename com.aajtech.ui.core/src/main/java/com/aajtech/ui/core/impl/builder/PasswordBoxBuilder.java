@@ -11,7 +11,7 @@ public class PasswordBoxBuilder extends BaseValueBuilder<PasswordBox, String> {
 	}
 
 	public PasswordBoxBuilder text(String text) {
-		widget.getValue().set(text);
+		object.getValue().set(text);
 		return this;
 	}
 }

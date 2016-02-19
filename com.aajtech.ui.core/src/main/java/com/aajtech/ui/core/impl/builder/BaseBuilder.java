@@ -2,17 +2,15 @@ package com.aajtech.ui.core.impl.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.aajtech.ui.core.api.Widget;
+abstract class BaseBuilder<T> implements Builder<T> {
+	final T object;
 
-abstract class BaseBuilder<T extends Widget> implements Builder<T> {
-	final T widget;
-
-	BaseBuilder(T widget) {
-		this.widget = checkNotNull(widget);
+	BaseBuilder(T object) {
+		this.object = checkNotNull(object);
 	}
 
 	@Override
 	public T build() {
-		return widget;
+		return object;
 	}
 }

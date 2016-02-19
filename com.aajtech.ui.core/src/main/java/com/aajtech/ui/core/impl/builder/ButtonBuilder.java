@@ -12,12 +12,12 @@ public class ButtonBuilder extends BaseValueBuilder<Button, String> {
 	}
 
 	public ButtonBuilder text(String text) {
-		widget.getValue().set(text);
+		object.getValue().set(text);
 		return this;
 	}
 
 	public ButtonBuilder onClick(ClickHandler clickHandler) {
-		widget.setClickHandler(clickHandler);
+		object.setClickHandler(clickHandler);
 		return this;
 	}
 }

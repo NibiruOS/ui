@@ -12,7 +12,7 @@ public class VerticalPanelBuilder extends BaseBuilder<VerticalPanel> {
 	}
 
 	public VerticalPanelBuilder add(Widget child) {
-		widget.add(child);
+		object.add(child);
 		return this;
 	}
 }

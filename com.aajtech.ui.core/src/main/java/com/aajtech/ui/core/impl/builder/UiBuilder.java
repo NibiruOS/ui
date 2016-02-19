@@ -7,6 +7,7 @@ import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
+import com.aajtech.ui.core.api.Color;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
@@ -20,6 +21,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
+	private final Provider<StyleBuilder> styleProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -28,7 +30,8 @@ public class UiBuilder implements UiCreator {
 			Provider<VerticalPanelBuilder> verticalPanelBuilderProvider,
 			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
-			Provider<ListWidget> listWidgetProvider) {
+			Provider<ListWidget> listWidgetProvider,
+			Provider<StyleBuilder> styleProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -36,6 +39,7 @@ public class UiBuilder implements UiCreator {
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
+		this.styleProvider = checkNotNull(styleProvider);
 	}
 
 	@Override
@@ -91,5 +95,20 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public ListWidget list() {
 		return listWidgetProvider.get();
+	}
+
+	@Override
+	public StyleBuilder style() {
+		return styleProvider.get();
+	}
+
+	@Override
+	public Color color(int red, int green, int blue) {
+		return new Color(red, green, blue);
+	}
+
+	@Override
+	public Color color(int red, int green, int blue, int alpha) {
+		return new Color(red, green, blue, alpha);
 	}
 }

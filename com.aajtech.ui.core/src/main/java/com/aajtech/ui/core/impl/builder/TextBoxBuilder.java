@@ -11,7 +11,7 @@ public class TextBoxBuilder extends BaseValueBuilder<TextBox, String> {
 	}
 
 	public TextBoxBuilder text(String text) {
-		widget.getValue().set(text);
+		object.getValue().set(text);
 		return this;
 	}
 }
