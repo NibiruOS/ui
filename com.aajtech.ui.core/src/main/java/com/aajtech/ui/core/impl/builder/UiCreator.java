@@ -25,6 +25,10 @@ public interface UiCreator {
 
 	HorizontalPanelBuilder horizontalPanel();
 
+	GridPanelBuilder gridPanel();
+
+	FormBuilder form();
+
 	ButtonBuilder button();
 
 	Button button(String text, ClickHandler clickHandler);

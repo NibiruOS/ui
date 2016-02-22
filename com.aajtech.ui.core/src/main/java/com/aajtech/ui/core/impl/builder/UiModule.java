@@ -58,6 +58,16 @@ public abstract class UiModule implements UiCreator {
 	}
 
 	@Override
+	public GridPanelBuilder gridPanel() {
+		return uiBuilder.gridPanel();
+	}
+
+	@Override
+	public FormBuilder form() {
+		return uiBuilder.form();
+	}
+
+	@Override
 	public ButtonBuilder button() {
 		return uiBuilder.button();
 	}

@@ -19,6 +19,8 @@ public class UiBuilder implements UiCreator {
 	private final Provider<PasswordBoxBuilder> passwordBoxBuilderProvider;
 	private final Provider<VerticalPanelBuilder> verticalPanelBuilderProvider;
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
+	private final Provider<GridPanelBuilder> gridPanelBuilderProvider;
+	private final Provider<FormBuilder> formBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
 	private final Provider<StyleBuilder> styleProvider;
@@ -29,6 +31,8 @@ public class UiBuilder implements UiCreator {
 			Provider<PasswordBoxBuilder> passwordBoxBuilderProvider,
 			Provider<VerticalPanelBuilder> verticalPanelBuilderProvider,
 			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
+			Provider<GridPanelBuilder> gridPanelBuilderProvider,
+			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
 			Provider<StyleBuilder> styleProvider) {
@@ -37,6 +41,8 @@ public class UiBuilder implements UiCreator {
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
 		this.verticalPanelBuilderProvider = checkNotNull(verticalPanelBuilderProvider);
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
+		this.gridPanelBuilderProvider = checkNotNull(gridPanelBuilderProvider);
+		this.formBuilderProvider = checkNotNull(formBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 		this.styleProvider = checkNotNull(styleProvider);
@@ -80,6 +86,16 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public HorizontalPanelBuilder horizontalPanel() {
 		return horizontalPanelBuilderProvider.get();
+	}
+
+	@Override
+	public GridPanelBuilder gridPanel() {
+		return gridPanelBuilderProvider.get();
+	}
+
+	@Override
+	public FormBuilder form() {
+		return formBuilderProvider.get();
 	}
 
 	@Override
