@@ -8,6 +8,7 @@ import javax.inject.Provider;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Color;
+import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
@@ -23,6 +24,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<FormBuilder> formBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
+	private final Provider<ImageBuilder> imageBuilderProvider;
 	private final Provider<StyleBuilder> styleProvider;
 
 	@Inject
@@ -35,6 +37,7 @@ public class UiBuilder implements UiCreator {
 			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
+			Provider<ImageBuilder> imageBuilderProvider,
 			Provider<StyleBuilder> styleProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
@@ -45,6 +48,7 @@ public class UiBuilder implements UiCreator {
 		this.formBuilderProvider = checkNotNull(formBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
+		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
 		this.styleProvider = checkNotNull(styleProvider);
 	}
 
@@ -111,6 +115,16 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public ListWidget list() {
 		return listWidgetProvider.get();
+	}
+
+	@Override
+	public ImageBuilder image() {
+		return imageBuilderProvider.get();
+	}
+
+	@Override
+	public Image image(String path) {
+		return image().path(path).build();
 	}
 
 	@Override

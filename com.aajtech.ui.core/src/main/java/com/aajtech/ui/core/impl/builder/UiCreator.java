@@ -3,6 +3,7 @@ package com.aajtech.ui.core.impl.builder;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Color;
+import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
@@ -32,6 +33,10 @@ public interface UiCreator {
 	ButtonBuilder button();
 
 	Button button(String text, ClickHandler clickHandler);
+
+	ImageBuilder image();
+
+	Image image(String path);
 
 	ListWidget list();
 

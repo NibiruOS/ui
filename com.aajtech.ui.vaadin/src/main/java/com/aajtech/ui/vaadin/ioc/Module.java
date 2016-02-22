@@ -3,6 +3,7 @@ package com.aajtech.ui.vaadin.ioc;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.GridPanel;
 import com.aajtech.ui.core.api.HorizontalPanel;
+import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
@@ -11,6 +12,7 @@ import com.aajtech.ui.core.api.VerticalPanel;
 import com.aajtech.ui.vaadin.widget.VaadinButton;
 import com.aajtech.ui.vaadin.widget.VaadinGridPanel;
 import com.aajtech.ui.vaadin.widget.VaadinHorizontalPanel;
+import com.aajtech.ui.vaadin.widget.VaadinImage;
 import com.aajtech.ui.vaadin.widget.VaadinLabel;
 import com.aajtech.ui.vaadin.widget.VaadinListWidget;
 import com.aajtech.ui.vaadin.widget.VaadinPasswordBox;
@@ -29,5 +31,6 @@ public class Module extends AbstractModule {
 		bind(GridPanel.class).to(VaadinGridPanel.class);
 		bind(VerticalPanel.class).to(VaadinVerticalPanel.class);
 		bind(ListWidget.class).to(VaadinListWidget.class);
+		bind(Image.class).to(VaadinImage.class);
 	}
 }
