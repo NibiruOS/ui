@@ -10,6 +10,6 @@ import android.widget.LinearLayout;
 public class AndroidHorizontalPanel extends LinearLayoutContainer implements HorizontalPanel {
 	@Inject
 	public AndroidHorizontalPanel(Context context) {
-		super(new LinearLayout(context), LinearLayout.VERTICAL);
+		super(new LinearLayout(context), LinearLayout.HORIZONTAL);
 	}
 }

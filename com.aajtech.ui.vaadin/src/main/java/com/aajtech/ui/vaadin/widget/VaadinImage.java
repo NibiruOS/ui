@@ -13,21 +13,17 @@ import com.vaadin.server.ClassResource;
 import com.vaadin.ui.Image;
 
 public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.core.api.Image {
-	private final String basePath;
+	private final Value<String> value;
 
 	@Inject
 	public VaadinImage(@ResourcesBasePath String basePath) {
 		this(new Image(), basePath);
 	}
 
-	public VaadinImage(Image component, String basePath) {
+	public VaadinImage(Image component, final String basePath) {
 		super(component);
-		this.basePath = checkNotNull(basePath);
-	}
-
-	@Override
-	public Value<String> getValue() {
-		return new BaseValue<String>() {
+		checkNotNull(basePath);
+		value = new BaseValue<String>() {
 			private String value;
 
 			@Override
@@ -46,5 +42,10 @@ public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.co
 				component.setSource(new ClassResource(basePath + value));
 			}
 		};
+	}
+
+	@Override
+	public Value<String> getValue() {
+		return value;
 	}
 }

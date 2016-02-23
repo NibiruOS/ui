@@ -10,24 +10,20 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Image;
 
 public class GwtImage extends GwtWidget<Image>implements com.aajtech.ui.core.api.Image {
+	private final Value<String> value;
+
 	public GwtImage() {
-		super(new Image());
+		this(new Image());
 	}
 
 	public GwtImage(Image widget) {
 		super(widget);
-	}
-
-	@Override
-	public Value<String> getValue() {
-		return new BaseValue<String>() {
+		value = new BaseValue<String>() {
 			@Override
 			public String get() {
 				String url = widget.getUrl();
 				String prefix = GWT.getModuleBaseURL();
-				return url != null && url.startsWith(prefix)
-						? url.substring(prefix.length())
-						: url;
+				return url != null && url.startsWith(prefix) ? url.substring(prefix.length()) : url;
 			}
 
 			@Override
@@ -40,5 +36,10 @@ public class GwtImage extends GwtWidget<Image>implements com.aajtech.ui.core.api
 				widget.setUrl(GWT.getModuleBaseURL() + checkNotNull(value));
 			}
 		};
+	}
+
+	@Override
+	public Value<String> getValue() {
+		return value;
 	}
 }
