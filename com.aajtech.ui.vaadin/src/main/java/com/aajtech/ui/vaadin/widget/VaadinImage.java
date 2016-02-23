@@ -39,7 +39,7 @@ public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.co
 			@Override
 			protected void setValue(String value) {
 				this.value = checkNotNull(value);
-				component.setSource(new ClassResource(basePath + value));
+				component.setSource(new ClassResource("/" + basePath + value));
 			}
 		};
 	}
