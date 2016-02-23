@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 
 import javax.annotation.Nullable;
 
+import com.google.common.annotations.GwtIncompatible;
+
+@GwtIncompatible("Reflection")
 public class MessageInvocationHandler implements InvocationHandler {
 	private final ResourceBundle resourceBundle;
 

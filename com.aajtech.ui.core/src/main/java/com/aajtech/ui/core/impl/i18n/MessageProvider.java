@@ -6,6 +6,9 @@ import java.lang.reflect.Proxy;
 
 import javax.inject.Provider;
 
+import com.google.common.annotations.GwtIncompatible;
+
+@GwtIncompatible("Reflection")
 public class MessageProvider<T> implements Provider<T> {
 	private final Class<T> proxyClass;
 

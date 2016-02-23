@@ -28,8 +28,8 @@ public class Module extends AbstractModule {
 		bind(TextBox.class).to(VaadinTextBox.class);
 		bind(PasswordBox.class).to(VaadinPasswordBox.class);
 		bind(HorizontalPanel.class).to(VaadinHorizontalPanel.class);
-		bind(GridPanel.class).to(VaadinGridPanel.class);
 		bind(VerticalPanel.class).to(VaadinVerticalPanel.class);
+		bind(GridPanel.class).to(VaadinGridPanel.class);
 		bind(ListWidget.class).to(VaadinListWidget.class);
 		bind(Image.class).to(VaadinImage.class);
 	}

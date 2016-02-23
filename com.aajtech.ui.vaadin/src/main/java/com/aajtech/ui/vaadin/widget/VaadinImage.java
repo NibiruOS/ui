@@ -28,7 +28,7 @@ public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.co
 	@Override
 	public Value<String> getValue() {
 		return new BaseValue<String>() {
-			String value;
+			private String value;
 
 			@Override
 			public String get() {
