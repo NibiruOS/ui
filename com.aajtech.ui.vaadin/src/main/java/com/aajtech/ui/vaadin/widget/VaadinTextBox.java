@@ -7,6 +7,7 @@ import com.vaadin.ui.TextField;
 public class VaadinTextBox extends VaadinValueWidget<TextField, String>implements TextBox {
 	public VaadinTextBox() {
 		this(new TextField());
+		component.setNullRepresentation("");
 	}
 
 	public VaadinTextBox(TextField textField) {
