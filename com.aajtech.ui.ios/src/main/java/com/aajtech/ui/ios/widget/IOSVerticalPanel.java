@@ -7,7 +7,7 @@ import com.aajtech.ui.core.api.VerticalPanel;
 
 public class IOSVerticalPanel extends IOSContainer implements VerticalPanel {
 	@Override
-	void arrangeLayout() {
+	void layout() {
 		double width = 0;
 		double height = 0;
 		for (UIView child : control.getSubviews()) {
@@ -19,6 +19,7 @@ public class IOSVerticalPanel extends IOSContainer implements VerticalPanel {
 				width = childWidth;
 			}
 		}
-		control.setFrame(new CGRect(control.getFrame().getX(), control.getFrame().getY(), width, height));
+		updateSize(width, height);
+		layoutParent();
 	}
 }

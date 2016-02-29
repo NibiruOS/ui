@@ -7,16 +7,18 @@ import org.robovm.apple.uikit.UIView;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.ui.core.api.ValueWidget;
 
-abstract class IOSValueWidget<T extends UIView> extends IOSWidget<T> implements ValueWidget<String> {
-	private final Value<String> value;
+abstract class IOSValueWidget<T extends UIView, V> extends IOSWidget<T> implements ValueWidget<V> {
+	private final Value<V> value;
 
-	IOSValueWidget(ViewValue<T> value) {
-		super(value.view);
-		this.value = checkNotNull(value);
+	IOSValueWidget(T view) {
+		super(view);
+		this.value = checkNotNull(buildValue());
 	}
 
+	abstract Value<V> buildValue();
+	
 	@Override
-	public Value<String> getValue() {
+	public Value<V> getValue() {
 		return value;
 	}
 }

@@ -7,7 +7,7 @@ import com.aajtech.ui.core.api.HorizontalPanel;
 
 public class IOSHorizontalPanel extends IOSContainer implements HorizontalPanel {
 	@Override
-	void arrangeLayout() {
+	void layout() {
 		double width = 0;
 		double height = 0;
 		for (UIView child : control.getSubviews()) {
@@ -19,6 +19,6 @@ public class IOSHorizontalPanel extends IOSContainer implements HorizontalPanel 
 				height = childHeight;
 			}
 		}
-		control.setFrame(new CGRect(control.getFrame().getX(), control.getFrame().getY(), width, height));
+		updateSize(width, height);
 	}
 }

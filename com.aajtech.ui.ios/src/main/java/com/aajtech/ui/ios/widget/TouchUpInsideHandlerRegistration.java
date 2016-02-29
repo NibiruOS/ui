@@ -14,6 +14,7 @@ public class TouchUpInsideHandlerRegistration implements Registration {
 	public TouchUpInsideHandlerRegistration(UIControl control, OnTouchUpInsideListener listener) {
 		this.control = checkNotNull(control);
 		this.listener = checkNotNull(listener);
+		control.addOnTouchUpInsideListener(listener);
 	}
 
 	@Override

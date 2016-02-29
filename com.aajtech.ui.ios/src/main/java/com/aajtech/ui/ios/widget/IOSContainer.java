@@ -14,8 +14,9 @@ abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 	public void add(Widget widget) {
 		IOSWidget<?> iOSWidget = (IOSWidget<?>) widget;
 		control.addSubview(iOSWidget.control);
-		arrangeLayout();
+		iOSWidget.setParent(this);
+		layout();
 	}
 
-	abstract void arrangeLayout();
+	abstract void layout();
 }
