@@ -23,7 +23,7 @@ public class FormBuilder extends BaseBuilder<GridPanel> {
 	}
 
 	public FormBuilder field(String label, Widget field) {
-		object.add(labelBuilderProvider.get().text(label + " :").build());
+		object.add(labelBuilderProvider.get().value(label + " :").build());
 		object.add(field);
 		return this;
 	}
@@ -35,7 +35,7 @@ public class FormBuilder extends BaseBuilder<GridPanel> {
 
 	@Override
 	public GridPanel build() {
-		object.add(labelBuilderProvider.get().text("").build());
+		object.add(labelBuilderProvider.get().value("").build());
 		object.add(horizontalPanelBuilder.build());
 		return super.build();
 	}

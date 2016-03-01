@@ -26,6 +26,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<ListWidget> listWidgetProvider;
 	private final Provider<ImageBuilder> imageBuilderProvider;
 	private final Provider<StyleBuilder> styleProvider;
+	private final Provider<TextStyleBuilder> textStyleProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -38,7 +39,8 @@ public class UiBuilder implements UiCreator {
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
 			Provider<ImageBuilder> imageBuilderProvider,
-			Provider<StyleBuilder> styleProvider) {
+			Provider<StyleBuilder> styleProvider,
+			Provider<TextStyleBuilder> textStyleProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -50,6 +52,7 @@ public class UiBuilder implements UiCreator {
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
 		this.styleProvider = checkNotNull(styleProvider);
+		this.textStyleProvider = checkNotNull(textStyleProvider);
 	}
 
 	@Override
@@ -59,7 +62,7 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public Label label(String text) {
-		return label().text(text).build();
+		return label().value(text).build();
 	}
 
 	@Override
@@ -69,7 +72,7 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public TextBox textBox(String text) {
-		return textBox().text(text).build();
+		return textBox().value(text).build();
 	}
 
 	@Override
@@ -79,7 +82,7 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public PasswordBox passwordBox(String text) {
-		return passwordBox().text(text).build();
+		return passwordBox().value(text).build();
 	}
 	
 	@Override
@@ -109,7 +112,7 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public Button button(String text, ClickHandler clickHandler) {
-		return button().text(text).onClick(clickHandler).build();
+		return button().value(text).onClick(clickHandler).build();
 	}
 
 	@Override
@@ -124,12 +127,17 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public Image image(String path) {
-		return image().path(path).build();
+		return image().value(path).build();
 	}
 
 	@Override
 	public StyleBuilder style() {
 		return styleProvider.get();
+	}
+
+	@Override
+	public TextStyleBuilder textStyle() {
+		return textStyleProvider.get();
 	}
 
 	@Override

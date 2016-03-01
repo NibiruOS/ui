@@ -4,14 +4,9 @@ import javax.inject.Inject;
 
 import com.aajtech.ui.core.api.PasswordBox;
 
-public class PasswordBoxBuilder extends BaseValueBuilder<PasswordBox, String> {
+public class PasswordBoxBuilder extends BaseValueBuilder<PasswordBox, String, PasswordBoxBuilder> {
 	@Inject
 	public PasswordBoxBuilder(PasswordBox passwordBox) {
 		super(passwordBox);
-	}
-
-	public PasswordBoxBuilder text(String text) {
-		object.getValue().set(text);
-		return this;
 	}
 }

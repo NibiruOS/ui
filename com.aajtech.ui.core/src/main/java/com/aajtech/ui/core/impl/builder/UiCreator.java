@@ -42,6 +42,8 @@ public interface UiCreator {
 
 	StyleBuilder style();
 	
+	TextStyleBuilder textStyle();
+	
 	Color color(int red, int green, int blue);
 	
 	Color color(int red, int green, int blue, int alpha);

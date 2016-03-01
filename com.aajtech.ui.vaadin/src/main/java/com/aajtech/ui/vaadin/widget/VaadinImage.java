@@ -9,6 +9,7 @@ import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
 import com.aajtech.ui.core.api.ResourcesBasePath;
+import com.aajtech.ui.core.api.Style;
 import com.vaadin.server.ClassResource;
 import com.vaadin.ui.Image;
 
@@ -18,6 +19,7 @@ public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.co
 	@Inject
 	public VaadinImage(@ResourcesBasePath String basePath) {
 		this(new Image(), basePath);
+		setStyle(Style.DEFAULT);
 	}
 
 	public VaadinImage(Image component, final String basePath) {

@@ -4,14 +4,9 @@ import javax.inject.Inject;
 
 import com.aajtech.ui.core.api.TextBox;
 
-public class TextBoxBuilder extends BaseValueBuilder<TextBox, String> {
+public class TextBoxBuilder extends BaseValueBuilder<TextBox, String, TextBoxBuilder> {
 	@Inject
 	public TextBoxBuilder(TextBox textBox) {
 		super(textBox);
-	}
-
-	public TextBoxBuilder text(String text) {
-		object.getValue().set(text);
-		return this;
 	}
 }

@@ -65,6 +65,6 @@ public class IOSGridPanel extends IOSContainer implements GridPanel {
 		for (double rowHeight : heights) {
 			height += rowHeight;
 		}
-		control.setFrame(new CGRect(control.getFrame().getX(), control.getFrame().getY(), width, height));
+		updateSize(width, height);
 	}
 }
