@@ -16,12 +16,12 @@ public class Style {
 	private static int idCounter;
 	private final int id;
 	private Color backgroundColor;
-	private SizeType widthType;
-	private SizeType heightType;
+	private SizeType widthType = SizeType.WRAP_CONTENT;
+	private SizeType heightType = SizeType.WRAP_CONTENT;
 	private int width;
 	private int height;
-	private Alignment horizontalAlignment;
-	private Alignment verticalAlignment;
+	private Alignment horizontalAlignment = Alignment.START;
+	private Alignment verticalAlignment = Alignment.START;
 	private int marginTop;
 	private int marginRight;
 	private int marginLeft;
@@ -44,7 +44,7 @@ public class Style {
 	}
 
 	public SizeType getWidthType() {
-		return widthType != null ? widthType : SizeType.WRAP_CONTENT;
+		return widthType;
 	}
 
 	public void setWidthType(SizeType widthType) {
@@ -52,7 +52,7 @@ public class Style {
 	}
 
 	public SizeType getHeightType() {
-		return heightType != null ? heightType : SizeType.WRAP_CONTENT;
+		return heightType;
 	}
 
 	public void setHeightType(SizeType heightType) {
@@ -78,7 +78,7 @@ public class Style {
 	}
 
 	public Alignment getHorizontalAlignment() {
-		return horizontalAlignment != null ? horizontalAlignment : Alignment.START;
+		return horizontalAlignment;
 	}
 
 	public void setHorizontalAlignment(Alignment horizontalAlignment) {
@@ -86,7 +86,7 @@ public class Style {
 	}
 
 	public Alignment getVerticalAlignment() {
-		return verticalAlignment != null ? verticalAlignment : Alignment.START;
+		return verticalAlignment;
 	}
 
 	public void setVerticalAlignment(Alignment verticalAlignment) {
@@ -132,6 +132,56 @@ public class Style {
 		sb.append(" {\n");
 		if (backgroundColor != null) {
 			sb.append("  background-color: " + backgroundColor.asCss() + ";\n");
+		}
+
+		switch (widthType) {
+		case MATCH_PARENT:
+			sb.append("  width: 100%;\n");
+			break;
+
+		case WRAP_CONTENT:
+			sb.append("  width: auto;\n");
+			break;
+
+		case FIXED:
+			sb.append("  width: " + width + "px;\n");
+			break;
+
+		default:
+			break;
+		}
+		switch (heightType) {
+		case MATCH_PARENT:
+			sb.append("  height: 100%;\n");
+			break;
+
+		case WRAP_CONTENT:
+			sb.append("  height: auto;\n");
+			break;
+
+		case FIXED:
+			sb.append("  height: " + height + "px;\n");
+			break;
+
+		default:
+			break;
+		}
+
+		switch (horizontalAlignment) {
+		case START:
+			sb.append("  float: left;\n");
+			break;
+
+		case CENTER:
+			sb.append("  float: center;\n"); // FIXME: Float center does not exist 
+			break;
+
+		case END:
+			sb.append("  float: rigth;\n");
+			break;
+
+		default:
+			break;
 		}
 		sb.append("}");
 		return sb.toString();

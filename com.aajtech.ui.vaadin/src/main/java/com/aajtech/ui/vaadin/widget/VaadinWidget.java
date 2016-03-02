@@ -24,6 +24,7 @@ abstract class VaadinWidget<T extends Component> implements Widget, Serializable
 
 	@Override
 	public void setStyle(Style style) {
+		// TODO: Add styles only once?
 		Styles styles = Page.getCurrent().getStyles();
 		styles.add(style.asCss());
 		component.setStyleName(style.getId());
