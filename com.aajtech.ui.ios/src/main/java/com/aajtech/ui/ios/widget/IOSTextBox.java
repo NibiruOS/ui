@@ -2,7 +2,7 @@ package com.aajtech.ui.ios.widget;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.uikit.UIControl;
-import org.robovm.apple.uikit.UIControl.OnValueChangedListener;
+import org.robovm.apple.uikit.UIControl.OnEditingDidEndListener;
 import org.robovm.apple.uikit.UITextBorderStyle;
 import org.robovm.apple.uikit.UITextField;
 
@@ -21,9 +21,15 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 	public IOSTextBox(final UITextField textField) {
 		super(textField);
 		control.setBorderStyle(UITextBorderStyle.RoundedRect);
-		textField.addOnValueChangedListener(new OnValueChangedListener() {
+//		textField.addOnValueChangedListener(new OnValueChangedListener() {
+//			@Override
+//			public void onValueChanged(UIControl control) {
+//				getValue().notifyObservers();
+//			}
+//		});
+		textField.addOnEditingDidEndListener(new OnEditingDidEndListener() {		
 			@Override
-			public void onValueChanged(UIControl control) {
+			public void onEditingDidEnd(UIControl arg0) {
 				getValue().notifyObservers();
 			}
 		});
