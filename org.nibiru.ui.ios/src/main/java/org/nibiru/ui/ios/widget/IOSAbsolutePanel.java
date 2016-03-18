@@ -5,8 +5,9 @@ import javax.inject.Inject;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Widget;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGPoint;
+import apple.coregraphics.struct.CGRect;
+import apple.uikit.UIView;
 
 public class IOSAbsolutePanel extends IOSContainer implements AbsolutePanel {
 	@Inject
@@ -15,40 +16,56 @@ public class IOSAbsolutePanel extends IOSContainer implements AbsolutePanel {
 
 	@Override
 	public Position getPosition(Widget child) {
-		final IOSWidget<?> widget = (IOSWidget<?>) child;
+		final UIView view = (UIView) child.asNative();
 		return new Position() {
 			
 			@Override
 			public Position setY(int y) {
-				CGRect frame = widget.control.frame();
-				widget.control.setFrame(new CGRect(new CGPoint(frame.origin().x(), y), frame.size()));
+				CGRect frame = view.frame();
+				view.setFrame(new CGRect(new CGPoint(frame.origin().x(), y), frame.size()));
 				return this;
 			}
 			
 			@Override
 			public Position setX(int x) {
-				CGRect frame = widget.control.frame();
-				widget.control.setFrame(new CGRect(new CGPoint(x, frame.origin().y()), frame.size()));
+				CGRect frame = view.frame();
+				view.setFrame(new CGRect(new CGPoint(x, frame.origin().y()), frame.size()));
 				return this;
 			}
 			
 			@Override
 			public int getY() {
-				return (int) widget.control.frame().origin().y();
+				return (int) view.frame().origin().y();
 			}
 			
 			@Override
 			public int getX() {
-				return (int) widget.control.frame().origin().x();
+				return (int) view.frame().origin().x();
 			}
 		};
 	}
-
+	
 	@Override
-	void layout() {
-		updateSize(400, 400);
-		
+	public void requestLayout() {
 	}
 
+	@Override
+	public void scheduleLayout() {
+		if (getParent() != null) {
+			getParent().scheduleLayout();
+		}
+	}
+	
 
+	@Override
+	protected int getNativeHeight() {
+		// TODO Fix value - add size computation
+		return 480;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		// TODO Fix value - add size computation
+		return 320;
+	}
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
-public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout>implements AbsolutePanel {
+public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout> implements AbsolutePanel {
 	@Inject
 	public AndroidAbsolutePanel(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
@@ -28,26 +28,26 @@ public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout>implem
 
 			@Override
 			public int getX() {
-				return getParams(childView).leftMargin;
+				return pxToDp(getLayoutParams(childView).leftMargin);
 			}
 
 			@Override
 			public Position setX(int x) {
-				LayoutParams params = getParams(childView);
-				params.leftMargin = x;
+				LayoutParams params = getLayoutParams(childView);
+				params.leftMargin = dpToPx(x);
 				childView.setLayoutParams(params);
 				return this;
 			}
 
 			@Override
 			public int getY() {
-				return getParams(childView).topMargin;
+				return pxToDp(getLayoutParams(childView).topMargin);
 			}
 
 			@Override
 			public Position setY(int y) {
-				LayoutParams params = getParams(childView);
-				params.topMargin = y;
+				LayoutParams params = getLayoutParams(childView);
+				params.topMargin = dpToPx(y);
 				childView.setLayoutParams(params);
 				return this;
 			}
@@ -60,8 +60,19 @@ public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout>implem
 		return styleResource == 0 ? new RelativeLayout(context) : new RelativeLayout(context, null, styleResource);
 	}
 
-	private LayoutParams getParams(View view) {
+	private LayoutParams getLayoutParams(View view) {
 		LayoutParams params = (LayoutParams) view.getLayoutParams();
 		return params != null ? params : new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+	}
+
+	@Override
+	public void requestLayout() {
+	}
+
+	@Override
+	public void scheduleLayout() {
+		if (getParent() != null) {
+			getParent().scheduleLayout();
+		}
 	}
 }

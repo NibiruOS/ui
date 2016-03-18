@@ -10,6 +10,9 @@ import android.content.Context;
 import android.widget.TextView;
 
 public class AndroidLabel extends AndroidValueWidget<TextView, String> implements Label {
+	// TODO: Fix this "magic".
+	private static int MAGIC_PADDING = 2;
+
 	@Inject
 	public AndroidLabel(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
@@ -29,5 +32,10 @@ public class AndroidLabel extends AndroidValueWidget<TextView, String> implement
 	@Override
 	Value<String> buildValue() {
 		return new LabelValue(control());
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		return super.getNativeWidth() + MAGIC_PADDING;
 	}
 }

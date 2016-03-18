@@ -43,4 +43,16 @@ public class AndroidPopup implements Popup {
 	public void setAutoHide(boolean autoHide) {
         dialog.setCanceledOnTouchOutside(autoHide);
 	}
+
+	@Override
+	public void requestLayout() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void scheduleLayout() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -4,6 +4,7 @@
 	<inherits name="org.nibiru.ui.core.Module" />
 	<source path="builder" />
 	<source path="ioc" />
+	<source path="loop" />
 	<source path="resource" />
 	<source path="widget" />
 </module>

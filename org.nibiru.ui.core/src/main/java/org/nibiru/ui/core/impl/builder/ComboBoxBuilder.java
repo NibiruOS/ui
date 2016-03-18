@@ -1,7 +1,5 @@
 package org.nibiru.ui.core.impl.builder;
 
-import java.util.List;
-
 import org.nibiru.ui.core.api.ComboBox;
 
 public class ComboBoxBuilder<T> extends BaseValueBuilder<ComboBox<T>, T, ComboBoxBuilder<T>> {
@@ -9,7 +7,7 @@ public class ComboBoxBuilder<T> extends BaseValueBuilder<ComboBox<T>, T, ComboBo
 		super(control);
 	}
 
-	public ComboBoxBuilder<T> items(List<T> items) {
+	public ComboBoxBuilder<T> items(Iterable<T> items) {
 		object.getItems().set(items);
 		return getThis();
 	}

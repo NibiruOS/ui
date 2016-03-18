@@ -5,6 +5,9 @@ import javax.inject.Inject;
 import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Widget;
 
+import apple.uikit.UIView;
+import dagger.internal.Preconditions;
+
 public class IOSScrollPanel extends IOSContainer implements ScrollPanel {
 	@Inject
 	public IOSScrollPanel() {
@@ -12,15 +15,31 @@ public class IOSScrollPanel extends IOSContainer implements ScrollPanel {
 
 	@Override
 	public void setContent(Widget content) {
-		final IOSWidget<?> widget = (IOSWidget<?>) content;
-		// TODO Remove all subviews
-		control.addSubview(widget.control);
-
+		Preconditions.checkNotNull(content);
+		clear();
+		control.addSubview((UIView) content.asNative());
 	}
 
 	@Override
-	void layout() {
-
+	public void requestLayout() {
 	}
 
+	@Override
+	public void scheduleLayout() {
+		if (getParent() != null) {
+			getParent().scheduleLayout();
+		}
+	}
+
+	@Override
+	protected int getNativeHeight() {
+		// TODO Fix value - add size computation
+		return 480;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		// TODO Fix value - add size computation
+		return 320;
+	}
 }

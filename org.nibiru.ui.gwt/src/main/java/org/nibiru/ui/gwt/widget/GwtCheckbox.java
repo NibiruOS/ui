@@ -8,7 +8,10 @@ import org.nibiru.model.core.impl.java.JavaType;
 import com.google.gwt.user.client.ui.CheckBox;
 
 public class GwtCheckbox extends GwtHasValueWidget<CheckBox, Boolean> implements org.nibiru.ui.core.api.Checkbox {
-	Value<String> labelText;
+	// TODO: Fix this "magic".
+	private static int MAGIC_PADDING = 2;
+
+	private Value<String> labelText;
 	
 	@Inject
 	public GwtCheckbox() {
@@ -27,4 +30,8 @@ public class GwtCheckbox extends GwtHasValueWidget<CheckBox, Boolean> implements
 		return labelText;
 	}
 
+	@Override
+	protected int getNativeWidth() {
+		return super.getNativeWidth() + MAGIC_PADDING;
+	}
 }

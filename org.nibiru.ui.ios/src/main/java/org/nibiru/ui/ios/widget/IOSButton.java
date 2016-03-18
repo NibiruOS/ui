@@ -2,22 +2,20 @@ package org.nibiru.ui.ios.widget;
 
 import javax.inject.Inject;
 
-import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.ClickHandler;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.foundation.NSString;
-import ios.uikit.UIButton;
-import ios.uikit.UIColor;
-import ios.uikit.enums.UIButtonType;
-import ios.uikit.enums.UIControlState;
+import apple.coregraphics.struct.CGPoint;
+import apple.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGSize;
+import apple.foundation.NSString;
+import apple.uikit.UIButton;
+import apple.uikit.UIColor;
+import apple.uikit.enums.UIButtonType;
+import apple.uikit.enums.UIControlState;
 
 public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
 	private static final int MARGIN = 10;
@@ -37,13 +35,7 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 
 	public IOSButton(UIButton button) {
 		super(button);
-
 	}
-
-	@Override
-	public Registration setClickHandler(ClickHandler clickHandler) {
-		return new TouchUpInsideHandlerRegistration(control, clickHandler);
-	}	
 
 	@Override
 	Value<String> buildValue() {
@@ -56,8 +48,6 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 			@Override
 			protected void setValue(String value) {
 				control.setTitleForState(value, UIControlState.Normal);
-				CGSize size = NSString.stringWithString(value).sizeWithFont(control.titleLabel().font());
-				updateSize(size.width() + MARGIN, size.height() + MARGIN);
 			}
 
 			@Override
@@ -65,5 +55,19 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 				return JavaType.STRING;
 			}
 		};
+	}
+
+	@Override
+	protected int getNativeHeight() {
+		return (int) (control.titleForState(UIControlState.Normal) != null ? size().height() : 0) + MARGIN;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		return (int) (control.titleForState(UIControlState.Normal) != null ? size().width() : 0) + MARGIN;
+	}
+	
+	private CGSize size() {
+		return NSString.stringWithString(control.titleForState(UIControlState.Normal)).sizeWithFont(control.font());
 	}
 }

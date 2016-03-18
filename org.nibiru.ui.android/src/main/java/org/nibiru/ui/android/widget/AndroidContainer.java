@@ -1,14 +1,22 @@
 package org.nibiru.ui.android.widget;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
+
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>implements Container {
+	private final List<Widget> children = Lists.newArrayList();
+
 	AndroidContainer(T control, StyleResolver styleResolver) {
 		super(control, styleResolver);
 	}
@@ -19,11 +27,23 @@ abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>imp
 
 	@Override
 	public void add(Widget child) {
+		checkNotNull(child);
 		control().addView((View) child.asNative());
+		children.add(child);
+		child.setParent(this);
+	}
+
+	@Override
+	public Iterable<Widget> getChildren() {
+		return children;
 	}
 
 	@Override
 	public void clear() {
 		control().removeAllViews();
+		for (Widget child : children) {
+			child.setParent(null);
+		}
+		children.clear();
 	}
 }

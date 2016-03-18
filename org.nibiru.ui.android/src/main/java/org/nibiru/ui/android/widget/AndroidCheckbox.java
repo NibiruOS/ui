@@ -76,6 +76,4 @@ public class AndroidCheckbox extends AndroidValueWidget<android.widget.CheckBox,
 				? new android.widget.CheckBox(context)
 				: new android.widget.CheckBox(context, null, styleResource);
 	}
-
-
 }

@@ -8,33 +8,35 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Checkbox;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.foundation.NSString;
-import ios.uikit.UIButton;
-import ios.uikit.enums.UIButtonType;
-import ios.uikit.enums.UIControlState;
+import apple.coregraphics.struct.CGPoint;
+import apple.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGSize;
+import apple.foundation.NSString;
+import apple.uikit.UILabel;
+import apple.uikit.UISwitch;
+import apple.uikit.UIView;
+import apple.uikit.enums.UIControlEvents;
 
-public class IOSCheckbox extends IOSValueWidget<UIButton, Boolean> implements Checkbox {
-	private static final int MARGIN = 10;
+public class IOSCheckbox extends IOSValueWidget<UIView, Boolean> implements Checkbox {
+	private static final int MARGIN = 5;
+	private final UISwitch check;
+	private final UILabel label;
 	private final Value<String> labelValue;
-	private boolean checked;
 
 	@Inject
 	public IOSCheckbox() {
-		super(buildButton());
+		super(UIView.alloc().init());
+		label = UILabel.alloc().init();
+		check = UISwitch.alloc().init();
 		labelValue = new BaseValue<String>() {
 			@Override
 			public String get() {
-				return control.titleForState(UIControlState.Normal);
+				return label.text();
 			}
 
 			@Override
 			protected void setValue(String value) {
-				control.setTitleForState(value, UIControlState.Normal);
-				CGSize size = NSString.stringWithString(value).sizeWithFont(control.titleLabel().font());
-				updateSize(size.width() + MARGIN, size.height() + MARGIN);
+				label.setText(value);
 			}
 
 			@Override
@@ -42,12 +44,15 @@ public class IOSCheckbox extends IOSValueWidget<UIButton, Boolean> implements Ch
 				return JavaType.STRING;
 			}
 		};
-	}
-
-	private static UIButton buildButton() {
-		UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
-		button.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(20, 20)));
-		return button;
+		check.addTargetActionForControlEvents((UISwitch check, long flags) -> {
+			getValue().set(!check.isOn());
+		}, UIControlEvents.ValueChanged);
+		label.setUserInteractionEnabled(true);
+		TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(label, () -> {
+			getValue().set(!getValue().get());
+		});
+		control.addSubview(check);
+		control.addSubview(label);
 	}
 
 	@Override
@@ -60,12 +65,12 @@ public class IOSCheckbox extends IOSValueWidget<UIButton, Boolean> implements Ch
 		return new BaseValue<Boolean>() {
 			@Override
 			public Boolean get() {
-				return checked;
+				return check.isOn();
 			}
 
 			@Override
 			protected void setValue(Boolean value) {
-				checked = Boolean.TRUE.equals(value);
+				check.setOn(Boolean.TRUE.equals(value));
 			}
 
 			@Override
@@ -73,5 +78,29 @@ public class IOSCheckbox extends IOSValueWidget<UIButton, Boolean> implements Ch
 				return JavaType.BOOLEAN;
 			}
 		};
+	}
+
+	@Override
+	protected int getNativeHeight() {
+		return (int) Math.max(labelSize().height(), check.frame().size().height());
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		return (int) (check.frame().size().width() + MARGIN + labelSize().width());
+	}
+
+	@Override
+	public void setNativeSize(int measuredWidth, int measuredHeight) {
+		super.setNativeSize(measuredWidth, measuredHeight);
+		int auxWidth = (int) check.frame().size().width();
+		check.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(auxWidth, measuredHeight)));
+		auxWidth += MARGIN;
+		label.setFrame(new CGRect(new CGPoint(auxWidth, 0), new CGSize(measuredWidth - auxWidth, measuredHeight)));
+	}
+
+	private CGSize labelSize() {
+		return label.text() != null ? NSString.stringWithString(label.text()).sizeWithFont(label.font())
+				: new CGSize(0, 0);
 	}
 }

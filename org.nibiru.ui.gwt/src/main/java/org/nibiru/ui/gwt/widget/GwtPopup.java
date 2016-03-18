@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 
 public class GwtPopup implements Popup {
 	private final PopupPanel popup;
+	private Widget content;
 
 	@Inject
 	public GwtPopup(Resources resources) {
@@ -28,8 +29,13 @@ public class GwtPopup implements Popup {
 	@Override
 	public void setContent(Widget content) {
 		checkNotNull(content);
+		if (this.content != null) {
+			this.content.setParent(null);
+		}
+		this.content = content;
 		popup.clear();
 		popup.add((com.google.gwt.user.client.ui.Widget) content.asNative());
+		content.setParent(this);
 	}
 
 	@Override
@@ -46,5 +52,17 @@ public class GwtPopup implements Popup {
 	@Override
 	public void setAutoHide(boolean autoHide) {
 		popup.setAutoHideEnabled(autoHide);
+	}
+
+	@Override
+	public void requestLayout() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void scheduleLayout() {
+		// TODO Auto-generated method stub
+		
 	}
 }

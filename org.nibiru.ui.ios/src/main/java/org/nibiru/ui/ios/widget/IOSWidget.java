@@ -1,25 +1,16 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.model.core.api.Registration;
+import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.impl.BaseControlWidget;
 
-import org.nibiru.ui.core.api.Widget;
+import apple.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGSize;
+import apple.uikit.UIView;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.uikit.UIView;
-
-abstract class IOSWidget<T extends UIView> implements Widget {
-	final T control;
-	private IOSContainer parent;
-
+abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 	IOSWidget(T control) {
-		this.control = checkNotNull(control);
-	}
-
-	@Override
-	public Object asNative() {
-		return control;
+		super(control);
 	}
 
 	@Override
@@ -27,19 +18,12 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 		// TODO Auto-generated method stub
 	}
 
-	void setParent(IOSContainer parent) {
-		this.parent = parent;
+	@Override
+	public void setNativeSize(int measuredWidth, int measuredHeight) {
+		control.setFrame(new CGRect(control.frame().origin(), new CGSize(measuredWidth, measuredHeight)));
 	}
-
-	void layoutParent() {
-		if (parent != null) {
-			parent.layout();
-		}
-	}
-
-	void updateSize(double width, double height) {
-		control.setFrame(new CGRect(new CGPoint(control.frame().origin().x(), control.frame().origin().y()),
-				new CGSize(width, height)));
-		layoutParent();
-	}
+	
+	public Registration setClickHandler(ClickHandler clickHandler) {
+		return TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(control, clickHandler);
+	}	
 }

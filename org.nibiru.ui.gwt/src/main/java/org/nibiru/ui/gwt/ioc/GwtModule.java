@@ -3,38 +3,32 @@ package org.nibiru.ui.gwt.ioc;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
-import org.nibiru.ui.core.api.GridPanel;
-import org.nibiru.ui.core.api.HorizontalPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
-import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.PasswordBox;
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
-import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtComboBoxBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.gwt.loop.SchedulerLooper;
 import org.nibiru.ui.gwt.resource.Resources;
 import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
 import org.nibiru.ui.gwt.widget.GwtButton;
 import org.nibiru.ui.gwt.widget.GwtCheckbox;
-import org.nibiru.ui.gwt.widget.GwtGridPanel;
-import org.nibiru.ui.gwt.widget.GwtHorizontalPanel;
 import org.nibiru.ui.gwt.widget.GwtImage;
 import org.nibiru.ui.gwt.widget.GwtLabel;
-import org.nibiru.ui.gwt.widget.GwtListWidget;
 import org.nibiru.ui.gwt.widget.GwtPasswordBox;
 import org.nibiru.ui.gwt.widget.GwtPopup;
 import org.nibiru.ui.gwt.widget.GwtScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtSpinner;
 import org.nibiru.ui.gwt.widget.GwtTextBox;
 import org.nibiru.ui.gwt.widget.GwtTreeView;
-import org.nibiru.ui.gwt.widget.GwtVerticalPanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -65,28 +59,8 @@ public class GwtModule {
 	}
 
 	@Provides
-	public HorizontalPanel getHorizontalPanel(GwtHorizontalPanel horizontalPanel) {
-		return horizontalPanel;
-	}
-
-	@Provides
-	public VerticalPanel getVerticalPanel(GwtVerticalPanel verticalPanel) {
-		return verticalPanel;
-	}
-
-	@Provides
-	public GridPanel getGridPanel(GwtGridPanel gridPanel) {
-		return gridPanel;
-	}
-
-	@Provides
 	public ScrollPanel getScrollPanel(GwtScrollPanel scrollPanel) {
 		return scrollPanel;
-	}
-
-	@Provides
-	public ListWidget getListWidget(GwtListWidget listWidget) {
-		return listWidget;
 	}
 
 	@Provides
@@ -137,5 +111,10 @@ public class GwtModule {
 	@Provides
 	public Resources getResources() {
 		return GWT.create(Resources.class);
+	}
+
+	@Provides
+	public Looper getLooper(SchedulerLooper looper) {
+		return looper;
 	}
 }

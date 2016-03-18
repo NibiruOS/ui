@@ -1,8 +1,0 @@
-def vaadinVersion = "7.5.5"
-
-dependencies {
-	compile project(":org.nibiru.ui.core")
-	compile "com.vaadin:vaadin-client-compiled:${vaadinVersion}"
-	compile "com.vaadin:vaadin-server:${vaadinVersion}"
-	compile "com.vaadin:vaadin-themes:7.5.4"
-}

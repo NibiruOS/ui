@@ -10,12 +10,12 @@ import org.nibiru.ui.core.api.TextBox;
 
 import com.google.common.base.Strings;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.uikit.UITextField;
-import ios.uikit.enums.UIControlEvents;
-import ios.uikit.enums.UITextBorderStyle;
+import apple.coregraphics.struct.CGPoint;
+import apple.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGSize;
+import apple.uikit.UITextField;
+import apple.uikit.enums.UIControlEvents;
+import apple.uikit.enums.UITextBorderStyle;
 
 public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {
 	@Inject
@@ -49,5 +49,17 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 				return JavaType.STRING;
 			}
 		};
+	}
+
+	@Override
+	protected int getNativeHeight() {
+		// TODO Fix value - add size computation
+		return 25;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		// TODO Fix value - add size computation
+		return 100;
 	}
 }
