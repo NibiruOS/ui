@@ -2,7 +2,6 @@ package org.nibiru.ui.vaadin.widget;
 
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.PasswordBox;
-
 import com.vaadin.ui.PasswordField;
 
 public class VaadinPasswordBox extends VaadinValueWidget<PasswordField, String>implements PasswordBox {
@@ -10,6 +9,8 @@ public class VaadinPasswordBox extends VaadinValueWidget<PasswordField, String>i
 		this(new PasswordField());
 		control.setImmediate(true);
 		control.setNullRepresentation("");
+		setWidth(150);
+		setHeight(25);
 	}
 
 	public VaadinPasswordBox(PasswordField passwordField) {

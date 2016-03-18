@@ -15,6 +15,9 @@ import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.impl.GridPanelImpl;
+import org.nibiru.ui.core.impl.HorizontalPanelImpl;
+import org.nibiru.ui.core.impl.VerticalPanelImpl;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtComboBoxBuilderFactory;
@@ -23,8 +26,6 @@ import org.nibiru.ui.gwt.resource.Resources;
 import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
 import org.nibiru.ui.gwt.widget.GwtButton;
 import org.nibiru.ui.gwt.widget.GwtCheckbox;
-import org.nibiru.ui.gwt.widget.GwtGridPanel;
-import org.nibiru.ui.gwt.widget.GwtHorizontalPanel;
 import org.nibiru.ui.gwt.widget.GwtImage;
 import org.nibiru.ui.gwt.widget.GwtLabel;
 import org.nibiru.ui.gwt.widget.GwtListWidget;
@@ -34,8 +35,6 @@ import org.nibiru.ui.gwt.widget.GwtScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtSpinner;
 import org.nibiru.ui.gwt.widget.GwtTextBox;
 import org.nibiru.ui.gwt.widget.GwtTreeView;
-import org.nibiru.ui.gwt.widget.GwtVerticalPanel;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 
@@ -65,17 +64,17 @@ public class GwtModule {
 	}
 
 	@Provides
-	public HorizontalPanel getHorizontalPanel(GwtHorizontalPanel horizontalPanel) {
+	public HorizontalPanel getHorizontalPanel(HorizontalPanelImpl horizontalPanel) {
 		return horizontalPanel;
 	}
 
 	@Provides
-	public VerticalPanel getVerticalPanel(GwtVerticalPanel verticalPanel) {
+	public VerticalPanel getVerticalPanel(VerticalPanelImpl  verticalPanel) {
 		return verticalPanel;
 	}
 
 	@Provides
-	public GridPanel getGridPanel(GwtGridPanel gridPanel) {
+	public GridPanel getGridPanel(GridPanelImpl gridPanel) {
 		return gridPanel;
 	}
 

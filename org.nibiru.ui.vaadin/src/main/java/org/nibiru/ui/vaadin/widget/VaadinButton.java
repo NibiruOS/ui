@@ -6,12 +6,11 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ClickHandler;
-
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
-public class VaadinButton extends VaadinWidget<Button>implements org.nibiru.ui.core.api.Button {
+public class VaadinButton extends VaadinWidget<Button> implements org.nibiru.ui.core.api.Button {
 	public VaadinButton() {
 		this(new Button());
 	}

@@ -5,8 +5,6 @@ import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
 import org.nibiru.ui.android.widget.AndroidCheckbox;
-import org.nibiru.ui.android.widget.AndroidGridPanel;
-import org.nibiru.ui.android.widget.AndroidHorizontalPanel;
 import org.nibiru.ui.android.widget.AndroidImage;
 import org.nibiru.ui.android.widget.AndroidLabel;
 import org.nibiru.ui.android.widget.AndroidListWidget;
@@ -16,7 +14,6 @@ import org.nibiru.ui.android.widget.AndroidScrollPanel;
 import org.nibiru.ui.android.widget.AndroidSpinner;
 import org.nibiru.ui.android.widget.AndroidTextBox;
 import org.nibiru.ui.android.widget.AndroidTreeView;
-import org.nibiru.ui.android.widget.AndroidVerticalPanel;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
@@ -32,6 +29,9 @@ import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.impl.GridPanelImpl;
+import org.nibiru.ui.core.impl.HorizontalPanelImpl;
+import org.nibiru.ui.core.impl.VerticalPanelImpl;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 
@@ -61,17 +61,17 @@ public class AndroidModule {
 	}
 
 	@Provides
-	public HorizontalPanel getHorizontalPanel(AndroidHorizontalPanel horizontalPanel) {
+	public HorizontalPanel getHorizontalPanel(HorizontalPanelImpl horizontalPanel) {
 		return horizontalPanel;
 	}
 
 	@Provides
-	public VerticalPanel getVerticalPanel(AndroidVerticalPanel verticalPanel) {
+	public VerticalPanel getVerticalPanel(VerticalPanelImpl verticalPanel) {
 		return verticalPanel;
 	}
 
 	@Provides
-	public GridPanel getGridPanel(AndroidGridPanel gridPanel) {
+	public GridPanel getGridPanel(GridPanelImpl gridPanel) {
 		return gridPanel;
 	}
 

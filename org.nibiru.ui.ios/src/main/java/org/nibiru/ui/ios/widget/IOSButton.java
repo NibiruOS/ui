@@ -1,12 +1,5 @@
 package org.nibiru.ui.ios.widget;
 
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.ClickHandler;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSString;
@@ -16,6 +9,14 @@ import org.robovm.apple.uikit.UIControl;
 import org.robovm.apple.uikit.UIControl.OnTouchUpInsideListener;
 import org.robovm.apple.uikit.UIControlState;
 import org.robovm.apple.uikit.UIEvent;
+
+import org.nibiru.model.core.api.Registration;
+import org.nibiru.model.core.api.Type;
+import org.nibiru.model.core.api.Value;
+import org.nibiru.model.core.impl.BaseValue;
+import org.nibiru.model.core.impl.java.JavaType;
+import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.ClickHandler;
 
 public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
 	private static final int MARGIN = 10;
@@ -52,7 +53,7 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 			protected void setValue(String value) {
 				control.setTitle(value, UIControlState.Normal);
 				CGSize size = new NSString(value).getSize(control.getTitleLabel().getFont());
-				updateSize(size.getWidth() + MARGIN, size.getHeight() + MARGIN);
+				updateSize((int)size.getWidth() + MARGIN, (int)size.getHeight() + MARGIN);
 			}
 
 			@Override

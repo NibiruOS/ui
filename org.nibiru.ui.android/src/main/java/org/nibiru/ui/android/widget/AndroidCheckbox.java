@@ -9,6 +9,7 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.layout.MeasureSpec;
 
 import android.content.Context;
 import android.widget.CheckBox;

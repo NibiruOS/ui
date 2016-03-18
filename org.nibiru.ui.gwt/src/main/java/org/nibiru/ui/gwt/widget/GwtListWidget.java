@@ -8,7 +8,6 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.Widget;
-
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class GwtListWidget extends GwtContainer<VerticalPanel> implements ListWidget {
@@ -46,5 +45,15 @@ public class GwtListWidget extends GwtContainer<VerticalPanel> implements ListWi
 	@Override
 	public Value<Iterable<Widget>> getValue() {
 		return value;
+	}
+
+	@Override
+	public Iterable<Widget> getChildren() {
+		return value.get();
+	}
+
+	@Override
+	public void requestLayout() {
+		// TODO Auto-generated method stub
 	}
 }

@@ -7,6 +7,11 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
+import org.robovm.apple.coregraphics.CGRect;
+import org.robovm.apple.foundation.NSData;
+import org.robovm.apple.uikit.UIImage;
+import org.robovm.apple.uikit.UIImageView;
+
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -15,11 +20,6 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.ResourcesBasePath;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.foundation.NSData;
-import org.robovm.apple.uikit.UIImage;
-import org.robovm.apple.uikit.UIImageView;
-
 import com.google.common.base.Throwables;
 import com.google.common.io.ByteSource;
 
@@ -59,7 +59,7 @@ public class IOSImage extends IOSValueWidget<UIImageView, String> implements Ima
 					};
 					UIImage image = new UIImage(new NSData(source.read()));
 					control.setImage(image);
-					updateSize(image.getSize().getWidth(), image.getSize().getHeight());
+					updateSize((int)image.getSize().getWidth(), (int)image.getSize().getHeight());
 				} catch (IOException e) {
 					Throwables.propagate(e);
 				}

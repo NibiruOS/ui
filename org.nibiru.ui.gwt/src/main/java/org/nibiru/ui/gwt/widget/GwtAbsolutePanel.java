@@ -1,12 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.inject.Inject;
 
 import org.nibiru.ui.core.api.Widget;
-
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 
@@ -67,5 +65,9 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel>implements org.
 				return this;
 			}
 		};
+	}
+
+	@Override
+	public void requestLayout() {
 	}
 }

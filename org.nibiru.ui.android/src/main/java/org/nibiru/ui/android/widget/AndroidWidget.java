@@ -6,13 +6,13 @@ import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.HasClickHandler;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.impl.BaseWidget;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 
-abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler {
+abstract class AndroidWidget<T extends View> extends BaseWidget implements HasClickHandler {
 	private final Context context;
 	private T control;
 	private final StyleResolver styleResolver;
@@ -30,9 +30,30 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 		this.styleResolver = checkNotNull(styleResolver);
 	}
 
+	public int getMeasuredHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@Override
 	public T asNative() {
 		return control();
+	}
+
+	public void setHeight(int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getMeasuredWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setWidth(int width) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override

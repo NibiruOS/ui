@@ -1,5 +1,10 @@
 package org.nibiru.ui.ios.widget;
 
+import org.robovm.apple.coregraphics.CGRect;
+import org.robovm.apple.coregraphics.CGSize;
+import org.robovm.apple.foundation.NSString;
+import org.robovm.apple.uikit.UILabel;
+
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -7,10 +12,6 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Label;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.coregraphics.CGSize;
-import org.robovm.apple.foundation.NSString;
-import org.robovm.apple.uikit.UILabel;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 	public IOSLabel() {
@@ -33,7 +34,7 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 			protected void setValue(String value) {
 				control.setText(value);
 				CGSize size = new NSString(value).getSize(control.getFont());
-				updateSize(size.getWidth(), size.getHeight());
+				updateSize((int)size.getWidth(), (int)size.getHeight());
 			}
 
 			@Override

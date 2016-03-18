@@ -26,4 +26,15 @@ abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>imp
 	public void clear() {
 		control().removeAllViews();
 	}
+
+	@Override
+	public Iterable<Widget> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void layout() {
+		// TODO Auto-generated method stub
+	}
 }

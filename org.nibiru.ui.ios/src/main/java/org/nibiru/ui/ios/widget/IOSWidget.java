@@ -1,22 +1,18 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.nibiru.ui.core.api.Widget;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.uikit.UIView;
 
-abstract class IOSWidget<T extends UIView> implements Widget {
-	final T control;
-	private IOSContainer parent;
+import org.nibiru.ui.core.impl.BaseControlWidget;
 
+abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 	IOSWidget(T control) {
-		this.control = checkNotNull(control);
+		super(control);
 	}
 
 	@Override
-	public Object asNative() {
-		return control;
+	public int getMeasuredHeight() {
+		return (int) control.getFrame().getHeight();
 	}
 
 	@Override
@@ -24,18 +20,21 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 		// TODO Auto-generated method stub
 	}
 
-	void setParent(IOSContainer parent) {
-		this.parent = parent;
+	public void setHeight(int height) {
+		CGRect frame = control.getFrame();
+		frame.setHeight(height);
+		control.setFrame(frame);
 	}
 
-	void layoutParent() {
-		if (parent != null) {
-			parent.layout();
-		}
+	@Override
+	public int getMeasuredWidth() {
+		return (int) control.getFrame().getWidth();
 	}
 
-	void updateSize(double width, double height) {
-		control.setFrame(new CGRect(control.getFrame().getX(), control.getFrame().getY(), width, height));
-		layoutParent();
+	@Override
+	public void setWidth(int width) {
+		CGRect frame = control.getFrame();
+		frame.setWidth(width);
+		control.setFrame(frame);
 	}
 }
