@@ -31,4 +31,9 @@ public class GwtGridPanel extends GwtWidget<FlexTable> implements GridPanel {
 			currentRow++;
 		}
 	}
+
+	@Override
+	public void clear() {
+		widget.clear();
+	}
 }

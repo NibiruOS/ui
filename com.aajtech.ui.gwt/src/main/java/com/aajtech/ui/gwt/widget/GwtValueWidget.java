@@ -11,7 +11,7 @@ abstract class GwtValueWidget<W extends Widget & HasValue<T>, T> extends GwtWidg
 
 	GwtValueWidget(W widget, Type<T> type) {
 		super(widget);
-		this.value = new HasValueAdapter<>(widget, type);
+		this.value = new HasValueAdapter<T>(widget, type);
 	}
 
 	@Override

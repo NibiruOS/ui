@@ -15,4 +15,8 @@ abstract class VaadinContainer<T extends AbstractComponentContainer> extends Vaa
 		component.addComponent((Component) child.asNative());
 	}
 
+	@Override
+	public void clear() {
+		component.removeAllComponents();
+	}
 }

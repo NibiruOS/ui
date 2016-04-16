@@ -18,5 +18,12 @@ abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 		layout();
 	}
 
+	@Override
+	public void clear() {
+		for (UIView child : control.getSubviews()) {
+			child.removeFromSuperview();
+		}
+	}
+
 	abstract void layout();
 }

@@ -16,7 +16,7 @@ public class GwtImage extends GwtWidget<Image>implements com.aajtech.ui.core.api
 		this(new Image());
 	}
 
-	public GwtImage(Image widget) {
+	public GwtImage(final Image widget) {
 		super(widget);
 		value = new BaseValue<String>() {
 			@Override
