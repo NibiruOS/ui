@@ -7,13 +7,12 @@ import com.aajtech.ui.android.style.StyleResolver;
 import com.aajtech.ui.core.api.Label;
 
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 import android.widget.TextView;
 
-public class AndroidLabel extends AndroidWidget<TextView> implements Label {
+public class AndroidLabel extends AndroidWidget<TextView>implements Label {
 	@Inject
 	public AndroidLabel(Context context, StyleResolver styleResolver) {
-		this(new TextView(new ContextThemeWrapper(context, 0)), styleResolver);
+		super(context, styleResolver);
 	}
 
 	public AndroidLabel(TextView textView, StyleResolver styleResolver) {
@@ -22,6 +21,11 @@ public class AndroidLabel extends AndroidWidget<TextView> implements Label {
 
 	@Override
 	public Value<String> getValue() {
-		return new LabelValue(control);
+		return new LabelValue(control());
+	}
+
+	@Override
+	TextView buildControl(Context context, int styleResource) {
+		return styleResource == 0 ? new TextView(context) : new TextView(context, null, styleResource);
 	}
 }

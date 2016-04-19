@@ -12,7 +12,7 @@ public class AndroidPasswordBox extends AndroidTextBox implements PasswordBox {
 	@Inject
 	public AndroidPasswordBox(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
-		control.setHint("Password");
-		control.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		control().setHint("Password");
+		control().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 	}
 }

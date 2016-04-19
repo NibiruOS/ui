@@ -13,12 +13,20 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 
 abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler {
-	final T control;
+	private final Context context;
+	private T control;
 	private final StyleResolver styleResolver;
 	private Registration clickRegistration;
+	private int styleResource;
 
-	AndroidWidget(T view, StyleResolver styleResolver) {
-		this.control = checkNotNull(view);
+	AndroidWidget(T control, StyleResolver styleResolver) {
+		this.control = checkNotNull(control);
+		this.styleResolver = checkNotNull(styleResolver);
+		context = null;
+	}
+
+	AndroidWidget(Context context, StyleResolver styleResolver) {
+		this.context = checkNotNull(context);
 		this.styleResolver = checkNotNull(styleResolver);
 	}
 
@@ -52,10 +60,16 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 	@Override
 	public void addStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
-		Context context =  control.getContext();
-		if (context instanceof ContextThemeWrapper) {
-			ContextThemeWrapper contextThemeWrapper = (ContextThemeWrapper) context;
-			contextThemeWrapper.setTheme(styleResolver.resolveStyle(styleName));
-		}
+		styleResource = styleResolver.resolveStyle(styleName);
 	}
+
+	T control() {
+		if (control == null) {
+			control = buildControl(styleResource == 0 ? context : new ContextThemeWrapper(context, styleResource),
+					styleResource);
+		}
+		return control;
+	}
+
+	abstract T buildControl(Context context, int styleResource);
 }

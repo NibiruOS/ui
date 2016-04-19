@@ -13,7 +13,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,24 +24,40 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 
 	@Inject
 	public AndroidListWidget(Context context, StyleResolver styleResolver) {
-		this(new ListView(new ContextThemeWrapper(context, 0)), styleResolver);
-		adapter = new ArrayAdapter<Widget>(control.getContext(), 0, Lists.newArrayList()) {
+		super(context, styleResolver);
+		value = buildValue();
+	}
+
+	public AndroidListWidget(ListView view, StyleResolver styleResolver) {
+		super(view, styleResolver);
+		value = buildValue();
+	}
+
+	@Override
+	public Value<Iterable<Widget>> getValue() {
+		return value;
+	}
+	
+	@Override
+	ListView buildControl(Context context, int styleResource) {
+		ListView list = styleResource == 0 ? new ListView(context) : new ListView(context, null, styleResource);
+		adapter = new ArrayAdapter<Widget>(control().getContext(), 0, Lists.newArrayList()) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				return (View) getItem(position).asNative();
 			}
 
-		    @Override
-		    public boolean isEnabled(int position) {
-		        return false;
-		    }
+			@Override
+			public boolean isEnabled(int position) {
+				return false;
+			}
 		};
-		control.setAdapter(adapter);
+		list.setAdapter(adapter);
+		return list;
 	}
-
-	public AndroidListWidget(ListView view, StyleResolver styleResolver) {
-		super(view, styleResolver);
-		value = new BaseValue<Iterable<Widget>>() {
+	
+	private Value<Iterable<Widget>> buildValue() {
+		return new BaseValue<Iterable<Widget>>() {
 			private Iterable<Widget> value;
 
 			@Override
@@ -63,10 +78,5 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 				adapter.notifyDataSetChanged();
 			}
 		};
-	}
-
-	@Override
-	public Value<Iterable<Widget>> getValue() {
-		return value;
 	}
 }

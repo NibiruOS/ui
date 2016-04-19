@@ -18,7 +18,6 @@ import com.google.common.io.Closer;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.view.ContextThemeWrapper;
 import android.widget.ImageView;
 
 public class AndroidImage extends AndroidWidget<ImageView> implements Image {
@@ -26,7 +25,8 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 
 	@Inject
 	public AndroidImage(Context context, StyleResolver styleResolver, @ResourcesBasePath String basePath) {
-		this(new ImageView(new ContextThemeWrapper(context, 0)), styleResolver, basePath);
+		super(context, styleResolver);
+		this.basePath = checkNotNull(basePath);
 	}
 
 	public AndroidImage(final ImageView view, StyleResolver styleResolver, final String basePath) {
@@ -55,7 +55,7 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 				Closer closer = Closer.create();
 				try {
 					try {
-						control.setImageBitmap(BitmapFactory.decodeStream(
+						control().setImageBitmap(BitmapFactory.decodeStream(
 								closer.register(getClass().getClassLoader().getResourceAsStream(basePath + value))));
 					} catch (Throwable e) { // must catch Throwable
 						throw closer.rethrow(e);
@@ -67,5 +67,10 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 				}
 			}
 		};
+	}
+
+	@Override
+	ImageView buildControl(Context context, int styleResource) {
+		return styleResource == 0 ? new ImageView(context) : new ImageView(context, null, styleResource);
 	}
 }
