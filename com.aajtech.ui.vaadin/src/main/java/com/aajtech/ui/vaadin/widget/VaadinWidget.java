@@ -4,10 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 
-import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
-import com.vaadin.server.Page;
-import com.vaadin.server.Page.Styles;
 import com.vaadin.ui.Component;
 
 abstract class VaadinWidget<T extends Component> implements Widget, Serializable {
@@ -23,10 +20,8 @@ abstract class VaadinWidget<T extends Component> implements Widget, Serializable
 	}
 
 	@Override
-	public void setStyle(Style style) {
-		// TODO: Add styles only once?
-		Styles styles = Page.getCurrent().getStyles();
-		styles.add(style.asCss());
-		component.setStyleName(style.getId());
+	public void addStyleName(Enum<?> styleName) {
+		checkNotNull(styleName);
+		component.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
 	}
 }

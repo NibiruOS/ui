@@ -9,7 +9,7 @@ import com.aajtech.model.core.impl.java.JavaType;
 import android.widget.TextView;
 
 class LabelValue extends BaseValue<String> {
-	final TextView view;
+	private final TextView view;
 
 	LabelValue(TextView view) {
 		this.view = view;

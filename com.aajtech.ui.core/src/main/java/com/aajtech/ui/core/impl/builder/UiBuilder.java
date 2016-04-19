@@ -25,8 +25,6 @@ public class UiBuilder implements UiCreator {
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
 	private final Provider<ImageBuilder> imageBuilderProvider;
-	private final Provider<StyleBuilder> styleProvider;
-	private final Provider<TextStyleBuilder> textStyleProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -38,9 +36,7 @@ public class UiBuilder implements UiCreator {
 			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
-			Provider<ImageBuilder> imageBuilderProvider,
-			Provider<StyleBuilder> styleProvider,
-			Provider<TextStyleBuilder> textStyleProvider) {
+			Provider<ImageBuilder> imageBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -51,8 +47,6 @@ public class UiBuilder implements UiCreator {
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
-		this.styleProvider = checkNotNull(styleProvider);
-		this.textStyleProvider = checkNotNull(textStyleProvider);
 	}
 
 	@Override
@@ -128,16 +122,6 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public Image image(String path) {
 		return image().value(path).build();
-	}
-
-	@Override
-	public StyleBuilder style() {
-		return styleProvider.get();
-	}
-
-	@Override
-	public TextStyleBuilder textStyle() {
-		return textStyleProvider.get();
 	}
 
 	@Override

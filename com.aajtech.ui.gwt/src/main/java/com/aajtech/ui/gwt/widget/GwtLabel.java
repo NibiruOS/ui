@@ -29,7 +29,11 @@ public class GwtLabel extends GwtWidget<Label> implements com.aajtech.ui.core.ap
 	};
 
 	public GwtLabel() {
-		super(new Label());
+		this(new Label());
+	}
+
+	public GwtLabel(Label label) {
+		super(label);
 	}
 
 	@Override

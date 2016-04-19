@@ -94,16 +94,6 @@ public abstract class UiModule implements UiCreator {
 	}
 
 	@Override
-	public StyleBuilder style() {
-		return uiBuilder.style();
-	}
-
-	@Override
-	public TextStyleBuilder textStyle() {
-		return uiBuilder.textStyle();
-	}
-
-	@Override
 	public Color color(int red, int green, int blue) {
 		return uiBuilder.color(red, green, blue);
 	}

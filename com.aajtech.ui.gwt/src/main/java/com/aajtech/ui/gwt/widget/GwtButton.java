@@ -34,7 +34,11 @@ public class GwtButton extends GwtWidget<Button>implements com.aajtech.ui.core.a
 	
 
 	public GwtButton() {
-		super(new Button());
+		this(new Button());
+	}
+
+	public GwtButton(Button button) {
+		super(button);
 		hasClickHandlersAdapter = new HasClickHandlersAdapter(widget);
 	}
 

@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.uikit.UIView;
 
-import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
 
 abstract class IOSWidget<T extends UIView> implements Widget {
@@ -22,7 +21,7 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 	}
 
 	@Override
-	public void setStyle(Style style) {
+	public void addStyleName(Enum<?> styleName) {
 		// TODO Auto-generated method stub
 	}
 

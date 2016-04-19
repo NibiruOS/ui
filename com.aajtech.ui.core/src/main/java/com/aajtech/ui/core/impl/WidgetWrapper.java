@@ -2,7 +2,6 @@ package com.aajtech.ui.core.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
 
 public class WidgetWrapper implements Widget {
@@ -18,7 +17,7 @@ public class WidgetWrapper implements Widget {
 	}
 
 	@Override
-	public void setStyle(Style style) {
+	public void addStyleName(Enum<?> styleClass) {
 		// Not supported... styles are platform specific.
 	}
 }

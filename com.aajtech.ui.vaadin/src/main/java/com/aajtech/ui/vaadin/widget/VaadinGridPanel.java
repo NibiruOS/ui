@@ -1,13 +1,11 @@
 package com.aajtech.ui.vaadin.widget;
 
 import com.aajtech.ui.core.api.GridPanel;
-import com.aajtech.ui.core.api.Style;
 import com.vaadin.ui.GridLayout;
 
 public class VaadinGridPanel extends VaadinContainer<GridLayout>implements GridPanel {
 	public VaadinGridPanel() {
 		this(new GridLayout());
-		setStyle(Style.DEFAULT);
 	}
 
 	public VaadinGridPanel(GridLayout gridLayout) {

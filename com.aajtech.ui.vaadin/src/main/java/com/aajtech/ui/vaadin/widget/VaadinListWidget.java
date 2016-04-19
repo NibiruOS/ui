@@ -5,7 +5,6 @@ import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
 import com.aajtech.ui.core.api.ListWidget;
-import com.aajtech.ui.core.api.Style;
 import com.aajtech.ui.core.api.Widget;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
@@ -37,7 +36,6 @@ public class VaadinListWidget extends VaadinWidget<VerticalLayout>implements Lis
 				}
 			}
 		};
-		setStyle(Style.DEFAULT);
 	}
 
 	@Override

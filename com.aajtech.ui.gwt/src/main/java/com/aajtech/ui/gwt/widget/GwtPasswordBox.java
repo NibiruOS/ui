@@ -5,6 +5,10 @@ import com.google.gwt.user.client.ui.PasswordTextBox;
 
 public class GwtPasswordBox extends GwtValueWidget<PasswordTextBox, String> implements com.aajtech.ui.core.api.PasswordBox {
 	public GwtPasswordBox() {
-		super(new PasswordTextBox(), JavaType.STRING);
+		this(new PasswordTextBox());
+	}
+
+	public GwtPasswordBox(PasswordTextBox passwordTextBox) {
+		super(passwordTextBox, JavaType.STRING);
 	}
 }

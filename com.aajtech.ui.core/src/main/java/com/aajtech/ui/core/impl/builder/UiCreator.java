@@ -39,10 +39,6 @@ public interface UiCreator {
 	Image image(String path);
 
 	ListWidget list();
-
-	StyleBuilder style();
-	
-	TextStyleBuilder textStyle();
 	
 	Color color(int red, int green, int blue);
 	

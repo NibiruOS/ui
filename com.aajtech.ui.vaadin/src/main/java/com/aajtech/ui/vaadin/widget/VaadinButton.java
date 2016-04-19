@@ -6,7 +6,6 @@ import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
 import com.aajtech.ui.core.api.ClickHandler;
-import com.aajtech.ui.core.api.TextStyle;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -14,7 +13,6 @@ import com.vaadin.ui.Button.ClickListener;
 public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.core.api.Button {
 	public VaadinButton() {
 		this(new Button());
-		setStyle(TextStyle.DEFAULT);
 	}
 
 	public VaadinButton(Button button) {
