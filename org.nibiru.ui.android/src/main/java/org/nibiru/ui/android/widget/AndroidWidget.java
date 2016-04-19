@@ -6,10 +6,10 @@ import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.HasClickHandler;
+import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -84,6 +84,18 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 	public void setStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
 		styleResource = styleResolver.resolveStyle(styleName);
+	}
+
+	@Override
+	public void applyStyle() {
+		control.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+	}
+
+	protected int colorToNative(Color color) {
+		return android.graphics.Color.argb(color.getAlpha(),
+				color.getRed(),
+				color.getGreen(),
+				color.getBlue());
 	}
 
 	T control() {

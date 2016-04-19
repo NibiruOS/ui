@@ -18,13 +18,10 @@ public abstract class BaseRule implements RelativePanel.Rule {
     private final List<VertexKey> target;
     private final List<VertexKey> source;
     private final RelativePanel panel;
-    private final int margin;
     private Widget targetWidget;
 
-    public BaseRule(RelativePanel panel,
-                    int margin) {
+    public BaseRule(RelativePanel panel) {
         this.panel = checkNotNull(panel);
-        this.margin = margin;
         target = Lists.newArrayList();
         source = Lists.newArrayList();
         targetWidget = null;
@@ -32,9 +29,8 @@ public abstract class BaseRule implements RelativePanel.Rule {
 
     public BaseRule(Widget targetWidget,
                     Property targetProperty,
-                    RelativePanel panel,
-                    int margin) {
-        this(panel, margin);
+                    RelativePanel panel) {
+        this(panel);
         addTarget(targetWidget, targetProperty);
     }
 
@@ -62,10 +58,6 @@ public abstract class BaseRule implements RelativePanel.Rule {
         VertexKey vertex = new VertexKey(widget, property);
         source.add(vertex);
         return vertex;
-    }
-
-    protected int getMargin() {
-        return margin;
     }
 
     protected int getValue(VertexKey vertex) {
@@ -103,5 +95,13 @@ public abstract class BaseRule implements RelativePanel.Rule {
 
     protected Position getPosition() {
         return panel.getContainer().getPosition(getTargetWidget());
+    }
+
+    protected void setHeight(int height) {
+        panel.setHeight(getTargetWidget(), height);
+    }
+
+    protected void setWidth(int width) {
+        panel.setWidth(getTargetWidget(), width);
     }
 }

@@ -3,7 +3,7 @@ package org.nibiru.ui.core.impl.rule;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
@@ -16,17 +16,16 @@ public class MatchRightWithLeftRule extends BaseRule {
 
     public MatchRightWithLeftRule(Widget target,
                                   @Nullable Widget source,
-                                  RelativePanel panel,
-                                  int margin) {
-        super(target, WIDTH, panel, margin);
+                                  RelativePanel panel) {
+        super(target, WIDTH, panel);
         sourceX = addSource(source, X);
         targetX = addSource(target, X);
     }
 
     @Override
     public void apply() {
-        getTargetWidget().setWidth(Size.exactly(getValue(sourceX)
+        setWidth(getValue(sourceX)
                 - getValue(targetX)
-                - getMargin()));
+                - getTargetWidget().getStyle().getMarginRight());
     }
 }

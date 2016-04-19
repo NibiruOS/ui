@@ -16,9 +16,8 @@ public class AlignRightRule extends BaseRule {
 
     public AlignRightRule(Widget target,
                           @Nullable Widget source,
-                          RelativePanel panel,
-                          int margin) {
-        super(target, X, panel, margin);
+                          RelativePanel panel) {
+        super(target, X, panel);
         sourceX = addSource(source, X);
         sourceWidth = addSource(source, WIDTH);
         targetWidth = addSource(target, WIDTH);
@@ -29,6 +28,6 @@ public class AlignRightRule extends BaseRule {
         getPosition().setX(getValue(sourceX)
                 + getValue(sourceWidth)
                 - getValue(targetWidth)
-                - getMargin());
+                - getTargetWidget().getStyle().getMarginRight());
     }
 }

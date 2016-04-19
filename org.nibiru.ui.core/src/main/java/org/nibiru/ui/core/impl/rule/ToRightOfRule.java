@@ -15,9 +15,8 @@ public class ToRightOfRule extends BaseRule {
 
     public ToRightOfRule(Widget target,
                          @Nullable Widget source,
-                         RelativePanel panel,
-                         int margin) {
-        super(target, X, panel, margin);
+                         RelativePanel panel) {
+        super(target, X, panel);
         sourceX = addSource(source, X);
         sourceWidth = addSource(source, WIDTH);
     }
@@ -26,6 +25,6 @@ public class ToRightOfRule extends BaseRule {
     public void apply() {
         getPosition().setX(getValue(sourceX)
                 + getValue(sourceWidth)
-                + getMargin());
+                + getTargetWidget().getStyle().getMarginLeft());
     }
 }

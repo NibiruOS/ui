@@ -1,6 +1,4 @@
-package org.nibiru.ui.core.api.layout;
-
-import com.google.common.base.Preconditions;
+package org.nibiru.ui.core.api.style;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

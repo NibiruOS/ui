@@ -8,6 +8,7 @@ import javax.inject.Provider;
 import org.nibiru.ui.core.api.GridPanel;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.style.Style;
 
 public class FormBuilder extends BaseBuilder<GridPanel> {
 	private final HorizontalPanelBuilder horizontalPanelBuilder;
@@ -31,6 +32,11 @@ public class FormBuilder extends BaseBuilder<GridPanel> {
 
 	public FormBuilder button(Widget button) {
 		horizontalPanelBuilder.add(button);
+		return this;
+	}
+
+	public FormBuilder style(Style style) {
+		object.setStyle(style);
 		return this;
 	}
 

@@ -7,6 +7,7 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Label;
+import org.nibiru.ui.core.api.style.TextStyle;
 
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UILabel;
@@ -19,6 +20,15 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 
 	public IOSLabel(UILabel label) {
 		super(label);
+	}
+
+	@Override
+	public void applyStyle() {
+		super.applyStyle();
+		if (getStyle() instanceof TextStyle) {
+			TextStyle textStyle = (TextStyle) getStyle();
+			control.setTextColor(colorToNative(textStyle.getTextColor()));
+		}
 	}
 
 	@Override

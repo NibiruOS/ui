@@ -2,13 +2,11 @@ package org.nibiru.ui.core.impl.rule;
 
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
 import static org.nibiru.ui.core.api.RelativePanel.Property.HEIGHT;
-import static org.nibiru.ui.core.api.RelativePanel.Property.WIDTH;
-import static org.nibiru.ui.core.api.RelativePanel.Property.X;
 import static org.nibiru.ui.core.api.RelativePanel.Property.Y;
 
 public class MatchBottomWithTopRule extends BaseRule {
@@ -17,17 +15,16 @@ public class MatchBottomWithTopRule extends BaseRule {
 
     public MatchBottomWithTopRule(Widget target,
                                   @Nullable Widget source,
-                                  RelativePanel panel,
-                                  int margin) {
-        super(target, HEIGHT, panel, margin);
+                                  RelativePanel panel) {
+        super(target, HEIGHT, panel);
         sourceY = addSource(source, Y);
         targetY = addSource(target, Y);
     }
 
     @Override
     public void apply() {
-        getTargetWidget().setHeight(Size.exactly(getValue(sourceY)
+        setHeight(getValue(sourceY)
                 - getValue(targetY)
-                - getMargin()));
+                - getTargetWidget().getStyle().getMarginBottom());
     }
 }

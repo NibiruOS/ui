@@ -13,14 +13,14 @@ public class AlignLeftRule extends BaseRule {
 
     public AlignLeftRule(Widget target,
                          @Nullable Widget source,
-                         RelativePanel panel,
-                         int margin) {
-        super(target, X, panel, margin);
+                         RelativePanel panel) {
+        super(target, X, panel);
         sourceX = addSource(source, X);
     }
 
     @Override
     public void apply() {
-        getPosition().setX(getValue(sourceX) + getMargin());
+        getPosition().setX(getValue(sourceX)
+                + getTargetWidget().getStyle().getMarginLeft());
     }
 }

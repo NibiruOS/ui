@@ -3,7 +3,8 @@ package org.nibiru.ui.core.api;
 import javax.annotation.Nullable;
 
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
+import org.nibiru.ui.core.api.style.Style;
 
 public interface Widget {
 	String STYLE_NAME_PREFIX = "nibiru_";
@@ -11,14 +12,6 @@ public interface Widget {
 	Object asNative();
 
 	void setStyleName(Enum<?> styleName);
-
-	void setHeight(Size height);
-
-	void setWidth(Size width);
-
-	Size getHeight();
-
-	Size getWidth();
 
 	void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec);
 
@@ -32,4 +25,10 @@ public interface Widget {
 	IsParent getParent();
 
 	void setParent(@Nullable IsParent parent);
+
+	void setStyle(Style style);
+
+	Style getStyle();
+
+	void applyStyle();
 }

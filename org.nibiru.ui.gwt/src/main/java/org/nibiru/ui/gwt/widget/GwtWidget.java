@@ -2,6 +2,7 @@ package org.nibiru.ui.gwt.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import com.google.common.base.Function;
@@ -21,6 +22,21 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 	public void setStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
 		control.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
+	}
+
+	@Override
+	public void applyStyle() {
+		control.getElement()
+				.getStyle()
+				.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+	}
+
+	protected String colorToNative(Color color) {
+		return "rgba("
+				+ color.getRed() + ","
+				+ color.getGreen() + ","
+				+ color.getBlue() + ","
+				+ colorToDouble(color.getAlpha()) + ")";
 	}
 
 	@Override

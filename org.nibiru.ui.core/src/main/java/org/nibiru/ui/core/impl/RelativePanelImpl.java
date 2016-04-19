@@ -13,7 +13,7 @@ import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.rule.AboveRule;
 import org.nibiru.ui.core.impl.rule.AlignBottomRule;
@@ -50,8 +50,8 @@ import static com.google.common.base.Preconditions.checkState;
 public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel {
     private final Set<Rule> rules;
     private final List<Rule> sortedRules;
-    private final Map<Widget, Size> widths;
-    private final Map<Widget, Size> heights;
+    private final Map<Widget, Integer> widths;
+    private final Map<Widget, Integer> heights;
     private boolean areRulesDirty;
 
     @Inject
@@ -66,8 +66,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     @Override
     public void add(Widget child) {
         super.add(child);
-        widths.put(child, child.getWidth());
-        heights.put(child, child.getHeight());
     }
 
     @Override
@@ -82,111 +80,121 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     }
 
     @Override
-    public void addAbove(Widget target, @Nullable Widget source, int margin) {
-        addRule(new AboveRule(target, source, this, margin));
+    public void setHeight(Widget target, int height) {
+        heights.put(target, height);
     }
 
     @Override
-    public void addAlignBottom(Widget target, @Nullable Widget source, int margin) {
-        addRule(new AlignBottomRule(target, source, this, margin));
+    public void setWidth(Widget target, int width) {
+        widths.put(target, width);
     }
 
     @Override
-    public void addAlignLeft(Widget target, @Nullable Widget source, int margin) {
-        addRule(new AlignLeftRule(target, source, this, margin));
+    public void addAbove(Widget target, @Nullable Widget source) {
+        addRule(new AboveRule(target, source, this));
     }
 
     @Override
-    public void addAlignRight(Widget target, @Nullable Widget source, int margin) {
-        addRule(new AlignRightRule(target, source, this, margin));
+    public void addAlignBottom(Widget target, @Nullable Widget source) {
+        addRule(new AlignBottomRule(target, source, this));
     }
 
     @Override
-    public void addAlignTop(Widget target, @Nullable Widget source, int margin) {
-        addRule(new AlignTopRule(target, source, this, margin));
+    public void addAlignLeft(Widget target, @Nullable Widget source) {
+        addRule(new AlignLeftRule(target, source, this));
     }
 
     @Override
-    public void addBelow(Widget target, @Nullable Widget source, int margin) {
-        addRule(new BelowRule(target, source, this, margin));
+    public void addAlignRight(Widget target, @Nullable Widget source) {
+        addRule(new AlignRightRule(target, source, this));
     }
 
     @Override
-    public void addCenterHorizontally(Widget target, @Nullable Widget source, int margin) {
-        addRule(new CenterHorizontallyRule(target, source, this, margin));
+    public void addAlignTop(Widget target, @Nullable Widget source) {
+        addRule(new AlignTopRule(target, source, this));
     }
 
     @Override
-    public void addCenterVertically(Widget target, @Nullable Widget source, int margin) {
-        addRule(new CenterVerticallyRule(target, source, this, margin));
+    public void addBelow(Widget target, @Nullable Widget source) {
+        addRule(new BelowRule(target, source, this));
     }
 
     @Override
-    public void addMatchBottomWithBottom(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchBottomWithBottomRule(target, source, this, margin));
+    public void addCenterHorizontally(Widget target, @Nullable Widget source) {
+        addRule(new CenterHorizontallyRule(target, source, this));
     }
 
     @Override
-    public void addMatchBottomWithTop(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchBottomWithTopRule(target, source, this, margin));
+    public void addCenterVertically(Widget target, @Nullable Widget source) {
+        addRule(new CenterVerticallyRule(target, source, this));
     }
 
     @Override
-    public void addMatchHeight(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchHeightRule(target, source, this, margin));
+    public void addMatchBottomWithBottom(Widget target, @Nullable Widget source) {
+        addRule(new MatchBottomWithBottomRule(target, source, this));
     }
 
     @Override
-    public void addMatchLeftWithLeft(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchLeftWithLeftRule(target, source, this, margin));
+    public void addMatchBottomWithTop(Widget target, @Nullable Widget source) {
+        addRule(new MatchBottomWithTopRule(target, source, this));
     }
 
     @Override
-    public void addMatchLeftWithRight(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchLeftWithRightRule(target, source, this, margin));
+    public void addMatchHeight(Widget target, @Nullable Widget source) {
+        addRule(new MatchHeightRule(target, source, this));
     }
 
     @Override
-    public void addMatchRightWithLeft(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchRightWithLeftRule(target, source, this, margin));
+    public void addMatchLeftWithLeft(Widget target, @Nullable Widget source) {
+        addRule(new MatchLeftWithLeftRule(target, source, this));
     }
 
     @Override
-    public void addMatchRightWithRight(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchRightWithRightRule(target, source, this, margin));
+    public void addMatchLeftWithRight(Widget target, @Nullable Widget source) {
+        addRule(new MatchLeftWithRightRule(target, source, this));
     }
 
     @Override
-    public void addMatchTopWithBottom(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchTopWithBottomRule(target, source, this, margin));
+    public void addMatchRightWithLeft(Widget target, @Nullable Widget source) {
+        addRule(new MatchRightWithLeftRule(target, source, this));
     }
 
     @Override
-    public void addMatchTopWithTop(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchTopWithTopRule(target, source, this, margin));
+    public void addMatchRightWithRight(Widget target, @Nullable Widget source) {
+        addRule(new MatchRightWithRightRule(target, source, this));
     }
 
     @Override
-    public void addMatchWidth(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchWidthRule(target, source, this, margin));
+    public void addMatchTopWithBottom(Widget target, @Nullable Widget source) {
+        addRule(new MatchTopWithBottomRule(target, source, this));
     }
 
     @Override
-    public void addToLeftOf(Widget target, @Nullable Widget source, int margin) {
-        addRule(new ToLeftOfRule(target, source, this, margin));
+    public void addMatchTopWithTop(Widget target, @Nullable Widget source) {
+        addRule(new MatchTopWithTopRule(target, source, this));
     }
 
     @Override
-    public void addToRightOf(Widget target, @Nullable Widget source, int margin) {
-        addRule(new ToRightOfRule(target, source, this, margin));
+    public void addMatchWidth(Widget target, @Nullable Widget source) {
+        addRule(new MatchWidthRule(target, source, this));
+    }
+
+    @Override
+    public void addToLeftOf(Widget target, @Nullable Widget source) {
+        addRule(new ToLeftOfRule(target, source, this));
+    }
+
+    @Override
+    public void addToRightOf(Widget target, @Nullable Widget source) {
+        addRule(new ToRightOfRule(target, source, this));
     }
 
     @Override
     protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         // TODO: Review this
+        widths.clear();
+        heights.clear();
         for (Widget child : getChildren()) {
-            child.setWidth(widths.get(child));
-            child.setHeight(heights.get(child));
             getContainer().getPosition(child).setX(0).setY(0);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
@@ -199,6 +207,22 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
         }
         applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
     }
+
+    protected void measureChild(Widget child, MeasureSpec parentWidthMeasureSpec,
+                                MeasureSpec parentHeightMeasureSpec) {
+
+        Integer width = widths.get(child);
+        MeasureSpec childWidthMeasureSpec = width != null
+                ? MeasureSpec.exactly(width)
+                : getChildMeasureSpec(parentWidthMeasureSpec, child.getStyle().getWidth());
+        Integer height = heights.get(child);
+        MeasureSpec childHeightMeasureSpec = height != null
+                ? MeasureSpec.exactly(height)
+                : getChildMeasureSpec(parentHeightMeasureSpec, child.getStyle().getHeight());
+
+        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+    }
+
 
     private void applyRulesAndUpdateSize(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         for (Rule rule : sortedRules) {
@@ -222,7 +246,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 maxWidth = widthMeasureSpec.getValue();
                 break;
             case AT_MOST:
-                if(this.getWidth().equals(Size.MATCH_PARENT)) {
+                if(getStyle().getWidth().equals(Size.MATCH_PARENT)) {
                     maxWidth = widthMeasureSpec.getValue();
                 }
                 break;
@@ -236,7 +260,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 maxHeight = heightMeasureSpec.getValue();
                 break;
             case AT_MOST:
-                if (this.getHeight().equals(Size.MATCH_PARENT)) {
+                if (getStyle().getHeight().equals(Size.MATCH_PARENT)) {
                     maxHeight = heightMeasureSpec.getValue();
                 }
                 break;

@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Label;
+import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.api.style.TextStyle;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -20,6 +22,15 @@ public class AndroidLabel extends AndroidValueWidget<TextView, String> implement
 
 	public AndroidLabel(TextView textView, StyleResolver styleResolver) {
 		super(textView, styleResolver);
+	}
+
+	@Override
+	public void applyStyle() {
+		super.applyStyle();
+		if (getStyle() instanceof TextStyle) {
+			TextStyle textStyle = (TextStyle) getStyle();
+			control.setTextColor(colorToNative(textStyle.getTextColor()));
+		}
 	}
 
 	@Override

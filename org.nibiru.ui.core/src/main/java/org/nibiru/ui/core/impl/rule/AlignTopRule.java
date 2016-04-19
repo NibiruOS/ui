@@ -13,14 +13,14 @@ public class AlignTopRule extends BaseRule {
 
     public AlignTopRule(Widget target,
                         @Nullable Widget source,
-                        RelativePanel panel,
-                        int margin) {
-        super(target, Y, panel, margin);
+                        RelativePanel panel) {
+        super(target, Y, panel);
         sourceY = addSource(source, Y);
     }
 
     @Override
     public void apply() {
-        getPosition().setY(getValue(sourceY) + getMargin());
+        getPosition().setY(getValue(sourceY)
+                + getTargetWidget().getStyle().getMarginTop());
     }
 }

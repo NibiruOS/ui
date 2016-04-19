@@ -3,7 +3,7 @@ package org.nibiru.ui.core.impl.rule;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
@@ -17,9 +17,8 @@ public class MatchBottomWithBottomRule extends BaseRule {
 
     public MatchBottomWithBottomRule(Widget target,
                                      @Nullable Widget source,
-                                     RelativePanel panel,
-                                     int margin) {
-        super(target, HEIGHT, panel, margin);
+                                     RelativePanel panel) {
+        super(target, HEIGHT, panel);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);
         targetY = addSource(target, Y);
@@ -27,9 +26,9 @@ public class MatchBottomWithBottomRule extends BaseRule {
 
     @Override
     public void apply() {
-        getTargetWidget().setHeight(Size.exactly(getValue(sourceY)
+        setHeight(getValue(sourceY)
                 + getValue(sourceHeight)
                 - getValue(targetY)
-                - getMargin()));
+                - getTargetWidget().getStyle().getMarginBottom());
     }
 }

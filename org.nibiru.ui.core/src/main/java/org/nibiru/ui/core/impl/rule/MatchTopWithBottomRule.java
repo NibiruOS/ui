@@ -3,13 +3,11 @@ package org.nibiru.ui.core.impl.rule;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
 import static org.nibiru.ui.core.api.RelativePanel.Property.HEIGHT;
-import static org.nibiru.ui.core.api.RelativePanel.Property.WIDTH;
-import static org.nibiru.ui.core.api.RelativePanel.Property.X;
 import static org.nibiru.ui.core.api.RelativePanel.Property.Y;
 
 public class MatchTopWithBottomRule  extends BaseRule {
@@ -20,9 +18,8 @@ public class MatchTopWithBottomRule  extends BaseRule {
 
     public MatchTopWithBottomRule(Widget target,
                                   @Nullable Widget source,
-                                  RelativePanel panel,
-                                  int margin) {
-        super(panel, margin);
+                                  RelativePanel panel) {
+        super(panel);
         addTarget(target, Y);
         addTarget(target, HEIGHT);
         sourceY = addSource(source, Y);
@@ -33,14 +30,14 @@ public class MatchTopWithBottomRule  extends BaseRule {
 
     @Override
     public void apply() {
-        getTargetWidget().setHeight(Size.exactly(getValue(targetY)
+        setHeight(getValue(targetY)
                 + getValue(targetHeight)
                 - getValue(sourceY)
                 - getValue(sourceHeight)
-                + getMargin()));
+                + getTargetWidget().getStyle().getMarginTop());
 
         getPosition().setY(getValue(sourceY)
                 + getValue(sourceHeight)
-                - getMargin());
+                - getTargetWidget().getStyle().getMarginTop());
     }
 }

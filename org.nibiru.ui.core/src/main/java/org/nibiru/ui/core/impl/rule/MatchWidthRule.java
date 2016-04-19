@@ -3,7 +3,7 @@ package org.nibiru.ui.core.impl.rule;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
@@ -14,15 +14,15 @@ public class MatchWidthRule extends BaseRule {
 
     public MatchWidthRule(Widget target,
                           @Nullable Widget source,
-                          RelativePanel panel,
-                          int margin) {
-        super(target, WIDTH, panel, margin);
+                          RelativePanel panel) {
+        super(target, WIDTH, panel);
         sourceWidth = addSource(source, WIDTH);
     }
 
     @Override
     public void apply() {
-        getTargetWidget().setWidth(Size.exactly(getValue(sourceWidth)
-                + getMargin()));
+        setWidth(getValue(sourceWidth)
+                - getTargetWidget().getStyle().getMarginTop()
+                - getTargetWidget().getStyle().getMarginBottom());
     }
 }

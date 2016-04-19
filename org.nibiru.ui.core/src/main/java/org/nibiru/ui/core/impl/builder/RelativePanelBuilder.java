@@ -32,224 +32,224 @@ public class RelativePanelBuilder extends BaseContainerBuilder<RelativePanel, Re
             this.target = target;
         }
 
-        public RuleBuilder above(int margin) {
-            object.addAbove(target, null, margin);
+        public RuleBuilder above() {
+            object.addAbove(target, null);
             return this;
         }
 
-        public RuleBuilder above(Widget source, int margin) {
+        public RuleBuilder above(Widget source) {
             checkNotNull(source);
-            object.addAbove(target, source, margin);
+            object.addAbove(target, source);
             return this;
         }
 
-        public RuleBuilder alignBottom(int margin) {
-            object.addAlignBottom(target, null, margin);
+        public RuleBuilder alignBottom() {
+            object.addAlignBottom(target, null);
             return this;
         }
 
-        public RuleBuilder alignBottom(Widget source, int margin) {
+        public RuleBuilder alignBottom(Widget source) {
             checkNotNull(source);
-            object.addAlignBottom(target, source, margin);
+            object.addAlignBottom(target, source);
             return this;
         }
 
-        public RuleBuilder alignLeft(int margin) {
-            object.addAlignLeft(target, null, margin);
+        public RuleBuilder alignLeft() {
+            object.addAlignLeft(target, null);
             return this;
         }
 
-        public RuleBuilder alignLeft(Widget source, int margin) {
+        public RuleBuilder alignLeft(Widget source) {
             checkNotNull(source);
-            object.addAlignLeft(target, source, margin);
+            object.addAlignLeft(target, source);
             return this;
         }
 
-        public RuleBuilder alignRight(int margin) {
-            object.addAlignRight(target, null, margin);
+        public RuleBuilder alignRight() {
+            object.addAlignRight(target, null);
             return this;
         }
 
-        public RuleBuilder alignRight(Widget source, int margin) {
+        public RuleBuilder alignRight(Widget source) {
             checkNotNull(source);
-            object.addAlignRight(target, source, margin);
+            object.addAlignRight(target, source);
             return this;
         }
 
-        public RuleBuilder alignTop(int margin) {
-            object.addAlignTop(target, null, margin);
+        public RuleBuilder alignTop() {
+            object.addAlignTop(target, null);
             return this;
         }
 
-        public RuleBuilder alignTop(Widget source, int margin) {
+        public RuleBuilder alignTop(Widget source) {
             checkNotNull(source);
-            object.addAlignTop(target, source, margin);
+            object.addAlignTop(target, source);
             return this;
         }
 
-        public RuleBuilder below(int margin) {
-            object.addBelow(target, null, margin);
+        public RuleBuilder below() {
+            object.addBelow(target, null);
             return this;
         }
 
-        public RuleBuilder below(Widget source, int margin) {
+        public RuleBuilder below(Widget source) {
             checkNotNull(source);
-            object.addBelow(target, source, margin);
+            object.addBelow(target, source);
             return this;
         }
 
-        public RuleBuilder centerHorizontally(int margin) {
-            object.addCenterHorizontally(target, null, margin);
+        public RuleBuilder centerHorizontally() {
+            object.addCenterHorizontally(target, null);
             return this;
         }
 
-        public RuleBuilder centerHorizontally(Widget source, int margin) {
+        public RuleBuilder centerHorizontally(Widget source) {
             checkNotNull(source);
-            object.addCenterHorizontally(target, source, margin);
+            object.addCenterHorizontally(target, source);
             return this;
         }
 
-        public RuleBuilder centerVertically(int margin) {
-            object.addCenterVertically(target, null, margin);
+        public RuleBuilder centerVertically() {
+            object.addCenterVertically(target, null);
             return this;
         }
 
-        public RuleBuilder centerVertically(Widget source, int margin) {
+        public RuleBuilder centerVertically(Widget source) {
             checkNotNull(source);
-            object.addCenterVertically(target, source, margin);
+            object.addCenterVertically(target, source);
             return this;
         }
 
-        public RuleBuilder matchBottomWithBottom(int margin) {
-            object.addMatchBottomWithBottom(target, null, margin);
+        public RuleBuilder matchBottomWithBottom() {
+            object.addMatchBottomWithBottom(target, null);
             return this;
         }
 
-        public RuleBuilder matchBottomWithBottom(Widget source, int margin) {
+        public RuleBuilder matchBottomWithBottom(Widget source) {
             checkNotNull(source);
-            object.addMatchBottomWithBottom(target, source, margin);
+            object.addMatchBottomWithBottom(target, source);
             return this;
         }
 
-        public RuleBuilder matchBottomWithTop(int margin) {
-            object.addMatchBottomWithTop(target, null, margin);
+        public RuleBuilder matchBottomWithTop() {
+            object.addMatchBottomWithTop(target, null);
             return this;
         }
 
-        public RuleBuilder matchBottomWithTop(Widget source, int margin) {
+        public RuleBuilder matchBottomWithTop(Widget source) {
             checkNotNull(source);
-            object.addMatchBottomWithTop(target, source, margin);
+            object.addMatchBottomWithTop(target, source);
             return this;
         }
 
-        public RuleBuilder matchHeight(int margin) {
-            object.addMatchHeight(target, null, margin);
+        public RuleBuilder matchHeight() {
+            object.addMatchHeight(target, null);
             return this;
         }
 
-        public RuleBuilder matchHeight(Widget source, int margin) {
+        public RuleBuilder matchHeight(Widget source) {
             checkNotNull(source);
-            object.addMatchHeight(target, source, margin);
+            object.addMatchHeight(target, source);
             return this;
         }
 
-        public RuleBuilder matchLeftWithLeft(int margin) {
-            object.addMatchLeftWithLeft(target, null, margin);
+        public RuleBuilder matchLeftWithLeft() {
+            object.addMatchLeftWithLeft(target, null);
             return this;
         }
 
-        public RuleBuilder matchLeftWithLeft(Widget source, int margin) {
+        public RuleBuilder matchLeftWithLeft(Widget source) {
             checkNotNull(source);
-            object.addMatchLeftWithLeft(target, source, margin);
+            object.addMatchLeftWithLeft(target, source);
             return this;
         }
 
-        public RuleBuilder matchLeftWithRight(int margin) {
-            object.addMatchLeftWithRight(target, null, margin);
+        public RuleBuilder matchLeftWithRight() {
+            object.addMatchLeftWithRight(target, null);
             return this;
         }
 
-        public RuleBuilder matchLeftWithRight(Widget source, int margin) {
+        public RuleBuilder matchLeftWithRight(Widget source) {
             checkNotNull(source);
-            object.addMatchLeftWithRight(target, source, margin);
+            object.addMatchLeftWithRight(target, source);
             return this;
         }
 
-        public RuleBuilder matchRightWithLeft(int margin) {
-            object.addMatchRightWithLeft(target, null, margin);
+        public RuleBuilder matchRightWithLeft() {
+            object.addMatchRightWithLeft(target, null);
             return this;
         }
 
-        public RuleBuilder matchRightWithLeft(Widget source, int margin) {
+        public RuleBuilder matchRightWithLeft(Widget source) {
             checkNotNull(source);
-            object.addMatchRightWithLeft(target, source, margin);
+            object.addMatchRightWithLeft(target, source);
             return this;
         }
 
-        public RuleBuilder matchRightWithRight(int margin) {
-            object.addMatchRightWithRight(target, null, margin);
+        public RuleBuilder matchRightWithRight() {
+            object.addMatchRightWithRight(target, null);
             return this;
         }
 
-        public RuleBuilder matchRightWithRight(Widget source, int margin) {
+        public RuleBuilder matchRightWithRight(Widget source) {
             checkNotNull(source);
-            object.addMatchRightWithRight(target, source, margin);
+            object.addMatchRightWithRight(target, source);
             return this;
         }
 
-        public RuleBuilder matchTopWithBottom(int margin) {
-            object.addMatchTopWithBottom(target, null, margin);
+        public RuleBuilder matchTopWithBottom() {
+            object.addMatchTopWithBottom(target, null);
             return this;
         }
 
-        public RuleBuilder matchTopWithBottom(Widget source, int margin) {
+        public RuleBuilder matchTopWithBottom(Widget source) {
             checkNotNull(source);
-            object.addMatchTopWithBottom(target, source, margin);
+            object.addMatchTopWithBottom(target, source);
             return this;
         }
 
-        public RuleBuilder matchTopWithTop(int margin) {
-            object.addMatchTopWithTop(target, null, margin);
+        public RuleBuilder matchTopWithTop() {
+            object.addMatchTopWithTop(target, null);
             return this;
         }
 
-        public RuleBuilder matchTopWithTop(Widget source, int margin) {
+        public RuleBuilder matchTopWithTop(Widget source) {
             checkNotNull(source);
-            object.addMatchTopWithTop(target, source, margin);
+            object.addMatchTopWithTop(target, source);
             return this;
         }
 
-        public RuleBuilder matchWidth(int margin) {
-            object.addMatchWidth(target, null, margin);
+        public RuleBuilder matchWidth() {
+            object.addMatchWidth(target, null);
             return this;
         }
 
-        public RuleBuilder matchWidth(Widget source, int margin) {
+        public RuleBuilder matchWidth(Widget source) {
             checkNotNull(source);
-            object.addMatchWidth(target, source, margin);
+            object.addMatchWidth(target, source);
             return this;
         }
 
-        public RuleBuilder toLeftOf(int margin) {
-            object.addToLeftOf(target, null, margin);
+        public RuleBuilder toLeftOf() {
+            object.addToLeftOf(target, null);
             return this;
         }
 
-        public RuleBuilder toLeftOf(Widget source, int margin) {
+        public RuleBuilder toLeftOf(Widget source) {
             checkNotNull(source);
-            object.addToLeftOf(target, source, margin);
+            object.addToLeftOf(target, source);
             return this;
         }
 
 
-        public RuleBuilder toRightOf(int margin) {
-            object.addToRightOf(target, null, margin);
+        public RuleBuilder toRightOf() {
+            object.addToRightOf(target, null);
             return this;
         }
 
-        public RuleBuilder toRightOf(Widget source, int margin) {
+        public RuleBuilder toRightOf(Widget source) {
             checkNotNull(source);
-            object.addToRightOf(target, source, margin);
+            object.addToRightOf(target, source);
             return this;
         }
 

@@ -16,9 +16,8 @@ public class CenterHorizontallyRule extends BaseRule {
 
     public CenterHorizontallyRule(Widget target,
                                   @Nullable Widget source,
-                                  RelativePanel panel,
-                                  int margin) {
-        super(target, X, panel, margin);
+                                  RelativePanel panel) {
+        super(target, X, panel);
         sourceX = addSource(source, X);
         sourceWidth = addSource(source, WIDTH);
         targetWidth = addSource(target, WIDTH);
@@ -28,6 +27,7 @@ public class CenterHorizontallyRule extends BaseRule {
     public void apply() {
         getPosition().setX(getValue(sourceX)
                 + (getValue(sourceWidth) - getValue(targetWidth)) / 2
-                + getMargin());
+                + getTargetWidget().getStyle().getMarginLeft()
+                - getTargetWidget().getStyle().getMarginRight());
     }
 }

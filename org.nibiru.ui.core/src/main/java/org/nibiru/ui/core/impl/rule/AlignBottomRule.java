@@ -16,9 +16,8 @@ public class AlignBottomRule extends BaseRule {
 
     public AlignBottomRule(Widget target,
                            @Nullable Widget source,
-                           RelativePanel panel,
-                           int margin) {
-        super(target, Y, panel, margin);
+                           RelativePanel panel) {
+        super(target, Y, panel);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);
         targetHeight = addSource(target, HEIGHT);
@@ -29,6 +28,6 @@ public class AlignBottomRule extends BaseRule {
         getPosition().setY(getValue(sourceY)
                 + getValue(sourceHeight)
                 - getValue(targetHeight)
-                - getMargin());
+                - getTargetWidget().getStyle().getMarginBottom());
     }
 }

@@ -17,9 +17,8 @@ public class ToLeftOfRule extends BaseRule {
 
     public ToLeftOfRule(Widget target,
                         @Nullable Widget source,
-                        RelativePanel panel,
-                        int margin) {
-        super(target, X, panel, margin);
+                        RelativePanel panel) {
+        super(target, X, panel);
         sourceX = addSource(source, X);
         targetWidth = addSource(target, WIDTH);
     }
@@ -28,6 +27,6 @@ public class ToLeftOfRule extends BaseRule {
     public void apply() {
         getPosition().setX(getValue(sourceX)
                 - getValue(targetWidth)
-                - getMargin());
+                - getTargetWidget().getStyle().getMarginRight());
     }
 }

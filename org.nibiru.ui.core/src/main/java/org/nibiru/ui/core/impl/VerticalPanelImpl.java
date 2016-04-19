@@ -9,7 +9,7 @@ import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
 import org.nibiru.ui.core.api.loop.Looper;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel {
 	
@@ -25,7 +25,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
 		int childrenMP = 0;
 
 		for (Widget child : getChildren()) {
-			if(child.getHeight().equals(Size.MATCH_PARENT)) {
+			if(child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
 				childrenMP++;
 			} else {
 				measureChild(child, childWidthSpec, childHeightSpec);
@@ -35,7 +35,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
 				maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
 
 				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-				if (childWidthSpec.getType() != Type.EXACTLY && child.getWidth() == Size.MATCH_PARENT) {
+				if (childWidthSpec.getType() != Type.EXACTLY && child.getStyle().getWidth() == Size.MATCH_PARENT) {
 
 				}
 			}
@@ -45,7 +45,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
 			final int remainingSpace = (childHeightSpec.getValue() - mTotalLength) / childrenMP;
 
 			for (Widget child : getChildren()) {
-				if (child.getHeight().equals(Size.MATCH_PARENT)) {
+				if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
 					measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
 
 					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());

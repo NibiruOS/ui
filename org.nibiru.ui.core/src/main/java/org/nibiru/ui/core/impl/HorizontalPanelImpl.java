@@ -7,7 +7,7 @@ import org.nibiru.ui.core.api.HorizontalPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
 import org.nibiru.ui.core.api.loop.Looper;
 
@@ -25,7 +25,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
 		int childrenMP = 0;
 
 		for (Widget child : getChildren()) {
-			if(child.getWidth().equals(Size.MATCH_PARENT)) {
+			if(child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
 				childrenMP++;
 			} else {
 				measureChild(child, childWidthSpec, childHeightSpec);
@@ -35,7 +35,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
 				maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
 
 				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-				if (childHeightSpec.getType() != Type.EXACTLY && child.getHeight() == Size.MATCH_PARENT) {
+				if (childHeightSpec.getType() != Type.EXACTLY && child.getStyle().getHeight() == Size.MATCH_PARENT) {
 
 				}
 			}
@@ -45,7 +45,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
 			int remainingSpace = (childWidthSpec.getValue() - mTotalLength) / childrenMP;
 
 			for (Widget child : getChildren()) {
-				if (child.getWidth().equals(Size.MATCH_PARENT)) {
+				if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
 					measureChild(child, MeasureSpec.atMost(remainingSpace), childHeightSpec);
 
 					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());

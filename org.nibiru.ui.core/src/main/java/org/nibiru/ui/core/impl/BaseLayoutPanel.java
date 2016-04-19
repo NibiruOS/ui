@@ -8,8 +8,9 @@ import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
-import org.nibiru.ui.core.api.layout.Size;
 import org.nibiru.ui.core.api.loop.Looper;
+import org.nibiru.ui.core.api.style.Size;
+import org.nibiru.ui.core.api.style.Style;
 
 public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	protected final AbsolutePanel panel;
@@ -56,8 +57,8 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 		if (getParent() != null) {
 			getParent().requestLayout();
 		} else {
-			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getWidth()), getWidth());
-			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getHeight()), getHeight());
+			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getWidth()), getStyle().getWidth());
+			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getHeight()), getStyle().getHeight());
 			measure(widthSpec, heightSpec);
 			layout();
 		}
@@ -91,8 +92,8 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 
 	protected void measureChild(Widget child, MeasureSpec parentWidthMeasureSpec,
 			MeasureSpec parentHeightMeasureSpec) {
-		final MeasureSpec childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, child.getWidth());
-		final MeasureSpec childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec, child.getHeight());
+		MeasureSpec childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, child.getStyle().getWidth());
+		MeasureSpec childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec, child.getStyle().getHeight());
 
 		child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 	}
@@ -184,5 +185,15 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	@Override
 	public void setStyleName(Enum<?> styleName) {
 		panel.setStyleName(styleName);
+	}
+
+	@Override
+	public void setStyle(Style style) {
+		panel.setStyle(style);
+	}
+
+	@Override
+	public void applyStyle() {
+		panel.applyStyle();
 	}
 }

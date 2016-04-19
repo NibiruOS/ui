@@ -16,9 +16,8 @@ public class BelowRule extends BaseRule {
 
     public BelowRule(Widget target,
                      @Nullable Widget source,
-                     RelativePanel panel,
-                     int margin) {
-        super(target, Y, panel, margin);
+                     RelativePanel panel) {
+        super(target, Y, panel);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);
     }
@@ -27,6 +26,6 @@ public class BelowRule extends BaseRule {
     public void apply() {
         getPosition().setY(getValue(sourceY)
                 + getValue(sourceHeight)
-                + getMargin());
+                + getTargetWidget().getStyle().getMarginTop());
     }
 }

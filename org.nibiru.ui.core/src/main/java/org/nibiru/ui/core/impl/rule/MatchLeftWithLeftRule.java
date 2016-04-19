@@ -4,7 +4,7 @@ package org.nibiru.ui.core.impl.rule;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 
@@ -18,9 +18,8 @@ public class MatchLeftWithLeftRule extends BaseRule {
 
     public MatchLeftWithLeftRule(Widget target,
                                  @Nullable Widget source,
-                                 RelativePanel panel,
-                                 int margin) {
-        super(panel, margin);
+                                 RelativePanel panel) {
+        super(panel);
         addTarget(target, X);
         addTarget(target, WIDTH);
         sourceX = addSource(source, X);
@@ -30,12 +29,12 @@ public class MatchLeftWithLeftRule extends BaseRule {
 
     @Override
     public void apply() {
-        getTargetWidget().setWidth(Size.exactly(getValue(targetX)
+        setWidth(getValue(targetX)
                 - getValue(sourceX)
                 + getValue(targetWidth)
-                + getMargin()));
+                - getTargetWidget().getStyle().getMarginLeft());
 
         getPosition().setX(getValue(sourceX)
-                - getMargin());
+                + getTargetWidget().getStyle().getMarginLeft());
     }
 }

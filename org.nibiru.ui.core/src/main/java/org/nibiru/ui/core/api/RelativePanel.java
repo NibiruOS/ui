@@ -11,6 +11,11 @@ public interface RelativePanel extends Container {
 
     AbsolutePanel getContainer();
 
+    void setHeight(Widget target, int height);
+
+    void setWidth(Widget target, int width);
+
+
     enum Property {
         X, Y, WIDTH, HEIGHT
     }
@@ -23,45 +28,45 @@ public interface RelativePanel extends Container {
         void apply();
     }
 
-    void addAbove(Widget target, @Nullable Widget source, int margin);
+    void addAbove(Widget target, @Nullable Widget source);
 
-    void addAlignBottom(Widget target, @Nullable Widget source, int margin);
+    void addAlignBottom(Widget target, @Nullable Widget source);
 
-    void addAlignLeft(Widget target, @Nullable Widget source, int margin);
+    void addAlignLeft(Widget target, @Nullable Widget source);
 
-    void addAlignRight(Widget target, @Nullable Widget source, int margin);
+    void addAlignRight(Widget target, @Nullable Widget source);
 
-    void addAlignTop(Widget target, @Nullable Widget source, int margin);
+    void addAlignTop(Widget target, @Nullable Widget source);
 
-    void addBelow(Widget target, @Nullable Widget source, int margin);
+    void addBelow(Widget target, @Nullable Widget source);
 
-    void addCenterHorizontally(Widget target, @Nullable Widget source, int margin);
+    void addCenterHorizontally(Widget target, @Nullable Widget source);
 
-    void addCenterVertically(Widget target, @Nullable Widget source, int margin);
+    void addCenterVertically(Widget target, @Nullable Widget source);
 
-    void addMatchBottomWithBottom(Widget target, @Nullable Widget source, int margin);
+    void addMatchBottomWithBottom(Widget target, @Nullable Widget source);
 
-    void addMatchBottomWithTop(Widget target, @Nullable Widget source, int margin);
+    void addMatchBottomWithTop(Widget target, @Nullable Widget source);
 
-    void addMatchHeight(Widget target, @Nullable Widget source, int margin);
+    void addMatchHeight(Widget target, @Nullable Widget source);
 
-    void addMatchLeftWithLeft(Widget target, @Nullable Widget source, int margin);
+    void addMatchLeftWithLeft(Widget target, @Nullable Widget source);
 
-    void addMatchLeftWithRight(Widget target, @Nullable Widget source, int margin);
+    void addMatchLeftWithRight(Widget target, @Nullable Widget source);
 
-    void addMatchRightWithLeft(Widget target, @Nullable Widget source, int margin);
+    void addMatchRightWithLeft(Widget target, @Nullable Widget source);
 
-    void addMatchRightWithRight(Widget target, @Nullable Widget source, int margin);
+    void addMatchRightWithRight(Widget target, @Nullable Widget source);
 
-    void addMatchTopWithBottom(Widget target, @Nullable Widget source, int margin);
+    void addMatchTopWithBottom(Widget target, @Nullable Widget source);
 
-    void addMatchTopWithTop(Widget target, @Nullable Widget source, int margin);
+    void addMatchTopWithTop(Widget target, @Nullable Widget source);
 
-    void addMatchWidth(Widget target, @Nullable Widget source, int margin);
+    void addMatchWidth(Widget target, @Nullable Widget source);
 
-    void addToLeftOf(Widget target, @Nullable Widget source, int margin);
+    void addToLeftOf(Widget target, @Nullable Widget source);
 
-    void addToRightOf(Widget target, @Nullable Widget source, int margin);
+    void addToRightOf(Widget target, @Nullable Widget source);
 
     class VertexKey {
         private final Widget widget;

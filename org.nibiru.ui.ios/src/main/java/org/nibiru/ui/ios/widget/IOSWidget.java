@@ -2,6 +2,7 @@ package org.nibiru.ui.ios.widget;
 
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import com.google.common.base.Strings;
@@ -9,6 +10,7 @@ import com.google.common.base.Strings;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
 import apple.foundation.NSString;
+import apple.uikit.UIColor;
 import apple.uikit.UIFont;
 import apple.uikit.UIView;
 
@@ -19,7 +21,19 @@ abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 
 	@Override
 	public void setStyleName(Enum<?> styleName) {
-		// TODO Auto-generated method stub
+		// Not implemented on iOS
+	}
+
+	@Override
+	public void applyStyle() {
+		control.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+	}
+
+	protected UIColor colorToNative(Color color) {
+		return UIColor.colorWithRedGreenBlueAlpha(colorToDouble(color.getRed()),
+				colorToDouble(color.getGreen()),
+				colorToDouble(color.getBlue()),
+				colorToDouble(color.getAlpha()));
 	}
 
 	@Override

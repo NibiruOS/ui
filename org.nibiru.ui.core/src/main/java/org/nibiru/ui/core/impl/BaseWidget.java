@@ -7,44 +7,22 @@ import javax.annotation.Nullable;
 import org.nibiru.ui.core.api.IsParent;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.layout.Size;
+import org.nibiru.ui.core.api.style.Size;
+import org.nibiru.ui.core.api.style.Style;
 
 public abstract class BaseWidget implements Widget {
-	// Default size for widgets if they don't specify one in particularly using the DSL
-	private Size height = Size.WRAP_CONTENT;
-	private Size width = Size.WRAP_CONTENT;
-	
 	// Widget size after measuring phase
 	private int measuredWidth;
 	private int measuredHeight;
-	
+
 	private boolean needsMeasureAgain = false;
-	
+
 	private MeasureSpec mOldWidthMeasureSpec = MeasureSpec.exactly(Integer.MIN_VALUE);
-	
+
 	private MeasureSpec mOldHeightMeasureSpec = MeasureSpec.exactly(Integer.MIN_VALUE);
 
-	private IsParent parent; 
-	
-	@Override
-	public void setHeight(Size height) {
-		this.height = checkNotNull(height);
-	}
-
-	@Override
-	public void setWidth(Size width) {
-		this.width = checkNotNull(width);
-	}
-
-	@Override
-	public Size getHeight() {
-		return height;
-	}
-
-	@Override
-	public Size getWidth() {
-		return width;
-	}
+	private Style style = Style.DEFAULT;
+	private IsParent parent;
 
 	@Override
 	public int getMeasuredHeight() {
@@ -65,7 +43,7 @@ public abstract class BaseWidget implements Widget {
 	}
 
 	/**
-	 * This method resolves the final size for panels after measuring the children. 
+	 * This method resolves the final size for panels after measuring the children.
 	 * If parent had an exactly size, we use that one, if not we use the one calculated after measuring all its children.
 	 * @param size value calculated after measuring all children
 	 * @param measureSpec restrictions imposed to the widget
@@ -79,13 +57,13 @@ public abstract class BaseWidget implements Widget {
 			break;
 		case AT_MOST:
 			if(width) {
-				if (getWidth().equals(Size.MATCH_PARENT)) {
+				if (getStyle().getWidth().equals(Size.MATCH_PARENT)) {
 					result = measureSpec.getValue();
 				} else {
 					result = size;
 				}
 			} else {
-				if (getHeight().equals(Size.MATCH_PARENT)) {
+				if (getStyle().getHeight().equals(Size.MATCH_PARENT)) {
 					result = measureSpec.getValue();
 				} else {
 					result = size;
@@ -98,7 +76,7 @@ public abstract class BaseWidget implements Widget {
 		}
 		return result;
 	}
-	
+
 	public static int getDefaultSize(int size, MeasureSpec measureSpec) {
 		int result = size;
 
@@ -121,6 +99,7 @@ public abstract class BaseWidget implements Widget {
 
 	@Override
 	public void layout() {
+		applyStyle();
 		//TODO this is in case the children violates the parent size
 	    if (needsMeasureAgain) {
 	    	onMeasure(mOldWidthMeasureSpec, mOldHeightMeasureSpec);
@@ -129,12 +108,22 @@ public abstract class BaseWidget implements Widget {
 
         onLayout();
 	}
-	
+
 	protected void onLayout() {
-		
+
     }
 
 	@Override
+	public void setStyle(Style style) {
+        this.style = checkNotNull(style);
+	}
+
+    @Override
+    public Style getStyle() {
+        return style;
+    }
+
+    @Override
 	public IsParent getParent() {
 		return parent;
 	}
@@ -142,5 +131,9 @@ public abstract class BaseWidget implements Widget {
 	@Override
 	public void setParent(@Nullable IsParent parent) {
 		this.parent = parent;
+	}
+
+	protected double colorToDouble(int color) {
+		return color / 255d;
 	}
 }

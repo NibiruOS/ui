@@ -16,9 +16,8 @@ public class CenterVerticallyRule extends BaseRule {
 
     public CenterVerticallyRule(Widget target,
                                 @Nullable Widget source,
-                                RelativePanel panel,
-                                int margin) {
-        super(target, Y, panel, margin);
+                                RelativePanel panel) {
+        super(target, Y, panel);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);
         targetHeight = addSource(target, HEIGHT);
@@ -28,6 +27,7 @@ public class CenterVerticallyRule extends BaseRule {
     public void apply() {
         getPosition().setY(getValue(sourceY)
                 + (getValue(sourceHeight) - getValue(targetHeight)) / 2
-                + getMargin());
+                + getTargetWidget().getStyle().getMarginTop()
+                - getTargetWidget().getStyle().getMarginBottom());
     }
 }
