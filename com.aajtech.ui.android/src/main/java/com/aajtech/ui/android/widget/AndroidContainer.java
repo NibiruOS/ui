@@ -14,11 +14,11 @@ abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>imp
 
 	@Override
 	public void add(Widget child) {
-		view.addView((View) child.asNative());
+		control.addView((View) child.asNative());
 	}
 
 	@Override
 	public void clear() {
-		view.removeAllViews();
+		control.removeAllViews();
 	}
 }

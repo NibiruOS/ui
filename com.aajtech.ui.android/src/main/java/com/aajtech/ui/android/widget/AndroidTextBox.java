@@ -22,6 +22,6 @@ public class AndroidTextBox extends AndroidWidget<EditText> implements TextBox {
 
 	@Override
 	public Value<String> getValue() {
-		return new TextBoxValue(view);
+		return new TextBoxValue(control);
 	}
 }

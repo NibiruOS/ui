@@ -22,6 +22,6 @@ public class AndroidLabel extends AndroidWidget<TextView> implements Label {
 
 	@Override
 	public Value<String> getValue() {
-		return new LabelValue(view);
+		return new LabelValue(control);
 	}
 }

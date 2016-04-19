@@ -8,20 +8,20 @@ import com.aajtech.ui.core.api.Widget;
 import com.vaadin.ui.Component;
 
 abstract class VaadinWidget<T extends Component> implements Widget, Serializable {
-	final T component;
+	final T control;
 
 	VaadinWidget(T component) {
-		this.component = checkNotNull(component);
+		this.control = checkNotNull(component);
 	}
 
 	@Override
 	public T asNative() {
-		return component;
+		return control;
 	}
 
 	@Override
 	public void addStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
-		component.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
+		control.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
 	}
 }

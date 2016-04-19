@@ -25,7 +25,7 @@ public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.
 
 			@Override
 			public String get() {
-				return component.getCaption();
+				return control.getCaption();
 			}
 
 			@Override
@@ -35,7 +35,7 @@ public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.
 
 			@Override
 			protected void setValue(String value) {
-				component.setCaption(value);
+				control.setCaption(value);
 			}
 		};
 	}
@@ -48,11 +48,11 @@ public class VaadinButton extends VaadinWidget<Button>implements com.aajtech.ui.
 				clickHandler.onClick();
 			}
 		};
-		component.addClickListener(listener);
+		control.addClickListener(listener);
 		return new Registration() {
 			@Override
 			public void remove() {
-				component.removeClickListener(listener);
+				control.removeClickListener(listener);
 			}
 		};
 	}

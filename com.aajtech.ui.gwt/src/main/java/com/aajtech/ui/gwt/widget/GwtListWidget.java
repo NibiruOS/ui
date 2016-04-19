@@ -30,11 +30,11 @@ public class GwtListWidget extends GwtContainer<VerticalPanel>implements ListWid
 			protected void setValue(Iterable<Widget> value) {
 				this.value = value;
 
-				while (widget.getWidgetCount() > 0) {
-					widget.remove(0);
+				while (control.getWidgetCount() > 0) {
+					control.remove(0);
 				}
 				for (Widget child : value) {
-					widget.add((com.google.gwt.user.client.ui.Widget) child.asNative());
+					control.add((com.google.gwt.user.client.ui.Widget) child.asNative());
 				}
 			}
 		};

@@ -30,9 +30,9 @@ public class VaadinListWidget extends VaadinWidget<VerticalLayout>implements Lis
 			@Override
 			protected void setValue(Iterable<Widget> value) {
 				this.value = value;
-				component.removeAllComponents();
+				control.removeAllComponents();
 				for (Widget widget : value) {
-					component.addComponent((Component) widget.asNative());
+					control.addComponent((Component) widget.asNative());
 				}
 			}
 		};

@@ -7,8 +7,8 @@ import com.vaadin.ui.TextField;
 public class VaadinTextBox extends VaadinValueWidget<TextField, String>implements TextBox {
 	public VaadinTextBox() {
 		this(new TextField());
-		component.setImmediate(true);
-		component.setNullRepresentation("");
+		control.setImmediate(true);
+		control.setNullRepresentation("");
 	}
 
 	public VaadinTextBox(TextField textField) {

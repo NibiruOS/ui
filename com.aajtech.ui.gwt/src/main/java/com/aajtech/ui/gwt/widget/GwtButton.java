@@ -17,12 +17,12 @@ public class GwtButton extends GwtWidget<Button>implements com.aajtech.ui.core.a
 		@Override
 		@Nullable
 		public String get() {
-			return widget.getText();
+			return control.getText();
 		}
 
 		@Override
 		protected void setValue(@Nullable String value) {
-			widget.setText(value);
+			control.setText(value);
 		}
 
 		@Override
@@ -39,7 +39,7 @@ public class GwtButton extends GwtWidget<Button>implements com.aajtech.ui.core.a
 
 	public GwtButton(Button button) {
 		super(button);
-		hasClickHandlersAdapter = new HasClickHandlersAdapter(widget);
+		hasClickHandlersAdapter = new HasClickHandlersAdapter(control);
 	}
 
 	@Override

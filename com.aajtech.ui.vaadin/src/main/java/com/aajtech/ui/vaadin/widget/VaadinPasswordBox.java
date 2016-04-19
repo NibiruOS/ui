@@ -7,8 +7,8 @@ import com.vaadin.ui.PasswordField;
 public class VaadinPasswordBox extends VaadinValueWidget<PasswordField, String>implements PasswordBox {
 	public VaadinPasswordBox() {
 		this(new PasswordField());
-		component.setImmediate(true);
-		component.setNullRepresentation("");
+		control.setImmediate(true);
+		control.setNullRepresentation("");
 	}
 
 	public VaadinPasswordBox(PasswordField passwordField) {

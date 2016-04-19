@@ -12,11 +12,11 @@ abstract class VaadinContainer<T extends AbstractComponentContainer> extends Vaa
 
 	@Override
 	public void add(Widget child) {
-		component.addComponent((Component) child.asNative());
+		control.addComponent((Component) child.asNative());
 	}
 
 	@Override
 	public void clear() {
-		component.removeAllComponents();
+		control.removeAllComponents();
 	}
 }

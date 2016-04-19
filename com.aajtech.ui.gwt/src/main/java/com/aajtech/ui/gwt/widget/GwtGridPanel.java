@@ -24,7 +24,7 @@ public class GwtGridPanel extends GwtWidget<FlexTable> implements GridPanel {
 
 	@Override
 	public void add(Widget child) {
-		widget.setWidget(currentRow, currentColumn, (com.google.gwt.user.client.ui.Widget) child.asNative());
+		control.setWidget(currentRow, currentColumn, (com.google.gwt.user.client.ui.Widget) child.asNative());
 		currentColumn++;
 		if (currentColumn >= columns) {
 			currentColumn = 0;
@@ -34,6 +34,6 @@ public class GwtGridPanel extends GwtWidget<FlexTable> implements GridPanel {
 
 	@Override
 	public void clear() {
-		widget.clear();
+		control.clear();
 	}
 }

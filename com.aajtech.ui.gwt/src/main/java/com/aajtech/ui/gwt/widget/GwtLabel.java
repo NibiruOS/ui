@@ -14,12 +14,12 @@ public class GwtLabel extends GwtWidget<Label> implements com.aajtech.ui.core.ap
 		@Override
 		@Nullable 
 		public String get() {
-			return widget.getText();
+			return control.getText();
 		}
 
 		@Override
 		protected void setValue(@Nullable String value) {
-			widget.setText(value);
+			control.setText(value);
 		}
 
 		@Override

@@ -21,6 +21,6 @@ public class AndroidGridPanel extends AndroidContainer<GridLayout>implements Gri
 
 	@Override
 	public void setColumns(int columns) {
-		view.setColumnCount(columns);
+		control.setColumnCount(columns);
 	}
 }

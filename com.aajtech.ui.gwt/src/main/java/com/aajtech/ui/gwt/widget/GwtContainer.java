@@ -14,11 +14,11 @@ class GwtContainer<T extends Panel> extends GwtWidget<T>implements Container {
 	@Override
 	public void add(Widget child) {
 		checkNotNull(child);
-		widget.add((com.google.gwt.user.client.ui.Widget) child.asNative());
+		control.add((com.google.gwt.user.client.ui.Widget) child.asNative());
 	}
 
 	@Override
 	public void clear() {
-		widget.clear();
+		control.clear();
 	}
 }

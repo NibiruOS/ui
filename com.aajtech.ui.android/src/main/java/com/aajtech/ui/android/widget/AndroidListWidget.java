@@ -26,7 +26,7 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 	@Inject
 	public AndroidListWidget(Context context, StyleResolver styleResolver) {
 		this(new ListView(new ContextThemeWrapper(context, 0)), styleResolver);
-		adapter = new ArrayAdapter<Widget>(view.getContext(), 0, Lists.newArrayList()) {
+		adapter = new ArrayAdapter<Widget>(control.getContext(), 0, Lists.newArrayList()) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				return (View) getItem(position).asNative();
@@ -37,7 +37,7 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 		        return false;
 		    }
 		};
-		view.setAdapter(adapter);
+		control.setAdapter(adapter);
 	}
 
 	public AndroidListWidget(ListView view, StyleResolver styleResolver) {

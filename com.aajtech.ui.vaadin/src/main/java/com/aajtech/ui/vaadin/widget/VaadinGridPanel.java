@@ -14,6 +14,6 @@ public class VaadinGridPanel extends VaadinContainer<GridLayout>implements GridP
 
 	@Override
 	public void setColumns(int columns) {
-		component.setColumns(columns);
+		control.setColumns(columns);
 	}
 }

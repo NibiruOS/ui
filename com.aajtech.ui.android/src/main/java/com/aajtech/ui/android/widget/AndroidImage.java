@@ -55,7 +55,7 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 				Closer closer = Closer.create();
 				try {
 					try {
-						view.setImageBitmap(BitmapFactory.decodeStream(
+						control.setImageBitmap(BitmapFactory.decodeStream(
 								closer.register(getClass().getClassLoader().getResourceAsStream(basePath + value))));
 					} catch (Throwable e) { // must catch Throwable
 						throw closer.rethrow(e);
