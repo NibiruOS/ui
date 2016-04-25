@@ -32,7 +32,7 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 
 	@Override
 	public T asNative() {
-		return control;
+		return control();
 	}
 
 	@Override
@@ -41,7 +41,7 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 		if (clickRegistration != null) {
 			clickRegistration.remove();
 		}
-		control.setOnClickListener(new View.OnClickListener() {
+		control().setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
@@ -51,7 +51,7 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 		clickRegistration = new Registration() {
 			@Override
 			public void remove() {
-				control.setOnClickListener(null);
+				control().setOnClickListener(null);
 			}
 		};
 		return clickRegistration;

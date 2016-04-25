@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 	private final String basePath;
+	private final Value<String> value = buildValue();
 
 	@Inject
 	public AndroidImage(Context context, StyleResolver styleResolver, @ResourcesBasePath String basePath) {
@@ -36,6 +37,15 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 
 	@Override
 	public Value<String> getValue() {
+		return value;
+	}
+
+	@Override
+	ImageView buildControl(Context context, int styleResource) {
+		return styleResource == 0 ? new ImageView(context) : new ImageView(context, null, styleResource);
+	}
+
+	private Value<String> buildValue() {
 		return new BaseValue<String>() {
 			private String imagePath;
 
@@ -67,10 +77,5 @@ public class AndroidImage extends AndroidWidget<ImageView> implements Image {
 				}
 			}
 		};
-	}
-
-	@Override
-	ImageView buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new ImageView(context) : new ImageView(context, null, styleResource);
 	}
 }

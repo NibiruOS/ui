@@ -19,18 +19,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class AndroidListWidget extends AndroidWidget<ListView>implements ListWidget {
-	private final Value<Iterable<Widget>> value;
+	private final Value<Iterable<Widget>> value = buildValue();
 	private ArrayAdapter<Widget> adapter;
 
 	@Inject
 	public AndroidListWidget(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
-		value = buildValue();
 	}
 
 	public AndroidListWidget(ListView view, StyleResolver styleResolver) {
 		super(view, styleResolver);
-		value = buildValue();
 	}
 
 	@Override
@@ -41,7 +39,7 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 	@Override
 	ListView buildControl(Context context, int styleResource) {
 		ListView list = styleResource == 0 ? new ListView(context) : new ListView(context, null, styleResource);
-		adapter = new ArrayAdapter<Widget>(control().getContext(), 0, Lists.newArrayList()) {
+		adapter = new ArrayAdapter<Widget>(context, 0, Lists.newArrayList()) {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				return (View) getItem(position).asNative();
