@@ -6,24 +6,26 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.GridPanel;
+import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.Widget;
 
 public class FormBuilder extends BaseBuilder<GridPanel> {
-	private final Provider<LabelBuilder> labelBuilderProvider;
 	private final HorizontalPanelBuilder horizontalPanelBuilder;
+	private final Provider<Label> labelProvider;
 
 	@Inject
 	public FormBuilder(GridPanel gridPanel,
-			Provider<LabelBuilder> labelBuilderProvider,
-			HorizontalPanelBuilder horizontalPanelBuilder) {
+			HorizontalPanelBuilder horizontalPanelBuilder,
+			Provider<Label> labelProvider) {
 		super(gridPanel);
-		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.horizontalPanelBuilder = checkNotNull(horizontalPanelBuilder);
+		this.labelProvider = checkNotNull(labelProvider);
 		gridPanel.setColumns(2);
 	}
 
-	public FormBuilder field(String label, Widget field) {
-		object.add(labelBuilderProvider.get().value(label + " :").build());
+	public FormBuilder field(Label label, Widget field) {
+		label.getValue().set(label.getValue().get() + " :");
+		object.add(label);
 		object.add(field);
 		return this;
 	}
@@ -35,7 +37,7 @@ public class FormBuilder extends BaseBuilder<GridPanel> {
 
 	@Override
 	public GridPanel build() {
-		object.add(labelBuilderProvider.get().value("").build());
+		object.add(labelProvider.get());
 		object.add(horizontalPanelBuilder.build());
 		return super.build();
 	}
