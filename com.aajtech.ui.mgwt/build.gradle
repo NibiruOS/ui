@@ -1,5 +1,4 @@
 dependencies {
 	compile project(":com.aajtech.ui.gwt")
-	compile "com.google.gwt.inject:gin:${ginVersion}"
 	compile "com.googlecode.mgwt:mgwt:2.0.0"
 }

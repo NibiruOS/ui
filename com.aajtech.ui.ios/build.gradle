@@ -1,6 +1,8 @@
 dependencies {
 	compile project(":com.aajtech.ui.core")
-	compile "com.google.inject:guice:${guiceVersion}"
+	compile("com.google.inject:guice:${guiceVersion}:no_aop") {
+		exclude group: 'org.sonatype.sisu.inject', module: 'cglib'
+	}
 	compile "org.robovm:robovm-cocoatouch:${robovmVersion}"
 	compile "org.robovm:robovm-rt:${robovmVersion}"
 }

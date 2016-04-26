@@ -5,5 +5,7 @@ dependencies {
 	compile "com.vaadin:vaadin-client-compiled:${vaadinVersion}"
 	compile "com.vaadin:vaadin-server:${vaadinVersion}"
 	compile "com.vaadin:vaadin-themes:7.5.4"
-	compile "com.google.inject:guice:${guiceVersion}"
+	compile("com.google.inject:guice:${guiceVersion}:no_aop") {
+		exclude group: 'org.sonatype.sisu.inject', module: 'cglib'
+	}
 }
