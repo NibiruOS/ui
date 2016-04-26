@@ -21,6 +21,7 @@ allprojects {
 	    maven {
 	        url "https://oss.sonatype.org/content/repositories/google-snapshots/"
 	    }
+		mavenLocal()
 	}
 	buildscript {
     	repositories {
