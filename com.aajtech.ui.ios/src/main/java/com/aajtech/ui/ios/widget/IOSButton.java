@@ -4,6 +4,7 @@ import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIButton;
+import org.robovm.apple.uikit.UIColor;
 import org.robovm.apple.uikit.UIControl;
 import org.robovm.apple.uikit.UIControl.OnTouchUpInsideListener;
 import org.robovm.apple.uikit.UIControlState;
@@ -26,6 +27,8 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 
 	public IOSButton(UIButton button) {
 		super(button);
+		button.setTitleColor(UIColor.black(), UIControlState.Normal);
+		button.setBackgroundColor(UIColor.gray());
 	}
 
 	@Override
