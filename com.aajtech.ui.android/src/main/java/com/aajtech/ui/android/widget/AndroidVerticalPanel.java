@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 public class AndroidVerticalPanel extends LinearLayoutContainer implements VerticalPanel {
 	@Inject
 	public AndroidVerticalPanel(Context context, StyleResolver styleResolver) {
-		this(new LinearLayout(context), styleResolver);
+		super(context, styleResolver, LinearLayout.VERTICAL);
 	}
 
 	public AndroidVerticalPanel(LinearLayout linearLayout, StyleResolver styleResolver) {
