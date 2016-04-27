@@ -17,7 +17,7 @@ abstract class GwtWidget<T extends Widget> implements com.aajtech.ui.core.api.Wi
 	}
 
 	@Override
-	public void addStyleName(Enum<?> styleName) {
+	public void setStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
 		control.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
 	}

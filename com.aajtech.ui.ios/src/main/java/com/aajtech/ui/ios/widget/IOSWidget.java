@@ -21,7 +21,7 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 	}
 
 	@Override
-	public void addStyleName(Enum<?> styleName) {
+	public void setStyleName(Enum<?> styleName) {
 		// TODO Auto-generated method stub
 	}
 

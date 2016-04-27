@@ -7,7 +7,6 @@ import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
-import com.aajtech.ui.core.api.Color;
 import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
@@ -122,15 +121,5 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public Image image(String path) {
 		return image().value(path).build();
-	}
-
-	@Override
-	public Color color(int red, int green, int blue) {
-		return new Color(red, green, blue);
-	}
-
-	@Override
-	public Color color(int red, int green, int blue, int alpha) {
-		return new Color(red, green, blue, alpha);
 	}
 }

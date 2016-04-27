@@ -5,5 +5,5 @@ public interface Widget {
 
 	Object asNative();
 
-	void addStyleName(Enum<?> styleName);
+	void setStyleName(Enum<?> styleName);
 }

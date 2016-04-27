@@ -20,7 +20,7 @@ abstract class VaadinWidget<T extends Component> implements Widget, Serializable
 	}
 
 	@Override
-	public void addStyleName(Enum<?> styleName) {
+	public void setStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
 		control.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
 	}

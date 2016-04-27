@@ -2,7 +2,6 @@ package com.aajtech.ui.core.impl.builder;
 
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
-import com.aajtech.ui.core.api.Color;
 import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
@@ -39,8 +38,4 @@ public interface UiCreator {
 	Image image(String path);
 
 	ListWidget list();
-	
-	Color color(int red, int green, int blue);
-	
-	Color color(int red, int green, int blue, int alpha);
 }

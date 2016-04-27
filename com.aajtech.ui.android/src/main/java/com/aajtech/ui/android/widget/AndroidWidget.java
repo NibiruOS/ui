@@ -58,7 +58,7 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 	}
 
 	@Override
-	public void addStyleName(Enum<?> styleName) {
+	public void setStyleName(Enum<?> styleName) {
 		checkNotNull(styleName);
 		styleResource = styleResolver.resolveStyle(styleName);
 	}

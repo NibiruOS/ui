@@ -17,7 +17,7 @@ public class WidgetWrapper implements Widget {
 	}
 
 	@Override
-	public void addStyleName(Enum<?> styleClass) {
+	public void setStyleName(Enum<?> styleClass) {
 		// Not supported... styles are platform specific.
 	}
 }

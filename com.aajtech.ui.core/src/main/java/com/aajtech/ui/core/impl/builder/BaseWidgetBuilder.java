@@ -9,7 +9,7 @@ abstract class BaseWidgetBuilder<T extends Widget, B extends BaseWidgetBuilder<T
 	}
 
 	public B styleClass(Enum<?> styleClass) {
-		object.addStyleName(styleClass);
+		object.setStyleName(styleClass);
 		return getThis();
 	}
 	
