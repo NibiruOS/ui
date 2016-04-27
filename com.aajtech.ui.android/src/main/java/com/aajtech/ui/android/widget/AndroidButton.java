@@ -19,10 +19,6 @@ public class AndroidButton extends AndroidLabel implements Button {
 
 	@Override
 	android.widget.Button buildControl(Context context, int styleResource) {
-		android.widget.Button button = styleResource == 0 ? new android.widget.Button(context) : new android.widget.Button(context, null, styleResource);
-		// Set focusable to false so it can be added to lists.
-		// Click event on lists fails randomly if the widget is focusable. 
-		button.setFocusable(false);
-		return button;
+		return styleResource == 0 ? new android.widget.Button(context) : new android.widget.Button(context, null, styleResource);
 	}
 }

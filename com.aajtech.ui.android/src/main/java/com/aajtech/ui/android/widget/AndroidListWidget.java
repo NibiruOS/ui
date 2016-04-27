@@ -9,49 +9,21 @@ import com.aajtech.model.core.impl.java.JavaType;
 import com.aajtech.ui.android.style.StyleResolver;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.Widget;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-public class AndroidListWidget extends AndroidWidget<ListView>implements ListWidget {
+public class AndroidListWidget extends AndroidVerticalPanel implements ListWidget {
 	private final Value<Iterable<Widget>> value = buildValue();
-	private ArrayAdapter<Widget> adapter;
 
 	@Inject
 	public AndroidListWidget(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
 	}
 
-	public AndroidListWidget(ListView view, StyleResolver styleResolver) {
-		super(view, styleResolver);
-	}
-
 	@Override
 	public Value<Iterable<Widget>> getValue() {
 		return value;
-	}
-	
-	@Override
-	ListView buildControl(Context context, int styleResource) {
-		ListView list = styleResource == 0 ? new ListView(context) : new ListView(context, null, styleResource);
-		adapter = new ArrayAdapter<Widget>(context, 0, Lists.newArrayList()) {
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				return (View) getItem(position).asNative();
-			}
-
-			@Override
-			public boolean isEnabled(int position) {
-				return false;
-			}
-		};
-		list.setAdapter(adapter);
-		return list;
 	}
 	
 	private Value<Iterable<Widget>> buildValue() {
@@ -71,9 +43,10 @@ public class AndroidListWidget extends AndroidWidget<ListView>implements ListWid
 			@Override
 			protected void setValue(Iterable<Widget> value) {
 				this.value = value;
-				adapter.clear();
-				adapter.addAll(ImmutableList.copyOf(value));
-				adapter.notifyDataSetChanged();
+				control().removeAllViews();
+				for (Widget child : value) {
+					control().addView((View) child.asNative());
+				}
 			}
 		};
 	}
