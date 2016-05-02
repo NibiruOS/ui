@@ -9,7 +9,7 @@ import com.aajtech.ui.core.api.Label;
 import android.content.Context;
 import android.widget.TextView;
 
-public class AndroidLabel extends AndroidWidget<TextView>implements Label {
+public class AndroidLabel extends AndroidValueWidget<TextView, String> implements Label {
 	@Inject
 	public AndroidLabel(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
@@ -20,12 +20,12 @@ public class AndroidLabel extends AndroidWidget<TextView>implements Label {
 	}
 
 	@Override
-	public Value<String> getValue() {
-		return new LabelValue(control());
+	TextView buildControl(Context context, int styleResource) {
+		return styleResource == 0 ? new TextView(context) : new TextView(context, null, styleResource);
 	}
 
 	@Override
-	TextView buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new TextView(context) : new TextView(context, null, styleResource);
+	Value<String> buildValue() {
+		return new LabelValue(control());
 	}
 }

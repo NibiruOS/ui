@@ -1,21 +1,23 @@
 package com.aajtech.ui.gwt.widget;
 
-import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.ui.core.api.ValueWidget;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Widget;
 
-abstract class GwtValueWidget<W extends Widget & HasValue<T>, T> extends GwtWidget<W> implements ValueWidget<T> {
-	private final TakesValueAdapter<T> value;
+abstract class GwtValueWidget<W extends Widget, V> extends GwtWidget<W>implements ValueWidget<V> {
+	private Value<V> value;
 
-	GwtValueWidget(W widget, Type<T> type) {
+	GwtValueWidget(W widget) {
 		super(widget);
-		this.value = new HasValueAdapter<T>(widget, type);
 	}
 
 	@Override
-	public Value<T> getValue() {
+	public Value<V> getValue() {
+		if (value == null) {
+			value = buildValue();
+		}
 		return value;
 	}
+
+	abstract Value<V> buildValue();
 }

@@ -8,7 +8,7 @@ import com.aajtech.ui.core.api.GridPanel;
 import android.content.Context;
 import android.widget.GridLayout;
 
-public class AndroidGridPanel extends AndroidContainer<GridLayout>implements GridPanel {
+public class AndroidGridPanel extends AndroidContainer<GridLayout> implements GridPanel {
 	@Inject
 	public AndroidGridPanel(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);

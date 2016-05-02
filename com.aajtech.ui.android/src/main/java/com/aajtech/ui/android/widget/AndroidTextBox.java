@@ -9,7 +9,7 @@ import com.aajtech.ui.core.api.TextBox;
 import android.content.Context;
 import android.widget.EditText;
 
-public class AndroidTextBox extends AndroidWidget<EditText>implements TextBox {
+public class AndroidTextBox extends AndroidValueWidget<EditText, String> implements TextBox {
 	@Inject
 	public AndroidTextBox(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
@@ -20,12 +20,12 @@ public class AndroidTextBox extends AndroidWidget<EditText>implements TextBox {
 	}
 
 	@Override
-	public Value<String> getValue() {
-		return new TextBoxValue(control());
+	EditText buildControl(Context context, int styleResource) {
+		return styleResource == 0 ? new EditText(context) : new EditText(context, null, styleResource);
 	}
 
 	@Override
-	EditText buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new EditText(context) : new EditText(context, null, styleResource);
+	Value<String> buildValue() {
+		return new TextBoxValue(control());
 	}
 }
