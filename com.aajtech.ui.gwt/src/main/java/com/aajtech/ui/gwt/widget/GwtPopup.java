@@ -1,45 +1,54 @@
 package com.aajtech.ui.gwt.widget;
 
-import com.aajtech.model.core.api.Value;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import javax.inject.Inject;
+
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Widget;
+import com.aajtech.ui.gwt.widget.Resources.Css;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 public class GwtPopup implements Popup {
+	private final PopupPanel popup;
 
-	@Override
-	public Value<String> getValue() {
-		// TODO Auto-generated method stub
-		return null;
+	@Inject
+	public GwtPopup(Resources resources) {
+		this(buildPopupPanel(resources.css()));
 	}
 
-	@Override
-	public Object asNative() {
-		// TODO Auto-generated method stub
-		return null;
+	private static PopupPanel buildPopupPanel(Css css) {
+		PopupPanel popup = new PopupPanel();
+		popup.setGlassEnabled(true);
+		css.ensureInjected();
+		popup.setGlassStyleName(css.popupGlass());
+		return popup;
 	}
 
-	@Override
-	public void setStyleName(Enum<?> styleName) {
-		// TODO Auto-generated method stub
-
+	public GwtPopup(PopupPanel popup) {
+		this.popup = checkNotNull(popup);
 	}
 
 	@Override
 	public void setContent(Widget content) {
-		// TODO Auto-generated method stub
-
+		checkNotNull(content);
+		popup.clear();
+		popup.add((com.google.gwt.user.client.ui.Widget) content.asNative());
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-
+		popup.center();
+		popup.show();
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-
+		popup.hide();
 	}
 
+	@Override
+	public void setAutoHide(boolean autoHide) {
+		popup.setAutoHideEnabled(autoHide);
+	}
 }

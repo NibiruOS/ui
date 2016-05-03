@@ -11,7 +11,9 @@ import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
+import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
+import com.aajtech.ui.core.api.Widget;
 
 public class UiBuilder implements UiCreator {
 	private final Provider<LabelBuilder> labelBuilderProvider;
@@ -24,6 +26,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
 	private final Provider<ImageBuilder> imageBuilderProvider;
+	private final Provider<PopupBuilder> popupBuilderProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -35,7 +38,8 @@ public class UiBuilder implements UiCreator {
 			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
-			Provider<ImageBuilder> imageBuilderProvider) {
+			Provider<ImageBuilder> imageBuilderProvider,
+			Provider<PopupBuilder> popupBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -46,6 +50,7 @@ public class UiBuilder implements UiCreator {
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
+		this.popupBuilderProvider = checkNotNull(popupBuilderProvider);
 	}
 
 	@Override
@@ -121,5 +126,15 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public Image image(String path) {
 		return image().value(path).build();
+	}
+
+	@Override
+	public PopupBuilder popup() {
+		return popupBuilderProvider.get();
+	}
+
+	@Override
+	public Popup popup(Widget content) {
+		return popup().content(content).build();
 	}
 }

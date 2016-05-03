@@ -6,7 +6,9 @@ import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
+import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
+import com.aajtech.ui.core.api.Widget;
 
 public interface UiCreator {
 	LabelBuilder label();
@@ -38,4 +40,8 @@ public interface UiCreator {
 	Image image(String path);
 
 	ListWidget list();
+
+	PopupBuilder popup();
+
+	Popup popup(Widget content);
 }

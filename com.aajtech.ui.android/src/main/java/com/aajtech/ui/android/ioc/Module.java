@@ -7,6 +7,7 @@ import com.aajtech.ui.android.widget.AndroidImage;
 import com.aajtech.ui.android.widget.AndroidLabel;
 import com.aajtech.ui.android.widget.AndroidListWidget;
 import com.aajtech.ui.android.widget.AndroidPasswordBox;
+import com.aajtech.ui.android.widget.AndroidPopup;
 import com.aajtech.ui.android.widget.AndroidTextBox;
 import com.aajtech.ui.android.widget.AndroidVerticalPanel;
 import com.aajtech.ui.core.api.Button;
@@ -16,6 +17,7 @@ import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
+import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.VerticalPanel;
 import com.google.inject.AbstractModule;
@@ -32,5 +34,6 @@ public class Module extends AbstractModule {
 		bind(GridPanel.class).to(AndroidGridPanel.class);
 		bind(ListWidget.class).to(AndroidListWidget.class);
 		bind(Image.class).to(AndroidImage.class);
+		bind(Popup.class).to(AndroidPopup.class);
 	}
 }
