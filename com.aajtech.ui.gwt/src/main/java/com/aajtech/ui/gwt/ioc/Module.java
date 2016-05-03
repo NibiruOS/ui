@@ -8,6 +8,7 @@ import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
+import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.VerticalPanel;
 import com.aajtech.ui.gwt.widget.GwtButton;
@@ -18,6 +19,7 @@ import com.aajtech.ui.gwt.widget.GwtLabel;
 import com.aajtech.ui.gwt.widget.GwtListWidget;
 import com.aajtech.ui.gwt.widget.GwtPasswordBox;
 import com.aajtech.ui.gwt.widget.GwtPopup;
+import com.aajtech.ui.gwt.widget.GwtSpinner;
 import com.aajtech.ui.gwt.widget.GwtTextBox;
 import com.aajtech.ui.gwt.widget.GwtVerticalPanel;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -35,5 +37,6 @@ public class Module extends AbstractGinModule {
 		bind(ListWidget.class).to(GwtListWidget.class);
 		bind(Image.class).to(GwtImage.class);
 		bind(Popup.class).to(GwtPopup.class);
+		bind(Spinner.class).to(GwtSpinner.class);
 	}
 }

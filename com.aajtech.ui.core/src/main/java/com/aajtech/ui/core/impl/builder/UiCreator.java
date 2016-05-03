@@ -44,4 +44,6 @@ public interface UiCreator {
 	PopupBuilder popup();
 
 	Popup popup(Widget content);
+
+	SpinnerBuilder spinner();
 }

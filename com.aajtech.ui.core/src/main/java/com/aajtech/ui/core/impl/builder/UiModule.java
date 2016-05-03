@@ -103,4 +103,10 @@ public abstract class UiModule implements UiCreator {
 	public Popup popup(Widget content) {
 		return uiBuilder.popup(content);
 	}
+
+	@Override
+	public SpinnerBuilder spinner() {
+		return uiBuilder.spinner();
+	}
+
 }

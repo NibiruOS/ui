@@ -7,8 +7,8 @@ import com.google.gwt.user.client.ui.Widget;
 abstract class GwtWidget<T extends Widget> implements com.aajtech.ui.core.api.Widget {
 	final T control;
 
-	GwtWidget(T widget) {
-		this.control = checkNotNull(widget);
+	GwtWidget(T control) {
+		this.control = checkNotNull(control);
 	}
 
 	@Override

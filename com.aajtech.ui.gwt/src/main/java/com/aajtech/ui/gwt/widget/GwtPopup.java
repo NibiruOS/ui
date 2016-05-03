@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Widget;
-import com.aajtech.ui.gwt.widget.Resources.Css;
+import com.aajtech.ui.gwt.resource.Resources;
 import com.google.gwt.user.client.ui.PopupPanel;
 
 public class GwtPopup implements Popup {
@@ -14,15 +14,10 @@ public class GwtPopup implements Popup {
 
 	@Inject
 	public GwtPopup(Resources resources) {
-		this(buildPopupPanel(resources.css()));
-	}
-
-	private static PopupPanel buildPopupPanel(Css css) {
-		PopupPanel popup = new PopupPanel();
+		this(new PopupPanel());
 		popup.setGlassEnabled(true);
-		css.ensureInjected();
-		popup.setGlassStyleName(css.popupGlass());
-		return popup;
+		resources.css().ensureInjected();
+		popup.setGlassStyleName(resources.css().popupGlass());
 	}
 
 	public GwtPopup(PopupPanel popup) {

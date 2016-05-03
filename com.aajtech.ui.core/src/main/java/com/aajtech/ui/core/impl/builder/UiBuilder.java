@@ -27,6 +27,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<ListWidget> listWidgetProvider;
 	private final Provider<ImageBuilder> imageBuilderProvider;
 	private final Provider<PopupBuilder> popupBuilderProvider;
+	private final Provider<SpinnerBuilder> spinnerBuilderProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -39,7 +40,8 @@ public class UiBuilder implements UiCreator {
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
 			Provider<ImageBuilder> imageBuilderProvider,
-			Provider<PopupBuilder> popupBuilderProvider) {
+			Provider<PopupBuilder> popupBuilderProvider,
+			Provider<SpinnerBuilder> spinnerBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -51,6 +53,7 @@ public class UiBuilder implements UiCreator {
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
 		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
 		this.popupBuilderProvider = checkNotNull(popupBuilderProvider);
+		this.spinnerBuilderProvider = checkNotNull(spinnerBuilderProvider);
 	}
 
 	@Override
@@ -136,5 +139,10 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public Popup popup(Widget content) {
 		return popup().content(content).build();
+	}
+
+	@Override
+	public SpinnerBuilder spinner() {
+		return spinnerBuilderProvider.get();
 	}
 }
