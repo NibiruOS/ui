@@ -109,4 +109,8 @@ public abstract class UiModule implements UiCreator {
 		return uiBuilder.spinner();
 	}
 
+	@Override
+	public Popup loadingPopup(String text) {
+		return uiBuilder.loadingPopup(text);
+	}
 }

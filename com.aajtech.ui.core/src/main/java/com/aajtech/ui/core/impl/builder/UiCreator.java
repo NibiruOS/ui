@@ -1,5 +1,7 @@
 package com.aajtech.ui.core.impl.builder;
 
+import javax.annotation.Nullable;
+
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Image;
@@ -13,15 +15,15 @@ import com.aajtech.ui.core.api.Widget;
 public interface UiCreator {
 	LabelBuilder label();
 
-	Label label(String text);
+	Label label(@Nullable String text);
 
 	TextBoxBuilder textBox();
 
-	TextBox textBox(String text);
+	TextBox textBox(@Nullable String text);
 
 	PasswordBoxBuilder passwordBox();
 
-	PasswordBox passwordBox(String text);
+	PasswordBox passwordBox(@Nullable String text);
 
 	VerticalPanelBuilder verticalPanel();
 
@@ -33,7 +35,7 @@ public interface UiCreator {
 
 	ButtonBuilder button();
 
-	Button button(String text, ClickHandler clickHandler);
+	Button button(@Nullable String text, ClickHandler clickHandler);
 
 	ImageBuilder image();
 
@@ -46,4 +48,6 @@ public interface UiCreator {
 	Popup popup(Widget content);
 
 	SpinnerBuilder spinner();
+
+	Popup loadingPopup(String text);
 }

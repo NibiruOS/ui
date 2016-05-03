@@ -2,6 +2,7 @@ package com.aajtech.ui.core.impl.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
@@ -62,7 +63,7 @@ public class UiBuilder implements UiCreator {
 	}
 
 	@Override
-	public Label label(String text) {
+	public Label label(@Nullable String text) {
 		return label().value(text).build();
 	}
 
@@ -72,7 +73,7 @@ public class UiBuilder implements UiCreator {
 	}
 
 	@Override
-	public TextBox textBox(String text) {
+	public TextBox textBox(@Nullable String text) {
 		return textBox().value(text).build();
 	}
 
@@ -82,7 +83,7 @@ public class UiBuilder implements UiCreator {
 	}
 
 	@Override
-	public PasswordBox passwordBox(String text) {
+	public PasswordBox passwordBox(@Nullable String text) {
 		return passwordBox().value(text).build();
 	}
 	
@@ -112,7 +113,8 @@ public class UiBuilder implements UiCreator {
 	}
 
 	@Override
-	public Button button(String text, ClickHandler clickHandler) {
+	public Button button(@Nullable String text, ClickHandler clickHandler) {
+		checkNotNull(clickHandler);
 		return button().value(text).onClick(clickHandler).build();
 	}
 
@@ -128,6 +130,7 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public Image image(String path) {
+		checkNotNull(path);
 		return image().value(path).build();
 	}
 
@@ -138,11 +141,21 @@ public class UiBuilder implements UiCreator {
 
 	@Override
 	public Popup popup(Widget content) {
+		checkNotNull(content);
 		return popup().content(content).build();
 	}
 
 	@Override
 	public SpinnerBuilder spinner() {
 		return spinnerBuilderProvider.get();
+	}
+
+	@Override
+	public Popup loadingPopup(String text) {
+		checkNotNull(text);
+		return popup(horizontalPanel()
+			.add(spinner().build())
+			.add(label(text))
+			.build());
 	}
 }
