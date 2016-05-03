@@ -20,9 +20,10 @@ public class ReflectionStyleResolver implements StyleResolver {
 		try {
 			String fieldName = Widget.STYLE_NAME_PREFIX + styleName.name().toLowerCase();
 			Field styleField = sytleConstantClass.getField(fieldName);
-			checkNotNull(styleField, "No field %s found for class %s.", fieldName, sytleConstantClass);
 			return styleField.getInt(null);
-		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+		} catch (NoSuchFieldException e) {
+			return StyleResolver.NO_STYLE;
+		} catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			throw Throwables.propagate(e);
 		}
 	}

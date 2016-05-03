@@ -19,6 +19,8 @@ public class AndroidButton extends AndroidLabel implements Button {
 
 	@Override
 	android.widget.Button buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new android.widget.Button(context) : new android.widget.Button(context, null, styleResource);
+		return styleResource == StyleResolver.NO_STYLE
+				? new android.widget.Button(context)
+				: new android.widget.Button(context, null, styleResource);
 	}
 }

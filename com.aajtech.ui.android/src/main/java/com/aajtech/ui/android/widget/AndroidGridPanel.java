@@ -25,6 +25,8 @@ public class AndroidGridPanel extends AndroidContainer<GridLayout> implements Gr
 
 	@Override
 	GridLayout buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new GridLayout(context) : new GridLayout(context, null, styleResource);
+		return styleResource == StyleResolver.NO_STYLE
+				? new GridLayout(context)
+				: new GridLayout(context, null, styleResource);
 	}
 }

@@ -36,7 +36,9 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
 
 	@Override
 	ImageView buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new ImageView(context) : new ImageView(context, null, styleResource);
+		return styleResource == StyleResolver.NO_STYLE
+				? new ImageView(context)
+				: new ImageView(context, null, styleResource);
 	}
 
 	@Override

@@ -21,7 +21,9 @@ public class AndroidTextBox extends AndroidValueWidget<EditText, String> impleme
 
 	@Override
 	EditText buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new EditText(context) : new EditText(context, null, styleResource);
+		return styleResource == StyleResolver.NO_STYLE
+				? new EditText(context)
+				: new EditText(context, null, styleResource);
 	}
 
 	@Override

@@ -21,7 +21,9 @@ public class AndroidLabel extends AndroidValueWidget<TextView, String> implement
 
 	@Override
 	TextView buildControl(Context context, int styleResource) {
-		return styleResource == 0 ? new TextView(context) : new TextView(context, null, styleResource);
+		return styleResource == StyleResolver.NO_STYLE
+				? new TextView(context)
+				: new TextView(context, null, styleResource);
 	}
 
 	@Override

@@ -65,7 +65,9 @@ abstract class AndroidWidget<T extends View> implements Widget, HasClickHandler 
 
 	T control() {
 		if (control == null) {
-			control = buildControl(styleResource == 0 ? context : new ContextThemeWrapper(context, styleResource),
+			control = buildControl(styleResource == StyleResolver.NO_STYLE 
+						? context
+						: new ContextThemeWrapper(context, styleResource),
 					styleResource);
 		}
 		return control;
