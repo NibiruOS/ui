@@ -3,6 +3,7 @@
 <module>
 	<inherits name="com.google.gwt.inject.Inject" />
 	<inherits name="com.aajtech.ui.core.Module" />
+	<source path="builder" />
 	<source path="ioc" />
 	<source path="resource" />
 	<source path="widget" />

@@ -29,6 +29,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<ImageBuilder> imageBuilderProvider;
 	private final Provider<PopupBuilder> popupBuilderProvider;
 	private final Provider<SpinnerBuilder> spinnerBuilderProvider;
+	private final RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -42,7 +43,8 @@ public class UiBuilder implements UiCreator {
 			Provider<ListWidget> listWidgetProvider,
 			Provider<ImageBuilder> imageBuilderProvider,
 			Provider<PopupBuilder> popupBuilderProvider,
-			Provider<SpinnerBuilder> spinnerBuilderProvider) {
+			Provider<SpinnerBuilder> spinnerBuilderProvider,
+			RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -55,6 +57,7 @@ public class UiBuilder implements UiCreator {
 		this.imageBuilderProvider = checkNotNull(imageBuilderProvider);
 		this.popupBuilderProvider = checkNotNull(popupBuilderProvider);
 		this.spinnerBuilderProvider = checkNotNull(spinnerBuilderProvider);
+		this.radioButtonGroupBuilderFactory = checkNotNull(radioButtonGroupBuilderFactory);
 	}
 
 	@Override
@@ -157,5 +160,10 @@ public class UiBuilder implements UiCreator {
 			.add(spinner().build())
 			.add(label(text))
 			.build());
+	}
+
+	@Override
+	public <T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass) {
+		return radioButtonGroupBuilderFactory.create(valueClass);
 	}
 }

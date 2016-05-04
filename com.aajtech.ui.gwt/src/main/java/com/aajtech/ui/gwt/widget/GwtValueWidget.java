@@ -7,8 +7,8 @@ import com.google.gwt.user.client.ui.Widget;
 abstract class GwtValueWidget<W extends Widget, V> extends GwtWidget<W>implements ValueWidget<V> {
 	private Value<V> value;
 
-	GwtValueWidget(W widget) {
-		super(widget);
+	GwtValueWidget(W control) {
+		super(control);
 	}
 
 	@Override

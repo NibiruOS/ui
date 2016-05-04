@@ -50,4 +50,6 @@ public interface UiCreator {
 	SpinnerBuilder spinner();
 
 	Popup loadingPopup(String text);
+
+	<T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass);
 }

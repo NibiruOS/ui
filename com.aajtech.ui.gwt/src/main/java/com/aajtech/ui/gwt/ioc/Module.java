@@ -11,6 +11,8 @@ import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import com.aajtech.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.widget.GwtButton;
 import com.aajtech.ui.gwt.widget.GwtGridPanel;
 import com.aajtech.ui.gwt.widget.GwtHorizontalPanel;
@@ -38,5 +40,6 @@ public class Module extends AbstractGinModule {
 		bind(Image.class).to(GwtImage.class);
 		bind(Popup.class).to(GwtPopup.class);
 		bind(Spinner.class).to(GwtSpinner.class);
+		bind(RadioButtonGroupBuilderFactory.class).to(GwtRadioButtonGroupBuilderFactory.class);
 	}
 }

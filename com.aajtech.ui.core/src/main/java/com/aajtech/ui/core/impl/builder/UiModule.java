@@ -113,4 +113,9 @@ public abstract class UiModule implements UiCreator {
 	public Popup loadingPopup(String text) {
 		return uiBuilder.loadingPopup(text);
 	}
+
+	@Override
+	public <T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass) {
+		return uiBuilder.radioButtonGroup(valueClass);
+	}
 }

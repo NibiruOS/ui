@@ -6,8 +6,8 @@ import com.aajtech.ui.core.api.ValueWidget;
 abstract class BaseValueBuilder<T extends ValueWidget<V>, V, B extends BaseWidgetBuilder<T, ?>>
 		extends BaseWidgetBuilder<T, B> {
 
-	BaseValueBuilder(T widget) {
-		super(widget);
+	BaseValueBuilder(T control) {
+		super(control);
 	}
 
 	public B value(V value) {
