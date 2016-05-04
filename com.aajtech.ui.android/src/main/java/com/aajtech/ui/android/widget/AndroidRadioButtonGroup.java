@@ -54,13 +54,13 @@ public class AndroidRadioButtonGroup<V> extends AndroidValueWidget<RadioGroup, V
 					for (V item : value) {
 						RadioButton rb = new RadioButton(radioGroup.getContext());
 						rb.setText(item.toString());
-						rb.setChecked(Objects.equal(selectedItem, item));
 						rb.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
 							if (isChecked) {
 								getValue().set(item);
 							}
 						});
 						radioGroup.addView(rb);
+						rb.setChecked(Objects.equal(selectedItem, item));
 						valueToButtons.put(item, rb);
 					}
 				}
