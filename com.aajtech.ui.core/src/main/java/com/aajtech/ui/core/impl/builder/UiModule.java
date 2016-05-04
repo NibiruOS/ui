@@ -118,4 +118,8 @@ public abstract class UiModule implements UiCreator {
 	public <T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass) {
 		return uiBuilder.radioButtonGroup(valueClass);
 	}
+
+	public CheckboxBuilder checkbox() {
+		return uiBuilder.checkbox();
+	}
 }

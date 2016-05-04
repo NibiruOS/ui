@@ -52,4 +52,6 @@ public interface UiCreator {
 	Popup loadingPopup(String text);
 
 	<T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass);
+	
+	CheckboxBuilder checkbox();
 }

@@ -1,6 +1,7 @@
 package com.aajtech.ui.gwt.ioc;
 
 import com.aajtech.ui.core.api.Button;
+import com.aajtech.ui.core.api.Checkbox;
 import com.aajtech.ui.core.api.GridPanel;
 import com.aajtech.ui.core.api.HorizontalPanel;
 import com.aajtech.ui.core.api.Image;
@@ -14,6 +15,7 @@ import com.aajtech.ui.core.api.VerticalPanel;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.widget.GwtButton;
+import com.aajtech.ui.gwt.widget.GwtCheckbox;
 import com.aajtech.ui.gwt.widget.GwtGridPanel;
 import com.aajtech.ui.gwt.widget.GwtHorizontalPanel;
 import com.aajtech.ui.gwt.widget.GwtImage;
@@ -41,5 +43,6 @@ public class Module extends AbstractGinModule {
 		bind(Popup.class).to(GwtPopup.class);
 		bind(Spinner.class).to(GwtSpinner.class);
 		bind(RadioButtonGroupBuilderFactory.class).to(GwtRadioButtonGroupBuilderFactory.class);
+		bind(Checkbox.class).to(GwtCheckbox.class);
 	}
 }
