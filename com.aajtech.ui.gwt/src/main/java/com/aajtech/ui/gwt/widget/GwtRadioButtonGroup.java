@@ -54,6 +54,7 @@ public class GwtRadioButtonGroup<V> extends GwtValueWidget<VerticalPanel, V> imp
 					valueToButtons.clear();
 					for (V item : value) {
 						RadioButton rb = new RadioButton("aaj_ui_radioButton_group_" + groupId, item.toString());
+						rb.setValue(Objects.equal(selectedItem, item));
 						rb.addValueChangeHandler((ValueChangeEvent<Boolean> event) -> {
 							if (event.getValue()) {
 								getValue().set(item);
@@ -83,20 +84,12 @@ public class GwtRadioButtonGroup<V> extends GwtValueWidget<VerticalPanel, V> imp
 			}
 
 			@Override
-			public void set(V value) {
-				if (!Objects.equal(value, get())) {
-					RadioButton rb = valueToButtons.get(value);
-					if (rb != null) {
-						setValue(value);
-						rb.setValue(true);
-						notifyObservers();
-					}
-				}
-			}
-
-			@Override
 			protected void setValue(V value) {
 				selectedItem = value;
+				RadioButton rb = valueToButtons.get(value);
+				if (rb != null) {
+					rb.setValue(true);
+				}
 			}
 		};
 	}
