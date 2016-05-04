@@ -1,5 +1,6 @@
 package com.aajtech.ui.android.ioc;
 
+import com.aajtech.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
 import com.aajtech.ui.android.widget.AndroidButton;
 import com.aajtech.ui.android.widget.AndroidGridPanel;
 import com.aajtech.ui.android.widget.AndroidHorizontalPanel;
@@ -22,6 +23,7 @@ import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import com.google.inject.AbstractModule;
 
 public class Module extends AbstractModule {
@@ -38,5 +40,6 @@ public class Module extends AbstractModule {
 		bind(Image.class).to(AndroidImage.class);
 		bind(Popup.class).to(AndroidPopup.class);
 		bind(Spinner.class).to(AndroidSpinner.class);
+		bind(RadioButtonGroupBuilderFactory.class).to(AndroidRadioButtonGroupBuilderFactory.class);
 	}
 }

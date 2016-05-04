@@ -20,9 +20,8 @@ public class AndroidSpinner extends AndroidWidget<ProgressBar>implements Spinner
 
 	@Override
 	ProgressBar buildControl(Context context, int styleResource) {
-		ProgressBar control = styleResource == StyleResolver.NO_STYLE
+		return styleResource == StyleResolver.NO_STYLE
 				? new ProgressBar(context, null)
 				: new ProgressBar(context, null, styleResource);
-		return control;
 	}
 }
