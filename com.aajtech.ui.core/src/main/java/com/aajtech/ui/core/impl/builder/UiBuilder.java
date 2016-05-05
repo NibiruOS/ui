@@ -30,6 +30,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<PopupBuilder> popupBuilderProvider;
 	private final Provider<SpinnerBuilder> spinnerBuilderProvider;
 	private final RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory;
+	private final ComboBoxBuilderFactory comboBoxBuilderFactory;
 	private final Provider<CheckboxBuilder> checkboxBuilderProvider;
 
 	@Inject
@@ -46,6 +47,7 @@ public class UiBuilder implements UiCreator {
 			Provider<PopupBuilder> popupBuilderProvider,
 			Provider<SpinnerBuilder> spinnerBuilderProvider,
 			RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory,
+			ComboBoxBuilderFactory comboBoxBuilderFactory,
 			Provider<CheckboxBuilder> checkboxBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
@@ -60,6 +62,7 @@ public class UiBuilder implements UiCreator {
 		this.popupBuilderProvider = checkNotNull(popupBuilderProvider);
 		this.spinnerBuilderProvider = checkNotNull(spinnerBuilderProvider);
 		this.radioButtonGroupBuilderFactory = checkNotNull(radioButtonGroupBuilderFactory);
+		this.comboBoxBuilderFactory = checkNotNull(comboBoxBuilderFactory);
 		this.checkboxBuilderProvider = checkNotNull(checkboxBuilderProvider);
 	}
 
@@ -173,5 +176,10 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public CheckboxBuilder checkbox() {
 		return checkboxBuilderProvider.get();
+	}
+
+	@Override
+	public <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass) {
+		return comboBoxBuilderFactory.create(valueClass);
 	}
 }

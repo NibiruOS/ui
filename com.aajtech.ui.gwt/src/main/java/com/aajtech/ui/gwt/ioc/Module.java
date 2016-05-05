@@ -12,7 +12,10 @@ import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.core.impl.builder.ComboBoxBuilder;
+import com.aajtech.ui.core.impl.builder.ComboBoxBuilderFactory;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import com.aajtech.ui.gwt.builder.GwtComboBoxBuilderFactory;
 import com.aajtech.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.widget.GwtButton;
 import com.aajtech.ui.gwt.widget.GwtCheckbox;
@@ -44,5 +47,6 @@ public class Module extends AbstractGinModule {
 		bind(Spinner.class).to(GwtSpinner.class);
 		bind(RadioButtonGroupBuilderFactory.class).to(GwtRadioButtonGroupBuilderFactory.class);
 		bind(Checkbox.class).to(GwtCheckbox.class);
+		bind(ComboBoxBuilderFactory.class).to(GwtComboBoxBuilderFactory.class);
 	}
 }

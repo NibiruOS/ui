@@ -53,5 +53,7 @@ public interface UiCreator {
 
 	<T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass);
 	
+	<T> ComboBoxBuilder<T> comboBox(Class<T> valueClass);
+	
 	CheckboxBuilder checkbox();
 }

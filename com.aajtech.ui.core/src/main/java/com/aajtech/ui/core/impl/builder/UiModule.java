@@ -119,6 +119,12 @@ public abstract class UiModule implements UiCreator {
 		return uiBuilder.radioButtonGroup(valueClass);
 	}
 
+	@Override
+	public <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass) {
+		return uiBuilder.comboBox(valueClass);
+	}	
+	
+	@Override
 	public CheckboxBuilder checkbox() {
 		return uiBuilder.checkbox();
 	}
