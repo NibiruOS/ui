@@ -15,6 +15,11 @@ abstract class BaseValueBuilder<T extends ValueWidget<V>, V, B extends BaseWidge
 		return getThis();
 	}
 
+	public B addObserver(Runnable observer) {
+		object.getValue().addObserver(observer);
+		return getThis();
+	}
+
 	public Bind<V> bind() {
 		return Bind.on(object.getValue());
 	}

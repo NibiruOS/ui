@@ -1,5 +1,7 @@
 package com.aajtech.ui.android.widget;
 
+import javax.inject.Inject;
+
 import com.aajtech.model.core.api.Value;
 import com.aajtech.ui.android.style.StyleResolver;
 import com.aajtech.ui.core.api.TreeView;
@@ -9,6 +11,7 @@ import android.content.Context;
 import android.view.View;
 
 public class AndroidTreeView extends AndroidValueWidget<View, Iterable<Item>> implements TreeView {
+	@Inject
 	public AndroidTreeView(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
 	}
