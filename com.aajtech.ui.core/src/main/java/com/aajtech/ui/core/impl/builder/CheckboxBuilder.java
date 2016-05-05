@@ -11,7 +11,7 @@ public class CheckboxBuilder extends BaseValueBuilder<Checkbox, Boolean, Checkbo
 		super(checkbox);
 	}
 	
-	public CheckboxBuilder setLabel(String text) {
+	public CheckboxBuilder label(String text) {
 		object.getTextLabel().set(text);
 		return this;
 	}
