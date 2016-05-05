@@ -13,7 +13,6 @@ import com.aajtech.model.core.impl.java.JavaType;
 import com.aajtech.ui.android.style.StyleResolver;
 import com.aajtech.ui.core.api.Image;
 import com.aajtech.ui.core.api.ResourcesBasePath;
-import com.google.common.base.Throwables;
 import com.google.common.io.Closer;
 
 import android.content.Context;
@@ -70,7 +69,7 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
 						closer.close();
 					}
 				} catch (IOException e) {
-					Throwables.propagate(e);
+					throw new RuntimeException(e);
 				}
 			}
 		};

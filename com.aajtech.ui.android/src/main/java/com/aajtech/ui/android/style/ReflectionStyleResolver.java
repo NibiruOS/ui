@@ -1,11 +1,10 @@
 package com.aajtech.ui.android.style;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.lang.reflect.Field;
 
 import com.aajtech.ui.core.api.Widget;
-import com.google.common.base.Throwables;
 
 public class ReflectionStyleResolver implements StyleResolver {
 	private final Class<?> sytleConstantClass;
@@ -24,7 +23,7 @@ public class ReflectionStyleResolver implements StyleResolver {
 		} catch (NoSuchFieldException e) {
 			return StyleResolver.NO_STYLE;
 		} catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 }

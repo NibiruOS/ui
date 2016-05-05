@@ -13,6 +13,7 @@ import com.aajtech.ui.android.widget.AndroidPasswordBox;
 import com.aajtech.ui.android.widget.AndroidPopup;
 import com.aajtech.ui.android.widget.AndroidSpinner;
 import com.aajtech.ui.android.widget.AndroidTextBox;
+import com.aajtech.ui.android.widget.AndroidTreeView;
 import com.aajtech.ui.android.widget.AndroidVerticalPanel;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.Checkbox;
@@ -25,6 +26,7 @@ import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
+import com.aajtech.ui.core.api.TreeView;
 import com.aajtech.ui.core.api.VerticalPanel;
 import com.aajtech.ui.core.impl.builder.ComboBoxBuilderFactory;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
@@ -47,5 +49,6 @@ public class Module extends AbstractModule {
 		bind(Checkbox.class).to(AndroidCheckbox.class);
 		bind(RadioButtonGroupBuilderFactory.class).to(AndroidRadioButtonGroupBuilderFactory.class);
 		bind(ComboBoxBuilderFactory.class).to(AndroidComboBoxBuilderFactory.class);
+		bind(TreeView.class).to(AndroidTreeView.class);
 	}
 }

@@ -14,6 +14,7 @@ import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
+import com.aajtech.ui.core.api.TreeView.Item;
 import com.aajtech.ui.core.api.Widget;
 
 public class UiBuilder implements UiCreator {
@@ -32,6 +33,8 @@ public class UiBuilder implements UiCreator {
 	private final RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory;
 	private final ComboBoxBuilderFactory comboBoxBuilderFactory;
 	private final Provider<CheckboxBuilder> checkboxBuilderProvider;
+	private final Provider<TreeViewBuilder> treeViewBuilderProvider;
+	private final Provider<TreeViewItemBuilder> treeViewItemBuilderProvider;
 
 	@Inject
 	public UiBuilder(Provider<LabelBuilder> labelBuilderProvider,
@@ -48,7 +51,9 @@ public class UiBuilder implements UiCreator {
 			Provider<SpinnerBuilder> spinnerBuilderProvider,
 			RadioButtonGroupBuilderFactory radioButtonGroupBuilderFactory,
 			ComboBoxBuilderFactory comboBoxBuilderFactory,
-			Provider<CheckboxBuilder> checkboxBuilderProvider) {
+			Provider<CheckboxBuilder> checkboxBuilderProvider,
+			Provider<TreeViewBuilder> treeViewBuilderProvider,
+			Provider<TreeViewItemBuilder> treeViewItemBuilderProvider) {
 		this.labelBuilderProvider = checkNotNull(labelBuilderProvider);
 		this.textBoxBuilderProvider = checkNotNull(textBoxBuilderProvider);
 		this.passwordBoxBuilderProvider = checkNotNull(passwordBoxBuilderProvider);
@@ -64,6 +69,8 @@ public class UiBuilder implements UiCreator {
 		this.radioButtonGroupBuilderFactory = checkNotNull(radioButtonGroupBuilderFactory);
 		this.comboBoxBuilderFactory = checkNotNull(comboBoxBuilderFactory);
 		this.checkboxBuilderProvider = checkNotNull(checkboxBuilderProvider);
+		this.treeViewBuilderProvider = checkNotNull(treeViewBuilderProvider);
+		this.treeViewItemBuilderProvider = checkNotNull(treeViewItemBuilderProvider);
 	}
 
 	@Override
@@ -181,5 +188,20 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass) {
 		return comboBoxBuilderFactory.create(valueClass);
+	}
+
+	@Override
+	public TreeViewBuilder treeView() {
+		return treeViewBuilderProvider.get();
+	}
+
+	@Override
+	public TreeViewItemBuilder treeViewItem() {
+		return treeViewItemBuilderProvider.get();
+	}
+
+	@Override
+	public Item treeViewItem(Widget widget) {
+		return treeViewItem().widget(widget).build();
 	}
 }

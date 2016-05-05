@@ -11,8 +11,8 @@ import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
+import com.aajtech.ui.core.api.TreeView;
 import com.aajtech.ui.core.api.VerticalPanel;
-import com.aajtech.ui.core.impl.builder.ComboBoxBuilder;
 import com.aajtech.ui.core.impl.builder.ComboBoxBuilderFactory;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.builder.GwtComboBoxBuilderFactory;
@@ -28,6 +28,7 @@ import com.aajtech.ui.gwt.widget.GwtPasswordBox;
 import com.aajtech.ui.gwt.widget.GwtPopup;
 import com.aajtech.ui.gwt.widget.GwtSpinner;
 import com.aajtech.ui.gwt.widget.GwtTextBox;
+import com.aajtech.ui.gwt.widget.GwtTreeView;
 import com.aajtech.ui.gwt.widget.GwtVerticalPanel;
 import com.google.gwt.inject.client.AbstractGinModule;
 
@@ -48,5 +49,6 @@ public class Module extends AbstractGinModule {
 		bind(RadioButtonGroupBuilderFactory.class).to(GwtRadioButtonGroupBuilderFactory.class);
 		bind(Checkbox.class).to(GwtCheckbox.class);
 		bind(ComboBoxBuilderFactory.class).to(GwtComboBoxBuilderFactory.class);
+		bind(TreeView.class).to(GwtTreeView.class);
 	}
 }
