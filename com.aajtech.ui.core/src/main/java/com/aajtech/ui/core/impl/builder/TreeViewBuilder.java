@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import com.aajtech.ui.core.api.TreeView;
 import com.aajtech.ui.core.api.TreeView.Item;
+import com.aajtech.ui.core.api.Widget;
+import com.aajtech.ui.core.impl.SimpleTreeViewItem;
 import com.google.common.collect.Lists;
 
 public class TreeViewBuilder extends BaseValueBuilder<TreeView, Iterable<Item>, TreeViewBuilder> {
@@ -17,6 +19,13 @@ public class TreeViewBuilder extends BaseValueBuilder<TreeView, Iterable<Item>, 
 	}
 
 	public TreeViewBuilder add(Item item) {
+		items.add(item);
+		return this;
+	}
+
+	public TreeViewBuilder add(Widget widget) {
+		SimpleTreeViewItem item = new SimpleTreeViewItem();
+		item.setWidget(widget);
 		items.add(item);
 		return this;
 	}

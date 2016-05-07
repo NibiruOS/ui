@@ -14,7 +14,6 @@ import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
-import com.aajtech.ui.core.api.TreeView.Item;
 import com.aajtech.ui.core.api.Widget;
 
 public class UiBuilder implements UiCreator {
@@ -196,12 +195,7 @@ public class UiBuilder implements UiCreator {
 	}
 
 	@Override
-	public TreeViewItemBuilder treeViewItem() {
-		return treeViewItemBuilderProvider.get();
-	}
-
-	@Override
-	public Item treeViewItem(Widget widget) {
-		return treeViewItem().widget(widget).build();
+	public TreeViewItemBuilder treeViewItem(Widget widget) {
+		return treeViewItemBuilderProvider.get().widget(widget);
 	}
 }

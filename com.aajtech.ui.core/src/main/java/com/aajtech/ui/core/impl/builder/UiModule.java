@@ -10,7 +10,6 @@ import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
-import com.aajtech.ui.core.api.TreeView.Item;
 import com.aajtech.ui.core.api.Widget;
 
 public abstract class UiModule implements UiCreator {
@@ -136,12 +135,7 @@ public abstract class UiModule implements UiCreator {
 	}
 
 	@Override
-	public TreeViewItemBuilder treeViewItem() {
-		return uiBuilder.treeViewItem();
-	}
-
-	@Override
-	public Item treeViewItem(Widget widget) {
+	public TreeViewItemBuilder treeViewItem(Widget widget) {
 		return uiBuilder.treeViewItem(widget);
 	}
 }

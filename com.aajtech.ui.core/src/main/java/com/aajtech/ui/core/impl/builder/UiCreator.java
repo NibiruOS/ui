@@ -10,7 +10,6 @@ import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.TextBox;
-import com.aajtech.ui.core.api.TreeView.Item;
 import com.aajtech.ui.core.api.Widget;
 
 public interface UiCreator {
@@ -60,7 +59,5 @@ public interface UiCreator {
 
 	TreeViewBuilder treeView();
 
-	TreeViewItemBuilder treeViewItem();
-
-	Item treeViewItem(Widget widget);
+	TreeViewItemBuilder treeViewItem(Widget widget);
 }

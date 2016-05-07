@@ -24,6 +24,13 @@ public class TreeViewItemBuilder extends BaseBuilder<SimpleTreeViewItem> {
 		return this;
 	}
 
+	public TreeViewItemBuilder add(Widget widget) {
+		SimpleTreeViewItem item = new SimpleTreeViewItem();
+		item.setWidget(widget);
+		items.add(item);
+		return this;
+	}
+
 	@Override
 	public SimpleTreeViewItem build() {
 		object.setChildren(items);
