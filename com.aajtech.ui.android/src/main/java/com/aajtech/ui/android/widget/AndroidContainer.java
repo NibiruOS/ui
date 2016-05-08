@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>implements Container {
-	AndroidContainer(T viewGroup, StyleResolver styleResolver) {
-		super(viewGroup, styleResolver);
+	AndroidContainer(T control, StyleResolver styleResolver) {
+		super(control, styleResolver);
 	}
 
-	public AndroidContainer(Context context, StyleResolver styleResolver) {
+	AndroidContainer(Context context, StyleResolver styleResolver) {
 		super(context, styleResolver);
 	}
 

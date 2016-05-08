@@ -23,6 +23,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<VerticalPanelBuilder> verticalPanelBuilderProvider;
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
 	private final Provider<GridPanelBuilder> gridPanelBuilderProvider;
+	private final Provider<AbsolutePanelBuilder> absolutePanelBuilderProvider;
 	private final Provider<FormBuilder> formBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
@@ -42,6 +43,7 @@ public class UiBuilder implements UiCreator {
 			Provider<VerticalPanelBuilder> verticalPanelBuilderProvider,
 			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
 			Provider<GridPanelBuilder> gridPanelBuilderProvider,
+			Provider<AbsolutePanelBuilder> absolutePanelBuilderProvider,
 			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
@@ -59,6 +61,7 @@ public class UiBuilder implements UiCreator {
 		this.verticalPanelBuilderProvider = checkNotNull(verticalPanelBuilderProvider);
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
 		this.gridPanelBuilderProvider = checkNotNull(gridPanelBuilderProvider);
+		this.absolutePanelBuilderProvider = checkNotNull(absolutePanelBuilderProvider);
 		this.formBuilderProvider = checkNotNull(formBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
@@ -115,6 +118,11 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public GridPanelBuilder gridPanel() {
 		return gridPanelBuilderProvider.get();
+	}
+
+	@Override
+	public AbsolutePanelBuilder absolutePanel() {
+		return absolutePanelBuilderProvider.get();
 	}
 
 	@Override

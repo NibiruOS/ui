@@ -2,6 +2,7 @@ package com.aajtech.ui.android.ioc;
 
 import com.aajtech.ui.android.builder.AndroidComboBoxBuilderFactory;
 import com.aajtech.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
+import com.aajtech.ui.android.widget.AndroidAbsolutePanel;
 import com.aajtech.ui.android.widget.AndroidButton;
 import com.aajtech.ui.android.widget.AndroidCheckbox;
 import com.aajtech.ui.android.widget.AndroidGridPanel;
@@ -15,6 +16,7 @@ import com.aajtech.ui.android.widget.AndroidSpinner;
 import com.aajtech.ui.android.widget.AndroidTextBox;
 import com.aajtech.ui.android.widget.AndroidTreeView;
 import com.aajtech.ui.android.widget.AndroidVerticalPanel;
+import com.aajtech.ui.core.api.AbsolutePanel;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.Checkbox;
 import com.aajtech.ui.core.api.GridPanel;
@@ -50,5 +52,6 @@ public class Module extends AbstractModule {
 		bind(RadioButtonGroupBuilderFactory.class).to(AndroidRadioButtonGroupBuilderFactory.class);
 		bind(ComboBoxBuilderFactory.class).to(AndroidComboBoxBuilderFactory.class);
 		bind(TreeView.class).to(AndroidTreeView.class);
+		bind(AbsolutePanel.class).to(AndroidAbsolutePanel.class);
 	}
 }

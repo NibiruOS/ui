@@ -31,6 +31,8 @@ public interface UiCreator {
 
 	GridPanelBuilder gridPanel();
 
+	AbsolutePanelBuilder absolutePanel();
+
 	FormBuilder form();
 
 	ButtonBuilder button();

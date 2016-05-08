@@ -65,6 +65,11 @@ public abstract class UiModule implements UiCreator {
 	}
 
 	@Override
+	public AbsolutePanelBuilder absolutePanel() {
+		return uiBuilder.absolutePanel();
+	}
+
+	@Override
 	public FormBuilder form() {
 		return uiBuilder.form();
 	}

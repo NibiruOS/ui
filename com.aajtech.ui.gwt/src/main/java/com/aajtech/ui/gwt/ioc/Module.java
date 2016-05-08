@@ -1,5 +1,6 @@
 package com.aajtech.ui.gwt.ioc;
 
+import com.aajtech.ui.core.api.AbsolutePanel;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.Checkbox;
 import com.aajtech.ui.core.api.GridPanel;
@@ -17,6 +18,7 @@ import com.aajtech.ui.core.impl.builder.ComboBoxBuilderFactory;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import com.aajtech.ui.gwt.builder.GwtComboBoxBuilderFactory;
 import com.aajtech.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
+import com.aajtech.ui.gwt.widget.GwtAbsolutePanel;
 import com.aajtech.ui.gwt.widget.GwtButton;
 import com.aajtech.ui.gwt.widget.GwtCheckbox;
 import com.aajtech.ui.gwt.widget.GwtGridPanel;
@@ -30,7 +32,9 @@ import com.aajtech.ui.gwt.widget.GwtSpinner;
 import com.aajtech.ui.gwt.widget.GwtTextBox;
 import com.aajtech.ui.gwt.widget.GwtTreeView;
 import com.aajtech.ui.gwt.widget.GwtVerticalPanel;
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.inject.Provides;
 
 public class Module extends AbstractGinModule {
 	@Override
@@ -50,5 +54,11 @@ public class Module extends AbstractGinModule {
 		bind(Checkbox.class).to(GwtCheckbox.class);
 		bind(ComboBoxBuilderFactory.class).to(GwtComboBoxBuilderFactory.class);
 		bind(TreeView.class).to(GwtTreeView.class);
+		bind(AbsolutePanel.class).to(GwtAbsolutePanel.class);
+	}
+
+	@Provides
+	public Scheduler getScheduler() {
+		return Scheduler.get();
 	}
 }

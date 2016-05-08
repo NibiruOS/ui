@@ -9,4 +9,9 @@ public class GridPanelBuilder extends BaseContainerBuilder<GridPanel, GridPanelB
 	public GridPanelBuilder(GridPanel gridPanel) {
 		super(gridPanel);
 	}
+
+	public GridPanelBuilder columns(int columns) {
+		object.setColumns(columns);
+		return this;
+	}
 }

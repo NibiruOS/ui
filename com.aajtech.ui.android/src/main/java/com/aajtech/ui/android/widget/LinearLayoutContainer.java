@@ -21,7 +21,8 @@ abstract class LinearLayoutContainer extends AndroidContainer<LinearLayout> {
 
 	@Override
 	LinearLayout buildControl(Context context, int styleResource) {
-		LinearLayout layout = styleResource == 0 ? new LinearLayout(context)
+		LinearLayout layout = styleResource == 0
+				? new LinearLayout(context)
 				: new LinearLayout(context, null, styleResource);
 		layout.setOrientation(orientation);
 		return layout;
