@@ -3,6 +3,7 @@ package com.aajtech.ui.core.impl.builder;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.TreeView;
 import com.aajtech.ui.core.api.TreeView.Item;
@@ -11,6 +12,13 @@ import com.aajtech.ui.core.impl.SimpleTreeViewItem;
 import com.google.common.collect.Lists;
 
 public class TreeViewBuilder extends BaseValueBuilder<TreeView, Iterable<Item>, TreeViewBuilder> {
+	@Inject
+	private static Provider<TreeViewBuilder> treeViewBuilderProvider;
+
+	public static TreeViewBuilder treeView() {
+		return treeViewBuilderProvider.get();
+	}
+
 	private final Collection<Item> items = Lists.newArrayList();
 
 	@Inject

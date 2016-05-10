@@ -10,12 +10,18 @@ import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.Widget;
 
 public class FormBuilder extends BaseBuilder<GridPanel> {
+	@Inject
+	private static Provider<FormBuilder> formBuilderProvider;
+
+	public static FormBuilder form() {
+		return formBuilderProvider.get();
+	}
+
 	private final HorizontalPanelBuilder horizontalPanelBuilder;
 	private final Provider<Label> labelProvider;
 
 	@Inject
-	public FormBuilder(GridPanel gridPanel,
-			HorizontalPanelBuilder horizontalPanelBuilder,
+	public FormBuilder(GridPanel gridPanel, HorizontalPanelBuilder horizontalPanelBuilder,
 			Provider<Label> labelProvider) {
 		super(gridPanel);
 		this.horizontalPanelBuilder = checkNotNull(horizontalPanelBuilder);

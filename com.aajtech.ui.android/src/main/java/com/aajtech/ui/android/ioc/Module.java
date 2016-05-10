@@ -32,8 +32,27 @@ import com.aajtech.ui.core.api.Spinner;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.TreeView;
 import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.core.impl.builder.AbsolutePanelBuilder;
+import com.aajtech.ui.core.impl.builder.ButtonBuilder;
+import com.aajtech.ui.core.impl.builder.CheckboxBuilder;
+import com.aajtech.ui.core.impl.builder.ComboBoxBuilder;
 import com.aajtech.ui.core.impl.builder.ComboBoxBuilderFactory;
+import com.aajtech.ui.core.impl.builder.FormBuilder;
+import com.aajtech.ui.core.impl.builder.GridPanelBuilder;
+import com.aajtech.ui.core.impl.builder.HorizontalPanelBuilder;
+import com.aajtech.ui.core.impl.builder.ImageBuilder;
+import com.aajtech.ui.core.impl.builder.LabelBuilder;
+import com.aajtech.ui.core.impl.builder.ListWidgetBuilder;
+import com.aajtech.ui.core.impl.builder.PasswordBoxBuilder;
+import com.aajtech.ui.core.impl.builder.PopupBuilder;
+import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilder;
 import com.aajtech.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import com.aajtech.ui.core.impl.builder.ScrollPanelBuilder;
+import com.aajtech.ui.core.impl.builder.SpinnerBuilder;
+import com.aajtech.ui.core.impl.builder.TextBoxBuilder;
+import com.aajtech.ui.core.impl.builder.TreeViewBuilder;
+import com.aajtech.ui.core.impl.builder.TreeViewItemBuilder;
+import com.aajtech.ui.core.impl.builder.VerticalPanelBuilder;
 import com.google.inject.AbstractModule;
 
 public class Module extends AbstractModule {
@@ -56,5 +75,26 @@ public class Module extends AbstractModule {
 		bind(ComboBoxBuilderFactory.class).to(AndroidComboBoxBuilderFactory.class);
 		bind(TreeView.class).to(AndroidTreeView.class);
 		bind(AbsolutePanel.class).to(AndroidAbsolutePanel.class);
+
+
+		requestStaticInjection(AbsolutePanelBuilder.class);
+		requestStaticInjection(ButtonBuilder.class);
+		requestStaticInjection(CheckboxBuilder.class);
+		requestStaticInjection(ComboBoxBuilder.class);
+		requestStaticInjection(FormBuilder.class);
+		requestStaticInjection(GridPanelBuilder.class);
+		requestStaticInjection(HorizontalPanelBuilder.class);
+		requestStaticInjection(ImageBuilder.class);
+		requestStaticInjection(LabelBuilder.class);
+		requestStaticInjection(ListWidgetBuilder.class);
+		requestStaticInjection(PasswordBoxBuilder.class);
+		requestStaticInjection(PopupBuilder.class);
+		requestStaticInjection(RadioButtonGroupBuilder.class);
+		requestStaticInjection(ScrollPanelBuilder.class);
+		requestStaticInjection(SpinnerBuilder.class);
+		requestStaticInjection(TextBoxBuilder.class);
+		requestStaticInjection(TreeViewBuilder.class);
+		requestStaticInjection(TreeViewItemBuilder.class);
+		requestStaticInjection(VerticalPanelBuilder.class);
 	}
 }

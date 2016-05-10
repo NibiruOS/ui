@@ -2,12 +2,22 @@ package com.aajtech.ui.core.impl.builder;
 
 import java.util.Collection;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
+
 import com.aajtech.ui.core.api.TreeView.Item;
 import com.aajtech.ui.core.api.Widget;
 import com.aajtech.ui.core.impl.SimpleTreeViewItem;
 import com.google.common.collect.Lists;
 
 public class TreeViewItemBuilder extends BaseBuilder<SimpleTreeViewItem> {
+	@Inject
+	private static Provider<TreeViewItemBuilder> treeViewItemBuilderProvider;
+
+	public static TreeViewItemBuilder treeViewItem(Widget widget) {
+		return treeViewItemBuilderProvider.get().widget(widget);
+	}
+
 	private final Collection<Item> items = Lists.newArrayList();
 
 	public TreeViewItemBuilder() {
