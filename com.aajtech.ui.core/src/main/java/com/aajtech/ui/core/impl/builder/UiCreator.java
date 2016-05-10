@@ -9,6 +9,7 @@ import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
+import com.aajtech.ui.core.api.ScrollPanel;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.Widget;
 
@@ -32,6 +33,10 @@ public interface UiCreator {
 	GridPanelBuilder gridPanel();
 
 	AbsolutePanelBuilder absolutePanel();
+
+	ScrollPanelBuilder scrollPanel();
+
+	ScrollPanel scrollPanel(Widget content);
 
 	FormBuilder form();
 

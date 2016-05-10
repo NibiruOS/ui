@@ -9,6 +9,7 @@ import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
+import com.aajtech.ui.core.api.ScrollPanel;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.Widget;
 
@@ -67,6 +68,16 @@ public abstract class UiModule implements UiCreator {
 	@Override
 	public AbsolutePanelBuilder absolutePanel() {
 		return uiBuilder.absolutePanel();
+	}
+
+	@Override
+	public ScrollPanelBuilder scrollPanel() {
+		return uiBuilder.scrollPanel();
+	}
+
+	@Override
+	public ScrollPanel scrollPanel(Widget content) {
+		return uiBuilder.scrollPanel(content);
 	}
 
 	@Override

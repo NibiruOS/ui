@@ -4,7 +4,7 @@ import com.aajtech.model.core.api.Value;
 import com.aajtech.ui.core.api.ValueWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-abstract class GwtValueWidget<W extends Widget, V> extends GwtWidget<W>implements ValueWidget<V> {
+abstract class GwtValueWidget<W extends Widget, V> extends GwtWidget<W> implements ValueWidget<V> {
 	private Value<V> value;
 
 	GwtValueWidget(W control) {

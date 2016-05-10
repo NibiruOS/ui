@@ -1,8 +1,6 @@
 package com.aajtech.ui.core.api;
 
-public interface Popup {
-	void setContent(Widget content);
-
+public interface Popup extends HasContent {
 	void show();
 
 	void hide();

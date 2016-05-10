@@ -13,6 +13,7 @@ import com.aajtech.ui.core.api.Label;
 import com.aajtech.ui.core.api.ListWidget;
 import com.aajtech.ui.core.api.PasswordBox;
 import com.aajtech.ui.core.api.Popup;
+import com.aajtech.ui.core.api.ScrollPanel;
 import com.aajtech.ui.core.api.TextBox;
 import com.aajtech.ui.core.api.Widget;
 
@@ -24,6 +25,7 @@ public class UiBuilder implements UiCreator {
 	private final Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider;
 	private final Provider<GridPanelBuilder> gridPanelBuilderProvider;
 	private final Provider<AbsolutePanelBuilder> absolutePanelBuilderProvider;
+	private final Provider<ScrollPanelBuilder> scrollPanelBuilderProvider;
 	private final Provider<FormBuilder> formBuilderProvider;
 	private final Provider<ButtonBuilder> buttonBuilderProvider;
 	private final Provider<ListWidget> listWidgetProvider;
@@ -44,6 +46,7 @@ public class UiBuilder implements UiCreator {
 			Provider<HorizontalPanelBuilder> horizontalPanelBuilderProvider,
 			Provider<GridPanelBuilder> gridPanelBuilderProvider,
 			Provider<AbsolutePanelBuilder> absolutePanelBuilderProvider,
+			Provider<ScrollPanelBuilder> scrollPanelBuilderProvider,
 			Provider<FormBuilder> formBuilderProvider,
 			Provider<ButtonBuilder> buttonBuilderProvider,
 			Provider<ListWidget> listWidgetProvider,
@@ -62,6 +65,7 @@ public class UiBuilder implements UiCreator {
 		this.horizontalPanelBuilderProvider = checkNotNull(horizontalPanelBuilderProvider);
 		this.gridPanelBuilderProvider = checkNotNull(gridPanelBuilderProvider);
 		this.absolutePanelBuilderProvider = checkNotNull(absolutePanelBuilderProvider);
+		this.scrollPanelBuilderProvider = checkNotNull(scrollPanelBuilderProvider);
 		this.formBuilderProvider = checkNotNull(formBuilderProvider);
 		this.buttonBuilderProvider = checkNotNull(buttonBuilderProvider);
 		this.listWidgetProvider = checkNotNull(listWidgetProvider);
@@ -123,6 +127,16 @@ public class UiBuilder implements UiCreator {
 	@Override
 	public AbsolutePanelBuilder absolutePanel() {
 		return absolutePanelBuilderProvider.get();
+	}
+
+	@Override
+	public ScrollPanelBuilder scrollPanel() {
+		return scrollPanelBuilderProvider.get();
+	}
+
+	@Override
+	public ScrollPanel scrollPanel(Widget content) {
+		return scrollPanel().content(content).build();
 	}
 
 	@Override
