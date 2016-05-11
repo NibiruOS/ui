@@ -6,7 +6,7 @@ import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.Label;
 
-public class LabelBuilder extends BaseValueBuilder<Label, String, LabelBuilder> {
+public class LabelBuilder extends BaseClickableValueBuilder<Label, String, LabelBuilder> {
 	@Inject
 	private static Provider<LabelBuilder> labelBuilderProvider;
 	

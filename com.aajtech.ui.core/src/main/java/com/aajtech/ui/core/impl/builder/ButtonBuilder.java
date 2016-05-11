@@ -9,7 +9,7 @@ import javax.inject.Provider;
 import com.aajtech.ui.core.api.Button;
 import com.aajtech.ui.core.api.ClickHandler;
 
-public class ButtonBuilder extends BaseValueBuilder<Button, String, ButtonBuilder> {
+public class ButtonBuilder extends BaseClickableValueBuilder<Button, String, ButtonBuilder> {
 	@Inject
 	private static Provider<ButtonBuilder> buttonBuilderProvider;
 
@@ -25,10 +25,5 @@ public class ButtonBuilder extends BaseValueBuilder<Button, String, ButtonBuilde
 	@Inject
 	public ButtonBuilder(Button button) {
 		super(button);
-	}
-
-	public ButtonBuilder onClick(ClickHandler clickHandler) {
-		object.setClickHandler(clickHandler);
-		return this;
 	}
 }

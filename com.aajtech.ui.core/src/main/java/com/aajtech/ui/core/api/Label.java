@@ -1,5 +1,5 @@
 package com.aajtech.ui.core.api;
 
-public interface Label extends ValueWidget<String> {
+public interface Label extends ValueWidget<String>, HasClickHandler {
 
 }

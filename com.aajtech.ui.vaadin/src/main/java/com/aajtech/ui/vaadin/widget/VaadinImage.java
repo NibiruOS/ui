@@ -4,10 +4,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.inject.Inject;
 
+import com.aajtech.model.core.api.Registration;
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.ResourcesBasePath;
 import com.vaadin.server.ClassResource;
 import com.vaadin.ui.Image;
@@ -47,5 +49,11 @@ public class VaadinImage extends VaadinWidget<Image>implements com.aajtech.ui.co
 	@Override
 	public Value<String> getValue() {
 		return value;
+	}
+
+	@Override
+	public Registration setClickHandler(ClickHandler clickHandler) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

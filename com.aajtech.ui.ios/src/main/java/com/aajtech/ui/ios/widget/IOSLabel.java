@@ -5,10 +5,12 @@ import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UILabel;
 
+import com.aajtech.model.core.api.Registration;
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
 import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.ClickHandler;
 import com.aajtech.ui.core.api.Label;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
@@ -40,5 +42,11 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 				return JavaType.STRING;
 			}
 		};
+	}
+
+	@Override
+	public Registration setClickHandler(ClickHandler clickHandler) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

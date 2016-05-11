@@ -11,7 +11,7 @@ import com.aajtech.model.core.impl.java.JavaType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Image;
 
-public class GwtImage extends GwtValueWidget<Image, String> implements com.aajtech.ui.core.api.Image {
+public class GwtImage extends GwtClickableValueWidget<Image, String> implements com.aajtech.ui.core.api.Image {
 	@Inject
 	public GwtImage() {
 		this(new Image());

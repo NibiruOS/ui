@@ -7,7 +7,7 @@ import javax.inject.Provider;
 
 import com.aajtech.ui.core.api.Image;
 
-public class ImageBuilder extends BaseValueBuilder<Image, String, ImageBuilder> {
+public class ImageBuilder extends BaseClickableValueBuilder<Image, String, ImageBuilder> {
 	@Inject
 	private static Provider<ImageBuilder> imageBuilderProvider;
 
