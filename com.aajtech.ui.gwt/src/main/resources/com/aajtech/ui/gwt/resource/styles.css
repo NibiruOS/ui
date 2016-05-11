@@ -1,3 +1,12 @@
+.horizontalPanel > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.verticalPanel > * {
+    display: block;
+}
+
 .popupGlass {
 	background-color: black;
     opacity: .5;

@@ -1,9 +1,19 @@
 package com.aajtech.ui.gwt.widget;
 
-import com.google.gwt.user.client.ui.VerticalPanel;
+import javax.inject.Inject;
 
-public class GwtVerticalPanel extends GwtContainer<VerticalPanel> implements com.aajtech.ui.core.api.VerticalPanel {
-	public GwtVerticalPanel() {
-		super(new VerticalPanel());
+import com.aajtech.ui.core.api.VerticalPanel;
+import com.aajtech.ui.gwt.resource.Resources;
+import com.google.gwt.user.client.ui.FlowPanel;
+
+public class GwtVerticalPanel extends GwtContainer<FlowPanel> implements VerticalPanel {
+	@Inject
+	public GwtVerticalPanel(Resources resources) {
+		this(new FlowPanel());
+		control.addStyleName(resources.css().verticalPanel());
+	}
+
+	public GwtVerticalPanel(FlowPanel control) {
+		super(control);
 	}
 }
