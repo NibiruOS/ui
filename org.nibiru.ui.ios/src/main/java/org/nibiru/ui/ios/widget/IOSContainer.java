@@ -2,11 +2,12 @@ package org.nibiru.ui.ios.widget;
 
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
-import org.robovm.apple.uikit.UIView;
+
+import ios.uikit.UIView;
 
 abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 	IOSContainer() {
-		super(new UIView());
+		super(UIView.alloc().init());
 	}
 
 	@Override
@@ -19,7 +20,7 @@ abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 
 	@Override
 	public void clear() {
-		for (UIView child : control.getSubviews()) {
+		for (UIView child : control.subviews()) {
 			child.removeFromSuperview();
 		}
 	}

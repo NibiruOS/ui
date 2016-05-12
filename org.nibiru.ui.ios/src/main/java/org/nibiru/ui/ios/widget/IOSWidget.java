@@ -3,8 +3,11 @@ package org.nibiru.ui.ios.widget;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.nibiru.ui.core.api.Widget;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.uikit.UIView;
+
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.uikit.UIView;
 
 abstract class IOSWidget<T extends UIView> implements Widget {
 	final T control;
@@ -35,7 +38,8 @@ abstract class IOSWidget<T extends UIView> implements Widget {
 	}
 
 	void updateSize(double width, double height) {
-		control.setFrame(new CGRect(control.getFrame().getX(), control.getFrame().getY(), width, height));
+		control.setFrame(new CGRect(new CGPoint(control.frame().origin().x(), control.frame().origin().y()),
+				new CGSize(width, height)));
 		layoutParent();
 	}
 }

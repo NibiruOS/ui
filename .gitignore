@@ -10,3 +10,9 @@ target
 .DS_Store
 build
 .apt_generated
+.idea
+/**/*.iml
+/**/gradle/
+gradlew
+gradlew.bat
+local.properties

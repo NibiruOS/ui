@@ -1,5 +1,7 @@
 package org.nibiru.ui.ios.widget;
 
+import javax.inject.Inject;
+
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -7,14 +9,23 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Label;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.coregraphics.CGSize;
-import org.robovm.apple.foundation.NSString;
-import org.robovm.apple.uikit.UILabel;
+
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.foundation.NSString;
+import ios.uikit.UILabel;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
+	@Inject
 	public IOSLabel() {
-		this(new UILabel(new CGRect(0, 0, 120, 30)));
+		this(buildLabel());
+	}
+
+	private static UILabel buildLabel() {
+		UILabel label = UILabel.alloc().init();
+		label.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
+		return label;
 	}
 
 	public IOSLabel(UILabel label) {
@@ -26,14 +37,14 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 		return new BaseValue<String>() {
 			@Override
 			public String get() {
-				return control.getText();
+				return control.text();
 			}
 
 			@Override
 			protected void setValue(String value) {
 				control.setText(value);
-				CGSize size = new NSString(value).getSize(control.getFont());
-				updateSize(size.getWidth(), size.getHeight());
+				CGSize size = NSString.stringWithString(value).sizeWithFont(control.font());
+				updateSize(size.width(), size.height());
 			}
 
 			@Override

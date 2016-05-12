@@ -1,32 +1,34 @@
 package org.nibiru.ui.ios.widget;
 
+import javax.inject.Inject;
+
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.TextBox;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.uikit.UIControl;
-import org.robovm.apple.uikit.UIControl.OnEditingChangedListener;
-import org.robovm.apple.uikit.UITextBorderStyle;
-import org.robovm.apple.uikit.UITextField;
 
 import com.google.common.base.Strings;
 
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.uikit.UITextField;
+import ios.uikit.enums.UIControlEvents;
+import ios.uikit.enums.UITextBorderStyle;
+
 public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {
+	@Inject
 	public IOSTextBox() {
-		this(new UITextField(new CGRect(0, 0, 120, 30)));
+		this(UITextField.alloc().initWithFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30))));
 	}
 
 	public IOSTextBox(final UITextField textField) {
 		super(textField);
 		control.setBorderStyle(UITextBorderStyle.RoundedRect);
-		textField.addOnEditingChangedListener(new OnEditingChangedListener() {
-			@Override
-			public void onEditingChanged(UIControl arg0) {
-				getValue().notifyObservers();
-			}
-		});
+		textField.addTargetActionForControlEvents((Object var1, long var2) -> {
+			getValue().notifyObservers();
+		}, UIControlEvents.EditingChanged);
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 		return new BaseValue<String>() {
 			@Override
 			public String get() {
-				return Strings.nullToEmpty(control.getText());
+				return Strings.nullToEmpty(control.text());
 			}
 
 			@Override

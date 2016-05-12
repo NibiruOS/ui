@@ -3,7 +3,6 @@ project.ext {
 	guavaVersion = '20.0-SNAPSHOT'
 	gwtVersion = '2.8.0-beta1'
 	androidVersion = '4.0.1.2'
-	robovmVersion = '1.9.0'
 }
 
 allprojects {

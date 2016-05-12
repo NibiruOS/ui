@@ -4,25 +4,32 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.Widget;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.foundation.NSIndexPath;
-import org.robovm.apple.uikit.UITableView;
-import org.robovm.apple.uikit.UITableViewCell;
-import org.robovm.apple.uikit.UITableViewDataSourceAdapter;
-import org.robovm.apple.uikit.UITableViewDelegateAdapter;
-import org.robovm.apple.uikit.UIView;
 
 import com.google.common.collect.ImmutableList;
+import com.intel.moe.natj.general.ann.NInt;
+
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.foundation.NSIndexPath;
+import ios.uikit.UITableView;
+import ios.uikit.UITableViewCell;
+import ios.uikit.UIView;
+import ios.uikit.protocol.UITableViewDataSource;
+import ios.uikit.protocol.UITableViewDelegate;
 
 public class IOSListWidget extends IOSValueWidget<UITableView, Iterable<Widget>> implements ListWidget {
+	@Inject
 	public IOSListWidget() {
-		this(new UITableView(new CGRect(0, 0, 150, 200)));
+		this(UITableView.alloc().initWithFrame(new CGRect(new CGPoint(0, 0), new CGSize(150, 200))));
 	}
 
 	public IOSListWidget(UITableView view) {
@@ -42,31 +49,31 @@ public class IOSListWidget extends IOSValueWidget<UITableView, Iterable<Widget>>
 			@Override
 			protected void setValue(Iterable<Widget> value) {
 				this.items = ImmutableList.copyOf(checkNotNull(value));
-				control.setDataSource(new UITableViewDataSourceAdapter() {
+				control.setDataSource(new UITableViewDataSource() {
 					@Override
-					public long getNumberOfRowsInSection(UITableView tableView, long section) {
+					public long tableViewNumberOfRowsInSection(UITableView uiTableView, @NInt long l) {
 						return items.size();
 					}
 
 					@Override
-					public long getNumberOfSections(UITableView tableView) {
+					public long numberOfSectionsInTableView(UITableView tableView) {
 						return 1;
 					}
 
 					@Override
-					public UITableViewCell getCellForRow(UITableView tableView, NSIndexPath indexPath) {
-						UIView rowView = (UIView) items.get(indexPath.getRow()).asNative();
-						UITableViewCell cell = new UITableViewCell();
+					public UITableViewCell tableViewCellForRowAtIndexPath(UITableView uiTableView, NSIndexPath nsIndexPath) {
+						UIView rowView = (UIView) items.get((int)nsIndexPath.row()).asNative();
+						UITableViewCell cell = UITableViewCell.alloc().init();
 						cell.addSubview(rowView);
-						cell.setFrame(rowView.getFrame());
+						cell.setFrame(rowView.frame());
 						return cell;
 					}
 				});
-				control.setDelegate(new UITableViewDelegateAdapter(){
+				control.setDelegate(new UITableViewDelegate(){
 					@Override
-					public double getHeightForRow(UITableView tableView, NSIndexPath indexPath) {
-						UIView rowView = (UIView) items.get(indexPath.getRow()).asNative();
-						return rowView.getFrame().getHeight();
+					public double tableViewEstimatedHeightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
+						UIView rowView = (UIView) items.get((int)indexPath.row()).asNative();
+						return rowView.frame().size().height();
 					}
 				});
 
@@ -74,8 +81,8 @@ public class IOSListWidget extends IOSValueWidget<UITableView, Iterable<Widget>>
 				double height = 0;
 				for (Widget childWidget : items) {
 					UIView child = (UIView) childWidget.asNative();
-					double childWidth = child.getFrame().getWidth();
-					double childHeight = child.getFrame().getHeight();
+					double childWidth = child.frame().size().width();
+					double childHeight = child.frame().size().height();
 					height += childHeight;
 					if (childWidth > width) {
 						width = childWidth;

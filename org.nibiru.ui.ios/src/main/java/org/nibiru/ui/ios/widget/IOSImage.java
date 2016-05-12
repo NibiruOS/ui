@@ -15,66 +15,70 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.ResourcesBasePath;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.foundation.NSData;
-import org.robovm.apple.uikit.UIImage;
-import org.robovm.apple.uikit.UIImageView;
 
-import com.google.common.base.Throwables;
 import com.google.common.io.ByteSource;
 
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.uikit.UIImage;
+import ios.uikit.UIImageView;
+
 public class IOSImage extends IOSValueWidget<UIImageView, String> implements Image {
-	private final String basePath;
+    private final String basePath;
 
-	@Inject
-	public IOSImage(@ResourcesBasePath String basePath) {
-		this(new UIImageView(new CGRect(0, 0, 50, 50)), basePath);
-	}
+    @Inject
+    public IOSImage(@ResourcesBasePath String basePath) {
+        this(buildImage(), basePath);
+    }
 
-	public IOSImage(UIImageView imageView, final String basePath) {
-		super(imageView);
-		this.basePath = checkNotNull(basePath);
-	}
+    private static UIImageView buildImage() {
+        UIImageView image = UIImageView.alloc().init();
+        image.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(50, 50)));
+        return image;
+    }
 
-	@Override
-	Value<String> buildValue() {
-		// TODO Auto-generated method stub
-		return new BaseValue<String>() {
-			private String value;
+    public IOSImage(UIImageView imageView, final String basePath) {
+        super(imageView);
+        this.basePath = checkNotNull(basePath);
+    }
 
-			@Override
-			public String get() {
-				return value;
-			}
+    @Override
+    Value<String> buildValue() {
+        return new BaseValue<String>() {
+            private String value;
 
-			@Override
-			protected void setValue(String value) {
-				this.value = checkNotNull(value);
-				try {
-					ByteSource source = new ByteSource() {
-						@Override
-						public InputStream openStream() throws IOException {
-							return getClass().getClassLoader().getResourceAsStream(basePath + value);
-						}
-					};
-					UIImage image = new UIImage(new NSData(source.read()));
-					control.setImage(image);
-					updateSize(image.getSize().getWidth(), image.getSize().getHeight());
-				} catch (IOException e) {
-					Throwables.propagate(e);
-				}
-			}
+            @Override
+            public String get() {
+                return value;
+            }
 
-			@Override
-			public Type<String> getType() {
-				return JavaType.STRING;
-			}
-		};
-	}
+            @Override
+            protected void setValue(final String value) {
+                this.value = checkNotNull(value);
+                ByteSource source = new ByteSource() {
+                    @Override
+                    public InputStream openStream() throws IOException {
+                        return getClass().getClassLoader().getResourceAsStream(basePath + value);
+                    }
+                };
+                // FIXME: Read image data into NSData
+                UIImage image = UIImage.imageNamed("CHANGEME");
+                control.setImage(image);
+                //updateSize(image.size().width(), image.size().height());
+                updateSize(50, 50);
+            }
 
-	@Override
-	public Registration setClickHandler(ClickHandler clickHandler) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+            @Override
+            public Type<String> getType() {
+                return JavaType.STRING;
+            }
+        };
+    }
+
+    @Override
+    public Registration setClickHandler(ClickHandler clickHandler) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

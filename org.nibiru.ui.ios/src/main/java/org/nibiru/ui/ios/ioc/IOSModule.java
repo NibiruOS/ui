@@ -1,22 +1,38 @@
 package org.nibiru.ui.ios.ioc;
 
+import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.Checkbox;
 import org.nibiru.ui.core.api.GridPanel;
 import org.nibiru.ui.core.api.HorizontalPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.PasswordBox;
+import org.nibiru.ui.core.api.Popup;
+import org.nibiru.ui.core.api.ScrollPanel;
+import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
+import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
+import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import org.nibiru.ui.ios.builder.IOSComboBoxBuilderFactory;
+import org.nibiru.ui.ios.builder.IOSRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.ios.widget.IOSAbsolutePanel;
 import org.nibiru.ui.ios.widget.IOSButton;
+import org.nibiru.ui.ios.widget.IOSCheckbox;
 import org.nibiru.ui.ios.widget.IOSGridPanel;
 import org.nibiru.ui.ios.widget.IOSHorizontalPanel;
 import org.nibiru.ui.ios.widget.IOSImage;
 import org.nibiru.ui.ios.widget.IOSLabel;
 import org.nibiru.ui.ios.widget.IOSListWidget;
 import org.nibiru.ui.ios.widget.IOSPasswordBox;
+import org.nibiru.ui.ios.widget.IOSPopup;
+import org.nibiru.ui.ios.widget.IOSScrollPanel;
+import org.nibiru.ui.ios.widget.IOSSpinner;
 import org.nibiru.ui.ios.widget.IOSTextBox;
+import org.nibiru.ui.ios.widget.IOSTreeView;
 import org.nibiru.ui.ios.widget.IOSVerticalPanel;
 
 import dagger.Module;
@@ -59,10 +75,10 @@ public class IOSModule {
 		return gridPanel;
 	}
 
-//	@Provides
-//	public ScrollPanel getScrollPanel(IOSScrollPanel scrollPanel) {
-//		return scrollPanel;
-//	}
+	@Provides
+	public ScrollPanel getScrollPanel(IOSScrollPanel scrollPanel) {
+		return scrollPanel;
+	}
 
 	@Provides
 	public ListWidget getListWidget(IOSListWidget listWidget) {
@@ -74,38 +90,38 @@ public class IOSModule {
 		return image;
 	}
 
-//	@Provides
-//	public Popup getPopup(IOSPopup popup) {
-//		return popup;
-//	}
-//
-//	@Provides
-//	public Spinner getSpinner(IOSSpinner spinner) {
-//		return spinner;
-//	}
-//
-//	@Provides
-//	public Checkbox getCheckbox(IOSCheckbox checkbox) {
-//		return checkbox;
-//	}
-//
-//	@Provides
-//	public RadioButtonGroupBuilderFactory getRadioButtonGroupBuilderFactory(IOSRadioButtonGroupBuilderFactory factory) {
-//		return factory;
-//	}
-//
-//	@Provides
-//	public ComboBoxBuilderFactory getComboBoxBuilderFactory(IOSComboBoxBuilderFactory factory) {
-//		return factory;
-//	}
-//
-//	@Provides
-//	public TreeView getTreeView(IOSTreeView treeView) {
-//		return treeView;
-//	}
-//
-//	@Provides
-//	public AbsolutePanel getAbsolutePanel(IOSAbsolutePanel absolutePanel) {
-//		return absolutePanel;
-//	}
+	@Provides
+	public Popup getPopup(IOSPopup popup) {
+		return popup;
+	}
+
+	@Provides
+	public Spinner getSpinner(IOSSpinner spinner) {
+		return spinner;
+	}
+
+	@Provides
+	public Checkbox getCheckbox(IOSCheckbox checkbox) {
+		return checkbox;
+	}
+
+	@Provides
+	public RadioButtonGroupBuilderFactory getRadioButtonGroupBuilderFactory(IOSRadioButtonGroupBuilderFactory factory) {
+		return factory;
+	}
+
+	@Provides
+	public ComboBoxBuilderFactory getComboBoxBuilderFactory(IOSComboBoxBuilderFactory factory) {
+		return factory;
+	}
+
+	@Provides
+	public TreeView getTreeView(IOSTreeView treeView) {
+		return treeView;
+	}
+
+	@Provides
+	public AbsolutePanel getAbsolutePanel(IOSAbsolutePanel absolutePanel) {
+		return absolutePanel;
+	}
 }

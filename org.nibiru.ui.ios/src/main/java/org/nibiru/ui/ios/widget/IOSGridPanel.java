@@ -1,69 +1,78 @@
 package org.nibiru.ui.ios.widget;
 
+import javax.inject.Inject;
+
 import org.nibiru.ui.core.api.GridPanel;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.uikit.UIView;
+
+import ios.coregraphics.struct.CGPoint;
+import ios.coregraphics.struct.CGRect;
+import ios.coregraphics.struct.CGSize;
+import ios.uikit.UIView;
 
 public class IOSGridPanel extends IOSContainer implements GridPanel {
-	private int columns = 1;
+    private int columns = 1;
 
-	@Override
-	public void setColumns(int columns) {
-		this.columns = columns;
+	@Inject
+    public IOSGridPanel() {
 	}
 
 	@Override
-	void layout() {
-		double[] widths = new double[columns];
-		double[] heights = new double[(control.getSubviews().size() + columns - 1) / columns];
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
 
-		int column = 0;
-		int row = 0;
-		for (UIView child : control.getSubviews()) {
-			double childWidth = child.getFrame().getWidth();
-			double childHeight = child.getFrame().getHeight();
+    @Override
+    void layout() {
+        double[] widths = new double[columns];
+        double[] heights = new double[(control.subviews().size() + columns - 1) / columns];
 
-			if (childWidth > widths[column]) {
-				widths[column] = childWidth;
-			}
-			if (childHeight > heights[row]) {
-				heights[row] = childHeight;
-			}
+        int column = 0;
+        int row = 0;
+        for (UIView child : control.subviews()) {
+            double childWidth = child.frame().size().width();
+            double childHeight = child.frame().size().height();
 
-			column++;
-			if (column >= widths.length) {
-				column = 0;
-				row++;
-			}
-		}
+            if (childWidth > widths[column]) {
+                widths[column] = childWidth;
+            }
+            if (childHeight > heights[row]) {
+                heights[row] = childHeight;
+            }
 
-		double currentWidth = 0;
-		double currentHeight = 0;
-		column = 0;
-		row = 0;
-		for (UIView child : control.getSubviews()) {
-			child.setFrame(
-					new CGRect(currentWidth, currentHeight, child.getFrame().getWidth(), child.getFrame().getHeight()));
+            column++;
+            if (column >= widths.length) {
+                column = 0;
+                row++;
+            }
+        }
 
-			currentWidth += widths[column];
+        double currentWidth = 0;
+        double currentHeight = 0;
+        column = 0;
+        row = 0;
+        for (UIView child : control.subviews()) {
+            child.setFrame(new CGRect(new CGPoint(currentWidth, currentHeight),
+                    new CGSize(child.frame().size().width(), child.frame().size().height())));
 
-			column++;
-			if (column >= widths.length) {
-				column = 0;
-				currentWidth = 0;
-				currentHeight += heights[row];
-				row++;
-			}
-		}
+            currentWidth += widths[column];
 
-		double width = 0;
-		double height = 0;
-		for (double columnWidth : widths) {
-			width += columnWidth;
-		}
-		for (double rowHeight : heights) {
-			height += rowHeight;
-		}
-		updateSize(width, height);
-	}
+            column++;
+            if (column >= widths.length) {
+                column = 0;
+                currentWidth = 0;
+                currentHeight += heights[row];
+                row++;
+            }
+        }
+
+        double width = 0;
+        double height = 0;
+        for (double columnWidth : widths) {
+            width += columnWidth;
+        }
+        for (double rowHeight : heights) {
+            height += rowHeight;
+        }
+        updateSize(width, height);
+    }
 }
