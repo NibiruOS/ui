@@ -1,6 +1,7 @@
 package com.aajtech.ui.gwt.widget;
 
 import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
@@ -14,6 +15,7 @@ import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GwtTreeView extends GwtValueWidget<Tree, Iterable<Item>>implements TreeView {
+	@Inject
 	public GwtTreeView() {
 		this(new Tree());
 	}

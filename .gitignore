@@ -14,3 +14,4 @@ target
 /com.aajtech.ui.ios/build/
 /com.aajtech.ui.mgwt/build/
 /com.aajtech.ui.vaadin/build/
+.apt_generated

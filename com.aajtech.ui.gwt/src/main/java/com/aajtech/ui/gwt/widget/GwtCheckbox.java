@@ -1,5 +1,7 @@
 package com.aajtech.ui.gwt.widget;
 
+import javax.inject.Inject;
+
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.java.JavaType;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -7,6 +9,7 @@ import com.google.gwt.user.client.ui.CheckBox;
 public class GwtCheckbox extends GwtHasValueWidget<CheckBox, Boolean> implements com.aajtech.ui.core.api.Checkbox {
 	Value<String> labelText;
 	
+	@Inject
 	public GwtCheckbox() {
 		this(new CheckBox());
 	}

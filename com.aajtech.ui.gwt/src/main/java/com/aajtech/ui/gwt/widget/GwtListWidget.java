@@ -1,5 +1,7 @@
 package com.aajtech.ui.gwt.widget;
 
+import javax.inject.Inject;
+
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
@@ -35,6 +37,7 @@ public class GwtListWidget extends GwtContainer<VerticalPanel> implements ListWi
 		}
 	};
 
+	@Inject
 	public GwtListWidget() {
 		super(new VerticalPanel());
 	}

@@ -2,6 +2,8 @@ package com.aajtech.ui.gwt.widget;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import com.aajtech.model.core.api.Type;
 import com.aajtech.model.core.api.Value;
 import com.aajtech.model.core.impl.BaseValue;
@@ -16,6 +18,7 @@ public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboB
 	private Value<Iterable<V>> items;
 	private List<V> comboItems = Lists.newArrayList();
 	
+	@Inject
 	public GwtComboBox(){
 		this(new ListBox());
 	}

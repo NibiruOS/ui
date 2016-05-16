@@ -1,9 +1,12 @@
 package com.aajtech.ui.gwt.widget;
 
+import javax.inject.Inject;
+
 import com.aajtech.ui.core.api.Widget;
 import com.google.gwt.user.client.ui.ScrollPanel;
 
 public class GwtScrollPanel extends GwtWidget<ScrollPanel>implements com.aajtech.ui.core.api.ScrollPanel {
+	@Inject
 	public GwtScrollPanel() {
 		this(new ScrollPanel());
 	}

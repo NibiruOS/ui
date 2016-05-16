@@ -1,8 +1,5 @@
 package com.aajtech.ui.core.impl.builder;
 
-import static com.aajtech.ui.core.impl.builder.HorizontalPanelBuilder.horizontalPanel;
-import static com.aajtech.ui.core.impl.builder.LabelBuilder.label;
-import static com.aajtech.ui.core.impl.builder.SpinnerBuilder.spinner;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.inject.Inject;
@@ -12,29 +9,19 @@ import com.aajtech.ui.core.api.Popup;
 import com.aajtech.ui.core.api.Widget;
 
 public class PopupBuilder extends BaseBuilder<Popup> {
-	@Inject
-	private static Provider<PopupBuilder> popupBuilderProvider;
-
-	public static PopupBuilder popup() {
-		return popupBuilderProvider.get();
-	}
-
-	public static Popup popup(Widget content) {
-		checkNotNull(content);
-		return popup().content(content).build();
-	}
-
-	public static Popup loadingPopup(String text) {
-		checkNotNull(text);
-		return popup(horizontalPanel()
-			.add(spinner().build())
-			.add(label(text))
-			.build());
-	}
+	private final Provider<HorizontalPanelBuilder> horizontalPanel;
+	private final Provider<LabelBuilder> label;
+	private final Provider<SpinnerBuilder> spinner;
 
 	@Inject
-	public PopupBuilder(Popup widget) {
+	public PopupBuilder(Popup widget,
+			Provider<HorizontalPanelBuilder> horizontalPanel,
+			Provider<LabelBuilder> label,
+			Provider<SpinnerBuilder> spinner) {
 		super(widget);
+		this.horizontalPanel = checkNotNull(horizontalPanel);
+		this.label = checkNotNull(label);
+		this.spinner = checkNotNull(spinner);
 	}
 
 	public PopupBuilder content(Widget content) {
@@ -45,5 +32,18 @@ public class PopupBuilder extends BaseBuilder<Popup> {
 	public PopupBuilder autoHide(boolean autoHide) {
 		object.setAutoHide(autoHide);
 		return this;
+	}
+
+	public Popup build(Widget content) {
+		checkNotNull(content);
+		return content(content).build();
+	}
+
+	public Popup loadingPopup(String text) {
+		checkNotNull(text);
+		return build(horizontalPanel.get()
+			.add(spinner.get().build())
+			.add(label.get().build(text))
+			.build());
 	}
 }

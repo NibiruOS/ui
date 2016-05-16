@@ -1,5 +1,7 @@
 package com.aajtech.ui.gwt.widget;
 
+import javax.inject.Inject;
+
 import com.aajtech.ui.core.api.GridPanel;
 import com.aajtech.ui.core.api.Widget;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -9,6 +11,7 @@ public class GwtGridPanel extends GwtWidget<FlexTable> implements GridPanel {
 	private int currentColumn;
 	private int currentRow;
 
+	@Inject
 	public GwtGridPanel() {
 		this(new FlexTable());
 	}

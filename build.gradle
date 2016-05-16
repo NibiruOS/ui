@@ -3,8 +3,6 @@ project.ext {
 	guavaVersion = '20.0-SNAPSHOT'
 	gwtVersion = '2.8.0-beta1'
 	androidVersion = '4.0.1.2'
-	guiceVersion = '3.0'
-	ginVersion = '2.1.2'
 	robovmVersion = '1.9.0'
 }
 
@@ -58,7 +56,19 @@ subprojects {
 
 	sourceCompatibility = 1.8
 
+	configurations {
+	    provided
+	}
+
+	sourceSets {
+	    main {
+	        compileClasspath += configurations.provided
+	    }
+	}
+
 	dependencies {
 		testCompile "junit:junit:4.12"
+		compile 'com.google.dagger:dagger:2.4'
+		provided 'com.google.dagger:dagger-compiler:2.4'
 	}
 }

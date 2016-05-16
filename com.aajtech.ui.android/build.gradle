@@ -3,7 +3,4 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
 	compile project(":com.aajtech.ui.core")
     compile "com.google.android:android:${androidVersion}"
-	compile("com.google.inject:guice:${guiceVersion}:no_aop") {
-		exclude group: 'org.sonatype.sisu.inject', module: 'cglib'
-	}
 }
