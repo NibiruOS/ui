@@ -1,4 +1,0 @@
-dependencies {
-	compile project(":com.aajtech.ui.gwt")
-	compile "com.googlecode.mgwt:mgwt:2.0.0"
-}
