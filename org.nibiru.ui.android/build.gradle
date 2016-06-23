@@ -1,6 +1,6 @@
 apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
-	compile project(":com.aajtech.ui.core")
+	compile project(":org.nibiru.ui.core")
     compile "com.google.android:android:${androidVersion}"
 }

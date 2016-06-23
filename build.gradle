@@ -1,5 +1,5 @@
 project.ext {
-	aajModelVersion = '0.1-SNAPSHOT'
+	nibiruModelVersion = '0.1-SNAPSHOT'
 	guavaVersion = '20.0-SNAPSHOT'
 	gwtVersion = '2.8.0-beta1'
 	androidVersion = '4.0.1.2'
@@ -8,7 +8,7 @@ project.ext {
 
 allprojects {
 	version = '0.1-SNAPSHOT'
-	group = 'com.aajtech.ui'
+	group = 'com.aajtech.nibiru.ui'
 
 	repositories {
 	    mavenCentral()

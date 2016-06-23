@@ -8,10 +8,5 @@ bin
 gen
 target
 .DS_Store
-/com.aajtech.ui.android/build/
-/com.aajtech.ui.core/build/
-/com.aajtech.ui.gwt/build/
-/com.aajtech.ui.ios/build/
-/com.aajtech.ui.mgwt/build/
-/com.aajtech.ui.vaadin/build/
+build
 .apt_generated

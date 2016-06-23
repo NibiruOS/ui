@@ -1,5 +1,5 @@
 dependencies {
-	compile project(":com.aajtech.ui.core")
+	compile project(":org.nibiru.ui.core")
 	compile "org.robovm:robovm-cocoatouch:${robovmVersion}"
 	compile "org.robovm:robovm-rt:${robovmVersion}"
 }

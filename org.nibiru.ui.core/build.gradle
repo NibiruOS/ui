@@ -1,0 +1,11 @@
+apply plugin: 'me.tatarka.retrolambda'
+
+jar {
+   from sourceSets.main.java.srcDirs 
+}
+
+dependencies {
+	compile "com.aajtech.nibiru.model:org.nibiru.model.core:${nibiruModelVersion}"
+	compile "javax.inject:javax.inject:1"
+	compile "com.google.guava:guava:${guavaVersion}"
+}
