@@ -1,8 +1,8 @@
-package org.nibiru.ui.android.widget;
+package com.aajtech.ui.android.widget;
 
-import org.nibiru.ui.android.style.StyleResolver;
-import org.nibiru.ui.core.api.Container;
-import org.nibiru.ui.core.api.Widget;
+import com.aajtech.ui.android.style.StyleResolver;
+import com.aajtech.ui.core.api.Container;
+import com.aajtech.ui.core.api.Widget;
 
 import android.content.Context;
 import android.view.View;

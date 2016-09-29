@@ -1,4 +1,4 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -12,14 +12,14 @@ import org.robovm.apple.foundation.NSData;
 import org.robovm.apple.uikit.UIImage;
 import org.robovm.apple.uikit.UIImageView;
 
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.ClickHandler;
-import org.nibiru.ui.core.api.Image;
-import org.nibiru.ui.core.api.ResourcesBasePath;
+import com.aajtech.model.core.api.Registration;
+import com.aajtech.model.core.api.Type;
+import com.aajtech.model.core.api.Value;
+import com.aajtech.model.core.impl.BaseValue;
+import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.ClickHandler;
+import com.aajtech.ui.core.api.Image;
+import com.aajtech.ui.core.api.ResourcesBasePath;
 import com.google.common.base.Throwables;
 import com.google.common.io.ByteSource;
 

@@ -1,7 +1,5 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
@@ -37,7 +35,6 @@ public class GwtListWidget extends GwtContainer<VerticalPanel> implements ListWi
 		}
 	};
 
-	@Inject
 	public GwtListWidget() {
 		super(new VerticalPanel());
 	}

@@ -5,5 +5,6 @@ jar {
 dependencies {
 	compile project(":org.nibiru.ui.core")
 	compile "com.google.gwt:gwt-user:${gwtVersion}"
+	compile "com.sencha.gxt:gxt:4.0.0"	
 	compile "com.google.guava:guava-gwt:${guavaVersion}"
 }

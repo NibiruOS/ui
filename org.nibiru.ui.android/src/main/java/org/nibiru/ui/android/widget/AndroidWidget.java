@@ -1,12 +1,12 @@
-package org.nibiru.ui.android.widget;
+package com.aajtech.ui.android.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.ui.android.style.StyleResolver;
-import org.nibiru.ui.core.api.ClickHandler;
-import org.nibiru.ui.core.api.HasClickHandler;
-import org.nibiru.ui.core.impl.BaseWidget;
+import com.aajtech.model.core.api.Registration;
+import com.aajtech.ui.android.style.StyleResolver;
+import com.aajtech.ui.core.api.ClickHandler;
+import com.aajtech.ui.core.api.HasClickHandler;
+import com.aajtech.ui.core.impl.BaseWidget;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;

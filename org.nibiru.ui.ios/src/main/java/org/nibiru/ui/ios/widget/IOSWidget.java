@@ -1,9 +1,9 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.uikit.UIView;
 
-import org.nibiru.ui.core.impl.BaseControlWidget;
+import com.aajtech.ui.core.impl.BaseControlWidget;
 
 abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 	IOSWidget(T control) {

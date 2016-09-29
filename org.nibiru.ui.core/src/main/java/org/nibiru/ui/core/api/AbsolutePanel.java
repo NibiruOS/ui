@@ -12,4 +12,6 @@ public interface AbsolutePanel extends Container {
 	}
 	
 	public Position getPosition(Widget child);
+	
+	public void setNativeSize(int measuredWidth, int measuredHeight);
 }

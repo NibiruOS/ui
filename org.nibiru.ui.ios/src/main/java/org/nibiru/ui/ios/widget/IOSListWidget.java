@@ -1,4 +1,4 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -12,12 +12,12 @@ import org.robovm.apple.uikit.UITableViewDataSourceAdapter;
 import org.robovm.apple.uikit.UITableViewDelegateAdapter;
 import org.robovm.apple.uikit.UIView;
 
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.ListWidget;
-import org.nibiru.ui.core.api.Widget;
+import com.aajtech.model.core.api.Type;
+import com.aajtech.model.core.api.Value;
+import com.aajtech.model.core.impl.BaseValue;
+import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.ListWidget;
+import com.aajtech.ui.core.api.Widget;
 import com.google.common.collect.ImmutableList;
 
 public class IOSListWidget extends IOSValueWidget<UITableView, Iterable<Widget>> implements ListWidget {

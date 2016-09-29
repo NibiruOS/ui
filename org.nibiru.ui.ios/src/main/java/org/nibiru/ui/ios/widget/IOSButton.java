@@ -1,4 +1,4 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
@@ -10,13 +10,13 @@ import org.robovm.apple.uikit.UIControl.OnTouchUpInsideListener;
 import org.robovm.apple.uikit.UIControlState;
 import org.robovm.apple.uikit.UIEvent;
 
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.ClickHandler;
+import com.aajtech.model.core.api.Registration;
+import com.aajtech.model.core.api.Type;
+import com.aajtech.model.core.api.Value;
+import com.aajtech.model.core.impl.BaseValue;
+import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.Button;
+import com.aajtech.ui.core.api.ClickHandler;
 
 public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
 	private static final int MARGIN = 10;

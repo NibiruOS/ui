@@ -1,9 +1,9 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import org.robovm.apple.uikit.UIView;
 
-import org.nibiru.ui.core.api.Container;
-import org.nibiru.ui.core.api.Widget;
+import com.aajtech.ui.core.api.Container;
+import com.aajtech.ui.core.api.Widget;
 
 abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 	IOSContainer() {

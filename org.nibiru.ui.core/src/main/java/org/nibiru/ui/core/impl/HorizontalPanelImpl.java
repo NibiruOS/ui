@@ -6,45 +6,66 @@ import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.HorizontalPanel;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
+import org.nibiru.ui.core.api.layout.Size;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
 
 public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPanel {
+	
+	private int mTotalLength;
+	
 	@Inject
 	public HorizontalPanelImpl(AbsolutePanel panel) {
 		super(panel);
 	}
-
+	
 	@Override
-	protected void measureLayout(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
-		int measuredWidth;
-		if (childWidthSpec.getType() == Type.AT_MOST) {
-			measuredWidth = childWidthSpec.getValue();
-		} else {
-			measuredWidth = 0;
-			for (Widget child : getChildren()) {
-				measuredWidth += child.getMeasuredWidth();
-			}
-		}
-		int measuredHeight;
-		if (childHeightSpec.getType() == Type.AT_MOST) {
-			measuredHeight = childHeightSpec.getValue();
-		} else {
-			measuredHeight = 0;
-			for (Widget child : getChildren()) {
-				if (measuredHeight < child.getMeasuredHeight()) {
-					measuredHeight = child.getMeasuredHeight();
-				}
-			}
-		}
-		updateSize(measuredWidth, measuredHeight);
-	}
+	protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
+		boolean matchHeight = false;
+		int maxHeight = 0;
+		boolean allFillParent = true;
+		int alternativeMaxHeight = 0;
 
-	@Override
-	public void layoutLayout() {
-		int xPosition = 0;
+		// See how tall everyone is. Also remember max width.
 		for (Widget child : getChildren()) {
-			panel.getPosition(child).setX(xPosition).setY(0);
-			xPosition += child.getMeasuredWidth();
+
+			measureChild(child, childWidthSpec, childHeightSpec);
+	
+			final int childWidth = child.getMeasuredWidth();
+			final int childHeight = child.getMeasuredHeight();
+			final int totalLength = mTotalLength;
+
+			mTotalLength = Math.max(totalLength, totalLength + childWidth);
+
+			if(childHeightSpec.getType() != Type.EXACTLY && child.getHeight() == Size.MATCH_PARENT) {
+				// we will need to measure this widget again when we have the parent height
+				matchHeight = true;
+			}
+			
+			maxHeight = Math.max(maxHeight, childHeight);
+		
+			allFillParent = allFillParent && child.getHeight() == Size.MATCH_PARENT;
+			alternativeMaxHeight = Math.max(alternativeMaxHeight, matchHeight ? 0 : childHeight);
 		}
+
+		// Reconcile our calculated size with the heightMeasureSpec
+		int finalWidthSize = resolveSize(mTotalLength, childWidthSpec);
+
+		if (!allFillParent && childWidthSpec.getType() != Type.EXACTLY) {
+			maxHeight = alternativeMaxHeight;
+		}
+
+		updateSize(finalWidthSize, resolveSize(maxHeight, childHeightSpec));
+
+	}
+	
+	@Override
+	public void onLayout() {
+		int currentX = 0;
+		for (Widget child : getChildren()) {
+			child.layout();
+			panel.getPosition(child).setX(currentX).setY(0);
+			currentX += child.getMeasuredWidth();
+		}
+		super.onLayout();
 	}
 }

@@ -56,4 +56,16 @@ public class WidgetWrapper implements Widget {
 		// Not supported...
 	}
 
+	@Override
+	public Size getHeight() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Size getWidth() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

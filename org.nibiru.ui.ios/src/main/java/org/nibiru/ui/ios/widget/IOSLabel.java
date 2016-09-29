@@ -1,17 +1,17 @@
-package org.nibiru.ui.ios.widget;
+package com.aajtech.ui.ios.widget;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UILabel;
 
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.ClickHandler;
-import org.nibiru.ui.core.api.Label;
+import com.aajtech.model.core.api.Registration;
+import com.aajtech.model.core.api.Type;
+import com.aajtech.model.core.api.Value;
+import com.aajtech.model.core.impl.BaseValue;
+import com.aajtech.model.core.impl.java.JavaType;
+import com.aajtech.ui.core.api.ClickHandler;
+import com.aajtech.ui.core.api.Label;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 	public IOSLabel() {

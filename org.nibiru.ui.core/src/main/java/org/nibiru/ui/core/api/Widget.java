@@ -14,6 +14,10 @@ public interface Widget {
 	
 	void setWidth(Size width);
 	
+	Size getHeight();
+	
+	Size getWidth();
+	
 	void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec);
 	
 	int getMeasuredHeight();

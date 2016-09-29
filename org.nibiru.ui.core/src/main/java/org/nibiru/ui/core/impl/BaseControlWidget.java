@@ -16,33 +16,46 @@ public abstract class BaseControlWidget<T> extends BaseWidget {
 	public Object asNative() {
 		return control;
 	}
+	
+    @Override
+    protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
+        Type widthMode = widthMeasureSpec.getType();
+        Type heightMode = heightMeasureSpec.getType();
+        int widthSize = widthMeasureSpec.getValue();
+        int heightSize = heightMeasureSpec.getValue();
+
+        int width;
+        int height;
+
+        if (widthMode == Type.EXACTLY) {
+            // Parent has told us how big to be. So be it.
+            width = widthSize;
+        } else {
+            width = getNativeWidth();
+            
+            if (widthMode == Type.AT_MOST) {
+            	width = Math.min(widthSize, width);
+            }
+        }
+
+        if (heightMode == Type.EXACTLY) {
+            // Parent has told us how big to be. So be it.
+            height = heightSize;
+        } else {
+            height = getNativeHeight();
+
+            if (heightMode == Type.AT_MOST) {
+                height = Math.min(heightSize, height);
+            }
+        }
+
+        updateSize(width, height);
+    }
 
 	@Override
-	public void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
-
-		MeasureSpec childWidthSpec = computeChildMeasureSpec(widthMeasureSpec, getWidth());
-		int measuredWidth;
-		if (childWidthSpec.getType() == Type.UNSPECIFIED) {
-			measuredWidth = getNativeWidth();
-		} else {
-			measuredWidth = childWidthSpec.getValue();
-		}
-
-		MeasureSpec childHeightSpec = computeChildMeasureSpec(heightMeasureSpec, getHeight());
-		int measuredHeight;
-		if (childHeightSpec.getType() == Type.UNSPECIFIED) {
-			measuredHeight = getNativeHeight();
-		} else {
-			measuredHeight = childHeightSpec.getValue();
-		}
-
-		updateSize(measuredWidth, measuredHeight);
-	}
-
-	@Override
-	public void layout() {
-		setNativeSize(getMeasuredWidth(), getMeasuredHeight());
-	}
+    public void onLayout() {
+    	setNativeSize(getMeasuredWidth(), getMeasuredHeight());
+    }
 
 	abstract protected int getNativeHeight();
 

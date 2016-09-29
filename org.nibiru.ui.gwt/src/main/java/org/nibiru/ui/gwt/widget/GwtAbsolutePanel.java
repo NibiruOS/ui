@@ -1,5 +1,6 @@
 package org.nibiru.ui.gwt.widget;
 
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.inject.Inject;
@@ -38,12 +39,12 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel>implements org.
 			public Position setX(int x) {
 				this.x = x;
 				control.setWidgetPosition(gwtWidget, x, y);
-				scheduler.scheduleDeferred(() -> {
-					int right = x + gwtWidget.getOffsetWidth();
-					if (control.getOffsetWidth() < right) {
-						control.setWidth(right + "px");
-					}
-				});
+//				scheduler.scheduleDeferred(() -> {
+//					int right = x + gwtWidget.getOffsetWidth();
+//					if (control.getOffsetWidth() < right) {
+//						control.setWidth(right + "px");
+//					}
+//				});
 				return this;
 			}
 
@@ -56,12 +57,12 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel>implements org.
 			public Position setY(int y) {
 				this.y = y;
 				control.setWidgetPosition(gwtWidget, x, y);
-				Scheduler.get().scheduleDeferred(() -> {
-					int bottom = y + gwtWidget.getOffsetHeight();
-					if (control.getOffsetHeight() < bottom) {
-						control.setHeight(bottom + "px");
-					}
-				});
+//				Scheduler.get().scheduleDeferred(() -> {
+//					int bottom = y + gwtWidget.getOffsetHeight();
+//					if (control.getOffsetHeight() < bottom) {
+//						control.setHeight(bottom + "px");
+//					}
+//				});
 				return this;
 			}
 		};
@@ -69,5 +70,11 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel>implements org.
 
 	@Override
 	public void requestLayout() {
+	}
+	
+	@Override
+	public void setNativeSize(int measuredWidth, int measuredHeight) {
+		control.setWidth(measuredWidth + "px");
+		control.setHeight(measuredHeight + "px");
 	}
 }
