@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilder;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
+import org.nibiru.ui.ios.widget.IOSComboBox;
 
 public class IOSComboBoxBuilderFactory implements ComboBoxBuilderFactory {
 	@Inject
@@ -12,8 +13,6 @@ public class IOSComboBoxBuilderFactory implements ComboBoxBuilderFactory {
 
 	@Override
 	public <T> ComboBoxBuilder<T> create(Class<T> valueClass) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ComboBoxBuilder<T>(new IOSComboBox<T>());
 	}
-
 }

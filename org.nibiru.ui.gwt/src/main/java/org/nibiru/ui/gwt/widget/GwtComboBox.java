@@ -16,8 +16,8 @@ import com.google.gwt.user.client.ui.ListBox;
 
 public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboBox<V>{
 	private V selectedItem;
-	private Value<Iterable<V>> items;
-	private List<V> comboItems = Lists.newArrayList();
+	private final Value<Iterable<V>> items;
+	private final List<V> comboItems;
 	
 	@Inject
 	public GwtComboBox(){
@@ -26,6 +26,31 @@ public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboB
 	
 	public GwtComboBox(ListBox control) {
 		super(control);
+		comboItems = Lists.newArrayList();
+		items = new BaseValue<Iterable<V>>() {
+			private Iterable<V> value;
+
+			@Override
+			public Iterable<V> get() {
+				return value;
+			}
+
+			@Override
+			public Type<Iterable<V>> getType() {
+				return JavaType.ofUnchecked(Iterable.class);
+			}
+
+			@Override
+			protected void setValue(Iterable<V> value) {
+				this.value = value;
+				control.clear();
+				comboItems.clear();
+				for (V item : value) {
+					control.addItem(item.toString());
+					comboItems.add(item);
+				}
+			}
+		};
 	}
 
 	@Override
@@ -58,31 +83,6 @@ public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboB
 
 	@Override
 	public Value<Iterable<V>> getItems() {
-		items = new BaseValue<Iterable<V>>() {
-			private Iterable<V> value;
-
-			@Override
-			public Iterable<V> get() {
-				return value;
-			}
-
-			@Override
-			public Type<Iterable<V>> getType() {
-				return JavaType.ofUnchecked(Iterable.class);
-			}
-
-			@Override
-			protected void setValue(Iterable<V> value) {
-				this.value = value;
-				control.clear();
-				comboItems.clear();
-				for (V item : value) {
-					control.addItem(item.toString());
-					comboItems.add(item);
-				}
-			}
-		};
-	
 		return items;
 	}
 
