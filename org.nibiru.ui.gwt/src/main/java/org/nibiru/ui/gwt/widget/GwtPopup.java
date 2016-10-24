@@ -63,6 +63,5 @@ public class GwtPopup implements Popup {
 	@Override
 	public void scheduleLayout() {
 		// TODO Auto-generated method stub
-		
 	}
 }

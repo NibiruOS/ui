@@ -68,11 +68,4 @@ public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout> imple
 	@Override
 	public void requestLayout() {
 	}
-
-	@Override
-	public void scheduleLayout() {
-		if (getParent() != null) {
-			getParent().scheduleLayout();
-		}
-	}
 }

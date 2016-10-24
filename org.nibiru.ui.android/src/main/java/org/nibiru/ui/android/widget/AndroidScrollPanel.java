@@ -34,12 +34,6 @@ public class AndroidScrollPanel extends AndroidWidget<ScrollView>implements Scro
 	}
 
 	@Override
-	public void scheduleLayout() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	ScrollView buildControl(Context context, int styleResource) {
 		return styleResource == StyleResolver.NO_STYLE
 				? new ScrollView(context)

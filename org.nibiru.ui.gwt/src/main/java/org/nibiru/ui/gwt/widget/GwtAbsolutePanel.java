@@ -56,11 +56,4 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel> implements org
 	@Override
 	public void requestLayout() {
 	}
-
-	@Override
-	public void scheduleLayout() {
-		if (getParent() != null) {
-			getParent().scheduleLayout();
-		}
-	}
 }
