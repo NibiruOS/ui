@@ -141,7 +141,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
         while (!removalQueue.isEmpty()) {
             Node node = removalQueue.remove();
             sortedRules.add(node.rule);
-            nodes.remove(node);
             for (Node dependant : node.outputVertexs) {
                 dependant.inputVertexCount--;
                 if (dependant.inputVertexCount == 0) {
@@ -149,7 +148,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 }
             }
         }
-        checkState(nodes.isEmpty(), "Cycle detected in rules definition.");
+        checkState(sortedRules.size() == rules.size(), "Cycle detected in rules definition.");
     }
 
     private class VertexKey {
