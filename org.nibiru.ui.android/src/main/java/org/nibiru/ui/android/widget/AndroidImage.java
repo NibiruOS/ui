@@ -75,4 +75,14 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
 			}
 		};
 	}
+
+	@Override
+	protected int getNativeHeight() {
+		return dpToPx(super.getNativeHeight());
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		return dpToPx(super.getNativeWidth());
+	}
 }

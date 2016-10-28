@@ -18,6 +18,10 @@ import apple.uikit.enums.UIControlEvents;
 import apple.uikit.enums.UITextBorderStyle;
 
 public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {
+	// TODO: Fix this "magic".
+	private static int MAGIC_WIDTH_PADDING = 20;
+	private static int MAGIC_HEIGHT_PADDING = 6;
+
 	@Inject
 	public IOSTextBox() {
 		this(UITextField.alloc().initWithFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30))));
@@ -28,6 +32,7 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 		control.setBorderStyle(UITextBorderStyle.RoundedRect);
 		textField.addTargetActionForControlEvents((Object var1, long var2) -> {
 			getValue().notifyObservers();
+			scheduleLayout();
 		}, UIControlEvents.EditingChanged);
 	}
 
@@ -53,13 +58,15 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 
 	@Override
 	protected int getNativeHeight() {
-		// TODO Fix value - add size computation
-		return 25;
+		return (int) size().height()+ MAGIC_HEIGHT_PADDING;
 	}
 
 	@Override
 	protected int getNativeWidth() {
-		// TODO Fix value - add size computation
-		return 100;
+		return (int) size().width() + MAGIC_WIDTH_PADDING;
+	}
+
+	private CGSize size() {
+		return sizeFromText(control.text(), control.font());
 	}
 }

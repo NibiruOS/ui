@@ -20,8 +20,8 @@ public class GwtImage extends GwtClickableValueWidget<Image, String> implements 
 	public GwtImage() {
 		this(new Image());
 		control.addLoadHandler((LoadEvent event) -> {
-			if (dirty && getParent() != null) {
-				getParent().scheduleLayout();
+			if (dirty) {
+				scheduleLayout();
 			}
 		});
 	}

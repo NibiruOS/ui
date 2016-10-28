@@ -25,13 +25,6 @@ public class IOSScrollPanel extends IOSContainer implements ScrollPanel {
 	}
 
 	@Override
-	public void scheduleLayout() {
-		if (getParent() != null) {
-			getParent().scheduleLayout();
-		}
-	}
-
-	@Override
 	protected int getNativeHeight() {
 		// TODO Fix value - add size computation
 		return 480;

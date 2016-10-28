@@ -11,7 +11,6 @@ import org.nibiru.ui.core.api.Button;
 import apple.coregraphics.struct.CGPoint;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
-import apple.foundation.NSString;
 import apple.uikit.UIButton;
 import apple.uikit.UIColor;
 import apple.uikit.enums.UIButtonType;
@@ -68,6 +67,6 @@ public class IOSButton extends IOSValueWidget<UIButton, String> implements Butto
 	}
 	
 	private CGSize size() {
-		return NSString.stringWithString(control.titleForState(UIControlState.Normal)).sizeWithFont(control.font());
+		return sizeFromText(control.titleForState(UIControlState.Normal), control.font());
 	}
 }

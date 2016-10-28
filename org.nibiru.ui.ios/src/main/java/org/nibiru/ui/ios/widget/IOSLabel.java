@@ -9,7 +9,6 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Label;
 
 import apple.coregraphics.struct.CGSize;
-import apple.foundation.NSString;
 import apple.uikit.UILabel;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
@@ -53,7 +52,6 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 	}
 
 	private CGSize size() {
-		return control.text() != null ? NSString.stringWithString(control.text()).sizeWithFont(control.font())
-				: new CGSize(0, 0);
+		return sizeFromText(control.text(), control.font());
 	}
 }

@@ -11,7 +11,6 @@ import org.nibiru.ui.core.api.Checkbox;
 import apple.coregraphics.struct.CGPoint;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
-import apple.foundation.NSString;
 import apple.uikit.UILabel;
 import apple.uikit.UISwitch;
 import apple.uikit.UIView;
@@ -100,7 +99,6 @@ public class IOSCheckbox extends IOSValueWidget<UIView, Boolean> implements Chec
 	}
 
 	private CGSize labelSize() {
-		return label.text() != null ? NSString.stringWithString(label.text()).sizeWithFont(label.font())
-				: new CGSize(0, 0);
+		return sizeFromText(label.text(), label.font());
 	}
 }

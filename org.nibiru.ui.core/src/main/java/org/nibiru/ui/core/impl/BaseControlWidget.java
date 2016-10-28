@@ -58,6 +58,12 @@ public abstract class BaseControlWidget<T> extends BaseWidget {
     	setNativeSize(getMeasuredWidth(), getMeasuredHeight());
     }
 
+	public void scheduleLayout() {
+		if (getParent() != null) {
+			getParent().scheduleLayout();
+		}
+	}
+
 	abstract protected int getNativeHeight();
 
 	abstract protected int getNativeWidth();
