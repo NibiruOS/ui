@@ -1,7 +1,6 @@
 package org.nibiru.ui.core.impl;
 
 
-import com.google.common.base.Objects;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
@@ -121,14 +120,15 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
         for (Rule rule : rules) {
             Node node = new Node(rule);
             nodes.add(node);
-            for (Property property : rule.getSourceProperties()) {
-                dependantNodes.put(new VertexKey(rule.getSourceWidget(), property), node);
+            for (VertexKey vertex : rule.getSource()) {
+                dependantNodes.put(vertex, node);
             }
         }
         for (Node sourceNode : nodes) {
-            for (Node targetNode : dependantNodes.get(new VertexKey(sourceNode.rule.getTargetWidget(),
-                    sourceNode.rule.getTargetProperty()))) {
-                sourceNode.addOutputVertex(targetNode);
+            for (VertexKey target :sourceNode.rule.getTarget()) {
+                for (Node targetNode : dependantNodes.get(target)) {
+                    sourceNode.addOutputVertex(targetNode);
+                }
             }
         }
 
@@ -149,29 +149,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
             }
         }
         checkState(sortedRules.size() == rules.size(), "Cycle detected in rules definition.");
-    }
-
-    private class VertexKey {
-        private final Widget widget;
-        private final Property property;
-
-        private VertexKey(Widget widget, Property property) {
-            this.widget = widget;
-            this.property = property;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            VertexKey vertexKey = (VertexKey) o;
-            return Objects.equal(this.widget, vertexKey.widget) && Objects.equal(this.property, vertexKey.property);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(widget, property);
-        }
     }
 
     private class Node {

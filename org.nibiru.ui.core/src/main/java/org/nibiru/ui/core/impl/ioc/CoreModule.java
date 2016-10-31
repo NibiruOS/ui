@@ -9,7 +9,7 @@ import org.nibiru.ui.core.impl.GridPanelImpl;
 import org.nibiru.ui.core.impl.HorizontalPanelImpl;
 import org.nibiru.ui.core.impl.ListWidgetImpl;
 import org.nibiru.ui.core.impl.RelativePanelImpl;
-import org.nibiru.ui.core.impl.RuleFactoryImpl;
+import org.nibiru.ui.core.impl.rule.RuleFactoryImpl;
 import org.nibiru.ui.core.impl.VerticalPanelImpl;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilder;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
