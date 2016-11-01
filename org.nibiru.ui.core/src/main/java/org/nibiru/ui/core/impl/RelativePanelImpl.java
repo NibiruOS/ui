@@ -109,6 +109,9 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     @Override
     public void onLayout() {
         super.onLayout();
+        for (Widget child : getChildren()) {
+            child.layout();
+        }
     }
 
     private void performTopologicalSort() {
