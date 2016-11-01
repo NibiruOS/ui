@@ -24,30 +24,26 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel> implements org
 		checkNotNull(child);
 		final com.google.gwt.user.client.ui.Widget gwtWidget = (com.google.gwt.user.client.ui.Widget) child.asNative();
 		return new Position() {
-			private int x;
-			private int y;
 
 			@Override
 			public int getX() {
-				return x;
+				return control.getWidgetLeft(gwtWidget);
 			}
 
 			@Override
 			public Position setX(int x) {
-				this.x = x;
-				control.setWidgetPosition(gwtWidget, x, y);
+				control.setWidgetPosition(gwtWidget, x, getY());
 				return this;
 			}
 
 			@Override
 			public int getY() {
-				return y;
+				return control.getWidgetTop(gwtWidget);
 			}
 
 			@Override
 			public Position setY(int y) {
-				this.y = y;
-				control.setWidgetPosition(gwtWidget, x, y);
+				control.setWidgetPosition(gwtWidget, getX(), y);
 				return this;
 			}
 		};
