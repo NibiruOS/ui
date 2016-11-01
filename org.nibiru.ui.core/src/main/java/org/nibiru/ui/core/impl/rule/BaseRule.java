@@ -2,7 +2,6 @@ package org.nibiru.ui.core.impl.rule;
 
 import com.google.common.collect.Lists;
 
-import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.AbsolutePanel.Position;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.Property;
@@ -18,13 +17,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public abstract class BaseRule implements RelativePanel.Rule {
     private final List<VertexKey> target;
     private final List<VertexKey> source;
-    private final AbsolutePanel container;
+    private final RelativePanel panel;
     private final int margin;
     private Widget targetWidget;
 
-    public BaseRule(AbsolutePanel container,
+    public BaseRule(RelativePanel panel,
                     int margin) {
-        this.container = checkNotNull(container);
+        this.panel = checkNotNull(panel);
         this.margin = margin;
         target = Lists.newArrayList();
         source = Lists.newArrayList();
@@ -33,9 +32,9 @@ public abstract class BaseRule implements RelativePanel.Rule {
 
     public BaseRule(Widget targetWidget,
                     Property targetProperty,
-                    AbsolutePanel container,
+                    RelativePanel panel,
                     int margin) {
-        this(container, margin);
+        this(panel, margin);
         addTarget(targetWidget, targetProperty);
     }
 
@@ -73,9 +72,9 @@ public abstract class BaseRule implements RelativePanel.Rule {
         if (vertex.getWidget() != null) {
             switch (vertex.getProperty()) {
                 case X:
-                    return container.getPosition(vertex.getWidget()).getX();
+                    return panel.getContainer().getPosition(vertex.getWidget()).getX();
                 case Y:
-                    return container.getPosition(vertex.getWidget()).getY();
+                    return panel.getContainer().getPosition(vertex.getWidget()).getY();
                 case WIDTH:
                     return vertex.getWidget().getMeasuredWidth();
                 case HEIGHT:
@@ -88,9 +87,9 @@ public abstract class BaseRule implements RelativePanel.Rule {
                 case Y:
                     return 0;
                 case WIDTH:
-                    return container.getMeasuredWidth();
+                    return panel.getMeasuredWidth();
                 case HEIGHT:
-                    return container.getMeasuredHeight();
+                    return panel.getMeasuredHeight();
                 default:
             }
         }
@@ -103,6 +102,6 @@ public abstract class BaseRule implements RelativePanel.Rule {
     }
 
     protected Position getPosition() {
-        return container.getPosition(getTargetWidget());
+        return panel.getContainer().getPosition(getTargetWidget());
     }
 }

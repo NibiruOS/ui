@@ -1,6 +1,6 @@
 package org.nibiru.ui.core.impl.rule;
 
-import org.nibiru.ui.core.api.AbsolutePanel;
+import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
 
@@ -16,9 +16,9 @@ public class AlignBottomRule extends BaseRule {
 
     public AlignBottomRule(Widget target,
                            @Nullable Widget source,
-                           AbsolutePanel container,
+                           RelativePanel panel,
                            int margin) {
-        super(target, Y, container, margin);
+        super(target, Y, panel, margin);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);
         targetHeight = addSource(target, HEIGHT);

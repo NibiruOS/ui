@@ -60,9 +60,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
         applyRulesAndUpdatesize(widthMeasureSpec, heightMeasureSpec);
-        // 2nd time, to aplly using new sizes
-        // TODO: This should not be necessary
-        applyRulesAndUpdatesize(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void applyRulesAndUpdatesize(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {

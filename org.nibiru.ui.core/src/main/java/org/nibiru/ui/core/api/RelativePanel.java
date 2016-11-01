@@ -24,33 +24,33 @@ public interface RelativePanel extends Container {
     }
 
     interface RuleFactory {
-        Rule above(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule above(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule alignBottom(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule alignBottom(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule alignLeft(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule alignLeft(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule alignRight(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule alignRight(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule alignTop(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule alignTop(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule below(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule below(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule centerHorizontally(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule centerHorizontally(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule centerVertically(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule centerVertically(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule matchBottom(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule matchBottom(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule matchHeight(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule matchHeight(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule matchRight(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule matchRight(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule matchWidth(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule matchWidth(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule toLeftOf(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule toLeftOf(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
 
-        Rule toRightOf(Widget target, @Nullable Widget source, AbsolutePanel container, int margin);
+        Rule toRightOf(Widget target, @Nullable Widget source, RelativePanel panel, int margin);
     }
 
     class VertexKey {

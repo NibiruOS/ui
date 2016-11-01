@@ -1,6 +1,6 @@
 package org.nibiru.ui.core.impl.rule;
 
-import org.nibiru.ui.core.api.AbsolutePanel;
+import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
 
@@ -15,9 +15,9 @@ public class ToRightOfRule extends BaseRule {
 
     public ToRightOfRule(Widget target,
                          @Nullable Widget source,
-                         AbsolutePanel container,
+                         RelativePanel panel,
                          int margin) {
-        super(target, X, container, margin);
+        super(target, X, panel, margin);
         sourceX = addSource(source, X);
         sourceWidth = addSource(source, WIDTH);
     }

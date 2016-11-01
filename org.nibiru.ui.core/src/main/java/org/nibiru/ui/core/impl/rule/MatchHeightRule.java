@@ -1,6 +1,7 @@
 package org.nibiru.ui.core.impl.rule;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
+import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.Size;
@@ -14,9 +15,9 @@ public class MatchHeightRule extends BaseRule {
 
     public MatchHeightRule(Widget target,
                            @Nullable Widget source,
-                           AbsolutePanel container,
+                           RelativePanel panel,
                            int margin) {
-        super(target, HEIGHT, container, margin);
+        super(target, HEIGHT, panel, margin);
         sourceHeight = addSource(source, HEIGHT);
     }
 

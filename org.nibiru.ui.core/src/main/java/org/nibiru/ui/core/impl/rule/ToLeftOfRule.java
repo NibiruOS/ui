@@ -2,6 +2,7 @@ package org.nibiru.ui.core.impl.rule;
 
 
 import org.nibiru.ui.core.api.AbsolutePanel;
+import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;
 
@@ -16,9 +17,9 @@ public class ToLeftOfRule extends BaseRule {
 
     public ToLeftOfRule(Widget target,
                         @Nullable Widget source,
-                        AbsolutePanel container,
+                        RelativePanel panel,
                         int margin) {
-        super(target, X, container, margin);
+        super(target, X, panel, margin);
         sourceX = addSource(source, X);
         targetWidth = addSource(target, WIDTH);
     }
