@@ -125,11 +125,6 @@ public abstract class BaseWidget implements Widget {
 	protected void onLayout() {
 		
     }
-	
-	@Override
-	public void setStyleName(Enum<?> styleName) {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public IsParent getParent() {

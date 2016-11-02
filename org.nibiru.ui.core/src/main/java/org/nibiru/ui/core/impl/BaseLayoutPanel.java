@@ -159,4 +159,9 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	public void onLayout() {
 		panel.setNativeSize(getMeasuredWidth(), getMeasuredHeight());
 	}
+
+	@Override
+	public void setStyleName(Enum<?> styleName) {
+		panel.setStyleName(styleName);
+	}
 }
