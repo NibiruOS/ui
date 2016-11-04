@@ -11,7 +11,6 @@ import org.nibiru.ui.core.impl.ListWidgetImpl;
 import org.nibiru.ui.core.impl.RelativePanelImpl;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilder;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
-import org.nibiru.ui.core.impl.rule.RuleFactoryImpl;
 import org.nibiru.ui.core.impl.VerticalPanelImpl;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilder;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
@@ -156,10 +155,5 @@ public class CoreModule {
 	@Provides
 	public RelativePanel getRelativePanel(RelativePanelImpl relativePanel) {
 		return relativePanel;
-	}
-
-	@Provides
-	public RelativePanel.RuleFactory getRuleFactory(RuleFactoryImpl factory) {
-		return factory;
 	}
 }

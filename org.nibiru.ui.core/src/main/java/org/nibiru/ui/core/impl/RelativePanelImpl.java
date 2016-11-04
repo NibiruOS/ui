@@ -13,12 +13,27 @@ import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.loop.Looper;
+import org.nibiru.ui.core.impl.rule.AboveRule;
+import org.nibiru.ui.core.impl.rule.AlignBottomRule;
+import org.nibiru.ui.core.impl.rule.AlignLeftRule;
+import org.nibiru.ui.core.impl.rule.AlignRightRule;
+import org.nibiru.ui.core.impl.rule.AlignTopRule;
+import org.nibiru.ui.core.impl.rule.BelowRule;
+import org.nibiru.ui.core.impl.rule.CenterHorizontallyRule;
+import org.nibiru.ui.core.impl.rule.CenterVerticallyRule;
+import org.nibiru.ui.core.impl.rule.MatchBottomRule;
+import org.nibiru.ui.core.impl.rule.MatchHeightRule;
+import org.nibiru.ui.core.impl.rule.MatchRightRule;
+import org.nibiru.ui.core.impl.rule.MatchWidthRule;
+import org.nibiru.ui.core.impl.rule.ToLeftOfRule;
+import org.nibiru.ui.core.impl.rule.ToRightOfRule;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -45,6 +60,77 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     public AbsolutePanel getContainer() {
         return panel;
     }
+
+    @Override
+    public void addAbove(Widget target, @Nullable Widget source, int margin) {
+        addRule(new AboveRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addAlignBottom(Widget target, @Nullable Widget source, int margin) {
+        addRule(new AlignBottomRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addAlignLeft(Widget target, @Nullable Widget source, int margin) {
+        addRule(new AlignLeftRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addAlignRight(Widget target, @Nullable Widget source, int margin) {
+        addRule(new AlignRightRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addAlignTop(Widget target, @Nullable Widget source, int margin) {
+        addRule(new AlignTopRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addBelow(Widget target, @Nullable Widget source, int margin) {
+        addRule(new BelowRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addCenterHorizontally(Widget target, @Nullable Widget source, int margin) {
+        addRule(new CenterHorizontallyRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addCenterVertically(Widget target, @Nullable Widget source, int margin) {
+        addRule(new CenterVerticallyRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchBottom(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchBottomRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchHeight(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchHeightRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchRight(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchRightRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchWidth(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchWidthRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addToLeftOf(Widget target, @Nullable Widget source, int margin) {
+        addRule(new ToLeftOfRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addToRightOf(Widget target, @Nullable Widget source, int margin) {
+        addRule(new ToRightOfRule(target, source, this, margin));
+    }
+
 
     @Override
     public void requestLayout() {
