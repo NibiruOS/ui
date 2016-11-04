@@ -11,6 +11,7 @@ import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
@@ -28,12 +29,18 @@ import org.nibiru.ui.ios.widget.IOSScrollPanel;
 import org.nibiru.ui.ios.widget.IOSSpinner;
 import org.nibiru.ui.ios.widget.IOSTextBox;
 import org.nibiru.ui.ios.widget.IOSTreeView;
+import org.nibiru.ui.ios.widget.IOSViewport;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class IOSModule {
+	@Provides
+	public Viewport getViewport(IOSViewport viewport) {
+		return viewport;
+	}
+
 	@Provides
 	public Button getButton(IOSButton button) {
 		return button;
