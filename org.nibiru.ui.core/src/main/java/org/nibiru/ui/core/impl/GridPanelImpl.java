@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.GridPanel;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.loop.Looper;
@@ -16,8 +17,8 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
 	private int maxWidths[];
 	
 	@Inject
-	public GridPanelImpl(AbsolutePanel panel, Looper looper) {
-		super(panel, looper);
+	public GridPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+		super(panel, viewport, looper);
 	}
 
 	@Override

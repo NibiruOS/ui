@@ -11,6 +11,7 @@ import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
@@ -29,6 +30,7 @@ import org.nibiru.ui.gwt.widget.GwtScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtSpinner;
 import org.nibiru.ui.gwt.widget.GwtTextBox;
 import org.nibiru.ui.gwt.widget.GwtTreeView;
+import org.nibiru.ui.gwt.widget.GwtViewport;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -38,6 +40,11 @@ import dagger.Provides;
 
 @Module
 public class GwtModule {
+	@Provides
+	public Viewport getViewport(GwtViewport viewport) {
+		return viewport;
+	}
+
 	@Provides
 	public Button getButton(GwtButton button) {
 		return button;

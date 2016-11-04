@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
@@ -13,8 +14,8 @@ import org.nibiru.ui.core.api.layout.Size;
 public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel {
 	
 	@Inject
-	public VerticalPanelImpl(AbsolutePanel panel, Looper looper) {
-		super(panel, looper);
+	public VerticalPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+		super(panel, viewport, looper);
 	}
 
 	@Override

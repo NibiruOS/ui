@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Container;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
@@ -12,11 +13,13 @@ import org.nibiru.ui.core.api.loop.Looper;
 
 public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	protected final AbsolutePanel panel;
-	protected final Looper looper;
+	protected final Viewport viewport;
+	private final Looper looper;
 	private boolean dirty;
 
-	BaseLayoutPanel(AbsolutePanel panel, Looper looper) {
+	BaseLayoutPanel(AbsolutePanel panel, Viewport viewport, Looper looper) {
 		this.panel = checkNotNull(panel);
+		this.viewport = checkNotNull(viewport);
 		this.looper = checkNotNull(looper);
 	}
 
@@ -49,7 +52,15 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	 */
 	@Override
 	public void requestLayout() {
-		measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+		if (getParent() != null) {
+			// TODO; Is this ok? Should it be computed according to parent's properties?
+			// should requestLayout() allways be called on root widget?
+			measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+		} else {
+			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getWidth()), getWidth());
+			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getHeight()), getHeight());
+			measure(widthSpec, heightSpec);
+		}
 		layout();
 	}
 

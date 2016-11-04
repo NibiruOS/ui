@@ -14,6 +14,7 @@ import org.nibiru.ui.android.widget.AndroidScrollPanel;
 import org.nibiru.ui.android.widget.AndroidSpinner;
 import org.nibiru.ui.android.widget.AndroidTextBox;
 import org.nibiru.ui.android.widget.AndroidTreeView;
+import org.nibiru.ui.android.widget.AndroidViewport;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
@@ -25,6 +26,7 @@ import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
@@ -34,6 +36,11 @@ import dagger.Provides;
 
 @Module
 public class AndroidModule {
+	@Provides
+	public Viewport getViewport(AndroidViewport viewport) {
+		return viewport;
+	}
+
 	@Provides
 	public Button getButton(AndroidButton button) {
 		return button;

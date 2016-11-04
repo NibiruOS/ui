@@ -99,13 +99,11 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 	abstract T buildControl(Context context, int styleResource);
 
 	int dpToPx(int dp) {
-		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-		return (int) ((dp * displayMetrics.density) + 0.5);
+		return AndroidViewport.dpToPx(dp, context);
 	}
 
 	int pxToDp(int px) {
-		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-		return (int) ((px / displayMetrics.density) + 0.5);
+		return AndroidViewport.pxToDp(px, context);
 	}
 
 	private LayoutParams getLayoutParams() {

@@ -9,6 +9,7 @@ import com.google.common.collect.Sets;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.RelativePanel;
+import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.loop.Looper;
@@ -28,8 +29,8 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     private boolean dirty;
 
     @Inject
-    public RelativePanelImpl(AbsolutePanel panel, Looper looper) {
-        super(panel, looper);
+    public RelativePanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+        super(panel, viewport, looper);
         this.rules = Sets.newHashSet();
         this.sortedRules = Lists.newArrayList();
     }

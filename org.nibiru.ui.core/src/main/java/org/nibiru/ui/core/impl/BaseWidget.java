@@ -69,7 +69,6 @@ public abstract class BaseWidget implements Widget {
 	 * If parent had an exactly size, we use that one, if not we use the one calculated after measuring all its children.
 	 * @param size value calculated after measuring all children
 	 * @param measureSpec restrictions imposed to the widget
-	 * @param childMeasuredState
 	 * @return widget size
 	 */
 	public int resolveSize(int size, MeasureSpec measureSpec) {
