@@ -21,9 +21,15 @@ import org.nibiru.ui.core.impl.rule.AlignTopRule;
 import org.nibiru.ui.core.impl.rule.BelowRule;
 import org.nibiru.ui.core.impl.rule.CenterHorizontallyRule;
 import org.nibiru.ui.core.impl.rule.CenterVerticallyRule;
-import org.nibiru.ui.core.impl.rule.MatchBottomRule;
+import org.nibiru.ui.core.impl.rule.MatchBottomWithBottomRule;
+import org.nibiru.ui.core.impl.rule.MatchBottomWithTopRule;
 import org.nibiru.ui.core.impl.rule.MatchHeightRule;
-import org.nibiru.ui.core.impl.rule.MatchRightRule;
+import org.nibiru.ui.core.impl.rule.MatchLeftWithLeftRule;
+import org.nibiru.ui.core.impl.rule.MatchLeftWithRightRule;
+import org.nibiru.ui.core.impl.rule.MatchRightWithLeftRule;
+import org.nibiru.ui.core.impl.rule.MatchRightWithRightRule;
+import org.nibiru.ui.core.impl.rule.MatchTopWithBottomRule;
+import org.nibiru.ui.core.impl.rule.MatchTopWithTopRule;
 import org.nibiru.ui.core.impl.rule.MatchWidthRule;
 import org.nibiru.ui.core.impl.rule.ToLeftOfRule;
 import org.nibiru.ui.core.impl.rule.ToRightOfRule;
@@ -46,7 +52,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     @Inject
     public RelativePanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
         super(panel, viewport, looper);
-        this.rules = Sets.newHashSet();
+        this.rules = Sets.newLinkedHashSet();
         this.sortedRules = Lists.newArrayList();
     }
 
@@ -102,8 +108,13 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     }
 
     @Override
-    public void addMatchBottom(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchBottomRule(target, source, this, margin));
+    public void addMatchBottomWithBottom(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchBottomWithBottomRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchBottomWithTop(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchBottomWithTopRule(target, source, this, margin));
     }
 
     @Override
@@ -112,8 +123,33 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     }
 
     @Override
-    public void addMatchRight(Widget target, @Nullable Widget source, int margin) {
-        addRule(new MatchRightRule(target, source, this, margin));
+    public void addMatchLeftWithLeft(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchLeftWithLeftRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchLeftWithRight(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchLeftWithRightRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchRightWithLeft(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchRightWithLeftRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchRightWithRight(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchRightWithRightRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchTopWithBottom(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchTopWithBottomRule(target, source, this, margin));
+    }
+
+    @Override
+    public void addMatchTopWithTop(Widget target, @Nullable Widget source, int margin) {
+        addRule(new MatchTopWithTopRule(target, source, this, margin));
     }
 
     @Override
@@ -203,7 +239,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
 
     private void performTopologicalSort() {
         Multimap<VertexKey, Node> dependantNodes = HashMultimap.create();
-        Set<Node> nodes = Sets.newHashSet();
+        Set<Node> nodes = Sets.newLinkedHashSet();
         for (Rule rule : rules) {
             Node node = new Node(rule);
             nodes.add(node);
@@ -212,7 +248,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
             }
         }
         for (Node sourceNode : nodes) {
-            for (VertexKey target :sourceNode.rule.getTarget()) {
+            for (VertexKey target : sourceNode.rule.getTarget()) {
                 for (Node targetNode : dependantNodes.get(target)) {
                     sourceNode.addOutputVertex(targetNode);
                 }
@@ -225,17 +261,23 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 removalQueue.add(node);
             }
         }
-        while (!removalQueue.isEmpty()) {
-            Node node = removalQueue.remove();
-            sortedRules.add(node.rule);
-            for (Node dependant : node.outputVertexs) {
-                dependant.inputVertexCount--;
-                if (dependant.inputVertexCount == 0) {
-                    removalQueue.add(dependant);
+        while (!nodes.isEmpty()) {
+            while (!removalQueue.isEmpty()) {
+                Node node = removalQueue.remove();
+                nodes.remove(node);
+                sortedRules.add(node.rule);
+                for (Node dependant : node.outputVertexs) {
+                    dependant.inputVertexCount--;
+                    if (dependant.inputVertexCount == 0 && nodes.contains(dependant)) {
+                        removalQueue.add(dependant);
+                    }
                 }
             }
+            if (!nodes.isEmpty()) {
+                removalQueue.add(nodes.iterator().next());
+            }
         }
-        checkState(sortedRules.size() == rules.size(), "Cycle detected in rules definition.");
+        checkState(sortedRules.size() == rules.size(), "Unresolved cycle detected in rules definition.");
     }
 
     private class Node {

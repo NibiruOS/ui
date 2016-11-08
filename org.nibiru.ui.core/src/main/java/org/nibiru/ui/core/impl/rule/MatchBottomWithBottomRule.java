@@ -10,15 +10,15 @@ import javax.annotation.Nullable;
 import static org.nibiru.ui.core.api.RelativePanel.Property.HEIGHT;
 import static org.nibiru.ui.core.api.RelativePanel.Property.Y;
 
-public class MatchBottomRule extends BaseRule {
+public class MatchBottomWithBottomRule extends BaseRule {
     private final VertexKey sourceY;
     private final VertexKey sourceHeight;
     private final VertexKey targetY;
 
-    public MatchBottomRule(Widget target,
-                           @Nullable Widget source,
-                           RelativePanel panel,
-                           int margin) {
+    public MatchBottomWithBottomRule(Widget target,
+                                     @Nullable Widget source,
+                                     RelativePanel panel,
+                                     int margin) {
         super(target, HEIGHT, panel, margin);
         sourceY = addSource(source, Y);
         sourceHeight = addSource(source, HEIGHT);

@@ -39,11 +39,23 @@ public interface RelativePanel extends Container {
 
     void addCenterVertically(Widget target, @Nullable Widget source, int margin);
 
-    void addMatchBottom(Widget target, @Nullable Widget source, int margin);
+    void addMatchBottomWithBottom(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchBottomWithTop(Widget target, @Nullable Widget source, int margin);
 
     void addMatchHeight(Widget target, @Nullable Widget source, int margin);
 
-    void addMatchRight(Widget target, @Nullable Widget source, int margin);
+    void addMatchLeftWithLeft(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchLeftWithRight(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchRightWithLeft(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchRightWithRight(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchTopWithBottom(Widget target, @Nullable Widget source, int margin);
+
+    void addMatchTopWithTop(Widget target, @Nullable Widget source, int margin);
 
     void addMatchWidth(Widget target, @Nullable Widget source, int margin);
 
