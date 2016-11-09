@@ -283,6 +283,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 removalQueue.add(node);
             }
         }
+        sortedRules.clear();
         while (!nodes.isEmpty()) {
             while (!removalQueue.isEmpty()) {
                 Node node = removalQueue.remove();
