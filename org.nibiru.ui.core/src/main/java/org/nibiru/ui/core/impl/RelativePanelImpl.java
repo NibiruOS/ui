@@ -3,6 +3,7 @@ package org.nibiru.ui.core.impl;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
@@ -12,6 +13,7 @@ import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
+import org.nibiru.ui.core.api.layout.Size;
 import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.rule.AboveRule;
 import org.nibiru.ui.core.impl.rule.AlignBottomRule;
@@ -36,6 +38,7 @@ import org.nibiru.ui.core.impl.rule.ToRightOfRule;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
@@ -47,13 +50,24 @@ import static com.google.common.base.Preconditions.checkState;
 public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel {
     private final Set<Rule> rules;
     private final List<Rule> sortedRules;
+    private final Map<Widget, Size> widths;
+    private final Map<Widget, Size> heights;
     private boolean dirty;
 
     @Inject
     public RelativePanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
         super(panel, viewport, looper);
-        this.rules = Sets.newLinkedHashSet();
-        this.sortedRules = Lists.newArrayList();
+        rules = Sets.newLinkedHashSet();
+        sortedRules = Lists.newArrayList();
+        widths = Maps.newHashMap();
+        heights = Maps.newHashMap();
+    }
+
+    @Override
+    public void add(Widget child) {
+        super.add(child);
+        widths.put(child, child.getWidth());
+        heights.put(child, child.getWidth());
     }
 
     @Override
@@ -179,13 +193,21 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
 
     @Override
     protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
+        // TODO: Review this
+        for (Widget child : getChildren()) {
+            child.setWidth(widths.get(child));
+            child.setHeight(heights.get(child));
+            getContainer().getPosition(child).setX(0).setY(0);
+            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+        }
+        applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
         for (Widget child : getChildren()) {
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
-        applyRulesAndUpdatesize(widthMeasureSpec, heightMeasureSpec);
+        applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
     }
 
-    private void applyRulesAndUpdatesize(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
+    private void applyRulesAndUpdateSize(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         for (Rule rule : sortedRules) {
             rule.apply();
         }
