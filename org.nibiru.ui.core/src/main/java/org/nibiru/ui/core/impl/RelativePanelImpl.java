@@ -67,7 +67,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     public void add(Widget child) {
         super.add(child);
         widths.put(child, child.getWidth());
-        heights.put(child, child.getWidth());
+        heights.put(child, child.getHeight());
     }
 
     @Override
