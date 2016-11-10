@@ -15,7 +15,8 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	protected final AbsolutePanel panel;
 	protected final Viewport viewport;
 	private final Looper looper;
-	private boolean dirty;
+	private boolean isLayoutScheduled;
+	private boolean isLayoutDirty;
 
 	BaseLayoutPanel(AbsolutePanel panel, Viewport viewport, Looper looper) {
 		this.panel = checkNotNull(panel);
@@ -53,27 +54,36 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	@Override
 	public void requestLayout() {
 		if (getParent() != null) {
-			// TODO; Is this ok? Should it be computed according to parent's properties?
-			// should requestLayout() allways be called on root widget?
-			measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+			getParent().requestLayout();
 		} else {
 			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getWidth()), getWidth());
 			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getHeight()), getHeight());
 			measure(widthSpec, heightSpec);
+			layout();
 		}
-		layout();
+	}
+
+	@Override
+	public void layout() {
+		super.layout();
+		isLayoutDirty = false;
 	}
 
 	@Override
 	public void scheduleLayout() {
+		isLayoutDirty = true;
 		if (getParent() != null) {
 			getParent().scheduleLayout();
-		} else {
-			dirty = true;
+			isLayoutScheduled = false;
+		} else if (!isLayoutScheduled) {
 			looper.post(() -> {
-				if (dirty) {
-					dirty = false;
-					requestLayout();
+				isLayoutScheduled = false;
+				if (getParent() != null) {
+					getParent().scheduleLayout();
+				} else {
+					if (isLayoutDirty) {
+						requestLayout();
+					}
 				}
 			});
 		}

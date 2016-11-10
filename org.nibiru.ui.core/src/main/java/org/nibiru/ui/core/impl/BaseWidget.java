@@ -111,7 +111,8 @@ public abstract class BaseWidget implements Widget {
 		this.measuredHeight = measuredHeight;
 	}
 
-	public final void layout() {
+	@Override
+	public void layout() {
 		//TODO this is in case the children violates the parent size
 	    if (needsMeasureAgain) {
 	    	onMeasure(mOldWidthMeasureSpec, mOldHeightMeasureSpec);

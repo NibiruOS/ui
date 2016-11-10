@@ -52,7 +52,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
     private final List<Rule> sortedRules;
     private final Map<Widget, Size> widths;
     private final Map<Widget, Size> heights;
-    private boolean dirty;
+    private boolean areRulesDirty;
 
     @Inject
     public RelativePanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
@@ -72,7 +72,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
 
     @Override
     public void addRule(Rule rule) {
-        dirty = true;
+        areRulesDirty = true;
         rules.add(rule);
     }
 
@@ -181,16 +181,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
         addRule(new ToRightOfRule(target, source, this, margin));
     }
 
-
-    @Override
-    public void requestLayout() {
-        if (dirty) {
-            performTopologicalSort();
-            dirty = false;
-        }
-        super.requestLayout();
-    }
-
     @Override
     protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         // TODO: Review this
@@ -199,6 +189,9 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
             child.setHeight(heights.get(child));
             getContainer().getPosition(child).setX(0).setY(0);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
+        }
+        if (areRulesDirty) {
+            performTopologicalSort();
         }
         applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
         for (Widget child : getChildren()) {
@@ -301,6 +294,7 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
             }
         }
         checkState(sortedRules.size() == rules.size(), "Unresolved cycle detected in rules definition.");
+        areRulesDirty = false;
     }
 
     private class Node {
