@@ -30,10 +30,6 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 	public IOSTextBox(final UITextField textField) {
 		super(textField);
 		control.setBorderStyle(UITextBorderStyle.RoundedRect);
-		textField.addTargetActionForControlEvents((Object var1, long var2) -> {
-			getValue().notifyObservers();
-			scheduleLayout();
-		}, UIControlEvents.EditingChanged);
 	}
 
 	@Override

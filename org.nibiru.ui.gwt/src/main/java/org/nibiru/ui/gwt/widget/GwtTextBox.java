@@ -18,9 +18,6 @@ public class GwtTextBox extends GwtHasValueWidget<TextBox, String> implements or
     @Inject
     public GwtTextBox() {
         this(new TextBox());
-        control.addKeyPressHandler((KeyPressEvent event) -> {
-            scheduleLayout();
-        });
     }
 
     public GwtTextBox(TextBox textBox) {
