@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilder;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import org.nibiru.ui.ios.widget.IOSRadioButtonGroup;
 
 public class IOSRadioButtonGroupBuilderFactory implements RadioButtonGroupBuilderFactory {
 	@Inject
@@ -12,8 +13,6 @@ public class IOSRadioButtonGroupBuilderFactory implements RadioButtonGroupBuilde
 
 	@Override
 	public <T> RadioButtonGroupBuilder<T> create(Class<T> valueClass) {
-		// TODO Auto-generated method stub
-		return null;
+		return new RadioButtonGroupBuilder<T>(new IOSRadioButtonGroup<T>());
 	}
-
 }
