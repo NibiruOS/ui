@@ -222,19 +222,23 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 maxWidth = widthMeasureSpec.getValue();
                 break;
             case AT_MOST:
-                maxWidth = Math.max(maxWidth, widthMeasureSpec.getValue());
+                if(this.getWidth().equals(Size.MATCH_PARENT)) {
+                    maxWidth = widthMeasureSpec.getValue();
+                }
                 break;
             case UNSPECIFIED:
                 break;
             default:
-                throw new IllegalArgumentException("Invalid widthmesaure type:" + widthMeasureSpec.getType());
+                throw new IllegalArgumentException("Invalid width mesaure type:" + widthMeasureSpec.getType());
         }
         switch (heightMeasureSpec.getType()) {
             case EXACTLY:
                 maxHeight = heightMeasureSpec.getValue();
                 break;
             case AT_MOST:
-                maxHeight = Math.max(maxHeight, heightMeasureSpec.getValue());
+                if (this.getHeight().equals(Size.MATCH_PARENT)) {
+                    maxHeight = heightMeasureSpec.getValue();
+                }
                 break;
             case UNSPECIFIED:
                 break;
@@ -242,14 +246,18 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 throw new IllegalArgumentException("Invalid height mesaure type:" + heightMeasureSpec.getType());
         }
         updateSize(maxWidth, maxHeight);
+        //updateSize(resolveSize(maxWidth, widthMeasureSpec), resolveSize(maxHeight, heightMeasureSpec));
     }
 
     @Override
     public void onLayout() {
-        super.onLayout();
+//        for (Rule rule : sortedRules) {
+//            rule.apply();
+//        }
         for (Widget child : getChildren()) {
             child.layout();
         }
+        super.onLayout();
     }
 
     private void performTopologicalSort() {

@@ -78,11 +78,11 @@ public abstract class BaseWidget implements Widget {
 			result = size;
 			break;
 		case AT_MOST:
-			if (measureSpec.getValue() < size) {
-				needsMeasureAgain = true;
-			} else {
+//			if (measureSpec.getValue() < size) {
+//				result = measureSpec.getValue();
+//			} else {
 				result = size;
-			}
+//			}
 			break;
 		case EXACTLY:
 			result = measureSpec.getValue();

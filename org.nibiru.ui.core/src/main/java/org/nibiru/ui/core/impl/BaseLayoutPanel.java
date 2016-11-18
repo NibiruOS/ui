@@ -56,8 +56,8 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 		if (getParent() != null) {
 			getParent().requestLayout();
 		} else {
-			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getWidth()), getWidth());
-			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.exactly(viewport.getHeight()), getHeight());
+			MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getWidth()), getWidth());
+			MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getHeight()), getHeight());
 			measure(widthSpec, heightSpec);
 			layout();
 		}
