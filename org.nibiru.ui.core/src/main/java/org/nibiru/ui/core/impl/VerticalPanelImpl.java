@@ -22,28 +22,40 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
 	protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
 		int maxWidth = 0;
 		int mTotalLength = 0;
+		int childrenMP = 0;
 
 		for (Widget child : getChildren()) {
+			if(child.getHeight().equals(Size.MATCH_PARENT)) {
+				childrenMP++;
+			} else {
+				measureChild(child, childWidthSpec, childHeightSpec);
 
-			measureChild(child, childWidthSpec, childHeightSpec);
-	
-			final int measuredHeight = child.getMeasuredHeight();
-			final int measuredWidth = child.getMeasuredWidth();
+				mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
 
-			mTotalLength = Math.max(mTotalLength, mTotalLength + measuredHeight);
+				maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
 
-			//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-			if (childWidthSpec.getType() != Type.EXACTLY && child.getWidth() == Size.MATCH_PARENT) {
-				
+				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
+				if (childWidthSpec.getType() != Type.EXACTLY && child.getWidth() == Size.MATCH_PARENT) {
+
+				}
 			}
-			
-			maxWidth = Math.max(maxWidth, measuredWidth);
-
 		}
 
-		int finalHeightSize = resolveSize(mTotalLength, childHeightSpec);
+		if(childrenMP > 0) {
+			final int remainingSpace = (childHeightSpec.getValue() - mTotalLength) / childrenMP;
 
-		updateSize(resolveSize(maxWidth, childWidthSpec), finalHeightSize);
+			for (Widget child : getChildren()) {
+				if (child.getHeight().equals(Size.MATCH_PARENT)) {
+					measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
+
+					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
+
+					maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
+				}
+			}
+		}
+
+		updateSize(resolveSize(maxWidth, childWidthSpec, true), resolveSize(mTotalLength, childHeightSpec, false));
 
 	}
 	

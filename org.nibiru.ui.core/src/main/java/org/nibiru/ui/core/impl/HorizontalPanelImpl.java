@@ -22,28 +22,40 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
 	protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
 		int maxHeight = 0;
 		int mTotalLength = 0;
+		int childrenMP = 0;
 
 		for (Widget child : getChildren()) {
+			if(child.getWidth().equals(Size.MATCH_PARENT)) {
+				childrenMP++;
+			} else {
+				measureChild(child, childWidthSpec, childHeightSpec);
 
-			measureChild(child, childWidthSpec, childHeightSpec);
-	
-			final int childWidth = child.getMeasuredWidth();
-			final int childHeight = child.getMeasuredHeight();
+				mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
 
-			mTotalLength = Math.max(mTotalLength, mTotalLength + childWidth);
+				maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
 
-			//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-			if (childHeightSpec.getType() != Type.EXACTLY && child.getHeight() == Size.MATCH_PARENT) {
-				
+				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
+				if (childHeightSpec.getType() != Type.EXACTLY && child.getHeight() == Size.MATCH_PARENT) {
+
+				}
 			}
-			
-			maxHeight = Math.max(maxHeight, childHeight);
-
 		}
 
-		int finalWidthSize = resolveSize(mTotalLength, childWidthSpec);
+		if(childrenMP > 0) {
+			int remainingSpace = (childWidthSpec.getValue() - mTotalLength) / childrenMP;
 
-		updateSize(finalWidthSize, resolveSize(maxHeight, childHeightSpec));
+			for (Widget child : getChildren()) {
+				if (child.getWidth().equals(Size.MATCH_PARENT)) {
+					measureChild(child, MeasureSpec.atMost(remainingSpace), childHeightSpec);
+
+					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
+
+					maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
+				}
+			}
+		}
+
+		updateSize(resolveSize(mTotalLength, childWidthSpec, true), resolveSize(maxHeight, childHeightSpec, false));
 
 	}
 	

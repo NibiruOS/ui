@@ -71,18 +71,26 @@ public abstract class BaseWidget implements Widget {
 	 * @param measureSpec restrictions imposed to the widget
 	 * @return widget size
 	 */
-	public int resolveSize(int size, MeasureSpec measureSpec) {
+	public int resolveSize(int size, MeasureSpec measureSpec, boolean width) {
 		int result = size;
 		switch (measureSpec.getType()) {
 		case UNSPECIFIED:
 			result = size;
 			break;
 		case AT_MOST:
-//			if (measureSpec.getValue() < size) {
-//				result = measureSpec.getValue();
-//			} else {
-				result = size;
-//			}
+			if(width) {
+				if (getWidth().equals(Size.MATCH_PARENT)) {
+					result = measureSpec.getValue();
+				} else {
+					result = size;
+				}
+			} else {
+				if (getHeight().equals(Size.MATCH_PARENT)) {
+					result = measureSpec.getValue();
+				} else {
+					result = size;
+				}
+			}
 			break;
 		case EXACTLY:
 			result = measureSpec.getValue();
