@@ -189,6 +189,7 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 
 	@Override
 	public void setStyle(Style style) {
+		super.setStyle(style);
 		panel.setStyle(style);
 	}
 
