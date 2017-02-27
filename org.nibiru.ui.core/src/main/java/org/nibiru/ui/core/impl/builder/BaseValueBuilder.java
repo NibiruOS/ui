@@ -3,10 +3,10 @@ package org.nibiru.ui.core.impl.builder;
 import org.nibiru.model.core.impl.bind.Bind;
 import org.nibiru.ui.core.api.ValueWidget;
 
-abstract class BaseValueBuilder<T extends ValueWidget<V>, V, B extends BaseWidgetBuilder<T, ?>>
+abstract public class BaseValueBuilder<T extends ValueWidget<V>, V, B extends BaseWidgetBuilder<T, ?>>
 		extends BaseWidgetBuilder<T, B> {
 
-	BaseValueBuilder(T control) {
+	protected BaseValueBuilder(T control) {
 		super(control);
 	}
 

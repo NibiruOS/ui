@@ -6,7 +6,7 @@ import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Style;
 
 abstract public class BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T, ?>> extends BaseBuilder<T> {
-    public BaseStyleBuilder(T style) {
+    protected BaseStyleBuilder(T style) {
         super(style);
     }
 

@@ -4,9 +4,9 @@ import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
 
-abstract class BaseWidgetBuilder<T extends Widget, B extends BaseWidgetBuilder<T, ?>> extends BaseBuilder<T> {
+abstract public class BaseWidgetBuilder<T extends Widget, B extends BaseWidgetBuilder<T, ?>> extends BaseBuilder<T> {
 
-	BaseWidgetBuilder(T control) {
+	protected BaseWidgetBuilder(T control) {
 		super(control);
 	}
 

@@ -3,9 +3,9 @@ package org.nibiru.ui.core.impl.builder;
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
 
-abstract class BaseContainerBuilder<T extends Container, B extends BaseWidgetBuilder<T, ?>>
+public abstract class BaseContainerBuilder<T extends Container, B extends BaseWidgetBuilder<T, ?>>
 		extends BaseWidgetBuilder<T, B> {
-	BaseContainerBuilder(T widget) {
+	protected BaseContainerBuilder(T widget) {
 		super(widget);
 	}
 
