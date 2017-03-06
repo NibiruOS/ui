@@ -29,7 +29,7 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
 		this.basePath = checkNotNull(basePath);
 	}
 
-	public AndroidImage(final ImageView view, StyleResolver styleResolver, final String basePath) {
+	public AndroidImage(ImageView view, StyleResolver styleResolver, String basePath) {
 		super(view, styleResolver);
 		this.basePath = checkNotNull(basePath);
 	}

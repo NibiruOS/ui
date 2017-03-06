@@ -5,6 +5,7 @@ project.ext {
 	gwtVersion = '2.8.0'
 	androidVersion = '4.0.1.2'
 	daggerVersion = '2.7'
+	teaVmVersion = '0.5.0-SNAPSHOT'
 }
 
 allprojects {
