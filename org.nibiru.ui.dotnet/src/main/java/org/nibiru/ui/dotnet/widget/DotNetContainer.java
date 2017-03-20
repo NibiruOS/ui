@@ -11,10 +11,10 @@ import cli.System.Windows.Controls.Panel;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-abstract class DotNetContainer extends DotNetWidget<Panel> implements Container {
+abstract class DotNetContainer<T extends Panel> extends DotNetWidget<T> implements Container {
     private final List<Widget> children = Lists.newArrayList();
 
-    DotNetContainer(Panel control) {
+    DotNetContainer(T control) {
         super(control);
     }
 

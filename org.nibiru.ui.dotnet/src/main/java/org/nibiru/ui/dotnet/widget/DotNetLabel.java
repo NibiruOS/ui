@@ -52,7 +52,7 @@ public class DotNetLabel extends DotNetValueWidget<cli.System.Windows.Controls.L
 
     @Override
     protected int getNativeWidth() {
-        return Strings.nullToEmpty(getValue().get()).length() * 12;
+        return Strings.nullToEmpty(getValue().get()).length() * 8;
     }
 
     @Override

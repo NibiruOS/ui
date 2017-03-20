@@ -21,6 +21,6 @@ abstract class DotNetWidget<T extends FrameworkElement> extends BaseControlWidge
 	@Override
 	public void setNativeSize(int measuredWidth, int measuredHeight) {
 		control.set_Width(measuredWidth);
-		control.set_Height(measuredWidth);
+		control.set_Height(measuredHeight);
 	}
 }

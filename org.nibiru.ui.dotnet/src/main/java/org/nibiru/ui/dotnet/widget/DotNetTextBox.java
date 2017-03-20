@@ -51,6 +51,6 @@ public class DotNetTextBox
 
 	@Override
 	protected int getNativeWidth() {
-		return Strings.nullToEmpty(getValue().get()).length() * 12;
+		return Strings.nullToEmpty(getValue().get()).length() * 8;
 	}
 }

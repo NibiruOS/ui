@@ -1,48 +1,47 @@
 package org.nibiru.ui.dotnet.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Widget;
 
-import cli.System.Windows.Controls.StackPanel;
+import javax.inject.Inject;
+
+import cli.System.Windows.Controls.Canvas;
 import cli.System.Windows.FrameworkElement;
 
-public class DotNetAbsolutePanel extends DotNetContainer implements AbsolutePanel {
+public class DotNetAbsolutePanel extends DotNetContainer<Canvas> implements AbsolutePanel {
 	@Inject
 	public DotNetAbsolutePanel() {
-		super(new StackPanel());
+		super(new Canvas());
 	}
 
 	@Override
 	public Position getPosition(Widget child) {
-		final FrameworkElement view = (FrameworkElement) child.asNative();
 		return new Position() {
-			
+			FrameworkElement view = (FrameworkElement) child.asNative();
+			int x, y;
+
 			@Override
 			public Position setY(int y) {
-//				CGRect frame = view.frame();
-//				view.setFrame(new CGRect(new CGPoint(frame.origin().x(), y), frame.size()));
+				this.y = y;
+				control.SetTop(view, y);
 				return this;
 			}
 			
 			@Override
 			public Position setX(int x) {
-//				CGRect frame = view.frame();
-//				view.setFrame(new CGRect(new CGPoint(x, frame.origin().y()), frame.size()));
+				this.x = x;
+				control.SetLeft(view, x);
 				return this;
 			}
 			
 			@Override
 			public int getY() {
-				//return (int) view.frame().origin().y();
-				return 0;
+				return y;
 			}
 			
 			@Override
 			public int getX() {
-//				return (int) view.frame().origin().x();
-				return 0;
+				return x;
 			}
 		};
 	}
@@ -54,12 +53,12 @@ public class DotNetAbsolutePanel extends DotNetContainer implements AbsolutePane
 	@Override
 	protected int getNativeHeight() {
 		// TODO Fix value - add size computation
-		return 480;
+		return 1024;
 	}
 
 	@Override
 	protected int getNativeWidth() {
 		// TODO Fix value - add size computation
-		return 320;
+		return 1024;
 	}
 }
