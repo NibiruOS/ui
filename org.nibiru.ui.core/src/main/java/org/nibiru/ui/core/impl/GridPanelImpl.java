@@ -1,15 +1,15 @@
 package org.nibiru.ui.core.impl;
 
-import javax.inject.Inject;
+import com.google.common.collect.Iterables;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.GridPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.loop.Looper;
 
-import com.google.common.collect.Iterables;
+import javax.inject.Inject;
 
 public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
 	private int columns = 1;

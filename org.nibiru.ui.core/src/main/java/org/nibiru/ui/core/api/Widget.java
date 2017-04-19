@@ -1,10 +1,9 @@
 package org.nibiru.ui.core.api;
 
-import javax.annotation.Nullable;
-
 import org.nibiru.ui.core.api.layout.MeasureSpec;
-import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
+
+import javax.annotation.Nullable;
 
 public interface Widget {
 	String STYLE_NAME_PREFIX = "nibiru_";

@@ -1,5 +1,8 @@
 package org.nibiru.ui.gwt.ioc;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
@@ -12,12 +15,10 @@ import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtComboBoxBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
-import org.nibiru.ui.gwt.loop.SchedulerLooper;
 import org.nibiru.ui.gwt.resource.Resources;
 import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
 import org.nibiru.ui.gwt.widget.GwtButton;
@@ -31,9 +32,6 @@ import org.nibiru.ui.gwt.widget.GwtSpinner;
 import org.nibiru.ui.gwt.widget.GwtTextBox;
 import org.nibiru.ui.gwt.widget.GwtTreeView;
 import org.nibiru.ui.gwt.widget.GwtViewport;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.Scheduler;
 
 import dagger.Module;
 import dagger.Provides;
@@ -118,10 +116,5 @@ public class GwtModule {
 	@Provides
 	public Resources getResources() {
 		return GWT.create(Resources.class);
-	}
-
-	@Provides
-	public Looper getLooper(SchedulerLooper looper) {
-		return looper;
 	}
 }

@@ -1,14 +1,10 @@
 package org.nibiru.ui.android.widget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
-import android.view.ContextMenu;
 import android.view.Display;
 import android.view.WindowManager;
-
-import com.google.common.base.Preconditions;
 
 import org.nibiru.ui.core.api.Viewport;
 

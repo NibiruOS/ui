@@ -1,15 +1,15 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Widget;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
+import javax.inject.Inject;
 
 public class AndroidAbsolutePanel extends AndroidContainer<RelativeLayout> implements AbsolutePanel {
 	@Inject

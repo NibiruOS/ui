@@ -1,14 +1,14 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.gwt.resource.Resources;
 
-import com.google.gwt.user.client.ui.PopupPanel;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class GwtPopup implements Popup {
 	private final PopupPanel popup;

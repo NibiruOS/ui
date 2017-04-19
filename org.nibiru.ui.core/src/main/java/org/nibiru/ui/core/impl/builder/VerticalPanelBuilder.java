@@ -1,8 +1,8 @@
 package org.nibiru.ui.core.impl.builder;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.VerticalPanel;
+
+import javax.inject.Inject;
 
 public class VerticalPanelBuilder extends BaseContainerBuilder<VerticalPanel, VerticalPanelBuilder> {
 	@Inject

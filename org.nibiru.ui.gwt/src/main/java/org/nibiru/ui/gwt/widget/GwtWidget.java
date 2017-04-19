@@ -1,10 +1,5 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.nibiru.ui.core.api.style.Color;
-import org.nibiru.ui.core.impl.BaseControlWidget;
-
 import com.google.common.base.Function;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
@@ -12,6 +7,11 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Widget;
+
+import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.impl.BaseControlWidget;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 	GwtWidget(T control) {

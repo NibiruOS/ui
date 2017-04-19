@@ -1,6 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
+import com.google.common.base.Strings;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -8,13 +8,12 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.TextBox;
 
-import com.google.common.base.Strings;
+import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGPoint;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UITextField;
-import apple.uikit.enums.UIControlEvents;
 import apple.uikit.enums.UITextBorderStyle;
 
 public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {

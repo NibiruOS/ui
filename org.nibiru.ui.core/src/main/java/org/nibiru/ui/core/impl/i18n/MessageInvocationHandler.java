@@ -1,6 +1,6 @@
 package org.nibiru.ui.core.impl.i18n;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.annotations.GwtIncompatible;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import javax.annotation.Nullable;
 
-import com.google.common.annotations.GwtIncompatible;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @GwtIncompatible("Reflection")
 public class MessageInvocationHandler implements InvocationHandler {

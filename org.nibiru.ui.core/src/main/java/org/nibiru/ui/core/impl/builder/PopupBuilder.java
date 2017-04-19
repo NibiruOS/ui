@@ -1,12 +1,12 @@
 package org.nibiru.ui.core.impl.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.ui.core.api.Popup;
+import org.nibiru.ui.core.api.Widget;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PopupBuilder extends BaseBuilder<Popup> {
 	private final Provider<HorizontalPanelBuilder> horizontalPanel;

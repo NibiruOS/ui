@@ -1,18 +1,18 @@
 package org.nibiru.ui.android.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 
-import java.util.List;
+import com.google.common.collect.Lists;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.common.collect.Lists;
+import java.util.List;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T>implements Container {
 	private final List<Widget> children = Lists.newArrayList();

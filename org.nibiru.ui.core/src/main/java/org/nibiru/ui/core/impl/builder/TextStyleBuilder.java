@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.TextStyle;
+
+import javax.inject.Inject;
 
 public class TextStyleBuilder extends BaseStyleBuilder<TextStyle, TextStyleBuilder> {
     @Inject

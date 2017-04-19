@@ -1,8 +1,8 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.PasswordBox;
+
+import javax.inject.Inject;
 
 public class IOSPasswordBox extends IOSTextBox implements PasswordBox {
 	@Inject

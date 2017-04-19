@@ -1,6 +1,10 @@
 package org.nibiru.ui.android.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import android.content.Context;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
 
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.android.style.StyleResolver;
@@ -9,11 +13,7 @@ import org.nibiru.ui.core.api.HasClickHandler;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
-import android.content.Context;
-import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.view.View.MeasureSpec;
-import android.view.ViewGroup.LayoutParams;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implements HasClickHandler {
 	private final Context context;

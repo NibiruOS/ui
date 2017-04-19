@@ -1,14 +1,14 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.annotation.Nullable;
+import com.google.gwt.dom.client.Element;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 
-import com.google.gwt.dom.client.Element;
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ElementAdapter extends BaseValue<String> {
 	private final Element element;

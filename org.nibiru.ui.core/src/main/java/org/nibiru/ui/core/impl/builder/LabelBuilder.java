@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
+import org.nibiru.ui.core.api.Label;
+
 import javax.annotation.Nullable;
 import javax.inject.Inject;
-
-import org.nibiru.ui.core.api.Label;
 
 public class LabelBuilder extends BaseClickableValueBuilder<Label, String, LabelBuilder> {
 	@Inject

@@ -1,7 +1,5 @@
 package org.nibiru.ui.core.api.style;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 public class Size {
     /**
      * This class is used by the child widget to specify its size.

@@ -1,7 +1,6 @@
 package org.nibiru.ui.core.impl.rule;
 
 
-import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.RelativePanel.VertexKey;
 import org.nibiru.ui.core.api.Widget;

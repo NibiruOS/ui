@@ -1,36 +1,25 @@
 package org.nibiru.ui.ios.widget;
 
-import java.util.List;
+import com.google.common.collect.Lists;
 
-import javax.inject.Inject;
-
-import org.moe.natj.general.ann.NInt;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ComboBox;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGPoint;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
-import apple.foundation.NSString;
-import apple.uikit.UIActionSheet;
-import apple.uikit.UIAlertAction;
-import apple.uikit.UIAlertController;
-import apple.uikit.UIAlertView;
-import apple.uikit.UIApplication;
 import apple.uikit.UIColor;
 import apple.uikit.UILabel;
 import apple.uikit.UIPickerView;
-import apple.uikit.UIViewController;
-import apple.uikit.enums.UIAlertControllerStyle;
-import apple.uikit.protocol.UIActionSheetDelegate;
 import apple.uikit.protocol.UIPickerViewDataSource;
 import apple.uikit.protocol.UIPickerViewDelegate;
-import apple.uikit.protocol.UIViewControllerAnimatedTransitioning;
 
 public class IOSComboBox<V> extends IOSValueWidget<UILabel, V> implements ComboBox<V> {
 	private V selectedItem;

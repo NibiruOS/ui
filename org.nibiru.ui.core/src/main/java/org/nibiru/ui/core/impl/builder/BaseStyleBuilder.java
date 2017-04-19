@@ -1,8 +1,8 @@
 package org.nibiru.ui.core.impl.builder;
 
 import org.nibiru.ui.core.api.style.Alignment;
-import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
 
 abstract public class BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T, ?>> extends BaseBuilder<T> {

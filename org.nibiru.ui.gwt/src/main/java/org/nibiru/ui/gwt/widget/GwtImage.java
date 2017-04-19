@@ -1,17 +1,17 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.LoadEvent;
+import com.google.gwt.user.client.ui.Image;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.user.client.ui.Image;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class GwtImage extends GwtClickableValueWidget<Image, String> implements org.nibiru.ui.core.api.Image {
 	private boolean dirty;

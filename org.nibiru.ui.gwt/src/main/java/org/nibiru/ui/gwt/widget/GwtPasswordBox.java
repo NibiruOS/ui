@@ -1,10 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 
 import org.nibiru.model.core.impl.java.JavaType;
 
-import com.google.gwt.user.client.ui.PasswordTextBox;
+import javax.inject.Inject;
 
 public class GwtPasswordBox extends GwtHasValueWidget<PasswordTextBox, String> implements org.nibiru.ui.core.api.PasswordBox {
 	private static int MAGIC_PADDING = 6;

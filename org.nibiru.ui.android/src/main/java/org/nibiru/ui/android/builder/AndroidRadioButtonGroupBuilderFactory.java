@@ -1,15 +1,15 @@
 package org.nibiru.ui.android.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import android.content.Context;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.android.widget.AndroidRadioButtonGroup;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilder;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 
-import android.content.Context;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class AndroidRadioButtonGroupBuilderFactory implements RadioButtonGroupBuilderFactory {
 	private final Context context;

@@ -1,16 +1,16 @@
 package org.nibiru.ui.android.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
-
-import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.Window;
+
+import org.nibiru.ui.core.api.Popup;
+import org.nibiru.ui.core.api.Widget;
+
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class AndroidPopup implements Popup {
 	private final Dialog dialog;

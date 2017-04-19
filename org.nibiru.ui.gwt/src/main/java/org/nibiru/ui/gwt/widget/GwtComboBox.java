@@ -1,8 +1,8 @@
 package org.nibiru.ui.gwt.widget;
 
-import java.util.List;
-
-import javax.inject.Inject;
+import com.google.common.collect.Lists;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.user.client.ui.ListBox;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -10,9 +10,9 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.ComboBox;
 
-import com.google.common.collect.Lists;
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.user.client.ui.ListBox;
+import java.util.List;
+
+import javax.inject.Inject;
 
 public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboBox<V>{
 	private V selectedItem;

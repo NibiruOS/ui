@@ -2,7 +2,6 @@ package org.nibiru.ui.android.ioc;
 
 import org.nibiru.ui.android.builder.AndroidComboBoxBuilderFactory;
 import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
-import org.nibiru.ui.android.loop.HandlerLooper;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
 import org.nibiru.ui.android.widget.AndroidCheckbox;
@@ -27,7 +26,6 @@ import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 
@@ -105,10 +103,5 @@ public class AndroidModule {
 	@Provides
 	public AbsolutePanel getAbsolutePanel(AndroidAbsolutePanel absolutePanel) {
 		return absolutePanel;
-	}
-
-	@Provides
-	public Looper getLooper(HandlerLooper looper) {
-		return looper;
 	}
 }

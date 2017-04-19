@@ -1,14 +1,14 @@
 package org.nibiru.ui.core.impl.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
-import javax.inject.Provider;
-
 import org.nibiru.ui.core.api.GridPanel;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Style;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class FormBuilder extends BaseBuilder<GridPanel> {
 	private final HorizontalPanelBuilder horizontalPanelBuilder;

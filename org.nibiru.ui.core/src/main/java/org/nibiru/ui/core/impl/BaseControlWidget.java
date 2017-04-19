@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl;
 
-import javax.annotation.Nullable;
-
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
+
+import javax.annotation.Nullable;
 
 public abstract class BaseControlWidget<T> extends BaseWidget {
 	protected T control;

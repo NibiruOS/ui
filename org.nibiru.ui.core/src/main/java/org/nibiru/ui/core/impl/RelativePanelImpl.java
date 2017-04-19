@@ -8,13 +8,13 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.style.Size;
-import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.impl.rule.AboveRule;
 import org.nibiru.ui.core.impl.rule.AlignBottomRule;
 import org.nibiru.ui.core.impl.rule.AlignLeftRule;

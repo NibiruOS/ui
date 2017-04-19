@@ -1,13 +1,13 @@
 package org.nibiru.ui.gwt.widget;
 
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.gwt.user.client.ui.AbsolutePanel;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel> implements org.nibiru.ui.core.api.AbsolutePanel {
 	@Inject

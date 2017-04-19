@@ -2,7 +2,6 @@ package org.nibiru.ui.core.impl.rule;
 
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.style.Size;
 
 import javax.annotation.Nullable;
 

@@ -1,7 +1,6 @@
 package org.nibiru.ui.core.impl.builder;
 
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
 
 abstract public class BaseWidgetBuilder<T extends Widget, B extends BaseWidgetBuilder<T, ?>> extends BaseBuilder<T> {

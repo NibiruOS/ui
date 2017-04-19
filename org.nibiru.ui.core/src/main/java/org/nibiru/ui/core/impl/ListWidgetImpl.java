@@ -1,7 +1,6 @@
 package org.nibiru.ui.core.impl;
 
-import javax.inject.Inject;
-
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
@@ -10,7 +9,8 @@ import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.loop.Looper;
+
+import javax.inject.Inject;
 
 public class ListWidgetImpl extends VerticalPanelImpl implements ListWidget {
 	private final Value<Iterable<Widget>> value = new BaseValue<Iterable<Widget>>() {

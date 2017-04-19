@@ -1,12 +1,12 @@
 package org.nibiru.ui.core.impl.builder;
 
-import java.util.Collection;
+import com.google.common.collect.Lists;
 
-import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.TreeView.Item;
+import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.impl.SimpleTreeViewItem;
 
-import com.google.common.collect.Lists;
+import java.util.Collection;
 
 public class TreeViewItemBuilder extends BaseBuilder<SimpleTreeViewItem> {
 	private final Collection<Item> items = Lists.newArrayList();

@@ -1,7 +1,11 @@
 package org.nibiru.ui.android.widget;
 
-import javax.annotation.Nullable;
-import javax.inject.Inject;
+import android.content.Context;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.google.common.collect.Iterables;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -11,12 +15,8 @@ import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.TreeView.Item;
 
-import com.google.common.collect.Iterables;
-
-import android.content.Context;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class AndroidTreeView extends AndroidValueWidget<RelativeLayout, Iterable<Item>>implements TreeView {
 	@Inject

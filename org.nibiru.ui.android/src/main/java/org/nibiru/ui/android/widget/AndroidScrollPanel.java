@@ -1,14 +1,14 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.view.View;
+import android.widget.ScrollView;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Widget;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ScrollView;
+import javax.inject.Inject;
 
 public class AndroidScrollPanel extends AndroidWidget<ScrollView>implements ScrollPanel {
 	@Inject

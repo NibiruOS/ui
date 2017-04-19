@@ -1,12 +1,12 @@
 package org.nibiru.ui.core.impl.i18n;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.annotations.GwtIncompatible;
 
 import java.lang.reflect.Proxy;
 
 import javax.inject.Provider;
 
-import com.google.common.annotations.GwtIncompatible;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @GwtIncompatible("Reflection")
 public class MessageProvider<T> implements Provider<T> {

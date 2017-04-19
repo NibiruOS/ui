@@ -1,10 +1,10 @@
 package org.nibiru.ui.android.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
-import java.io.IOException;
-
-import javax.inject.Inject;
+import com.google.common.io.Closer;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -14,11 +14,11 @@ import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.ResourcesBasePath;
 
-import com.google.common.io.Closer;
+import java.io.IOException;
 
-import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class AndroidImage extends AndroidValueWidget<ImageView, String> implements Image {
 	private final String basePath;

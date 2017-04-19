@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Widget;
+
+import javax.inject.Inject;
 
 public class AbsolutePanelBuilder extends BaseWidgetBuilder<AbsolutePanel, AbsolutePanelBuilder> {
 	@Inject

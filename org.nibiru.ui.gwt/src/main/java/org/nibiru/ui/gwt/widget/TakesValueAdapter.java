@@ -1,13 +1,13 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.annotation.Nullable;
+import com.google.gwt.user.client.TakesValue;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.impl.BaseValue;
 
-import com.google.gwt.user.client.TakesValue;
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class TakesValueAdapter<T> extends BaseValue<T> {
 	private final TakesValue<T> takesValue;

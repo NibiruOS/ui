@@ -1,11 +1,11 @@
 package org.nibiru.ui.gwt.widget;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.HasClickHandler;
-
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 
 class HasClickHandlersAdapter implements HasClickHandler {
 	private final HasClickHandlers hasClickHandlers;

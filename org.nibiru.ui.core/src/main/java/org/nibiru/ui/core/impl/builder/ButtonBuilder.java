@@ -1,12 +1,12 @@
 package org.nibiru.ui.core.impl.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.ClickHandler;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.ClickHandler;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ButtonBuilder extends BaseClickableValueBuilder<Button, String, ButtonBuilder> {
 	@Inject

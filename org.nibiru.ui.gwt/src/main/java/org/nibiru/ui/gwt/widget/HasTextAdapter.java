@@ -1,14 +1,14 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.annotation.Nullable;
+import com.google.gwt.user.client.ui.HasText;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 
-import com.google.gwt.user.client.ui.HasText;
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class HasTextAdapter extends BaseValue<String> {
 	private final HasText control;

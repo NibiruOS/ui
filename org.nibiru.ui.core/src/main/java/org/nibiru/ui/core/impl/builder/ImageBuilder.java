@@ -1,10 +1,10 @@
 package org.nibiru.ui.core.impl.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.ui.core.api.Image;
 
 import javax.inject.Inject;
 
-import org.nibiru.ui.core.api.Image;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ImageBuilder extends BaseClickableValueBuilder<Image, String, ImageBuilder> {
 	@Inject

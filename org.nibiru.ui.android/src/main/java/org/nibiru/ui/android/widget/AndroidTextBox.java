@@ -1,15 +1,13 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.widget.EditText;
 
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.TextBox;
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
+import javax.inject.Inject;
 
 public class AndroidTextBox extends AndroidValueWidget<EditText, String> implements TextBox {
 	// TODO: Fix this "magic".

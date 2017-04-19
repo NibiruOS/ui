@@ -1,12 +1,12 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.widget.ProgressBar;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Spinner;
 
-import android.content.Context;
-import android.widget.ProgressBar;
+import javax.inject.Inject;
 
 public class AndroidSpinner extends AndroidWidget<ProgressBar>implements Spinner {
 	@Inject

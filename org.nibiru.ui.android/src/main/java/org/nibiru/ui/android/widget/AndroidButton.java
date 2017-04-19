@@ -1,11 +1,11 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Button;
 
-import android.content.Context;
+import javax.inject.Inject;
 
 public class AndroidButton extends AndroidLabel implements Button {
 	@Inject

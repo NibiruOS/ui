@@ -1,6 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-import java.util.Map;
+import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -8,11 +12,7 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.RadioButtonGroup;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.Maps;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.user.client.ui.RadioButton;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import java.util.Map;
 
 public class GwtRadioButtonGroup<V> extends GwtValueWidget<VerticalPanel, V> implements RadioButtonGroup<V> {
 	private static int groupCount;

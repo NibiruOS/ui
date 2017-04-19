@@ -1,13 +1,13 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.style.TextStyle;
+
+import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UILabel;

@@ -1,10 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.Button;
 
 import org.nibiru.model.core.api.Value;
 
-import com.google.gwt.user.client.ui.Button;
+import javax.inject.Inject;
 
 public class GwtButton extends GwtClickableValueWidget<Button, String> implements org.nibiru.ui.core.api.Button {
 	@Inject

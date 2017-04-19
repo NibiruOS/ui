@@ -1,7 +1,8 @@
 package org.nibiru.ui.android.widget;
 
-import javax.annotation.Nullable;
-import javax.inject.Inject;
+import android.content.Context;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -10,9 +11,8 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Checkbox;
 
-import android.content.Context;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class AndroidCheckbox extends AndroidValueWidget<android.widget.CheckBox, Boolean> implements Checkbox {
 	

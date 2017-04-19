@@ -1,11 +1,11 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.CheckBox;
 
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.java.JavaType;
 
-import com.google.gwt.user.client.ui.CheckBox;
+import javax.inject.Inject;
 
 public class GwtCheckbox extends GwtHasValueWidget<CheckBox, Boolean> implements org.nibiru.ui.core.api.Checkbox {
 	// TODO: Fix this "magic".

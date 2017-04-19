@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
+import org.nibiru.ui.core.api.PasswordBox;
+
 import javax.annotation.Nullable;
 import javax.inject.Inject;
-
-import org.nibiru.ui.core.api.PasswordBox;
 
 public class PasswordBoxBuilder extends BaseValueBuilder<PasswordBox, String, PasswordBoxBuilder> {
 	@Inject

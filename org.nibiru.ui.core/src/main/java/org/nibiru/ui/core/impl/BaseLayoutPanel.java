@@ -1,16 +1,17 @@
 
 package org.nibiru.ui.core.impl;
-import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
-import org.nibiru.ui.core.api.loop.Looper;
 import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 	protected final AbsolutePanel panel;

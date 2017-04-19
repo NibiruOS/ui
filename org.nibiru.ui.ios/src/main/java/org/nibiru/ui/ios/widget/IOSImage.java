@@ -1,27 +1,25 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.io.ByteSource;
+
+import org.moe.natj.general.ptr.impl.PtrFactory;
+import org.nibiru.model.core.api.Type;
+import org.nibiru.model.core.api.Value;
+import org.nibiru.model.core.impl.BaseValue;
+import org.nibiru.model.core.impl.java.JavaType;
+import org.nibiru.ui.core.api.Image;
+import org.nibiru.ui.core.api.ResourcesBasePath;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import org.moe.natj.general.ptr.impl.PtrFactory;
-import org.nibiru.model.core.api.Registration;
-import org.nibiru.model.core.api.Type;
-import org.nibiru.model.core.api.Value;
-import org.nibiru.model.core.impl.BaseValue;
-import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.ClickHandler;
-import org.nibiru.ui.core.api.Image;
-import org.nibiru.ui.core.api.ResourcesBasePath;
-
-import com.google.common.io.ByteSource;
-
 import apple.foundation.NSData;
 import apple.uikit.UIImage;
 import apple.uikit.UIImageView;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class IOSImage extends IOSValueWidget<UIImageView, String> implements Image {
     private final String basePath;

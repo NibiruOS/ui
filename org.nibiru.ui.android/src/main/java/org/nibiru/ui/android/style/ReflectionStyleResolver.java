@@ -1,10 +1,10 @@
 package org.nibiru.ui.android.style;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.ui.core.api.Widget;
 
 import java.lang.reflect.Field;
 
-import org.nibiru.ui.core.api.Widget;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ReflectionStyleResolver implements StyleResolver {
 	private final Class<?> sytleConstantClass;

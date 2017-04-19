@@ -1,15 +1,14 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.widget.TextView;
 
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Label;
-import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.TextStyle;
 
-import android.content.Context;
-import android.widget.TextView;
+import javax.inject.Inject;
 
 public class AndroidLabel extends AndroidValueWidget<TextView, String> implements Label {
 	// TODO: Fix this "magic".

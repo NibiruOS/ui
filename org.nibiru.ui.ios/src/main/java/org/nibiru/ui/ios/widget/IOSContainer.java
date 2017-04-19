@@ -1,15 +1,15 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.List;
+import com.google.common.collect.Lists;
 
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.common.collect.Lists;
+import java.util.List;
 
 import apple.uikit.UIView;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class IOSContainer extends IOSWidget<UIView> implements Container {
 	private final List<Widget> children = Lists.newArrayList();

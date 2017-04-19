@@ -1,8 +1,8 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.Spinner;
+
+import javax.inject.Inject;
 
 import apple.uikit.UIActivityIndicatorView;
 import apple.uikit.enums.UIActivityIndicatorViewStyle;

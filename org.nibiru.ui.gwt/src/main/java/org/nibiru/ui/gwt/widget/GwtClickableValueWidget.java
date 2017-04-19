@@ -1,12 +1,12 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.ui.Widget;
 
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.HasClickHandler;
 
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.user.client.ui.Widget;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class GwtClickableValueWidget<W extends Widget & HasClickHandlers, V> extends GwtValueWidget<W, V>
 		implements HasClickHandler {

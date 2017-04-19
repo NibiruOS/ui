@@ -1,8 +1,8 @@
 package org.nibiru.ui.core.impl.builder;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.Checkbox;
+
+import javax.inject.Inject;
 
 public class CheckboxBuilder extends BaseValueBuilder<Checkbox, Boolean, CheckboxBuilder> {
 	@Inject

@@ -1,14 +1,14 @@
 package org.nibiru.ui.core.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.annotation.Nullable;
-
 import org.nibiru.ui.core.api.IsParent;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
+
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class BaseWidget implements Widget {
 	// Widget size after measuring phase

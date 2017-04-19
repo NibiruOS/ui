@@ -1,13 +1,14 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.List;
+import com.google.common.collect.Lists;
+import com.google.gwt.user.client.ui.Panel;
 
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
-import com.google.common.collect.Lists;
-import com.google.gwt.user.client.ui.Panel;
+
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class GwtContainer<T extends Panel> extends GwtWidget<T> implements Container {
 	private final List<Widget> children;

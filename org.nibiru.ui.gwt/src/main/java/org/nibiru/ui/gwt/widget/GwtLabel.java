@@ -1,11 +1,11 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.Label;
 
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.style.TextStyle;
 
-import com.google.gwt.user.client.ui.Label;
+import javax.inject.Inject;
 
 public class GwtLabel extends GwtClickableValueWidget<Label, String> implements org.nibiru.ui.core.api.Label {
 	// TODO: Fix this "magic".

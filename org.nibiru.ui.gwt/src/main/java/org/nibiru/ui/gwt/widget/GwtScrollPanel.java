@@ -1,12 +1,12 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.gwt.user.client.ui.ScrollPanel;
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class GwtScrollPanel extends GwtWidget<ScrollPanel>implements org.nibiru.ui.core.api.ScrollPanel {
 	private Widget content;

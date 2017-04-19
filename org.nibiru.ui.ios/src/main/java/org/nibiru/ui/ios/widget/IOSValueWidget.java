@@ -1,11 +1,11 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.ValueWidget;
 
 import apple.uikit.UIView;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class IOSValueWidget<T extends UIView, V> extends IOSWidget<T> implements ValueWidget<V> {
 	private final Value<V> value;

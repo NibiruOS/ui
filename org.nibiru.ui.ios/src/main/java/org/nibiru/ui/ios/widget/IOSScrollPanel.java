@@ -1,9 +1,9 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Widget;
+
+import javax.inject.Inject;
 
 import apple.uikit.UIView;
 import dagger.internal.Preconditions;

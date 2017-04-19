@@ -1,13 +1,13 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Widget;
 
+import javax.inject.Inject;
+
 import apple.uikit.UIView;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class IOSPopup implements Popup {
 	private final Overlay overlay;

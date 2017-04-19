@@ -1,7 +1,5 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.moe.natj.general.Pointer;
 import org.moe.natj.objc.ann.Selector;
 import org.nibiru.model.core.api.Registration;
@@ -12,6 +10,8 @@ import apple.foundation.c.Foundation;
 import apple.uikit.UIGestureRecognizer;
 import apple.uikit.UITapGestureRecognizer;
 import apple.uikit.UIView;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 
 class TouchUpInsideHandlerRegistration extends NSObject implements Registration {

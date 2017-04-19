@@ -1,13 +1,13 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
+import android.content.Context;
+import android.text.InputType;
+import android.widget.EditText;
 
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.PasswordBox;
 
-import android.content.Context;
-import android.text.InputType;
-import android.widget.EditText;
+import javax.inject.Inject;
 
 public class AndroidPasswordBox extends AndroidTextBox implements PasswordBox {
 	@Inject
