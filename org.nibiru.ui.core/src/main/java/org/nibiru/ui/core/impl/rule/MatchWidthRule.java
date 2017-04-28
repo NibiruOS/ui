@@ -21,7 +21,7 @@ public class MatchWidthRule extends BaseRule {
     @Override
     public void apply() {
         setWidth(getValue(sourceWidth)
-                - getTargetWidget().getStyle().getMarginTop()
-                - getTargetWidget().getStyle().getMarginBottom());
+                - getTargetWidget().getStyle().getMarginLeft()
+                - getTargetWidget().getStyle().getMarginRight());
     }
 }
