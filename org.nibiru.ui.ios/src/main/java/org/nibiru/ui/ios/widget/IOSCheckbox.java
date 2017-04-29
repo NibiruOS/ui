@@ -44,7 +44,7 @@ public class IOSCheckbox extends IOSValueWidget<UIView, Boolean> implements Chec
 			}
 		};
 		check.addTargetActionForControlEvents((UISwitch check, long flags) -> {
-			getValue().set(!check.isOn());
+			getValue().notifyObservers();
 		}, UIControlEvents.ValueChanged);
 		label.setUserInteractionEnabled(true);
 		TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(label, () -> {

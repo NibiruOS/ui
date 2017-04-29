@@ -14,6 +14,7 @@ import apple.coregraphics.struct.CGPoint;
 import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UITextField;
+import apple.uikit.enums.UIControlEvents;
 import apple.uikit.enums.UITextBorderStyle;
 
 public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {
@@ -29,6 +30,9 @@ public class IOSTextBox extends IOSValueWidget<UITextField, String> implements T
 	public IOSTextBox(final UITextField textField) {
 		super(textField);
 		control.setBorderStyle(UITextBorderStyle.RoundedRect);
+		control.addTargetActionForControlEvents((UITextField uiTextField, long flags) -> {
+			getValue().notifyObservers();
+		}, UIControlEvents.EditingChanged);
 	}
 
 	@Override
