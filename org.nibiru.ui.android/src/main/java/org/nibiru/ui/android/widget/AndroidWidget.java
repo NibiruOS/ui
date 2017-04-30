@@ -2,6 +2,7 @@ package org.nibiru.ui.android.widget;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup.LayoutParams;
@@ -10,6 +11,7 @@ import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.HasClickHandler;
+import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
@@ -98,7 +100,29 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 				color.getBlue());
 	}
 
-	T control() {
+    protected int alignmentToHorizontalGravity(Alignment alignment) {
+        switch (alignment){
+            case CENTER:
+                return Gravity.CENTER_HORIZONTAL;
+            case END:
+                return Gravity.RIGHT;
+            default:
+                return Gravity.LEFT;
+        }
+    }
+
+    protected int alignmentToVerticalGravity(Alignment alignment) {
+        switch (alignment){
+            case CENTER:
+                return Gravity.CENTER_VERTICAL;
+            case END:
+                return Gravity.BOTTOM;
+            default:
+                return Gravity.TOP;
+        }
+    }
+
+    T control() {
 		if (control == null) {
 			control = buildControl(styleResource == StyleResolver.NO_STYLE 
 						? context

@@ -1,5 +1,6 @@
 package org.nibiru.ui.core.api.style;
 
+import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
 
 import javax.annotation.Nullable;
@@ -29,64 +30,48 @@ public class Style {
 		this.parent = parent;
 	}
 
-	@Nullable
 	public Color getBackgroundColor() {
-		return MoreObjects.firstNonNull(
-				backgroundColor != null ?
-						backgroundColor
-						: (parent != null ? parent.getBackgroundColor() : null),
-				Color.WHITE);
+		return property(backgroundColor, Style::getBackgroundColor, Color.TRANSPARENT);
 	}
 
 	public void setBackgroundColor(@Nullable Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
-	@Nullable
 	public Size getWidth() {
-		return MoreObjects.firstNonNull(
-				width != null ? width : (parent != null ? parent.getWidth() : null),
-				Size.WRAP_CONTENT);
+		return property(width, Style::getWidth, Size.WRAP_CONTENT);
 	}
 
-	public void setWidth(Size width) {
-		this.width = checkNotNull(width);
+	public void setWidth(@Nullable Size width) {
+		this.width = width;
 	}
 
 	public Size getHeight() {
-		return MoreObjects.firstNonNull(
-				height != null ? height : (parent != null ? parent.getHeight() : null),
-				Size.WRAP_CONTENT);
+		return property(height, Style::getHeight, Size.WRAP_CONTENT);
 	}
 
 	public void setHeight(@Nullable Size height) {
-		this.height = checkNotNull(height);
+		this.height = height;
 	}
 
 	public Alignment getHorizontalAlignment() {
-		return MoreObjects.firstNonNull(
-				horizontalAlignment != null ? horizontalAlignment : (parent != null ? parent.getHorizontalAlignment() : null),
-				Alignment.START);
+		return property(horizontalAlignment, Style::getHorizontalAlignment, Alignment.START);
 	}
 
 	public void setHorizontalAlignment(@Nullable Alignment horizontalAlignment) {
-		this.horizontalAlignment = checkNotNull(horizontalAlignment);
+		this.horizontalAlignment = horizontalAlignment;
 	}
 
 	public Alignment getVerticalAlignment() {
-		return MoreObjects.firstNonNull(
-				verticalAlignment != null ? verticalAlignment : (parent != null ? parent.getVerticalAlignment() : null),
-				Alignment.START);
+		return property(verticalAlignment, Style::getVerticalAlignment, Alignment.START);
 	}
 
 	public void setVerticalAlignment(@Nullable Alignment verticalAlignment) {
-		this.verticalAlignment = checkNotNull(verticalAlignment);
+		this.verticalAlignment = verticalAlignment;
 	}
 
 	public int getMarginTop() {
-		return MoreObjects.firstNonNull(
-				marginTop != null ? marginTop : (parent != null ? parent.getMarginTop() : null),
-				0);
+		return property(marginTop, Style::getMarginTop, 0);
 	}
 
 	public void setMarginTop(@Nullable Integer marginTop) {
@@ -94,9 +79,7 @@ public class Style {
 	}
 
 	public int getMarginRight() {
-		return MoreObjects.firstNonNull(
-				marginRight != null ? marginRight : (parent != null ? parent.getMarginRight() : null),
-				0);
+		return property(marginRight, Style::getMarginRight, 0);
 	}
 
 	public void setMarginRight(@Nullable Integer marginRight) {
@@ -104,9 +87,7 @@ public class Style {
 	}
 
 	public int getMarginLeft() {
-		return MoreObjects.firstNonNull(
-				marginLeft != null ? marginLeft : (parent != null ? parent.getMarginLeft() : null),
-				0);
+		return property(marginLeft, Style::getMarginLeft, 0);
 	}
 
 	public void setMarginLeft(@Nullable Integer marginLeft) {
@@ -114,12 +95,32 @@ public class Style {
 	}
 
 	public int getMarginBottom() {
-		return MoreObjects.firstNonNull(
-				marginBottom != null ? marginBottom : (parent != null ? parent.getMarginBottom() : null),
-				0);
+		return property(marginBottom, Style::getMarginBottom, 0);
 	}
 
 	public void setMarginBottom(@Nullable Integer marginBottom) {
 		this.marginBottom = marginBottom;
+	}
+
+    private <T, S extends Style> T property(T value,
+                                              Function<Style, T> parentValueFunction,
+                                              T defaultValue) {
+        return property(value,
+                parentValueFunction,
+                Style.class,
+                defaultValue);
+    }
+
+    protected <T, S extends Style> T property(T value,
+                                              Function<S, T> parentValueFunction,
+                                              Class<S> parentClass,
+                                              T defaultValue) {
+        return MoreObjects.firstNonNull(
+				value != null
+						? value
+						: (parent != null && parentClass.isAssignableFrom(parent.getClass())
+							? parentValueFunction.apply((S) parent)
+							: null),
+				defaultValue);
 	}
 }
