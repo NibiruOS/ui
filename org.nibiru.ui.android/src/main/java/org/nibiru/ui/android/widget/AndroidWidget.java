@@ -93,35 +93,6 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 		control.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
 	}
 
-	protected int colorToNative(Color color) {
-		return android.graphics.Color.argb(color.getAlpha(),
-				color.getRed(),
-				color.getGreen(),
-				color.getBlue());
-	}
-
-    protected int alignmentToHorizontalGravity(Alignment alignment) {
-        switch (alignment){
-            case CENTER:
-                return Gravity.CENTER_HORIZONTAL;
-            case END:
-                return Gravity.RIGHT;
-            default:
-                return Gravity.LEFT;
-        }
-    }
-
-    protected int alignmentToVerticalGravity(Alignment alignment) {
-        switch (alignment){
-            case CENTER:
-                return Gravity.CENTER_VERTICAL;
-            case END:
-                return Gravity.BOTTOM;
-            default:
-                return Gravity.TOP;
-        }
-    }
-
     T control() {
 		if (control == null) {
 			control = buildControl(styleResource == StyleResolver.NO_STYLE 
@@ -143,7 +114,25 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 	}
 
 	private LayoutParams getLayoutParams() {
-		LayoutParams params = (LayoutParams) control().getLayoutParams();
+		LayoutParams params = control().getLayoutParams();
 		return params != null ? params : new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+	}
+
+	protected static int colorToNative(Color color) {
+		return android.graphics.Color.argb(color.getAlpha(),
+				color.getRed(),
+				color.getGreen(),
+				color.getBlue());
+	}
+
+	protected static int alignmentToHorizontalGravity(Alignment alignment) {
+		switch (alignment){
+			case CENTER:
+				return Gravity.CENTER_HORIZONTAL;
+			case END:
+				return Gravity.RIGHT;
+			default:
+				return Gravity.LEFT;
+		}
 	}
 }

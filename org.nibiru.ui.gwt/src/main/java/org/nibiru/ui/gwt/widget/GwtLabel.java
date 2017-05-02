@@ -1,8 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.Label;
 
 import org.nibiru.model.core.api.Value;
+import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
@@ -28,6 +30,9 @@ public class GwtLabel extends GwtClickableValueWidget<Label, String> implements 
 			control.getElement()
 					.getStyle()
 					.setColor(colorToNative(textStyle.getTextColor()));
+			control.getElement()
+					.getStyle()
+					.setTextAlign(alignmentToTextAlign(textStyle.getHorizontalTextAlignment()));
 		}
 	}
 

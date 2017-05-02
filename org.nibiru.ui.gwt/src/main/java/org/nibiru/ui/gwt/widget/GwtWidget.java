@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Widget;
 
+import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
@@ -31,26 +32,14 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 				.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
 	}
 
-	protected String colorToNative(Color color) {
-		return "rgba("
-				+ color.getRed() + ","
-				+ color.getGreen() + ","
-				+ color.getBlue() + ","
-				+ colorToDouble(color.getAlpha()) + ")";
-	}
-
 	@Override
 	protected int getNativeHeight() {
-		return doWithClone((Element e) -> {
-			return e.getOffsetHeight();
-		});
+		return doWithClone((Element e) -> e.getOffsetHeight());
 	}
 
 	@Override
 	protected int getNativeWidth() {
-		return doWithClone((Element e) -> {
-			return e.getOffsetWidth();
-		});
+		return doWithClone((Element e) -> e.getOffsetWidth());
 	}
 
 	@Override
@@ -70,5 +59,24 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 		X returnValue = callback.apply(clon);
 		clon.removeFromParent();
 		return returnValue;
+	}
+
+	protected static String colorToNative(Color color) {
+		return "rgba("
+				+ color.getRed() + ","
+				+ color.getGreen() + ","
+				+ color.getBlue() + ","
+				+ colorToDouble(color.getAlpha()) + ")";
+	}
+
+	protected static Style.TextAlign alignmentToTextAlign(Alignment alignment) {
+		switch (alignment) {
+			case END:
+				return Style.TextAlign.RIGHT;
+			case CENTER:
+				return Style.TextAlign.CENTER;
+			default:
+				return Style.TextAlign.LEFT;
+		}
 	}
 }

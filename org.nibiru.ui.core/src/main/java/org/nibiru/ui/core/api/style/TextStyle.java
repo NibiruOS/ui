@@ -1,11 +1,6 @@
 package org.nibiru.ui.core.api.style;
 
-import com.google.common.base.Function;
-import com.google.common.base.MoreObjects;
-
 import javax.annotation.Nullable;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class TextStyle extends Style {
     public static final TextStyle DEFAULT = new TextStyle();
@@ -28,13 +23,5 @@ public class TextStyle extends Style {
 
     public void setHorizontalTextAlignment(@Nullable Alignment horizontalTextAlignment) {
         this.horizontalTextAlignment = horizontalTextAlignment;
-    }
-
-    public Alignment getVerticalTextAlignment() {
-        return property(verticalTextAlignment, TextStyle::getVerticalTextAlignment, Alignment.START);
-    }
-
-    public void setVerticalTextAlignment(@Nullable Alignment verticalTextAlignment) {
-        this.verticalTextAlignment = verticalTextAlignment;
     }
 }

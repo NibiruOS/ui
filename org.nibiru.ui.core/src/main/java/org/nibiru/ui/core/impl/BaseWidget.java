@@ -133,7 +133,7 @@ public abstract class BaseWidget implements Widget {
 		this.parent = parent;
 	}
 
-	protected double colorToDouble(int color) {
+	protected static double colorToDouble(int color) {
 		return color / 255d;
 	}
 }

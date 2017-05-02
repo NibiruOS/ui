@@ -21,9 +21,4 @@ public class TextStyleBuilder extends BaseStyleBuilder<TextStyle, TextStyleBuild
         object.setHorizontalTextAlignment(horizontalTextAlignment);
         return this;
     }
-
-    public TextStyleBuilder verticalTextAlignment(Alignment verticalTextAlignment) {
-        object.setVerticalTextAlignment(verticalTextAlignment);
-        return this;
-    }
 }

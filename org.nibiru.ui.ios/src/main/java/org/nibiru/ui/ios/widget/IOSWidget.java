@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
@@ -13,6 +14,7 @@ import apple.foundation.NSString;
 import apple.uikit.UIColor;
 import apple.uikit.UIFont;
 import apple.uikit.UIView;
+import apple.uikit.enums.UITextAlignment;
 
 abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 	IOSWidget(T control) {
@@ -45,7 +47,19 @@ abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 		return TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(control, clickHandler);
 	}
 	
-	CGSize sizeFromText(String text, UIFont font) {
+	static CGSize sizeFromText(String text, UIFont font) {
 		return NSString.stringWithString(Strings.isNullOrEmpty(text) ? "I" : text).sizeWithFont(font);
 	}
+
+	protected static long alignmentToTextAlignment(Alignment alignment) {
+		switch (alignment){
+			case END:
+				return UITextAlignment.Right;
+			case CENTER:
+				return UITextAlignment.Center;
+			default:
+				return UITextAlignment.Left;
+		}
+	}
+
 }

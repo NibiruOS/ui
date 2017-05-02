@@ -5,12 +5,15 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Label;
+import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UILabel;
+import apple.uikit.enums.UIBaselineAdjustment;
+import apple.uikit.enums.UITextAlignment;
 
 public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 	@Inject
@@ -28,6 +31,7 @@ public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
 		if (getStyle() instanceof TextStyle) {
 			TextStyle textStyle = (TextStyle) getStyle();
 			control.setTextColor(colorToNative(textStyle.getTextColor()));
+			control.setTextAlignment(alignmentToTextAlignment(textStyle.getHorizontalTextAlignment()));
 		}
 	}
 
