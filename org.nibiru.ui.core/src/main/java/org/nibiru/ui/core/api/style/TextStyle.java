@@ -37,13 +37,4 @@ public class TextStyle extends Style {
     public void setVerticalTextAlignment(@Nullable Alignment verticalTextAlignment) {
         this.verticalTextAlignment = verticalTextAlignment;
     }
-
-    private <T, S extends Style> T property(T value,
-                                            Function<TextStyle, T> parentValueFunction,
-                                            T defaultValue) {
-        return property(value,
-                parentValueFunction,
-                TextStyle.class,
-                defaultValue);
-    }
 }
