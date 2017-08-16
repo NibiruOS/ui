@@ -6,11 +6,7 @@ import org.nibiru.ui.core.api.style.Style;
 import javax.annotation.Nullable;
 
 public interface Widget {
-	String STYLE_NAME_PREFIX = "nibiru_";
-
 	Object asNative();
-
-	void setStyleName(Enum<?> styleName);
 
 	void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec);
 

@@ -20,12 +20,6 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 	}
 
 	@Override
-	public void setStyleName(Enum<?> styleName) {
-		checkNotNull(styleName);
-		control.addStyleName(STYLE_NAME_PREFIX + styleName.name().toLowerCase());
-	}
-
-	@Override
 	public void applyStyle() {
 		control.getElement()
 				.getStyle()

@@ -3,23 +3,20 @@ package org.nibiru.ui.core.impl;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
 
-import javax.annotation.Nullable;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class BaseControlWidget<T> extends BaseWidget {
-	protected T control;
+    protected final T control;
 
-	//TODO: control is mutable and nullable just for a problem related to Android styles.
-	// You need to set the styles before creationg the control.
-	// When removing native styles, it could be final and not nullable again
-	protected BaseControlWidget(@Nullable T control) {
-		this.control = control;
-	}
+    protected BaseControlWidget(T control) {
+        this.control = checkNotNull(control);
+    }
 
-	@Override
-	public T asNative() {
-		return control;
-	}
-	
+    @Override
+    public T asNative() {
+        return control;
+    }
+
     @Override
     protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         Type widthMode = widthMeasureSpec.getType();
@@ -34,9 +31,9 @@ public abstract class BaseControlWidget<T> extends BaseWidget {
             width = widthSize;
         } else {
             width = getNativeWidth();
-            
+
             if (widthMode == Type.AT_MOST) {
-            	width = Math.min(widthSize, width);
+                width = Math.min(widthSize, width);
             }
         }
 
@@ -53,20 +50,20 @@ public abstract class BaseControlWidget<T> extends BaseWidget {
         updateSize(width, height);
     }
 
-	@Override
+    @Override
     public void onLayout() {
-    	setNativeSize(getMeasuredWidth(), getMeasuredHeight());
+        setNativeSize(getMeasuredWidth(), getMeasuredHeight());
     }
 
-	public void scheduleLayout() {
-		if (getParent() != null) {
-			getParent().scheduleLayout();
-		}
-	}
+    public void scheduleLayout() {
+        if (getParent() != null) {
+            getParent().scheduleLayout();
+        }
+    }
 
-	abstract protected int getNativeHeight();
+    abstract protected int getNativeHeight();
 
-	abstract protected int getNativeWidth();
+    abstract protected int getNativeWidth();
 
-	abstract protected void setNativeSize(int measuredWidth, int measuredHeight);
+    abstract protected void setNativeSize(int measuredWidth, int measuredHeight);
 }
