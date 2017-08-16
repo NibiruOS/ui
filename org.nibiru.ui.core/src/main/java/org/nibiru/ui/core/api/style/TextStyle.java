@@ -7,7 +7,6 @@ public class TextStyle extends Style {
 
     private Color textColor;
     private Alignment horizontalTextAlignment;
-    private Alignment verticalTextAlignment;
 
     public Color getTextColor() {
         return property(textColor, TextStyle::getTextColor, Color.BLACK);

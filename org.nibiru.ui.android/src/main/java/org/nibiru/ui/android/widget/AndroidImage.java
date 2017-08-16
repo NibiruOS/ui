@@ -12,6 +12,8 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.ResourcesBasePath;
+import org.nibiru.ui.core.api.style.ImageStyle;
+import org.nibiru.ui.core.api.style.ImageStyle.ScaleType;
 
 import java.io.IOException;
 
@@ -30,6 +32,15 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
     public AndroidImage(ImageView view, final String basePath) {
         super(view);
         this.basePath = checkNotNull(basePath);
+    }
+
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof ImageStyle) {
+            ImageStyle imageStyle = (ImageStyle) getStyle();
+            control.setScaleType(scaleToNative(imageStyle.getScaleType()));
+        }
     }
 
     @Override
@@ -75,5 +86,16 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
     @Override
     protected int getNativeWidth() {
         return dpToPx(super.getNativeWidth());
+    }
+
+    private static ImageView.ScaleType scaleToNative(ScaleType scaleType) {
+        switch (scaleType) {
+            case FIT_CENTER:
+                return ImageView.ScaleType.FIT_CENTER;
+            case FIT_XY:
+                return ImageView.ScaleType.FIT_XY;
+            default:
+                return null;
+        }
     }
 }
