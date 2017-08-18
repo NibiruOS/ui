@@ -6,6 +6,7 @@ import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.api.style.Style;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import apple.coregraphics.struct.CGRect;
@@ -23,10 +24,14 @@ abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 
     @Override
     public void applyStyle() {
-        control.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+        applyStyle(control, getStyle());
     }
 
-    protected UIColor colorToNative(Color color) {
+    static void applyStyle(UIView control, Style style) {
+        control.setBackgroundColor(colorToNative(style.getBackgroundColor()));
+    }
+
+    protected static UIColor colorToNative(Color color) {
         return UIColor.colorWithRedGreenBlueAlpha(colorToDouble(color.getRed()),
                 colorToDouble(color.getGreen()),
                 colorToDouble(color.getBlue()),

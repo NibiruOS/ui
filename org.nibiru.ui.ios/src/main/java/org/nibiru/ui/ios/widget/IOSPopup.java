@@ -1,61 +1,44 @@
 package org.nibiru.ui.ios.widget;
 
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseContentWidget;
 
 import javax.inject.Inject;
 
 import apple.uikit.UIView;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+public class IOSPopup extends BaseContentWidget<Overlay, UIView> implements Popup {
 
-public class IOSPopup implements Popup {
-	private final Overlay overlay;
-	private Widget content;
+    @Inject
+    public IOSPopup(Viewport viewport) {
+        super(Overlay.create(), viewport);
+    }
 
-	@Inject
-	public IOSPopup() {
-		overlay = Overlay.create();
-	}
+    @Override
+    public void show() {
+        control.show();
+    }
 
-	@Override
-	public void setContent(Widget content) {
-		checkNotNull(content);
-		if (this.content != null) {
-			this.content.setParent(null);
-		}
-		this.content = content;
-		overlay.setContent((UIView) content.asNative());
-		overlay.centerContent();
-		content.setParent(this);
-		content.layout();
-	}
+    @Override
+    public void hide() {
+        control.hide();
+    }
 
-	@Override
-	public void show() {
-		overlay.show();
-	}
+    @Override
+    public void setAutoHide(boolean autoHide) {
+        control.setAutoHide(autoHide);
+    }
 
-	@Override
-	public void hide() {
-		overlay.hide();
-	}
+    @Override
+    public void requestLayout() {
+        super.requestLayout();
+        control.centerContent();
+    }
 
-	@Override
-	public void setAutoHide(boolean autoHide) {
-		overlay.setAutoHide(autoHide);
-	}
-
-	@Override
-	public void requestLayout() {
-		overlay.centerContent();
-	}
-
-	@Override
-	public void scheduleLayout() {
-		requestLayout();
-	}
-
-
-
+    @Override
+    protected void setNativeContent(UIView nativeContent) {
+        control.setContent(nativeContent);
+        control.centerContent();
+    }
 }

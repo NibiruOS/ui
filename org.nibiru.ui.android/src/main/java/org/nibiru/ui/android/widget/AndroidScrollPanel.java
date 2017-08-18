@@ -5,28 +5,30 @@ import android.view.View;
 import android.widget.ScrollView;
 
 import org.nibiru.ui.core.api.ScrollPanel;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseContentWidget;
 
 import javax.inject.Inject;
 
-public class AndroidScrollPanel extends AndroidWidget<ScrollView> implements ScrollPanel {
+public class AndroidScrollPanel extends BaseContentWidget<ScrollView, View> implements ScrollPanel {
     @Inject
-    public AndroidScrollPanel(Context context) {
-        this(new ScrollView(context));
+    public AndroidScrollPanel(Context context, Viewport viewport) {
+        this(new ScrollView(context), viewport);
     }
 
-    public AndroidScrollPanel(ScrollView control) {
-        super(control);
+    public AndroidScrollPanel(ScrollView control, Viewport viewport) {
+        super(control, viewport);
     }
 
     @Override
-    public void setContent(Widget content) {
+    public void applyStyle() {
+        super.applyStyle();
+        AndroidWidget.applyStyle(control, getStyle());
+    }
+
+    @Override
+    protected void setNativeContent(View nativeContent) {
         control.removeAllViews();
-        control.addView((View) content.asNative());
-    }
-
-    @Override
-    public void requestLayout() {
-        // TODO Auto-generated method stub
+        control.addView(nativeContent);
     }
 }

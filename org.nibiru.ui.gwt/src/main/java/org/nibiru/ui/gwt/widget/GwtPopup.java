@@ -3,65 +3,45 @@ package org.nibiru.ui.gwt.widget;
 import com.google.gwt.user.client.ui.PopupPanel;
 
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseContentWidget;
 import org.nibiru.ui.gwt.resource.Resources;
 
 import javax.inject.Inject;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+public class GwtPopup extends BaseContentWidget<PopupPanel, com.google.gwt.user.client.ui.Widget>
+        implements Popup {
+    @Inject
+    public GwtPopup(Resources resources, Viewport viewport) {
+        this(new PopupPanel(), viewport);
+        control.setGlassEnabled(true);
+        resources.css().ensureInjected();
+        control.setGlassStyleName(resources.css().popupGlass());
+    }
 
-public class GwtPopup implements Popup {
-	private final PopupPanel popup;
-	private Widget content;
+    public GwtPopup(PopupPanel control, Viewport viewport) {
+        super(control, viewport);
+    }
 
-	@Inject
-	public GwtPopup(Resources resources) {
-		this(new PopupPanel());
-		popup.setGlassEnabled(true);
-		resources.css().ensureInjected();
-		popup.setGlassStyleName(resources.css().popupGlass());
-	}
+    @Override
+    protected void setNativeContent(com.google.gwt.user.client.ui.Widget nativeContent) {
+        control.clear();
+        control.add(nativeContent);
+    }
 
-	public GwtPopup(PopupPanel popup) {
-		this.popup = checkNotNull(popup);
-	}
+    @Override
+    public void show() {
+        control.center();
+        control.show();
+    }
 
-	@Override
-	public void setContent(Widget content) {
-		checkNotNull(content);
-		if (this.content != null) {
-			this.content.setParent(null);
-		}
-		this.content = content;
-		popup.clear();
-		popup.add((com.google.gwt.user.client.ui.Widget) content.asNative());
-		content.setParent(this);
-	}
+    @Override
+    public void hide() {
+        control.hide();
+    }
 
-	@Override
-	public void show() {
-		popup.center();
-		popup.show();
-	}
-
-	@Override
-	public void hide() {
-		popup.hide();
-	}
-
-	@Override
-	public void setAutoHide(boolean autoHide) {
-		popup.setAutoHideEnabled(autoHide);
-	}
-
-	@Override
-	public void requestLayout() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void scheduleLayout() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void setAutoHide(boolean autoHide) {
+        control.setAutoHideEnabled(autoHide);
+    }
 }

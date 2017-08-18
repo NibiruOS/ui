@@ -1,38 +1,36 @@
 package org.nibiru.ui.ios.widget;
 
 import org.nibiru.ui.core.api.ScrollPanel;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseContentWidget;
 
 import javax.inject.Inject;
 
+import apple.uikit.UIScrollView;
 import apple.uikit.UIView;
-import dagger.internal.Preconditions;
 
-public class IOSScrollPanel extends IOSContainer implements ScrollPanel {
-	@Inject
-	public IOSScrollPanel() {
-	}
+public class IOSScrollPanel extends BaseContentWidget<UIScrollView, UIView> implements ScrollPanel {
 
-	@Override
-	public void setContent(Widget content) {
-		Preconditions.checkNotNull(content);
-		clear();
-		control.addSubview((UIView) content.asNative());
-	}
+    @Inject
+    public IOSScrollPanel(Viewport viewport) {
+        this(UIScrollView.alloc().init(), viewport);
+    }
 
-	@Override
-	public void requestLayout() {
-	}
+    public IOSScrollPanel(UIScrollView control, Viewport viewport) {
+        super(control, viewport);
+    }
 
-	@Override
-	protected int getNativeHeight() {
-		// TODO Fix value - add size computation
-		return 480;
-	}
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        IOSWidget.applyStyle(control, getStyle());
+    }
 
-	@Override
-	protected int getNativeWidth() {
-		// TODO Fix value - add size computation
-		return 320;
-	}
+    @Override
+    protected void setNativeContent(UIView nativeContent) {
+        if (getContent() != null) {
+            ((UIView) getContent().asNative()).removeFromSuperview();
+        }
+        control.addSubview(nativeContent);
+    }
 }

@@ -6,52 +6,42 @@ import android.view.View;
 import android.view.Window;
 
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseContentWidget;
 
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class AndroidPopup implements Popup {
-	private final Dialog dialog;
+public class AndroidPopup extends BaseContentWidget<Dialog, View> implements Popup {
+    @Inject
+    public AndroidPopup(Context context, Viewport viewport) {
+        this(new Dialog(checkNotNull(context)), viewport);
+        control.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        control.setCanceledOnTouchOutside(false);
+    }
 
-	@Inject
-	public AndroidPopup(Context context) {
-		checkNotNull(context);
-		dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
-	}
+    public AndroidPopup(Dialog control, Viewport viewport) {
+        super(control, viewport);
+    }
 
-	@Override
-	public void show() {
-		dialog.show();
-	}
+    @Override
+    protected void setNativeContent(View nativeContent) {
+        control.setContentView(nativeContent);
+    }
 
-	@Override
-	public void hide() {
-		dialog.dismiss();
-	}
+    @Override
+    public void show() {
+        control.show();
+    }
 
-	@Override
-	public void setContent(Widget content) {
-		checkNotNull(content);
-		dialog.setContentView((View) content.asNative());
-	}
+    @Override
+    public void hide() {
+        control.dismiss();
+    }
 
-	@Override
-	public void setAutoHide(boolean autoHide) {
-        dialog.setCanceledOnTouchOutside(autoHide);
-	}
-
-	@Override
-	public void requestLayout() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void scheduleLayout() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void setAutoHide(boolean autoHide) {
+        control.setCanceledOnTouchOutside(autoHide);
+    }
 }

@@ -7,6 +7,7 @@ import android.widget.RelativeLayout.LayoutParams;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Widget;
+import org.nibiru.ui.core.api.layout.MeasureSpec;
 
 import javax.inject.Inject;
 

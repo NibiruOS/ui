@@ -191,7 +191,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
 
     @Override
     protected void onMeasure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
-        // TODO: Review this
         widths.clear();
         heights.clear();
         for (Widget child : getChildren()) {
@@ -275,9 +274,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
 
     @Override
     public void onLayout() {
-//        for (Rule rule : sortedRules) {
-//            rule.apply();
-//        }
         for (Widget child : getChildren()) {
             child.layout();
         }

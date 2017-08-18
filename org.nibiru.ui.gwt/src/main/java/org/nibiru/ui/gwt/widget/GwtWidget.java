@@ -21,9 +21,13 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 
 	@Override
 	public void applyStyle() {
+		applyStyle(control, getStyle());
+	}
+
+	static void applyStyle(Widget control, org.nibiru.ui.core.api.style.Style style) {
 		control.getElement()
 				.getStyle()
-				.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+				.setBackgroundColor(colorToNative(style.getBackgroundColor()));
 	}
 
 	@Override

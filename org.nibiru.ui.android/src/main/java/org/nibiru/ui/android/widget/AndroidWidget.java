@@ -11,6 +11,7 @@ import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.HasClickHandler;
 import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.api.style.Style;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -71,7 +72,11 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 
     @Override
     public void applyStyle() {
-        control.setBackgroundColor(colorToNative(getStyle().getBackgroundColor()));
+        applyStyle(control, getStyle());
+    }
+
+    static void applyStyle(View control, Style style) {
+        control.setBackgroundColor(colorToNative(style.getBackgroundColor()));
     }
 
     int dpToPx(int dp) {
