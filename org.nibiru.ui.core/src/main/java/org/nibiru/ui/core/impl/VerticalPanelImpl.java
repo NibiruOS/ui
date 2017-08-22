@@ -12,62 +12,62 @@ import org.nibiru.ui.core.api.style.Size;
 import javax.inject.Inject;
 
 public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel {
-	
-	@Inject
-	public VerticalPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
-		super(panel, viewport, looper);
-	}
 
-	@Override
-	protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
-		int maxWidth = 0;
-		int mTotalLength = 0;
-		int childrenMP = 0;
+    @Inject
+    public VerticalPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+        super(panel, viewport, looper);
+    }
 
-		for (Widget child : getChildren()) {
-			if(child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
-				childrenMP++;
-			} else {
-				measureChild(child, childWidthSpec, childHeightSpec);
+    @Override
+    protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
+        int maxWidth = 0;
+        int mTotalLength = 0;
+        int childrenMP = 0;
 
-				mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
+        for (Widget child : getChildren()) {
+            if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
+                childrenMP++;
+            } else {
+                measureChild(child, childWidthSpec, childHeightSpec);
 
-				maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
+                mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
 
-				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-				if (childWidthSpec.getType() != Type.EXACTLY && child.getStyle().getWidth() == Size.MATCH_PARENT) {
+                maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
 
-				}
-			}
-		}
+                //TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
+                if (childWidthSpec.getType() != Type.EXACTLY && child.getStyle().getWidth() == Size.MATCH_PARENT) {
 
-		if(childrenMP > 0) {
-			final int remainingSpace = (childHeightSpec.getValue() - mTotalLength) / childrenMP;
+                }
+            }
+        }
 
-			for (Widget child : getChildren()) {
-				if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
-					measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
+        if (childrenMP > 0) {
+            final int remainingSpace = (childHeightSpec.getValue() - mTotalLength) / childrenMP;
 
-					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
+            for (Widget child : getChildren()) {
+                if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
+                    measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
 
-					maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
-				}
-			}
-		}
+                    mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
 
-		updateSize(resolveSize(maxWidth, childWidthSpec, true), resolveSize(mTotalLength, childHeightSpec, false));
+                    maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
+                }
+            }
+        }
 
-	}
-	
-	@Override
-	public void onLayout() {
-		int currentY = 0;
-		for (Widget child : getChildren()) {
-			child.layout();
-			panel.getPosition(child).setX(0).setY(currentY);
-			currentY += child.getMeasuredHeight();
-		}
-		super.onLayout();
-	}
+        updateSize(resolveWidth(maxWidth, childWidthSpec), resolveHeight(mTotalLength, childHeightSpec));
+
+    }
+
+    @Override
+    public void onLayout() {
+        int currentY = 0;
+        for (Widget child : getChildren()) {
+            child.layout();
+            panel.getPosition(child).setX(0).setY(currentY);
+            currentY += child.getMeasuredHeight();
+        }
+        super.onLayout();
+    }
 
 }

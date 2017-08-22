@@ -12,61 +12,61 @@ import org.nibiru.ui.core.api.style.Size;
 import javax.inject.Inject;
 
 public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPanel {
-	
-	@Inject
-	public HorizontalPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
-		super(panel, viewport, looper);
-	}
-	
-	@Override
-	protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
-		int maxHeight = 0;
-		int mTotalLength = 0;
-		int childrenMP = 0;
 
-		for (Widget child : getChildren()) {
-			if(child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
-				childrenMP++;
-			} else {
-				measureChild(child, childWidthSpec, childHeightSpec);
+    @Inject
+    public HorizontalPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+        super(panel, viewport, looper);
+    }
 
-				mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
+    @Override
+    protected void onMeasure(MeasureSpec childWidthSpec, MeasureSpec childHeightSpec) {
+        int maxHeight = 0;
+        int mTotalLength = 0;
+        int childrenMP = 0;
 
-				maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
+        for (Widget child : getChildren()) {
+            if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
+                childrenMP++;
+            } else {
+                measureChild(child, childWidthSpec, childHeightSpec);
 
-				//TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
-				if (childHeightSpec.getType() != Type.EXACTLY && child.getStyle().getHeight() == Size.MATCH_PARENT) {
+                mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
 
-				}
-			}
-		}
+                maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
 
-		if(childrenMP > 0) {
-			int remainingSpace = (childWidthSpec.getValue() - mTotalLength) / childrenMP;
+                //TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
+                if (childHeightSpec.getType() != Type.EXACTLY && child.getStyle().getHeight() == Size.MATCH_PARENT) {
 
-			for (Widget child : getChildren()) {
-				if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
-					measureChild(child, MeasureSpec.atMost(remainingSpace), childHeightSpec);
+                }
+            }
+        }
 
-					mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
+        if (childrenMP > 0) {
+            int remainingSpace = (childWidthSpec.getValue() - mTotalLength) / childrenMP;
 
-					maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
-				}
-			}
-		}
+            for (Widget child : getChildren()) {
+                if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
+                    measureChild(child, MeasureSpec.atMost(remainingSpace), childHeightSpec);
 
-		updateSize(resolveSize(mTotalLength, childWidthSpec, true), resolveSize(maxHeight, childHeightSpec, false));
+                    mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredWidth());
 
-	}
-	
-	@Override
-	public void onLayout() {
-		int currentX = 0;
-		for (Widget child : getChildren()) {
-			child.layout();
-			panel.getPosition(child).setX(currentX).setY(0);
-			currentX += child.getMeasuredWidth();
-		}
-		super.onLayout();
-	}
+                    maxHeight = Math.max(maxHeight, child.getMeasuredHeight());
+                }
+            }
+        }
+
+        updateSize(resolveWidth(mTotalLength, childWidthSpec), resolveHeight(maxHeight, childHeightSpec));
+
+    }
+
+    @Override
+    public void onLayout() {
+        int currentX = 0;
+        for (Widget child : getChildren()) {
+            child.layout();
+            panel.getPosition(child).setX(currentX).setY(0);
+            currentX += child.getMeasuredWidth();
+        }
+        super.onLayout();
+    }
 }

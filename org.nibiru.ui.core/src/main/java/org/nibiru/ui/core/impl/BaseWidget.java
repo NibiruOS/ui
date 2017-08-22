@@ -43,6 +43,14 @@ public abstract class BaseWidget implements Widget {
         updateSize(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
     }
 
+    protected int resolveWidth(int size, MeasureSpec measureSpec) {
+        return resolveSize(size, measureSpec, getStyle().getWidth());
+    }
+
+    protected int resolveHeight(int size, MeasureSpec measureSpec) {
+        return resolveSize(size, measureSpec, getStyle().getHeight());
+    }
+
     /**
      * This method resolves the final size for panels after measuring the children.
      * If parent had an exactly size, we use that one, if not we use the one calculated after measuring all its children.
@@ -51,25 +59,17 @@ public abstract class BaseWidget implements Widget {
      * @param measureSpec restrictions imposed to the widget
      * @return widget size
      */
-    public int resolveSize(int size, MeasureSpec measureSpec, boolean width) {
+    private int resolveSize(int size, MeasureSpec measureSpec, Size styleSize) {
         int result = size;
         switch (measureSpec.getType()) {
             case UNSPECIFIED:
                 result = size;
                 break;
             case AT_MOST:
-                if (width) {
-                    if (getStyle().getWidth().equals(Size.MATCH_PARENT)) {
-                        result = measureSpec.getValue();
-                    } else {
-                        result = size;
-                    }
+                if (styleSize.equals(Size.MATCH_PARENT)) {
+                    result = measureSpec.getValue();
                 } else {
-                    if (getStyle().getHeight().equals(Size.MATCH_PARENT)) {
-                        result = measureSpec.getValue();
-                    } else {
-                        result = size;
-                    }
+                    result = size;
                 }
                 break;
             case EXACTLY:

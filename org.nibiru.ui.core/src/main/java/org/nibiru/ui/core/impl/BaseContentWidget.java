@@ -56,8 +56,8 @@ public abstract class BaseContentWidget<T, N> extends BaseWidget implements HasC
     protected void onMeasure(MeasureSpec widthSpec, MeasureSpec heightSpec) {
         if (content != null) {
             measureChild(content, widthSpec, heightSpec);
-            updateSize(resolveSize(content.getMeasuredWidth(), widthSpec, true),
-                    resolveSize(content.getMeasuredHeight(), heightSpec, false));
+            updateSize(resolveWidth(content.getMeasuredWidth(), widthSpec),
+                    resolveHeight(content.getMeasuredHeight(), heightSpec));
         } else {
             super.onMeasure(widthSpec, heightSpec);
         }

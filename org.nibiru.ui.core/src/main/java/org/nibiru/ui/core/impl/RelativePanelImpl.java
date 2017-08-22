@@ -269,7 +269,6 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
                 throw new IllegalArgumentException("Invalid height mesaure type:" + heightMeasureSpec.getType());
         }
         updateSize(maxWidth, maxHeight);
-        //updateSize(resolveSize(maxWidth, widthMeasureSpec), resolveSize(maxHeight, heightMeasureSpec));
     }
 
     @Override
