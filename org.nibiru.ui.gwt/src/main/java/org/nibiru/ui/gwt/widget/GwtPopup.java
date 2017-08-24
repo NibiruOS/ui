@@ -1,15 +1,16 @@
 package org.nibiru.ui.gwt.widget;
 
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.impl.BaseContentWidget;
+import org.nibiru.ui.core.impl.BasePopup;
 import org.nibiru.ui.gwt.resource.Resources;
 
 import javax.inject.Inject;
 
-public class GwtPopup extends BaseContentWidget<PopupPanel, com.google.gwt.user.client.ui.Widget>
+public class GwtPopup extends BasePopup<PopupPanel, Widget>
         implements Popup {
     @Inject
     public GwtPopup(Resources resources, Viewport viewport) {
@@ -21,12 +22,6 @@ public class GwtPopup extends BaseContentWidget<PopupPanel, com.google.gwt.user.
 
     public GwtPopup(PopupPanel control, Viewport viewport) {
         super(control, viewport);
-    }
-
-    @Override
-    protected void setNativeContent(com.google.gwt.user.client.ui.Widget nativeContent) {
-        control.clear();
-        control.add(nativeContent);
     }
 
     @Override
@@ -43,5 +38,18 @@ public class GwtPopup extends BaseContentWidget<PopupPanel, com.google.gwt.user.
     @Override
     public void setAutoHide(boolean autoHide) {
         control.setAutoHideEnabled(autoHide);
+    }
+
+    @Override
+    protected void setNativeContent(com.google.gwt.user.client.ui.Widget nativeContent) {
+        control.clear();
+        control.add(nativeContent);
+    }
+
+    @Override
+    protected void setNativeSize(int width, int height) {
+        if (getContent() != null) {
+            WidgetUtils.setNativeSize((Widget) getContent().asNative(), width, height);
+        }
     }
 }

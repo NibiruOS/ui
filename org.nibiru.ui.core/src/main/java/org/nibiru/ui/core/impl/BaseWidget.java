@@ -234,7 +234,7 @@ public abstract class BaseWidget implements Widget {
         this.parent = parent;
     }
 
-    protected static double colorToDouble(int color) {
+    public static double colorToDouble(int color) {
         return color / 255d;
     }
 }

@@ -2,13 +2,13 @@ package org.nibiru.ui.ios.widget;
 
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.impl.BaseContentWidget;
+import org.nibiru.ui.core.impl.BasePopup;
 
 import javax.inject.Inject;
 
 import apple.uikit.UIView;
 
-public class IOSPopup extends BaseContentWidget<Overlay, UIView> implements Popup {
+public class IOSPopup extends BasePopup<Overlay, UIView> implements Popup {
 
     @Inject
     public IOSPopup(Viewport viewport) {
@@ -40,5 +40,12 @@ public class IOSPopup extends BaseContentWidget<Overlay, UIView> implements Popu
     protected void setNativeContent(UIView nativeContent) {
         control.setContent(nativeContent);
         control.centerContent();
+    }
+
+    @Override
+    protected void setNativeSize(int width, int height) {
+        if (getContent() != null) {
+            WidgetUtils.setNativeSize((UIView) getContent().asNative(), width, height);
+        }
     }
 }

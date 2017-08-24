@@ -1,15 +1,17 @@
 package org.nibiru.ui.ios.widget;
 
-import org.nibiru.ui.core.api.ScrollPanel;
+import org.nibiru.ui.core.api.HorizontalScrollPanel;
+import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.impl.BaseContentWidget;
+import org.nibiru.ui.core.impl.BaseScrollPanel;
 
 import javax.inject.Inject;
 
 import apple.uikit.UIScrollView;
 import apple.uikit.UIView;
 
-public class IOSScrollPanel extends BaseContentWidget<UIScrollView, UIView> implements ScrollPanel {
+public class IOSScrollPanel extends BaseScrollPanel<UIScrollView, UIView>
+        implements VerticalScrollPanel, HorizontalScrollPanel {
 
     @Inject
     public IOSScrollPanel(Viewport viewport) {
@@ -23,7 +25,7 @@ public class IOSScrollPanel extends BaseContentWidget<UIScrollView, UIView> impl
     @Override
     public void applyStyle() {
         super.applyStyle();
-        IOSWidget.applyStyle(control, getStyle());
+        WidgetUtils.applyStyle(control, getStyle());
     }
 
     @Override
@@ -32,5 +34,10 @@ public class IOSScrollPanel extends BaseContentWidget<UIScrollView, UIView> impl
             ((UIView) getContent().asNative()).removeFromSuperview();
         }
         control.addSubview(nativeContent);
+    }
+
+    @Override
+    protected void setNativeSize(int width, int height) {
+        WidgetUtils.setNativeSize(control, width, height);
     }
 }

@@ -65,5 +65,5 @@ public abstract class BaseControlWidget<T> extends BaseWidget {
 
     abstract protected int getNativeWidth();
 
-    abstract protected void setNativeSize(int measuredWidth, int measuredHeight);
+    abstract protected void setNativeSize(int width, int height);
 }

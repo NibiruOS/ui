@@ -19,6 +19,8 @@ import apple.coregraphics.struct.CGSize;
 import apple.uikit.UILabel;
 import apple.uikit.UIView;
 
+import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
+
 public class IOSRadioButtonGroup<V> extends IOSValueWidget<UIView, V> implements RadioButtonGroup<V> {
     private V selectedItem;
     private final Value<Iterable<V>> items;
@@ -57,9 +59,7 @@ public class IOSRadioButtonGroup<V> extends IOSValueWidget<UIView, V> implements
                     UILabel label = UILabel.alloc().init();
                     control.addSubview(label);
                     labels.add(label);
-                    TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(label, () -> {
-                        getValue().set(item);
-                    });
+                    TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(label, () -> getValue().set(item));
                     String text = item != null ? item.toString() : "";
                     CGSize size = sizeFromText("+" + text, label.font());
                     if (rowHeight < size.height()) {

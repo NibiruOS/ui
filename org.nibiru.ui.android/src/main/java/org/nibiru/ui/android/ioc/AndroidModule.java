@@ -5,11 +5,12 @@ import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
 import org.nibiru.ui.android.widget.AndroidCheckbox;
+import org.nibiru.ui.android.widget.AndroidHorizontalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidImage;
 import org.nibiru.ui.android.widget.AndroidLabel;
 import org.nibiru.ui.android.widget.AndroidPasswordBox;
 import org.nibiru.ui.android.widget.AndroidPopup;
-import org.nibiru.ui.android.widget.AndroidScrollPanel;
+import org.nibiru.ui.android.widget.AndroidVerticalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidSpinner;
 import org.nibiru.ui.android.widget.AndroidTextBox;
 import org.nibiru.ui.android.widget.AndroidTreeView;
@@ -17,11 +18,12 @@ import org.nibiru.ui.android.widget.AndroidViewport;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.PasswordBox;
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.ScrollPanel;
+import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
@@ -60,7 +62,12 @@ public class AndroidModule {
 	}
 
 	@Provides
-	public ScrollPanel getScrollPanel(AndroidScrollPanel scrollPanel) {
+	public HorizontalScrollPanel getHorizontalScrollPanel(AndroidHorizontalScrollPanel scrollPanel) {
+		return scrollPanel;
+	}
+
+	@Provides
+	public VerticalScrollPanel getVerticalScrollPanel(AndroidVerticalScrollPanel scrollPanel) {
 		return scrollPanel;
 	}
 

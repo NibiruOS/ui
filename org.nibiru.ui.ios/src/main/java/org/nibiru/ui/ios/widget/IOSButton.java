@@ -16,57 +16,59 @@ import apple.uikit.UIColor;
 import apple.uikit.enums.UIButtonType;
 import apple.uikit.enums.UIControlState;
 
+import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
+
 public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
-	private static final int MARGIN = 10;
+    private static final int MARGIN = 10;
 
-	@Inject
-	public IOSButton() {
-		this(buildButton());
-	}
-	
-	private static UIButton buildButton() {
-		UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
-		button.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
-		button.setTitleColorForState(UIColor.blackColor(), UIControlState.Normal);
-		button.setBackgroundColor(UIColor.grayColor());
-		return button;
-	}
+    @Inject
+    public IOSButton() {
+        this(buildButton());
+    }
 
-	public IOSButton(UIButton button) {
-		super(button);
-	}
+    private static UIButton buildButton() {
+        UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
+        button.setTitleColorForState(UIColor.blackColor(), UIControlState.Normal);
+        button.setBackgroundColor(UIColor.grayColor());
+        return button;
+    }
 
-	@Override
-	Value<String> buildValue() {
-		return new BaseValue<String>() {
-			@Override
-			public String get() {
-				return control.titleForState(UIControlState.Normal);
-			}
+    public IOSButton(UIButton button) {
+        super(button);
+    }
 
-			@Override
-			protected void setValue(String value) {
-				control.setTitleForState(value, UIControlState.Normal);
-			}
+    @Override
+    Value<String> buildValue() {
+        return new BaseValue<String>() {
+            @Override
+            public String get() {
+                return control.titleForState(UIControlState.Normal);
+            }
 
-			@Override
-			public Type<String> getType() {
-				return JavaType.STRING;
-			}
-		};
-	}
+            @Override
+            protected void setValue(String value) {
+                control.setTitleForState(value, UIControlState.Normal);
+            }
 
-	@Override
-	protected int getNativeHeight() {
-		return (int) (control.titleForState(UIControlState.Normal) != null ? size().height() : 0) + MARGIN;
-	}
+            @Override
+            public Type<String> getType() {
+                return JavaType.STRING;
+            }
+        };
+    }
 
-	@Override
-	protected int getNativeWidth() {
-		return (int) (control.titleForState(UIControlState.Normal) != null ? size().width() : 0) + MARGIN;
-	}
-	
-	private CGSize size() {
-		return sizeFromText(control.titleForState(UIControlState.Normal), control.font());
-	}
+    @Override
+    protected int getNativeHeight() {
+        return (int) (control.titleForState(UIControlState.Normal) != null ? size().height() : 0) + MARGIN;
+    }
+
+    @Override
+    protected int getNativeWidth() {
+        return (int) (control.titleForState(UIControlState.Normal) != null ? size().width() : 0) + MARGIN;
+    }
+
+    private CGSize size() {
+        return sizeFromText(control.titleForState(UIControlState.Normal), control.font());
+    }
 }

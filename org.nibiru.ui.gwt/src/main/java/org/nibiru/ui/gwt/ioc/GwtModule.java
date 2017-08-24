@@ -6,11 +6,12 @@ import com.google.gwt.core.client.Scheduler;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
 import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.PasswordBox;
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.ScrollPanel;
+import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
@@ -64,7 +65,12 @@ public class GwtModule {
 	}
 
 	@Provides
-	public ScrollPanel getScrollPanel(GwtScrollPanel scrollPanel) {
+	public HorizontalScrollPanel getHorizontalScrollPanel(GwtScrollPanel scrollPanel) {
+		return scrollPanel;
+	}
+
+	@Provides
+	public VerticalScrollPanel getVerticalScrollPanel(GwtScrollPanel scrollPanel) {
 		return scrollPanel;
 	}
 

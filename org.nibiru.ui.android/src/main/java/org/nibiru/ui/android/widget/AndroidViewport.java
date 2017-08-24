@@ -2,7 +2,6 @@ package org.nibiru.ui.android.widget;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -11,18 +10,9 @@ import org.nibiru.ui.core.api.Viewport;
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.nibiru.ui.android.widget.WidgetUtils.pxToDp;
 
 public class AndroidViewport implements Viewport {
-    static int dpToPx(int dp, Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return (int) ((dp * displayMetrics.density) + 0.5);
-    }
-
-    static int pxToDp(int px, Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return (int) ((px / displayMetrics.density) + 0.5);
-    }
-
     private final Context context;
     private final Display display;
 

@@ -36,7 +36,7 @@ public abstract class BaseContentWidget<T, N> extends BaseWidget implements HasC
             this.content.setParent(null);
         }
         this.content = content;
-        setNativeContent((N)content.asNative());
+        setNativeContent((N) content.asNative());
         content.setParent(this);
     }
 
@@ -53,27 +53,18 @@ public abstract class BaseContentWidget<T, N> extends BaseWidget implements HasC
     }
 
     @Override
-    protected void onMeasure(MeasureSpec widthSpec, MeasureSpec heightSpec) {
-        if (content != null) {
-            measureChild(content, widthSpec, heightSpec);
-            updateSize(resolveWidth(content.getMeasuredWidth(), widthSpec),
-                    resolveHeight(content.getMeasuredHeight(), heightSpec));
-        } else {
-            super.onMeasure(widthSpec, heightSpec);
-        }
-    }
-
-    @Override
     public void onLayout() {
         if (content != null) {
             content.layout();
         }
-        super.onLayout();
+        setNativeSize(getMeasuredWidth(), getMeasuredHeight());
     }
 
-    public Widget getContent() {
+    protected Widget getContent() {
         return content;
     }
 
-    protected abstract void setNativeContent(N nativeContent);
+    abstract protected void setNativeContent(N nativeContent);
+
+    abstract protected void setNativeSize(int width, int height);
 }

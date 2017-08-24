@@ -9,6 +9,9 @@ import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
 
+import static org.nibiru.ui.android.widget.WidgetUtils.alignmentToHorizontalGravity;
+import static org.nibiru.ui.android.widget.WidgetUtils.colorToNative;
+
 public class AndroidLabel extends AndroidValueWidget<TextView, String> implements Label {
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 2;

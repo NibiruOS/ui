@@ -7,13 +7,13 @@ import android.view.Window;
 
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
-import org.nibiru.ui.core.impl.BaseContentWidget;
+import org.nibiru.ui.core.impl.BasePopup;
 
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class AndroidPopup extends BaseContentWidget<Dialog, View> implements Popup {
+public class AndroidPopup extends BasePopup<Dialog, View> implements Popup {
     @Inject
     public AndroidPopup(Context context, Viewport viewport) {
         this(new Dialog(checkNotNull(context)), viewport);
@@ -23,11 +23,6 @@ public class AndroidPopup extends BaseContentWidget<Dialog, View> implements Pop
 
     public AndroidPopup(Dialog control, Viewport viewport) {
         super(control, viewport);
-    }
-
-    @Override
-    protected void setNativeContent(View nativeContent) {
-        control.setContentView(nativeContent);
     }
 
     @Override
@@ -43,5 +38,17 @@ public class AndroidPopup extends BaseContentWidget<Dialog, View> implements Pop
     @Override
     public void setAutoHide(boolean autoHide) {
         control.setCanceledOnTouchOutside(autoHide);
+    }
+
+    @Override
+    protected void setNativeContent(View nativeContent) {
+        control.setContentView(nativeContent);
+    }
+
+    @Override
+    protected void setNativeSize(int width, int height) {
+        if (getContent() != null) {
+            WidgetUtils.setNativeSize((View) getContent().asNative(), width, height);
+        }
     }
 }

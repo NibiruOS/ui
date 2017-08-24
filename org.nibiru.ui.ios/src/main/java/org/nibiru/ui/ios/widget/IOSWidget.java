@@ -1,21 +1,10 @@
 package org.nibiru.ui.ios.widget;
 
-import com.google.common.base.Strings;
-
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
-import org.nibiru.ui.core.api.style.Alignment;
-import org.nibiru.ui.core.api.style.Color;
-import org.nibiru.ui.core.api.style.Style;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
-import apple.coregraphics.struct.CGRect;
-import apple.coregraphics.struct.CGSize;
-import apple.foundation.NSString;
-import apple.uikit.UIColor;
-import apple.uikit.UIFont;
 import apple.uikit.UIView;
-import apple.uikit.enums.UITextAlignment;
 
 abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
     IOSWidget(T control) {
@@ -24,42 +13,15 @@ abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
 
     @Override
     public void applyStyle() {
-        applyStyle(control, getStyle());
-    }
-
-    static void applyStyle(UIView control, Style style) {
-        control.setBackgroundColor(colorToNative(style.getBackgroundColor()));
-    }
-
-    protected static UIColor colorToNative(Color color) {
-        return UIColor.colorWithRedGreenBlueAlpha(colorToDouble(color.getRed()),
-                colorToDouble(color.getGreen()),
-                colorToDouble(color.getBlue()),
-                colorToDouble(color.getAlpha()));
+        WidgetUtils.applyStyle(control, getStyle());
     }
 
     @Override
-    public void setNativeSize(int measuredWidth, int measuredHeight) {
-        control.setFrame(new CGRect(control.frame().origin(), new CGSize(measuredWidth, measuredHeight)));
+    public void setNativeSize(int width, int height) {
+        WidgetUtils.setNativeSize(control, width, height);
     }
 
     public Registration setClickHandler(ClickHandler clickHandler) {
         return TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(control, clickHandler);
     }
-
-    static CGSize sizeFromText(String text, UIFont font) {
-        return NSString.stringWithString(Strings.isNullOrEmpty(text) ? "I" : text).sizeWithFont(font);
-    }
-
-    protected static long alignmentToTextAlignment(Alignment alignment) {
-        switch (alignment) {
-            case END:
-                return UITextAlignment.Right;
-            case CENTER:
-                return UITextAlignment.Center;
-            default:
-                return UITextAlignment.Left;
-        }
-    }
-
 }
