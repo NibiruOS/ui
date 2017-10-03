@@ -10,7 +10,7 @@ abstract public class BaseStyleBuilder<T extends Style, B extends BaseStyleBuild
         super(style);
     }
 
-    public B parent(T parent) {
+    public B parent(Style parent) {
         object.setParent(parent);
         return getThis();
     }

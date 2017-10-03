@@ -21,4 +21,14 @@ public class TextStyleBuilder extends BaseStyleBuilder<TextStyle, TextStyleBuild
         object.setHorizontalTextAlignment(horizontalTextAlignment);
         return this;
     }
+
+    public TextStyleBuilder fontSize(int size) {
+        object.setFontSize(size);
+        return this;
+    }
+
+    public TextStyleBuilder allCaps(boolean allCaps) {
+        object.setAllCaps(allCaps);
+        return this;
+    }
 }

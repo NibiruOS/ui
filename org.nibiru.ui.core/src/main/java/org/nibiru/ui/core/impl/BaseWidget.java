@@ -35,6 +35,16 @@ public abstract class BaseWidget implements Widget {
         return measuredWidth;
     }
 
+    @Override
+    public int getFullMeasuredHeight() {
+        return style.getMarginTop() + measuredHeight + style.getMarginBottom();
+    }
+
+    @Override
+    public int getFullMeasuredWidth() {
+        return style.getMarginLeft() + measuredWidth + style.getMarginRight();
+    }
+
     public final void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
         onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

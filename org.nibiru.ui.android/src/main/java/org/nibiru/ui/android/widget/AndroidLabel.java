@@ -32,6 +32,11 @@ public class AndroidLabel extends AndroidValueWidget<TextView, String> implement
             TextStyle textStyle = (TextStyle) getStyle();
             control.setTextColor(colorToNative(textStyle.getTextColor()));
             control.setGravity(alignmentToHorizontalGravity(textStyle.getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setTextSize(fontSize);
+            }
+            control.setAllCaps(textStyle.getAllCaps());
         }
     }
 

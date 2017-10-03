@@ -14,6 +14,10 @@ public interface Widget {
 
 	int getMeasuredWidth();
 
+	int getFullMeasuredHeight();
+
+	int getFullMeasuredWidth();
+
 	void layout();
 
 	@Nullable

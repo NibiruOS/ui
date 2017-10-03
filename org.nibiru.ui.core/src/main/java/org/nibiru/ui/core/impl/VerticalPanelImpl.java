@@ -30,9 +30,9 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
             } else {
                 measureChild(child, childWidthSpec, childHeightSpec);
 
-                mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
+                mTotalLength += child.getFullMeasuredHeight();
 
-                maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
+                maxWidth = Math.max(maxWidth, child.getFullMeasuredWidth());
 
                 //TODO: what are we going to do in this situation? the child wants to match our width, we need to remeasure it when we know our size
                 if (childWidthSpec.getType() != Type.EXACTLY && child.getStyle().getWidth() == Size.MATCH_PARENT) {
@@ -48,9 +48,9 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
                 if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
                     measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
 
-                    mTotalLength = Math.max(mTotalLength, mTotalLength + child.getMeasuredHeight());
+                    mTotalLength += child.getFullMeasuredHeight();
 
-                    maxWidth = Math.max(maxWidth, child.getMeasuredWidth());
+                    maxWidth = Math.max(maxWidth, child.getFullMeasuredWidth());
                 }
             }
         }
@@ -63,11 +63,24 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
     public void onLayout() {
         int currentY = 0;
         for (Widget child : getChildren()) {
+            int x = 0;
+            switch (child.getStyle().getHorizontalAlignment()) {
+                case START:
+                    x = child.getStyle().getMarginLeft();
+                    break;
+                case CENTER:
+                    x = (getMeasuredWidth() - child.getMeasuredWidth()) / 2;
+                    break;
+                case END:
+                    x = getMeasuredWidth() - child.getMeasuredWidth() - child.getStyle().getMarginRight();
+                    break;
+            }
             child.layout();
-            panel.getPosition(child).setX(0).setY(currentY);
-            currentY += child.getMeasuredHeight();
+            panel.getPosition(child)
+                    .setX(x)
+                    .setY(currentY + child.getStyle().getMarginTop());
+            currentY += child.getFullMeasuredHeight();
         }
         super.onLayout();
     }
-
 }

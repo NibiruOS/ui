@@ -42,6 +42,16 @@ public abstract class CompositeWidget<T extends Widget> implements Widget {
     }
 
     @Override
+    public int getFullMeasuredHeight() {
+        return widget.getFullMeasuredHeight();
+    }
+
+    @Override
+    public int getFullMeasuredWidth() {
+        return widget.getFullMeasuredWidth();
+    }
+
+    @Override
     public void layout() {
         widget.layout();
     }

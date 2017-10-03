@@ -7,6 +7,8 @@ public class TextStyle extends Style {
 
     private Color textColor;
     private Alignment horizontalTextAlignment;
+    private Integer fontSize;
+    private Boolean allCaps;
 
     public Color getTextColor() {
         return property(textColor, TextStyle::getTextColor, Color.BLACK);
@@ -22,5 +24,21 @@ public class TextStyle extends Style {
 
     public void setHorizontalTextAlignment(@Nullable Alignment horizontalTextAlignment) {
         this.horizontalTextAlignment = horizontalTextAlignment;
+    }
+
+    public Integer getFontSize() {
+        return property(fontSize, TextStyle::getFontSize, 0);
+    }
+
+    public void setFontSize(Integer fontSize) {
+        this.fontSize = fontSize;
+    }
+
+    public Boolean getAllCaps() {
+        return property(allCaps, TextStyle::getAllCaps, false);
+    }
+
+    public void setAllCaps(Boolean allCaps) {
+        this.allCaps = allCaps;
     }
 }
