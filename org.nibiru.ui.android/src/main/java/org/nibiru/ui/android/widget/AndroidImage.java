@@ -2,6 +2,8 @@ package org.nibiru.ui.android.widget;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.google.common.io.Closer;
@@ -15,6 +17,7 @@ import org.nibiru.ui.core.api.ResourcesBasePath;
 import org.nibiru.ui.core.api.style.ImageStyle;
 import org.nibiru.ui.core.api.style.ImageStyle.ScaleType;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -32,6 +35,21 @@ public class AndroidImage extends AndroidValueWidget<ImageView, String> implemen
     public AndroidImage(ImageView view, final String basePath) {
         super(view);
         this.basePath = checkNotNull(basePath);
+    }
+
+    @Override
+    public void setBinaryContent(Format format, byte[] content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        control.setImageDrawable(new BitmapDrawable(control.getContext().getResources(),
+                new ByteArrayInputStream(content)));
+    }
+
+    @Override
+    public void setBase64Content(Format format, String content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        setBinaryContent(format, Base64.decode(content, Base64.DEFAULT));
     }
 
     @Override

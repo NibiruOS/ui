@@ -7,13 +7,28 @@ import javax.inject.Inject;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ImageBuilder extends BaseClickableValueBuilder<Image, String, ImageBuilder> {
-	@Inject
-	public ImageBuilder(Image image) {
-		super(image);
-	}
+    @Inject
+    public ImageBuilder(Image image) {
+        super(image);
+    }
 
-	public Image build(String path) {
-		checkNotNull(path);
-		return value(path).build();
-	}
+    public ImageBuilder binaryContent(Image.Format format, byte[] content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        object.setBinaryContent(format, content);
+        return this;
+    }
+
+    public ImageBuilder base64Content(Image.Format format, String content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        object.setBase64Content(format, content);
+        return this;
+    }
+
+
+    public Image build(String path) {
+        checkNotNull(path);
+        return value(path).build();
+    }
 }

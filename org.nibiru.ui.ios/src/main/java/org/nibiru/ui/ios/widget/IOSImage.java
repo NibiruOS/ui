@@ -12,6 +12,7 @@ import org.nibiru.ui.core.api.ResourcesBasePath;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 
 import javax.inject.Inject;
 
@@ -35,6 +36,20 @@ public class IOSImage extends IOSValueWidget<UIImageView, String> implements Ima
     }
 
     @Override
+    public void setBinaryContent(Format format, byte[] content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        setBinaryContent(content);
+    }
+
+    @Override
+    public void setBase64Content(Format format, String content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        setBinaryContent(Base64.getDecoder().decode(content));
+    }
+
+    @Override
     Value<String> buildValue() {
         return new BaseValue<String>() {
             private String value;
@@ -44,22 +59,21 @@ public class IOSImage extends IOSValueWidget<UIImageView, String> implements Ima
                 return value;
             }
 
-			@Override
-			protected void setValue(final String value) {
-				this.value = checkNotNull(value);
-				try {
-					byte[] data = new ByteSource() {
-						@Override
-						public InputStream openStream() throws IOException {
-							return getClass().getClassLoader().getResourceAsStream(basePath + value);
-						}
-					}.read();
-					control.setImage(UIImage.alloc()
-							.initWithData(NSData.dataWithBytesLength(PtrFactory.newByteArray(data), data.length)));
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
+            @Override
+            protected void setValue(final String value) {
+                this.value = checkNotNull(value);
+                try {
+                    byte[] data = new ByteSource() {
+                        @Override
+                        public InputStream openStream() throws IOException {
+                            return getClass().getClassLoader().getResourceAsStream(basePath + value);
+                        }
+                    }.read();
+                    setBinaryContent(data);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
             @Override
             public Type<String> getType() {
@@ -68,13 +82,18 @@ public class IOSImage extends IOSValueWidget<UIImageView, String> implements Ima
         };
     }
 
-	@Override
-	protected int getNativeHeight() {
-		return (int) (control.image() != null ? control.image().size().height() : 0);
-	}
+    @Override
+    protected int getNativeHeight() {
+        return (int) (control.image() != null ? control.image().size().height() : 0);
+    }
 
-	@Override
-	protected int getNativeWidth() {
-		return (int) (control.image() != null ? control.image().size().width() : 0);
-	}
+    @Override
+    protected int getNativeWidth() {
+        return (int) (control.image() != null ? control.image().size().width() : 0);
+    }
+
+    private void setBinaryContent(byte[] content) {
+        control.setImage(UIImage.alloc().initWithData(NSData
+                .dataWithBytesLength(PtrFactory.newByteArray(content), content.length)));
+    }
 }
