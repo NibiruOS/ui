@@ -79,7 +79,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
             panel.getPosition(child)
                     .setX(currentX)
                     .setY(y);
-            currentX += child.getFullMeasuredHeight();
+            currentX += child.getFullMeasuredWidth();
         }
         super.onLayout();
     }
