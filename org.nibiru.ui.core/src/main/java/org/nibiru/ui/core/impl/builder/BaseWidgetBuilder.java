@@ -15,6 +15,11 @@ abstract public class BaseWidgetBuilder<T extends Widget,
         return getThis();
     }
 
+    public B visible(Boolean visible) {
+        object.getVisible().set(visible);
+        return getThis();
+    }
+
     @SuppressWarnings("unchecked")
     B getThis() {
         return (B) this;

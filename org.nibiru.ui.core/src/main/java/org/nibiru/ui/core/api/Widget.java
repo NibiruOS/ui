@@ -1,5 +1,6 @@
 package org.nibiru.ui.core.api;
 
+import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.style.Style;
 
@@ -30,4 +31,6 @@ public interface Widget {
 	Style getStyle();
 
 	void applyStyle();
+
+	Value<Boolean> getVisible();
 }

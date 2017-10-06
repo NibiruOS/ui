@@ -9,6 +9,9 @@ import apple.uikit.UIView;
 abstract class IOSWidget<T extends UIView> extends BaseControlWidget<T> {
     IOSWidget(T control) {
         super(control);
+        getVisible().addObserver(
+                () -> control.setHidden(!Boolean.TRUE.equals(getVisible().get()))
+        );
     }
 
     @Override

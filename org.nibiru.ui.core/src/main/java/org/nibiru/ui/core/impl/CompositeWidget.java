@@ -1,8 +1,7 @@
 package org.nibiru.ui.core.impl;
 
-
-import com.google.common.base.Preconditions;
-
+import org.nibiru.model.core.api.Value;
+import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.ui.core.api.IsParent;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
@@ -15,6 +14,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 public abstract class CompositeWidget<T extends Widget> implements Widget {
     T widget;
+    private final Value<Boolean> visible = BaseValue.of(true);
 
     protected void initWidget(T widget) {
         checkState(this.widget == null, "Widget already initialized");
@@ -81,5 +81,10 @@ public abstract class CompositeWidget<T extends Widget> implements Widget {
     @Override
     public void applyStyle() {
         widget.applyStyle();
+    }
+
+    @Override
+    public Value<Boolean> getVisible() {
+        return visible;
     }
 }

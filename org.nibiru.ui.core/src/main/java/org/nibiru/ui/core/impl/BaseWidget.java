@@ -1,5 +1,7 @@
 package org.nibiru.ui.core.impl;
 
+import org.nibiru.model.core.api.Value;
+import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.ui.core.api.IsParent;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
@@ -25,6 +27,8 @@ public abstract class BaseWidget implements Widget {
     private Style style = Style.DEFAULT;
     private IsParent parent;
 
+    private final Value<Boolean> visible = BaseValue.of(true);
+
     @Override
     public int getMeasuredHeight() {
         return measuredHeight;
@@ -43,6 +47,11 @@ public abstract class BaseWidget implements Widget {
     @Override
     public int getFullMeasuredWidth() {
         return style.getMarginLeft() + measuredWidth + style.getMarginRight();
+    }
+
+    @Override
+    public Value<Boolean> getVisible() {
+        return visible;
     }
 
     public final void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
@@ -150,7 +159,6 @@ public abstract class BaseWidget implements Widget {
      *
      * @param spec           restriction imposed to the parent widget
      * @param childDimension size of the child
-     * @return
      */
     static MeasureSpec getChildMeasureSpec(MeasureSpec spec, Size childDimension) {
         int size = spec.getValue();

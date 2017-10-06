@@ -15,6 +15,9 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
 
     AndroidWidget(T control) {
         super(control);
+        getVisible().addObserver(() -> control.setVisibility(Boolean.TRUE.equals(getVisible().get())
+                ? View.VISIBLE
+                : View.GONE));
     }
 
     @Override

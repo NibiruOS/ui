@@ -12,6 +12,9 @@ import org.nibiru.ui.core.impl.BaseControlWidget;
 abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
     GwtWidget(T control) {
         super(control);
+        getVisible().addObserver(
+                () -> control.setVisible(Boolean.TRUE.equals(getVisible().get()))
+        );
     }
 
     @Override
@@ -21,12 +24,12 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 
     @Override
     protected int getNativeHeight() {
-        return doWithClone((Element e) -> e.getOffsetHeight());
+        return doWithClone(Element::getOffsetHeight);
     }
 
     @Override
     protected int getNativeWidth() {
-        return doWithClone((Element e) -> e.getOffsetWidth());
+        return doWithClone(Element::getOffsetWidth);
     }
 
     @Override

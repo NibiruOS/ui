@@ -12,6 +12,7 @@ allprojects {
 	group = 'io.github.nibiruos.ui'
 
 	repositories {
+		mavenLocal()
 	    mavenCentral()
 	    jcenter()
 	    maven {
@@ -20,7 +21,6 @@ allprojects {
 	    maven {
 	        url "https://oss.sonatype.org/content/repositories/google-snapshots/"
 	    }
-		mavenLocal()
 	}
 	buildscript {
     	repositories {

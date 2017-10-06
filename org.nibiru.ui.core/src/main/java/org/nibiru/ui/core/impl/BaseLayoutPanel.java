@@ -2,6 +2,7 @@
 package org.nibiru.ui.core.impl;
 
 import org.nibiru.async.core.api.loop.Looper;
+import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Viewport;
@@ -96,5 +97,10 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
     @Override
     public void applyStyle() {
         panel.applyStyle();
+    }
+
+    @Override
+    public Value<Boolean> getVisible() {
+        return panel.getVisible();
     }
 }
