@@ -33,4 +33,8 @@ public interface Widget {
 	void applyStyle();
 
 	Value<Boolean> getVisible();
+
+	Object getTag();
+
+	void setTag(@Nullable Object tag);
 }

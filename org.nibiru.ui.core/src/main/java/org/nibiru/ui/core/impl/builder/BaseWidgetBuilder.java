@@ -20,6 +20,11 @@ abstract public class BaseWidgetBuilder<T extends Widget,
         return getThis();
     }
 
+    public B tag(Object tag) {
+        object.setTag(tag);
+        return getThis();
+    }
+
     @SuppressWarnings("unchecked")
     B getThis() {
         return (B) this;

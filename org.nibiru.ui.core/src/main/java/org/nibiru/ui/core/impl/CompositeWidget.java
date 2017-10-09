@@ -15,6 +15,7 @@ import static com.google.common.base.Preconditions.checkState;
 public abstract class CompositeWidget<T extends Widget> implements Widget {
     T widget;
     private final Value<Boolean> visible = BaseValue.of(true);
+    private Object tag;
 
     protected void initWidget(T widget) {
         checkState(this.widget == null, "Widget already initialized");
@@ -86,5 +87,15 @@ public abstract class CompositeWidget<T extends Widget> implements Widget {
     @Override
     public Value<Boolean> getVisible() {
         return visible;
+    }
+
+    @Override
+    public Object getTag() {
+        return tag;
+    }
+
+    @Override
+    public void setTag(@Nullable Object tag) {
+        this.tag = tag;
     }
 }

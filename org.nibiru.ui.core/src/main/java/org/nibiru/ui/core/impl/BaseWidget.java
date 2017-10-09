@@ -29,6 +29,8 @@ public abstract class BaseWidget implements Widget {
 
     private final Value<Boolean> visible = BaseValue.of(true);
 
+    private Object tag;
+
     @Override
     public int getMeasuredHeight() {
         return measuredHeight;
@@ -250,6 +252,16 @@ public abstract class BaseWidget implements Widget {
     @Override
     public void setParent(@Nullable IsParent parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public Object getTag() {
+        return tag;
+    }
+
+    @Override
+    public void setTag(@Nullable Object tag) {
+        this.tag = tag;
     }
 
     public static double colorToDouble(int color) {
