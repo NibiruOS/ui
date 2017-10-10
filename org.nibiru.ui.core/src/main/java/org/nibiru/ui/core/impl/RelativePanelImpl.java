@@ -195,16 +195,16 @@ public class RelativePanelImpl extends BaseLayoutPanel implements RelativePanel 
         heights.clear();
         for (Widget child : getChildren()) {
             getContainer().getPosition(child).setX(0).setY(0);
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
         if (areRulesDirty) {
             performTopologicalSort();
         }
-        applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
-        for (Widget child : getChildren()) {
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+        for (int n = 0; n < 2; n++) { //TODO: Why 2 times?
+            applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
+            for (Widget child : getChildren()) {
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
+            }
         }
-        applyRulesAndUpdateSize(widthMeasureSpec, heightMeasureSpec);
     }
 
     protected void measureChild(Widget child, MeasureSpec parentWidthMeasureSpec,
