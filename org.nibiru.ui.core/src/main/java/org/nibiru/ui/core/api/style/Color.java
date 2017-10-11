@@ -1,10 +1,15 @@
 package org.nibiru.ui.core.api.style;
 
+import com.google.common.base.Preconditions;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class Color {
     private static final int NON_ALPHA_SPEC_LENGHT = 7;
     private static final int ALPHA_SPEC_LENGHT = NON_ALPHA_SPEC_LENGHT + 2;
 
     public static Color fromString(String color) {
+        checkNotNull(color);
         if (color.startsWith("#")) {
             if (color.length() == NON_ALPHA_SPEC_LENGHT
                     || color.length() == ALPHA_SPEC_LENGHT) {
@@ -69,7 +74,7 @@ public class Color {
     private final int alpha;
 
     public Color(int red, int green, int blue) {
-        this(red, green, blue, 255);
+        this(red, green, blue, 0xFF);
     }
 
     public Color(int red, int green, int blue, int alpha) {
