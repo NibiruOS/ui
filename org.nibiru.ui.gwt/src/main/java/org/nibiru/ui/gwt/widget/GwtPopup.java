@@ -26,8 +26,9 @@ public class GwtPopup extends BasePopup<PopupPanel, Widget>
 
     @Override
     public void show() {
-        control.center();
         control.show();
+        requestLayout();
+        control.center();
     }
 
     @Override

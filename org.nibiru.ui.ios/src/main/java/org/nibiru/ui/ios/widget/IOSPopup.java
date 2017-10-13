@@ -18,6 +18,7 @@ public class IOSPopup extends BasePopup<Overlay, UIView> implements Popup {
     @Override
     public void show() {
         control.show();
+        requestLayout();
     }
 
     @Override

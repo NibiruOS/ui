@@ -4,7 +4,7 @@ import org.nibiru.ui.core.api.Spinner;
 
 import javax.inject.Inject;
 
-public class SpinnerBuilder extends BaseBuilder<Spinner> {
+public class SpinnerBuilder extends BaseWidgetBuilder<Spinner, SpinnerBuilder> {
 	@Inject
 	public SpinnerBuilder(Spinner object) {
 		super(object);

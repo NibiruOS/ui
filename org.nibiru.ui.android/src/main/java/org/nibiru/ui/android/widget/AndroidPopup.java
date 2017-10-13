@@ -28,6 +28,7 @@ public class AndroidPopup extends BasePopup<Dialog, View> implements Popup {
     @Override
     public void show() {
         control.show();
+        requestLayout();
     }
 
     @Override
