@@ -19,7 +19,10 @@ import apple.uikit.enums.UITextBorderStyle;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSTextBox extends IOSValueWidget<UITextField, String> implements TextBox {
+public class IOSTextBox
+        extends IOSHasEnabledWidget<UITextField, String>
+        implements TextBox {
+
     // TODO: Fix this "magic".
     private static int MAGIC_WIDTH_PADDING = 20;
     private static int MAGIC_HEIGHT_PADDING = 6;

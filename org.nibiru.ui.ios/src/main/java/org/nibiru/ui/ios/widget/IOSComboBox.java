@@ -23,7 +23,10 @@ import apple.uikit.protocol.UIPickerViewDelegate;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSComboBox<V> extends IOSValueWidget<UILabel, V> implements ComboBox<V> {
+public class IOSComboBox<V>
+        extends IOSHasEnabledWidget<UILabel, V>
+        implements ComboBox<V> {
+
     private V selectedItem;
     private final Value<Iterable<V>> items;
     private final List<V> comboItems;

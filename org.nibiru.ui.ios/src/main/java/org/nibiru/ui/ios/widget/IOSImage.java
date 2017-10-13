@@ -22,7 +22,10 @@ import apple.uikit.UIImageView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class IOSImage extends IOSValueWidget<UIImageView, String> implements Image {
+public class IOSImage
+        extends IOSHasEnabledWidget<UIImageView, String>
+        implements Image {
+
     private final String basePath;
 
     @Inject

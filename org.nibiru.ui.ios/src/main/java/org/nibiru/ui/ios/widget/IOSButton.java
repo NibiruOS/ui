@@ -18,7 +18,10 @@ import apple.uikit.enums.UIControlState;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
+public class IOSButton
+        extends IOSHasEnabledWidget<UIButton, String>
+        implements Button {
+
     private static final int MARGIN = 10;
 
     @Inject

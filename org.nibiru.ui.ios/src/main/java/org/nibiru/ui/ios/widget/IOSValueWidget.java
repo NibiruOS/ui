@@ -7,11 +7,13 @@ import apple.uikit.UIView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-abstract class IOSValueWidget<T extends UIView, V> extends IOSWidget<T> implements ValueWidget<V> {
+abstract class IOSValueWidget<T extends UIView, V>
+		extends IOSWidget<T>
+		implements ValueWidget<V> {
 	private final Value<V> value;
 
-	IOSValueWidget(T view) {
-		super(view);
+	IOSValueWidget(T control) {
+		super(control);
 		this.value = checkNotNull(buildValue());
 	}
 

@@ -18,7 +18,10 @@ import apple.uikit.enums.UIControlEvents;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSCheckbox extends IOSValueWidget<UIView, Boolean> implements Checkbox {
+public class IOSCheckbox
+        extends IOSHasEnabledWidget<UIView, Boolean>
+        implements Checkbox {
+
     private static final int MARGIN = 5;
     private final UISwitch check;
     private final UILabel label;

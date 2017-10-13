@@ -10,7 +10,9 @@ import org.nibiru.model.core.impl.java.JavaType;
 
 import javax.inject.Inject;
 
-public class GwtTextBox extends GwtHasValueWidget<TextBox, String> implements org.nibiru.ui.core.api.TextBox {
+public class GwtTextBox extends GwtHasEnabledHasValueWidget<TextBox, String>
+        implements org.nibiru.ui.core.api.TextBox {
+
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 6;
 

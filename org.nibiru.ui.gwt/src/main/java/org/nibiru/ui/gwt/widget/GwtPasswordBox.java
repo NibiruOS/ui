@@ -6,25 +6,28 @@ import org.nibiru.model.core.impl.java.JavaType;
 
 import javax.inject.Inject;
 
-public class GwtPasswordBox extends GwtHasValueWidget<PasswordTextBox, String> implements org.nibiru.ui.core.api.PasswordBox {
-	private static int MAGIC_PADDING = 6;
+public class GwtPasswordBox
+        extends GwtHasEnabledHasValueWidget<PasswordTextBox, String>
+        implements org.nibiru.ui.core.api.PasswordBox {
 
-	@Inject
-	public GwtPasswordBox() {
-		this(new PasswordTextBox());
-	}
+    private static int MAGIC_PADDING = 6;
 
-	public GwtPasswordBox(PasswordTextBox passwordTextBox) {
-		super(passwordTextBox, JavaType.STRING);
-	}
+    @Inject
+    public GwtPasswordBox() {
+        this(new PasswordTextBox());
+    }
 
-	@Override
-	protected int getNativeHeight() {
-		return super.getNativeHeight() + MAGIC_PADDING;
-	}
+    public GwtPasswordBox(PasswordTextBox passwordTextBox) {
+        super(passwordTextBox, JavaType.STRING);
+    }
 
-	@Override
-	public void setNativeSize(int measuredWidth, int measuredHeight) {
-		super.setNativeSize(measuredWidth, measuredHeight - MAGIC_PADDING);
-	}
+    @Override
+    protected int getNativeHeight() {
+        return super.getNativeHeight() + MAGIC_PADDING;
+    }
+
+    @Override
+    public void setNativeSize(int measuredWidth, int measuredHeight) {
+        super.setNativeSize(measuredWidth, measuredHeight - MAGIC_PADDING);
+    }
 }

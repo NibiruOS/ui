@@ -14,76 +14,79 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class GwtComboBox<V> extends GwtValueWidget<ListBox, V> implements ComboBox<V>{
-	private V selectedItem;
-	private final Value<Iterable<V>> items;
-	private final List<V> comboItems;
-	
-	@Inject
-	public GwtComboBox(){
-		this(new ListBox());
-	}
-	
-	public GwtComboBox(ListBox control) {
-		super(control);
-		comboItems = Lists.newArrayList();
-		items = new BaseValue<Iterable<V>>() {
-			private Iterable<V> value;
+public class GwtComboBox<V>
+        extends GwtHasEnabledWidget<ListBox, V>
+        implements ComboBox<V> {
 
-			@Override
-			public Iterable<V> get() {
-				return value;
-			}
+    private V selectedItem;
+    private final Value<Iterable<V>> items;
+    private final List<V> comboItems;
 
-			@Override
-			public Type<Iterable<V>> getType() {
-				return JavaType.ofUnchecked(Iterable.class);
-			}
+    @Inject
+    public GwtComboBox() {
+        this(new ListBox());
+    }
 
-			@Override
-			protected void setValue(Iterable<V> value) {
-				this.value = value;
-				control.clear();
-				comboItems.clear();
-				for (V item : value) {
-					control.addItem(item.toString());
-					comboItems.add(item);
-				}
-			}
-		};
-	}
+    public GwtComboBox(ListBox control) {
+        super(control);
+        comboItems = Lists.newArrayList();
+        items = new BaseValue<Iterable<V>>() {
+            private Iterable<V> value;
 
-	@Override
-	public Value<V> buildValue() {
-		control.addChangeHandler((ChangeEvent event) -> {
-			getValue().set(comboItems.get(control.getSelectedIndex()));;
-		});
-		return new BaseValue<V>() {
+            @Override
+            public Iterable<V> get() {
+                return value;
+            }
 
-			@Override
-			public V get() {
-				return selectedItem;
-			}
+            @Override
+            public Type<Iterable<V>> getType() {
+                return JavaType.ofUnchecked(Iterable.class);
+            }
 
-			@Override
-			public Type<V> getType() {
-				return JavaType.ofUnchecked(Object.class);
-			}
+            @Override
+            protected void setValue(Iterable<V> value) {
+                this.value = value;
+                control.clear();
+                comboItems.clear();
+                for (V item : value) {
+                    control.addItem(item.toString());
+                    comboItems.add(item);
+                }
+            }
+        };
+    }
 
-			@Override
-			protected void setValue(V value) {
-				selectedItem = value;
-				int selectedPos = comboItems.indexOf(selectedItem);
-				if (selectedPos >= 0) {
-					control.setSelectedIndex(selectedPos);
-				}
-			}
-		};
-	}
+    @Override
+    public Value<V> buildValue() {
+        control.addChangeHandler((ChangeEvent event) -> {
+            getValue().set(comboItems.get(control.getSelectedIndex()));
+            ;
+        });
+        return new BaseValue<V>() {
 
-	@Override
-	public Value<Iterable<V>> getItems() {
-		return items;
-	}
+            @Override
+            public V get() {
+                return selectedItem;
+            }
 
+            @Override
+            public Type<V> getType() {
+                return JavaType.ofUnchecked(Object.class);
+            }
+
+            @Override
+            protected void setValue(V value) {
+                selectedItem = value;
+                int selectedPos = comboItems.indexOf(selectedItem);
+                if (selectedPos >= 0) {
+                    control.setSelectedIndex(selectedPos);
+                }
+            }
+        };
+    }
+
+    @Override
+    public Value<Iterable<V>> getItems() {
+        return items;
+    }
 }

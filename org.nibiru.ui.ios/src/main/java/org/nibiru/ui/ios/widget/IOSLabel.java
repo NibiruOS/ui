@@ -16,7 +16,10 @@ import static org.nibiru.ui.ios.widget.WidgetUtils.alignmentToTextAlignment;
 import static org.nibiru.ui.ios.widget.WidgetUtils.colorToNative;
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
+public class IOSLabel
+        extends IOSHasEnabledWidget<UILabel, String>
+        implements Label {
+
     @Inject
     public IOSLabel() {
         this(UILabel.alloc().init());

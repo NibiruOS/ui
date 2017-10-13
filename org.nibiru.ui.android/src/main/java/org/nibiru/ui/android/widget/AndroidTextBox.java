@@ -4,13 +4,18 @@ import android.content.Context;
 import android.widget.EditText;
 
 import org.nibiru.model.core.api.Value;
+import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.ui.core.api.TextBox;
 
 import javax.inject.Inject;
 
-public class AndroidTextBox extends AndroidValueWidget<EditText, String> implements TextBox {
+public class AndroidTextBox
+        extends AndroidHasEnabledWidget<EditText, String>
+        implements TextBox {
+
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 2;
+    private final Value<Boolean> enabled = BaseValue.of(true);
 
     @Inject
     public AndroidTextBox(Context context) {

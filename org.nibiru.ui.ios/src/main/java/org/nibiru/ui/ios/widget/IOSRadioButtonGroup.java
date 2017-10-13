@@ -21,7 +21,10 @@ import apple.uikit.UIView;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSRadioButtonGroup<V> extends IOSValueWidget<UIView, V> implements RadioButtonGroup<V> {
+public class IOSRadioButtonGroup<V>
+        extends IOSHasEnabledWidget<UIView, V>
+        implements RadioButtonGroup<V> {
+
     private V selectedItem;
     private final Value<Iterable<V>> items;
     private final List<UILabel> labels;

@@ -16,7 +16,10 @@ import org.nibiru.ui.core.api.RadioButtonGroup;
 
 import java.util.Map;
 
-public class AndroidRadioButtonGroup<V> extends AndroidValueWidget<RadioGroup, V> implements RadioButtonGroup<V> {
+public class AndroidRadioButtonGroup<V>
+        extends AndroidHasEnabledWidget<RadioGroup, V>
+        implements RadioButtonGroup<V> {
+
     private V selectedItem;
     private Value<Iterable<V>> items;
     private Map<V, RadioButton> valueToButtons = Maps.newHashMap();

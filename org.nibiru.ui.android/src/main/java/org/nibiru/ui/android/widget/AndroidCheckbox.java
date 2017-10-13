@@ -13,7 +13,9 @@ import org.nibiru.ui.core.api.Checkbox;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-public class AndroidCheckbox extends AndroidValueWidget<android.widget.CheckBox, Boolean> implements Checkbox {
+public class AndroidCheckbox
+        extends AndroidHasEnabledWidget<CheckBox, Boolean>
+        implements Checkbox {
 
     @Inject
     public AndroidCheckbox(Context context) {

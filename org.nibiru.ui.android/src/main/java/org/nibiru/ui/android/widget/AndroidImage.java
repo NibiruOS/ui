@@ -24,7 +24,10 @@ import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class AndroidImage extends AndroidValueWidget<ImageView, String> implements Image {
+public class AndroidImage
+        extends AndroidHasEnabledWidget<ImageView, String>
+        implements Image {
+
     private final String basePath;
 
     @Inject

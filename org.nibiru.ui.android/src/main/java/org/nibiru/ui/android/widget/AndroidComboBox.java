@@ -19,7 +19,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class AndroidComboBox<V> extends AndroidValueWidget<android.widget.Spinner, V> implements ComboBox<V> {
+public class AndroidComboBox<V>
+        extends AndroidHasEnabledWidget<Spinner, V>
+        implements ComboBox<V> {
 
     private V selectedItem;
     private Value<Iterable<V>> items;
@@ -45,7 +47,7 @@ public class AndroidComboBox<V> extends AndroidValueWidget<android.widget.Spinne
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //TODO
+                getValue().notifyObservers();
             }
 
         });

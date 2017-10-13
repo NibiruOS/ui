@@ -7,7 +7,9 @@ import org.nibiru.model.core.impl.java.JavaType;
 
 import javax.inject.Inject;
 
-public class GwtCheckbox extends GwtHasValueWidget<CheckBox, Boolean> implements org.nibiru.ui.core.api.Checkbox {
+public class GwtCheckbox
+		extends GwtHasEnabledHasValueWidget<CheckBox, Boolean>
+		implements org.nibiru.ui.core.api.Checkbox {
 	// TODO: Fix this "magic".
 	private static int MAGIC_PADDING = 2;
 
