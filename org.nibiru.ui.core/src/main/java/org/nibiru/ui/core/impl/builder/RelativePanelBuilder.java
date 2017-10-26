@@ -25,6 +25,10 @@ public class RelativePanelBuilder extends BaseContainerBuilder<RelativePanel, Re
         return new RuleBuilder(widget);
     }
 
+    public interface RuleProvider {
+        Rule getRule(Widget target, RelativePanel container);
+    }
+
     public class RuleBuilder {
         private final Widget target;
 
@@ -241,7 +245,6 @@ public class RelativePanelBuilder extends BaseContainerBuilder<RelativePanel, Re
             return this;
         }
 
-
         public RuleBuilder toRightOf() {
             object.addToRightOf(target, null);
             return this;
@@ -250,6 +253,12 @@ public class RelativePanelBuilder extends BaseContainerBuilder<RelativePanel, Re
         public RuleBuilder toRightOf(Widget source) {
             checkNotNull(source);
             object.addToRightOf(target, source);
+            return this;
+        }
+
+        public RuleBuilder custom(RuleProvider ruleProvider) {
+            checkNotNull(ruleProvider);
+            object.addRule(ruleProvider.getRule(target, object));
             return this;
         }
 
