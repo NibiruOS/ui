@@ -1,6 +1,8 @@
 
 package org.nibiru.ui.core.impl;
 
+import com.google.common.collect.Iterables;
+
 import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.AbsolutePanel;
@@ -40,6 +42,10 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
     @Override
     public Iterable<Widget> getChildren() {
         return panel.getChildren();
+    }
+
+    public Iterable<Widget> getVisibleChildren() {
+        return Iterables.filter(panel.getChildren(), (w) -> w.getVisible().get());
     }
 
     @Override

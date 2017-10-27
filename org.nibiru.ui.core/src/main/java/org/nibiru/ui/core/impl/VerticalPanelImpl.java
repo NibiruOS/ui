@@ -24,7 +24,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
         int mTotalLength = 0;
         int childrenMP = 0;
 
-        for (Widget child : getChildren()) {
+        for (Widget child : getVisibleChildren()) {
             if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
                 childrenMP++;
             } else {
@@ -44,7 +44,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
         if (childrenMP > 0) {
             final int remainingSpace = (childHeightSpec.getValue() - mTotalLength) / childrenMP;
 
-            for (Widget child : getChildren()) {
+            for (Widget child : getVisibleChildren()) {
                 if (child.getStyle().getHeight().equals(Size.MATCH_PARENT)) {
                     measureChild(child, childWidthSpec, MeasureSpec.atMost(remainingSpace));
 
@@ -62,7 +62,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
     @Override
     public void onLayout() {
         int currentY = 0;
-        for (Widget child : getChildren()) {
+        for (Widget child : getVisibleChildren()) {
             int x = 0;
             switch (child.getStyle().getHorizontalAlignment()) {
                 case START:

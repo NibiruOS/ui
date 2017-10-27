@@ -24,7 +24,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
         int mTotalLength = 0;
         int childrenMP = 0;
 
-        for (Widget child : getChildren()) {
+        for (Widget child : getVisibleChildren()) {
             if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
                 childrenMP++;
             } else {
@@ -44,7 +44,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
         if (childrenMP > 0) {
             int remainingSpace = (childWidthSpec.getValue() - mTotalLength) / childrenMP;
 
-            for (Widget child : getChildren()) {
+            for (Widget child : getVisibleChildren()) {
                 if (child.getStyle().getWidth().equals(Size.MATCH_PARENT)) {
                     measureChild(child, MeasureSpec.atMost(remainingSpace), childHeightSpec);
 
@@ -62,7 +62,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
     @Override
     public void onLayout() {
         int currentX = 0;
-        for (Widget child : getChildren()) {
+        for (Widget child : getVisibleChildren()) {
             int y = 0;
             switch (child.getStyle().getVerticalAlignment()) {
                 case START:
