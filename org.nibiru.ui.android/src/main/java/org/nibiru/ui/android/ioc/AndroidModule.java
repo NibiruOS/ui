@@ -10,10 +10,10 @@ import org.nibiru.ui.android.widget.AndroidImage;
 import org.nibiru.ui.android.widget.AndroidLabel;
 import org.nibiru.ui.android.widget.AndroidPasswordBox;
 import org.nibiru.ui.android.widget.AndroidPopup;
-import org.nibiru.ui.android.widget.AndroidVerticalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidSpinner;
 import org.nibiru.ui.android.widget.AndroidTextBox;
 import org.nibiru.ui.android.widget.AndroidTreeView;
+import org.nibiru.ui.android.widget.AndroidVerticalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidViewport;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
@@ -23,13 +23,15 @@ import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.PasswordBox;
 import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
+import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.api.format.FormatFactory;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
+import org.nibiru.ui.core.impl.format.JavaFormatFactory;
 
 import dagger.Module;
 import dagger.Provides;
@@ -110,5 +112,10 @@ public class AndroidModule {
 	@Provides
 	public AbsolutePanel getAbsolutePanel(AndroidAbsolutePanel absolutePanel) {
 		return absolutePanel;
+	}
+
+	@Provides
+	public FormatFactory getFormatFactory(JavaFormatFactory factory) {
+		return factory;
 	}
 }
