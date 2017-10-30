@@ -3,7 +3,6 @@ package org.nibiru.ui.gwt.widget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.server.Base64Utils;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -35,7 +34,7 @@ public class GwtImage extends GwtClickableValueWidget<Image, String> implements 
     public void setBinaryContent(Format format, byte[] content) {
         checkNotNull(format);
         checkNotNull(content);
-        setBase64Content(format, Base64Utils.toBase64(content));
+        setBase64Content(format, atob(new String(content)));
     }
 
     @Override
@@ -75,4 +74,8 @@ public class GwtImage extends GwtClickableValueWidget<Image, String> implements 
             }
         };
     }
+
+    private native String atob(String data) /*-{
+        return atob(data);
+    }-*/;
 }
