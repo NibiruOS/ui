@@ -98,10 +98,10 @@ public abstract class BaseRule implements RelativePanel.Rule {
     }
 
     protected void setHeight(int height) {
-        panel.setHeight(getTargetWidget(), height);
+        panel.setHeight(getTargetWidget(), Math.max(height, 0));
     }
 
     protected void setWidth(int width) {
-        panel.setWidth(getTargetWidget(), width);
+        panel.setWidth(getTargetWidget(), Math.max(width, 0));
     }
 }
