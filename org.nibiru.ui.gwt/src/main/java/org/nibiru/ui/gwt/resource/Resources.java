@@ -11,9 +11,8 @@ public interface Resources extends ClientBundle {
 	@Source("spinner.gif")
 	ImageResource spinner();
 
-	public interface Css extends CssResource {
-		String horizontalPanel();
-		String verticalPanel();
+	interface Css extends CssResource {
 		String popupGlass();
+		String button();
 	}
 }

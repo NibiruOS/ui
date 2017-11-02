@@ -1,5 +1,6 @@
 package org.nibiru.ui.gwt.widget;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.Label;
 
 import org.nibiru.model.core.api.Value;
@@ -10,7 +11,8 @@ import javax.inject.Inject;
 import static org.nibiru.ui.gwt.widget.WidgetUtils.alignmentToTextAlign;
 import static org.nibiru.ui.gwt.widget.WidgetUtils.colorToNative;
 
-public class GwtLabel extends GwtClickableValueWidget<Label, String> implements org.nibiru.ui.core.api.Label {
+public class GwtLabel extends GwtClickableValueWidget<Label, String>
+        implements org.nibiru.ui.core.api.Label {
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 2;
 
@@ -21,20 +23,6 @@ public class GwtLabel extends GwtClickableValueWidget<Label, String> implements 
 
     public GwtLabel(Label label) {
         super(label);
-    }
-
-    @Override
-    public void applyStyle() {
-        super.applyStyle();
-        if (getStyle() instanceof TextStyle) {
-            TextStyle textStyle = (TextStyle) getStyle();
-            control.getElement()
-                    .getStyle()
-                    .setColor(colorToNative(textStyle.getTextColor()));
-            control.getElement()
-                    .getStyle()
-                    .setTextAlign(alignmentToTextAlign(textStyle.getHorizontalTextAlignment()));
-        }
     }
 
     @Override

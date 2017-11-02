@@ -3,6 +3,7 @@ package org.nibiru.ui.core.impl.builder;
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Alignment;
+import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Style;
 
 import javax.inject.Inject;
@@ -55,6 +56,9 @@ public class PopupBuilder extends BaseBuilder<Popup> {
                 .marginRight(10)
                 .build();
         return build(horizontalPanel.get()
+                .style(style.get()
+                        .backgroundColor(Color.WHITE)
+                        .build())
                 .add(spinner.get()
                         .style(itemStyle)
                         .build())
