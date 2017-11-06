@@ -28,6 +28,11 @@ public class GwtPopup extends BasePopup<PopupPanel, Widget>
     public void show() {
         control.show();
         requestLayout();
+    }
+
+    @Override
+    public void onLayout() {
+        super.onLayout();
         control.center();
     }
 
@@ -52,5 +57,6 @@ public class GwtPopup extends BasePopup<PopupPanel, Widget>
         if (getContent() != null) {
             WidgetUtils.setNativeSize((Widget) getContent().asNative(), width, height);
         }
+        WidgetUtils.setNativeSize(control, width, height);
     }
 }
