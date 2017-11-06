@@ -9,6 +9,7 @@ import javax.inject.Inject;
 public class GwtViewport implements Viewport {
     @Inject
     public GwtViewport() {
+        Window.enableScrolling(false);
     }
 
     @Override
