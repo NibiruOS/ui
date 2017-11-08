@@ -12,10 +12,8 @@ public abstract class BasePopup<T, N> extends BaseContentWidget<T, N> {
     protected void onMeasure(MeasureSpec widthSpec, MeasureSpec heightSpec) {
         if (getContent() != null) {
             measureChild(getContent(), widthSpec, heightSpec);
-            updateSize(resolveWidth(getContent().getMeasuredWidth(), widthSpec),
-                    resolveHeight(getContent().getMeasuredHeight(), heightSpec));
-        } else {
-            super.onMeasure(widthSpec, heightSpec);
+            updateSize(resolveWidth(getContent().getFullMeasuredWidth(), widthSpec),
+                    resolveHeight(getContent().getFullMeasuredHeight(), heightSpec));
         }
     }
 }
