@@ -24,7 +24,7 @@ class Overlay extends UIView {
     }
 
     public static Overlay create() {
-        return create(UIColor.blackColor());
+        return create(UIColor.blackColor().colorWithAlphaComponent(0.75));
     }
 
     public static Overlay create(UIColor color) {
