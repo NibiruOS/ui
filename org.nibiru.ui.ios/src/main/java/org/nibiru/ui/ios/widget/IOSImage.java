@@ -12,7 +12,6 @@ import org.nibiru.ui.core.api.ResourcesBasePath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Base64;
 
 import javax.inject.Inject;
 
@@ -49,7 +48,7 @@ public class IOSImage
     public void setBase64Content(Format format, String content) {
         checkNotNull(format);
         checkNotNull(content);
-        setBinaryContent(Base64.getDecoder().decode(content));
+        setBinaryContent(Base64.decode(content));
     }
 
     @Override
