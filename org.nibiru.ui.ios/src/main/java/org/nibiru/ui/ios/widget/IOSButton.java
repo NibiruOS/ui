@@ -5,6 +5,7 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
 
@@ -13,9 +14,12 @@ import apple.coregraphics.struct.CGRect;
 import apple.coregraphics.struct.CGSize;
 import apple.uikit.UIButton;
 import apple.uikit.UIColor;
+import apple.uikit.UIFont;
 import apple.uikit.enums.UIButtonType;
 import apple.uikit.enums.UIControlState;
 
+import static org.nibiru.ui.ios.widget.WidgetUtils.alignmentToTextAlignment;
+import static org.nibiru.ui.ios.widget.WidgetUtils.colorToNative;
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
 public class IOSButton
@@ -42,21 +46,27 @@ public class IOSButton
     }
 
     @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) getStyle();
+            control.setTitleColorForState(colorToNative(textStyle.getTextColor()),
+                    UIControlState.Normal);
+            control.setContentHorizontalAlignment(alignmentToTextAlignment(textStyle
+                    .getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setFont(UIFont.systemFontOfSize(fontSize));
+            }
+        }
+    }
+
+    @Override
     Value<String> buildValue() {
-        return new BaseValue<String>() {
+        return new TextValue(this) {
             @Override
-            public String get() {
-                return control.titleForState(UIControlState.Normal);
-            }
-
-            @Override
-            protected void setValue(String value) {
-                control.setTitleForState(value, UIControlState.Normal);
-            }
-
-            @Override
-            public Type<String> getType() {
-                return JavaType.STRING;
+            protected void setNativeText(String text) {
+                control.setTitleForState(text, UIControlState.Normal);
             }
         };
     }

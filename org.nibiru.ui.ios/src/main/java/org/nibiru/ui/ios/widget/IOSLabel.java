@@ -10,7 +10,9 @@ import org.nibiru.ui.core.api.style.TextStyle;
 import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGSize;
+import apple.uikit.UIFont;
 import apple.uikit.UILabel;
+import apple.uikit.enums.UIControlState;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.alignmentToTextAlignment;
 import static org.nibiru.ui.ios.widget.WidgetUtils.colorToNative;
@@ -36,25 +38,19 @@ public class IOSLabel
             TextStyle textStyle = (TextStyle) getStyle();
             control.setTextColor(colorToNative(textStyle.getTextColor()));
             control.setTextAlignment(alignmentToTextAlignment(textStyle.getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setFont(UIFont.systemFontOfSize(fontSize));
+            }
         }
     }
 
     @Override
     Value<String> buildValue() {
-        return new BaseValue<String>() {
+        return new TextValue(this) {
             @Override
-            public String get() {
-                return control.text();
-            }
-
-            @Override
-            protected void setValue(String value) {
-                control.setText(value);
-            }
-
-            @Override
-            public Type<String> getType() {
-                return JavaType.STRING;
+            protected void setNativeText(String text) {
+                control.setText(text);
             }
         };
     }

@@ -34,7 +34,6 @@ class Overlay extends UIView {
     private Overlay init(UIColor color) {
         initWithFrame(rootView().frame());
         setBackgroundColor(color);
-        setAlpha(0.75);
         setAutoresizingMask(UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight);
         TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(this, () -> {
             if (autoHide) {
@@ -71,7 +70,7 @@ class Overlay extends UIView {
                     setAlpha(0);
                 }, (boolean b) -> {
                     removeFromSuperview();
-                    setAlpha(0.75);
+                    setAlpha(1);
                 });
     }
 

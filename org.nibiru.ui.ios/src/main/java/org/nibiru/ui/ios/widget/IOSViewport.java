@@ -5,6 +5,7 @@ import org.nibiru.ui.core.api.Viewport;
 import javax.inject.Inject;
 
 import apple.coregraphics.struct.CGSize;
+import apple.uikit.UIApplication;
 import apple.uikit.UIScreen;
 
 public class IOSViewport implements Viewport {
@@ -20,7 +21,7 @@ public class IOSViewport implements Viewport {
 
     @Override
     public int getHeight() {
-        return (int) getSize().height();
+        return (int) (getSize().height() - UIApplication.sharedApplication().statusBarFrame().size().height());
     }
 
     private CGSize getSize() {
