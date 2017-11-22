@@ -14,6 +14,7 @@ public class AndroidHorizontalScrollPanel extends BaseScrollPanel<HorizontalScro
     @Inject
     public AndroidHorizontalScrollPanel(Context context, Viewport viewport) {
         this(new HorizontalScrollView(context), viewport);
+        WidgetUtils.bindVisible(this, control);
     }
 
     public AndroidHorizontalScrollPanel(HorizontalScrollView control, Viewport viewport) {

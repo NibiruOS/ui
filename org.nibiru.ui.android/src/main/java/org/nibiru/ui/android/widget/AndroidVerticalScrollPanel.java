@@ -14,6 +14,7 @@ public class AndroidVerticalScrollPanel extends BaseScrollPanel<ScrollView, View
     @Inject
     public AndroidVerticalScrollPanel(Context context, Viewport viewport) {
         this(new ScrollView(context), viewport);
+        WidgetUtils.bindVisible(this, control);
     }
 
     public AndroidVerticalScrollPanel(ScrollView control, Viewport viewport) {

@@ -12,9 +12,7 @@ import org.nibiru.ui.core.impl.BaseControlWidget;
 abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
     GwtWidget(T control) {
         super(control);
-        getVisible().addObserver(
-                () -> control.setVisible(Boolean.TRUE.equals(getVisible().get()))
-        );
+        WidgetUtils.bindVisible(this, control);
     }
 
     @Override

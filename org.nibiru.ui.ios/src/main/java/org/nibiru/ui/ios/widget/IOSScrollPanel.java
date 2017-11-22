@@ -20,6 +20,7 @@ public class IOSScrollPanel extends BaseScrollPanel<UIScrollView, UIView>
 
     public IOSScrollPanel(UIScrollView control, Viewport viewport) {
         super(control, viewport);
+        WidgetUtils.bindVisible(this, control);
     }
 
     @Override

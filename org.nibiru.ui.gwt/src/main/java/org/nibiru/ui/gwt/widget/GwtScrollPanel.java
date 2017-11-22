@@ -31,6 +31,7 @@ public class GwtScrollPanel extends BaseContentWidget<CustomScrollPanel, Widget>
         verticalScrollbar = new VerticalScrollbar();
         control.setHorizontalScrollbar(horizontalScrollbar, horizontalScrollbar.getNativeHeight());
         control.setVerticalScrollbar(verticalScrollbar, verticalScrollbar.getNativeWidth());
+        WidgetUtils.bindVisible(this, control);
     }
 
     @Override

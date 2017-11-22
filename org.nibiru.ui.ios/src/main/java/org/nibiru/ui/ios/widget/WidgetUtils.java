@@ -2,6 +2,7 @@ package org.nibiru.ui.ios.widget;
 
 import com.google.common.base.Strings;
 
+import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Style;
@@ -37,6 +38,11 @@ class WidgetUtils {
 
     static CGSize sizeFromText(String text, UIFont font) {
         return NSString.stringWithString(Strings.isNullOrEmpty(text) ? "I" : text).sizeWithFont(font);
+    }
+
+    static void bindVisible(Widget widget, UIView control) {
+        widget.getVisible().addObserver(() -> control
+                .setHidden(!Boolean.TRUE.equals(widget.getVisible().get())));
     }
 
     static long alignmentToTextAlignment(Alignment alignment) {

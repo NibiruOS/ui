@@ -45,6 +45,11 @@ class WidgetUtils {
         control.getElement().getStyle().setOverflow(com.google.gwt.dom.client.Style.Overflow.HIDDEN);
     }
 
+    static void bindVisible(org.nibiru.ui.core.api.Widget widget, Widget control) {
+        widget.getVisible().addObserver(() -> control
+                .setVisible(Boolean.TRUE.equals(widget.getVisible().get())));
+    }
+
     static String colorToNative(Color color) {
         return "rgba("
                 + color.getRed() + ","

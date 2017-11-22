@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 
+import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Style;
@@ -41,14 +42,20 @@ class WidgetUtils {
         return (int) ((px / displayMetrics.density) + 0.5);
     }
 
-    protected static int colorToNative(Color color) {
+    static void bindVisible(Widget widget, View control) {
+        widget.getVisible().addObserver(() -> control.setVisibility(Boolean.TRUE.equals(widget.getVisible().get())
+                ? View.VISIBLE
+                : View.GONE));
+    }
+
+    static int colorToNative(Color color) {
         return android.graphics.Color.argb(color.getAlpha(),
                 color.getRed(),
                 color.getGreen(),
                 color.getBlue());
     }
 
-    protected static int alignmentToHorizontalGravity(Alignment alignment) {
+    static int alignmentToHorizontalGravity(Alignment alignment) {
         switch (alignment) {
             case CENTER:
                 return Gravity.CENTER_HORIZONTAL;
