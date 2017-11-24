@@ -14,6 +14,8 @@ public class Style {
     private Color backgroundColor;
     private Size width;
     private Size height;
+    private Integer maxWidth;
+    private Integer maxHeight;
     private Alignment horizontalAlignment;
     private Alignment verticalAlignment;
     private Integer marginTop;
@@ -52,6 +54,22 @@ public class Style {
 
     public void setHeight(@Nullable Size height) {
         this.height = height;
+    }
+
+    public Integer getMaxWidth() {
+        return property(maxWidth, Style::getMaxWidth, Integer.MAX_VALUE);
+    }
+
+    public void setMaxWidth(Integer maxWidth) {
+        this.maxWidth = maxWidth;
+    }
+
+    public Integer getMaxHeight() {
+        return property(maxHeight, Style::getMaxHeight, Integer.MAX_VALUE);
+    }
+
+    public void setMaxHeight(Integer maxHeight) {
+        this.maxHeight = maxHeight;
     }
 
     public Alignment getHorizontalAlignment() {

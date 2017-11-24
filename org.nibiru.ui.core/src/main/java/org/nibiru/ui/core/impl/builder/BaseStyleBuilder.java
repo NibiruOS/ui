@@ -30,6 +30,16 @@ abstract public class BaseStyleBuilder<T extends Style, B extends BaseStyleBuild
         return getThis();
     }
 
+    public B maxWidth(int maxWidth) {
+        object.setMaxWidth(maxWidth);
+        return getThis();
+    }
+
+    public B maxHeight(int maxHeight) {
+        object.setMaxHeight(maxHeight);
+        return getThis();
+    }
+
     public B horizontalAlignment(Alignment horizontalAlignment) {
         object.setHorizontalAlignment(horizontalAlignment);
         return getThis();

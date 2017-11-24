@@ -116,8 +116,8 @@ public abstract class BaseWidget implements Widget {
     }
 
     protected void updateSize(int measuredWidth, int measuredHeight) {
-        this.measuredWidth = measuredWidth;
-        this.measuredHeight = measuredHeight;
+        this.measuredWidth = Math.min(measuredWidth, style.getMaxWidth());
+        this.measuredHeight = Math.min(measuredHeight, style.getMaxHeight());
     }
 
     @Override

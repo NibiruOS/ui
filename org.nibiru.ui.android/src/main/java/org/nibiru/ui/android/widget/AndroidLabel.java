@@ -9,16 +9,20 @@ import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
 
+import static android.text.TextUtils.TruncateAt.END;
 import static org.nibiru.ui.android.widget.WidgetUtils.alignmentToHorizontalGravity;
 import static org.nibiru.ui.android.widget.WidgetUtils.colorToNative;
 
-public class AndroidLabel extends AndroidHasEnabledWidget<TextView, String> implements Label {
+public class AndroidLabel
+        extends AndroidHasEnabledWidget<TextView, String>
+        implements Label {
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 2;
 
     @Inject
     public AndroidLabel(Context context) {
         this(new TextView(context));
+        control.setEllipsize(END);
     }
 
     public AndroidLabel(TextView textView) {
@@ -38,6 +42,12 @@ public class AndroidLabel extends AndroidHasEnabledWidget<TextView, String> impl
             }
             control.setAllCaps(textStyle.getAllCaps());
         }
+    }
+
+    @Override
+    public void setNativeSize(int measuredWidth, int measuredHeight) {
+        super.setNativeSize(measuredWidth, measuredHeight);
+        control.setMaxLines(measuredHeight / pxToDp(control.getLineHeight()));
     }
 
     @Override
