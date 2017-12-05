@@ -47,7 +47,7 @@ public class AndroidLabel
     @Override
     public void setNativeSize(int measuredWidth, int measuredHeight) {
         super.setNativeSize(measuredWidth, measuredHeight);
-        control.setMaxLines(measuredHeight / pxToDp(control.getLineHeight()));
+        control.setMaxLines(Math.max(measuredHeight / pxToDp(control.getLineHeight()), 1));
     }
 
     @Override
