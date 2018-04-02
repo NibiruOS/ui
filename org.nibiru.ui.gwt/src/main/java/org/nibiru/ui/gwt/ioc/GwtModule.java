@@ -5,7 +5,7 @@ import com.google.gwt.core.client.Scheduler;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.CheckBox;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
@@ -25,7 +25,7 @@ import org.nibiru.ui.gwt.format.GwtFormatFactory;
 import org.nibiru.ui.gwt.resource.Resources;
 import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
 import org.nibiru.ui.gwt.widget.GwtButton;
-import org.nibiru.ui.gwt.widget.GwtCheckbox;
+import org.nibiru.ui.gwt.widget.GwtCheckBox;
 import org.nibiru.ui.gwt.widget.GwtImage;
 import org.nibiru.ui.gwt.widget.GwtLabel;
 import org.nibiru.ui.gwt.widget.GwtPasswordBox;
@@ -92,7 +92,7 @@ public class GwtModule {
     }
 
     @Provides
-    public Checkbox getCheckbox(GwtCheckbox checkbox) {
+    public CheckBox getCheckbox(GwtCheckBox checkbox) {
         return checkbox;
     }
 

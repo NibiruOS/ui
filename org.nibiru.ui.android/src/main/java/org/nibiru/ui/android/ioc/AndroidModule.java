@@ -4,7 +4,7 @@ import org.nibiru.ui.android.builder.AndroidComboBoxBuilderFactory;
 import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
-import org.nibiru.ui.android.widget.AndroidCheckbox;
+import org.nibiru.ui.android.widget.AndroidCheckBox;
 import org.nibiru.ui.android.widget.AndroidHorizontalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidImage;
 import org.nibiru.ui.android.widget.AndroidLabel;
@@ -17,7 +17,7 @@ import org.nibiru.ui.android.widget.AndroidVerticalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidViewport;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.CheckBox;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
@@ -89,7 +89,7 @@ public class AndroidModule {
 	}
 
 	@Provides
-	public Checkbox getCheckbox(AndroidCheckbox checkbox) {
+	public CheckBox getCheckbox(AndroidCheckBox checkbox) {
 		return checkbox;
 	}
 

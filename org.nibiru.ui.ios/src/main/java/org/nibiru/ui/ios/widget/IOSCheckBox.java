@@ -4,7 +4,7 @@ import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.CheckBox;
 
 import javax.inject.Inject;
 
@@ -18,9 +18,9 @@ import apple.uikit.enums.UIControlEvents;
 
 import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-public class IOSCheckbox
+public class IOSCheckBox
         extends IOSHasEnabledWidget<UIView, Boolean>
-        implements Checkbox {
+        implements CheckBox {
 
     private static final int MARGIN = 5;
     private final UISwitch check;
@@ -28,7 +28,7 @@ public class IOSCheckbox
     private final Value<String> labelValue;
 
     @Inject
-    public IOSCheckbox() {
+    public IOSCheckBox() {
         super(UIView.alloc().init());
         label = UILabel.alloc().init();
         check = UISwitch.alloc().init();

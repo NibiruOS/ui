@@ -26,9 +26,6 @@ allprojects {
     	repositories {
         	mavenCentral()
     	}
-    	dependencies {
-	        classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'
-	    }
 	}
 }
 

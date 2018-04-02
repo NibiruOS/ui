@@ -2,7 +2,7 @@ package org.nibiru.ui.ios.ioc;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.CheckBox;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.Label;
@@ -21,7 +21,7 @@ import org.nibiru.ui.ios.builder.IOSComboBoxBuilderFactory;
 import org.nibiru.ui.ios.builder.IOSRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.ios.widget.IOSAbsolutePanel;
 import org.nibiru.ui.ios.widget.IOSButton;
-import org.nibiru.ui.ios.widget.IOSCheckbox;
+import org.nibiru.ui.ios.widget.IOSCheckBox;
 import org.nibiru.ui.ios.widget.IOSImage;
 import org.nibiru.ui.ios.widget.IOSLabel;
 import org.nibiru.ui.ios.widget.IOSPasswordBox;
@@ -88,7 +88,7 @@ public class IOSModule {
     }
 
     @Provides
-    public Checkbox getCheckbox(IOSCheckbox checkbox) {
+    public CheckBox getCheckbox(IOSCheckBox checkbox) {
         return checkbox;
     }
 

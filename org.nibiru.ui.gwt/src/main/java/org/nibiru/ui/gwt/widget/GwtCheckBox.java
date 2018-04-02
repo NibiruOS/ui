@@ -7,20 +7,20 @@ import org.nibiru.model.core.impl.java.JavaType;
 
 import javax.inject.Inject;
 
-public class GwtCheckbox
+public class GwtCheckBox
 		extends GwtHasEnabledHasValueWidget<CheckBox, Boolean>
-		implements org.nibiru.ui.core.api.Checkbox {
+		implements org.nibiru.ui.core.api.CheckBox {
 	// TODO: Fix this "magic".
 	private static int MAGIC_PADDING = 2;
 
 	private Value<String> labelText;
 	
 	@Inject
-	public GwtCheckbox() {
+	public GwtCheckBox() {
 		this(new CheckBox());
 	}
 	
-	public GwtCheckbox(CheckBox checkbox) {
+	public GwtCheckBox(CheckBox checkbox) {
 		super(checkbox, JavaType.BOOLEAN);
 	}
 	

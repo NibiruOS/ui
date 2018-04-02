@@ -1,29 +1,28 @@
 package org.nibiru.ui.android.widget;
 
 import android.content.Context;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.Checkbox;
+import org.nibiru.ui.core.api.CheckBox;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-public class AndroidCheckbox
-        extends AndroidHasEnabledWidget<CheckBox, Boolean>
-        implements Checkbox {
+public class AndroidCheckBox
+        extends AndroidHasEnabledWidget<android.widget.CheckBox, Boolean>
+        implements CheckBox {
 
     @Inject
-    public AndroidCheckbox(Context context) {
+    public AndroidCheckBox(Context context) {
         this(new android.widget.CheckBox(context));
     }
 
-    public AndroidCheckbox(CheckBox checkbox) {
-        super(checkbox);
+    public AndroidCheckBox(android.widget.CheckBox checkBox) {
+        super(checkBox);
     }
 
     @Override
