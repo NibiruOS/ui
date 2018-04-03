@@ -10,5 +10,4 @@ public class ColorBuilder {
 	public static Color color(int red, int green, int blue, int alpha) {
 		return new Color(red, green, blue, alpha);
 	}
-
 }

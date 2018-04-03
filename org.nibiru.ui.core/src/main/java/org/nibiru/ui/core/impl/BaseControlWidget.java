@@ -1,11 +1,14 @@
 package org.nibiru.ui.core.impl;
 
+import org.nibiru.ui.core.api.TypedWidget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.layout.MeasureSpec.Type;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public abstract class BaseControlWidget<T> extends BaseWidget {
+public abstract class BaseControlWidget<T>
+        extends BaseWidget
+        implements TypedWidget<T> {
     protected final T control;
 
     protected BaseControlWidget(T control) {

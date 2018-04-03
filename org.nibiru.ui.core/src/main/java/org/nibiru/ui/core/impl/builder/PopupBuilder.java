@@ -11,7 +11,12 @@ import javax.inject.Provider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class PopupBuilder extends BaseBuilder<Popup> {
+public class PopupBuilder
+        extends BaseBuilder<Popup>
+        implements
+        HasContentBuilder<Popup, PopupBuilder>,
+        ObjectBuilder<Popup> {
+
     private final Provider<HorizontalPanelBuilder> horizontalPanel;
     private final Provider<LabelBuilder> label;
     private final Provider<SpinnerBuilder> spinner;
@@ -19,13 +24,13 @@ public class PopupBuilder extends BaseBuilder<Popup> {
     private final Provider<TextStyleBuilder> textStyle;
 
     @Inject
-    public PopupBuilder(Popup widget,
+    public PopupBuilder(Popup popup,
                         Provider<HorizontalPanelBuilder> horizontalPanel,
                         Provider<LabelBuilder> label,
                         Provider<SpinnerBuilder> spinner,
                         Provider<StyleBuilder> style,
                         Provider<TextStyleBuilder> textStyle) {
-        super(widget);
+        super(popup);
         this.horizontalPanel = checkNotNull(horizontalPanel);
         this.label = checkNotNull(label);
         this.spinner = checkNotNull(spinner);
@@ -33,19 +38,9 @@ public class PopupBuilder extends BaseBuilder<Popup> {
         this.textStyle = checkNotNull(textStyle);
     }
 
-    public PopupBuilder content(Widget content) {
-        object.setContent(content);
-        return this;
-    }
-
     public PopupBuilder autoHide(boolean autoHide) {
         object.setAutoHide(autoHide);
         return this;
-    }
-
-    public Popup build(Widget content) {
-        checkNotNull(content);
-        return content(content).build();
     }
 
     public Popup loadingPopup(String text) {

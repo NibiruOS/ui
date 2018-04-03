@@ -15,8 +15,8 @@ abstract class GwtClickableValueWidget<W extends Widget & HasClickHandlers, V>
         extends GwtValueWidget<W, V>
         implements HasClickHandler, HasEnabled {
 
-    final Value<Boolean> enabled = BaseValue.of(true);
-    private HasClickHandlersAdapter hasClickHandlersAdapter;
+    private final Value<Boolean> enabled = BaseValue.of(true);
+    private final HasClickHandlersAdapter hasClickHandlersAdapter;
 
     GwtClickableValueWidget(W control) {
         super(control);

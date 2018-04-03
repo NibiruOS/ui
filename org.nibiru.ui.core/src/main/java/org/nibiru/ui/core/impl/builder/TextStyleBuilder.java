@@ -6,7 +6,10 @@ import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
 
-public class TextStyleBuilder extends BaseStyleBuilder<TextStyle, TextStyleBuilder> {
+public class TextStyleBuilder
+        extends BaseBuilder<TextStyle>
+        implements BaseStyleBuilder<TextStyle, TextStyleBuilder> {
+
     @Inject
     public TextStyleBuilder() {
         super(new TextStyle());

@@ -13,7 +13,8 @@ import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class GwtImage extends GwtClickableValueWidget<Image, String> implements org.nibiru.ui.core.api.Image {
+public class GwtImage extends GwtClickableValueWidget<Image, String>
+        implements org.nibiru.ui.core.api.Image {
     private boolean dirty;
 
     @Inject

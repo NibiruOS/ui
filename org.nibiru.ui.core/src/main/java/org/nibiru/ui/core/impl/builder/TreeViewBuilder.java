@@ -11,29 +11,31 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
-public class TreeViewBuilder extends BaseValueBuilder<TreeView, Iterable<Item>, TreeViewBuilder> {
-	private final Collection<Item> items = Lists.newArrayList();
+public class TreeViewBuilder
+        extends BaseBuilder<TreeView>
+        implements ValueWidgetBuilder<TreeView, Iterable<Item>, TreeViewBuilder> {
+    private final Collection<Item> items = Lists.newArrayList();
 
-	@Inject
-	public TreeViewBuilder(TreeView control) {
-		super(control);
-	}
+    @Inject
+    public TreeViewBuilder(TreeView control) {
+        super(control);
+    }
 
-	public TreeViewBuilder add(Item item) {
-		items.add(item);
-		return this;
-	}
+    public TreeViewBuilder add(Item item) {
+        items.add(item);
+        return this;
+    }
 
-	public TreeViewBuilder add(Widget widget) {
-		SimpleTreeViewItem item = new SimpleTreeViewItem();
-		item.setWidget(widget);
-		items.add(item);
-		return this;
-	}
+    public TreeViewBuilder add(Widget widget) {
+        SimpleTreeViewItem item = new SimpleTreeViewItem();
+        item.setWidget(widget);
+        items.add(item);
+        return this;
+    }
 
-	@Override
-	public TreeView build() {
-		object.getValue().set(items);
-		return super.build();
-	}
+    @Override
+    public TreeView build() {
+        object.getValue().set(items);
+        return super.build();
+    }
 }

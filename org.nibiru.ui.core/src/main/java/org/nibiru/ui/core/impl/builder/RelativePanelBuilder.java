@@ -8,7 +8,9 @@ import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class RelativePanelBuilder extends BaseContainerBuilder<RelativePanel, RelativePanelBuilder> {
+public class RelativePanelBuilder
+        extends BaseBuilder<RelativePanel>
+        implements ContainerBuilder<RelativePanel, RelativePanelBuilder> {
     @Inject
     public RelativePanelBuilder(RelativePanel relativePanel) {
         super(relativePanel);

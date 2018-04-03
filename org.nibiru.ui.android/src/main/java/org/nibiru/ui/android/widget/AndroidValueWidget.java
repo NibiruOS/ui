@@ -5,7 +5,9 @@ import android.view.View;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.ui.core.api.ValueWidget;
 
-abstract class AndroidValueWidget<W extends View, V> extends AndroidWidget<W> implements ValueWidget<V> {
+abstract class AndroidValueWidget<W extends View, V>
+        extends AndroidWidget<W>
+        implements ValueWidget<V> {
     private Value<V> value;
 
     AndroidValueWidget(W control) {

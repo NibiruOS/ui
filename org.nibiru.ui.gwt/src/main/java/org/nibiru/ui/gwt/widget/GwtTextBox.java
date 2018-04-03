@@ -11,7 +11,7 @@ import org.nibiru.model.core.impl.java.JavaType;
 import javax.inject.Inject;
 
 public class GwtTextBox extends GwtHasEnabledHasValueWidget<TextBox, String>
-        implements org.nibiru.ui.core.api.TextBox {
+        implements org.nibiru.ui.core.api.TextBox, GwtFocusable<TextBox> {
 
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 6;

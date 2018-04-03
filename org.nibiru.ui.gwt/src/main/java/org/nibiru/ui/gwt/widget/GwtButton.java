@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public class GwtButton
         extends GwtClickableValueWidget<Button, String>
-        implements org.nibiru.ui.core.api.Button {
+        implements org.nibiru.ui.core.api.Button, GwtFocusable<Button> {
 
     @Inject
     public GwtButton(Resources resources) {
@@ -21,7 +21,7 @@ public class GwtButton
 
     public GwtButton(Button button) {
         super(button);
-        enabled.addObserver(() -> this.control.setEnabled(enabled.get()));
+        getEnabled().addObserver(() -> this.control.setEnabled(getEnabled().get()));
     }
 
     @Override

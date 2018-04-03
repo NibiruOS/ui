@@ -5,7 +5,8 @@ import org.nibiru.ui.core.api.FramePanel;
 import javax.inject.Inject;
 
 public class FramePanelBuilder
-        extends BaseContainerBuilder<FramePanel, FramePanelBuilder> {
+        extends BaseBuilder<FramePanel>
+        implements ContainerBuilder<FramePanel, FramePanelBuilder> {
     @Inject
     public FramePanelBuilder(FramePanel widget) {
         super(widget);

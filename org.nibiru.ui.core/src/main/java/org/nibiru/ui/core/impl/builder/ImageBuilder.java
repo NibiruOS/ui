@@ -7,7 +7,11 @@ import javax.inject.Inject;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ImageBuilder
-        extends BaseClickableValueBuilder<Image, String, ImageBuilder> {
+        extends BaseBuilder<Image>
+        implements
+        HasClickHandlerBuilder<Image, ImageBuilder>,
+        HasEnabledBuilder<Image, ImageBuilder>,
+        ValueWidgetBuilder<Image, String, ImageBuilder> {
 
     @Inject
     public ImageBuilder(Image image) {
@@ -26,15 +30,5 @@ public class ImageBuilder
         checkNotNull(content);
         object.setBase64Content(format, content);
         return this;
-    }
-
-    public ImageBuilder enabled(boolean enabled) {
-        object.getEnabled().set(enabled);
-        return this;
-    }
-
-    public Image build(String path) {
-        checkNotNull(path);
-        return value(path).build();
     }
 }

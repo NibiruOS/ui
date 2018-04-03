@@ -1,5 +1,5 @@
 package org.nibiru.ui.core.api;
 
 public interface TextBox
-        extends ValueWidget<String>, HasEnabled {
+        extends ValueWidget<String>, HasEnabled, Focusable {
 }

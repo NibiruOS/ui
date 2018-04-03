@@ -5,73 +5,66 @@ import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
 
-abstract public class BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T, ?>> extends BaseBuilder<T> {
-    protected BaseStyleBuilder(T style) {
-        super(style);
-    }
+public interface BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T, ?>>
+        extends ObjectBuilder<T>, ChainBuilder<B> {
 
-    public B parent(Style parent) {
-        object.setParent(parent);
+    default B parent(Style parent) {
+        object().setParent(parent);
         return getThis();
     }
 
-    public B backgroundColor(Color backgroundColor) {
-        object.setBackgroundColor(backgroundColor);
+    default B backgroundColor(Color backgroundColor) {
+        object().setBackgroundColor(backgroundColor);
         return getThis();
     }
 
-    public B width(Size width) {
-        object.setWidth(width);
+    default B width(Size width) {
+        object().setWidth(width);
         return getThis();
     }
 
-    public B height(Size height) {
-        object.setHeight(height);
+    default B height(Size height) {
+        object().setHeight(height);
         return getThis();
     }
 
-    public B maxWidth(int maxWidth) {
-        object.setMaxWidth(maxWidth);
+    default B maxWidth(int maxWidth) {
+        object().setMaxWidth(maxWidth);
         return getThis();
     }
 
-    public B maxHeight(int maxHeight) {
-        object.setMaxHeight(maxHeight);
+    default B maxHeight(int maxHeight) {
+        object().setMaxHeight(maxHeight);
         return getThis();
     }
 
-    public B horizontalAlignment(Alignment horizontalAlignment) {
-        object.setHorizontalAlignment(horizontalAlignment);
+    default B horizontalAlignment(Alignment horizontalAlignment) {
+        object().setHorizontalAlignment(horizontalAlignment);
         return getThis();
     }
 
-    public B verticalAlignment(Alignment verticalAlignment) {
-        object.setVerticalAlignment(verticalAlignment);
+    default B verticalAlignment(Alignment verticalAlignment) {
+        object().setVerticalAlignment(verticalAlignment);
         return getThis();
     }
 
-    public B marginTop(int marginTop) {
-        object.setMarginTop(marginTop);
+    default B marginTop(int marginTop) {
+        object().setMarginTop(marginTop);
         return getThis();
     }
 
-    public B marginRight(int marginRight) {
-        object.setMarginRight(marginRight);
+    default B marginRight(int marginRight) {
+        object().setMarginRight(marginRight);
         return getThis();
     }
 
-    public B marginLeft(int marginLeft) {
-        object.setMarginLeft(marginLeft);
+    default B marginLeft(int marginLeft) {
+        object().setMarginLeft(marginLeft);
         return getThis();
     }
 
-    public B marginBottom(int marginBottom) {
-        object.setMarginBottom(marginBottom);
+    default B marginBottom(int marginBottom) {
+        object().setMarginBottom(marginBottom);
         return getThis();
-    }
-
-    @SuppressWarnings("unchecked")
-    B getThis() {
-        return (B) this;
     }
 }

@@ -5,12 +5,15 @@ import android.view.View.MeasureSpec;
 
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.api.Focusable;
 import org.nibiru.ui.core.api.HasClickHandler;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implements HasClickHandler {
+abstract class AndroidWidget<T extends View>
+        extends BaseControlWidget<T>
+        implements HasClickHandler, Focusable {
     private Registration clickRegistration;
 
     AndroidWidget(T control) {
@@ -54,6 +57,11 @@ abstract class AndroidWidget<T extends View> extends BaseControlWidget<T> implem
     @Override
     public void applyStyle() {
         WidgetUtils.applyStyle(control, getStyle());
+    }
+
+    @Override
+    public void requestFocus() {
+        control.requestFocus();
     }
 
     int dpToPx(int dp) {

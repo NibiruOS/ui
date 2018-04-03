@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 public class GwtComboBox<V>
         extends GwtHasEnabledWidget<ListBox, V>
-        implements ComboBox<V> {
+        implements ComboBox<V>, GwtFocusable<ListBox> {
 
     private V selectedItem;
     private final Value<Iterable<V>> items;

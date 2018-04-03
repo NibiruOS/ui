@@ -5,7 +5,9 @@ import org.nibiru.ui.core.api.style.ImageStyle.ScaleType;
 
 import javax.inject.Inject;
 
-public class ImageStyleBuilder extends BaseStyleBuilder<ImageStyle, ImageStyleBuilder> {
+public class ImageStyleBuilder
+        extends BaseBuilder<ImageStyle>
+        implements BaseStyleBuilder<ImageStyle, ImageStyleBuilder> {
     @Inject
     public ImageStyleBuilder() {
         super(new ImageStyle());

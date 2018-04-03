@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 public class GwtPasswordBox
         extends GwtHasEnabledHasValueWidget<PasswordTextBox, String>
-        implements org.nibiru.ui.core.api.PasswordBox {
+        implements org.nibiru.ui.core.api.PasswordBox, GwtFocusable<PasswordTextBox> {
 
     private static int MAGIC_PADDING = 6;
 
