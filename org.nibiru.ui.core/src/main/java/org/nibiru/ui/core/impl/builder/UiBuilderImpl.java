@@ -12,6 +12,7 @@ public class UiBuilderImpl
     private final Provider<ButtonBuilder> button;
     private final Provider<CheckBoxBuilder> checkbox;
     private final ComboBoxBuilderFactory comboBox;
+    private final Provider<FramePanelBuilder> framePanel;
     private final Provider<FormBuilder> form;
     private final Provider<GridPanelBuilder> gridPanel;
     private final Provider<HorizontalPanelBuilder> horizontalPanel;
@@ -39,6 +40,7 @@ public class UiBuilderImpl
                          Provider<ButtonBuilder> button,
                          Provider<CheckBoxBuilder> checkbox,
                          ComboBoxBuilderFactory comboBox,
+                         Provider<FramePanelBuilder> framePanel,
                          Provider<FormBuilder> form,
                          Provider<GridPanelBuilder> gridPanel,
                          Provider<HorizontalPanelBuilder> horizontalPanel,
@@ -63,6 +65,7 @@ public class UiBuilderImpl
         this.button = checkNotNull(button);
         this.checkbox = checkNotNull(checkbox);
         this.comboBox = checkNotNull(comboBox);
+        this.framePanel = checkNotNull(framePanel);
         this.form = checkNotNull(form);
         this.gridPanel = checkNotNull(gridPanel);
         this.horizontalPanel = checkNotNull(horizontalPanel);
@@ -103,6 +106,11 @@ public class UiBuilderImpl
     @Override
     public <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass) {
         return comboBox.create(valueClass);
+    }
+
+    @Override
+    public FramePanelBuilder framePanel() {
+        return framePanel.get();
     }
 
     @Override

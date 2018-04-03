@@ -25,6 +25,11 @@ public interface UiBuilderWrapper
     }
 
     @Override
+    default FramePanelBuilder framePanel() {
+        return uiBuilder().framePanel();
+    }
+
+    @Override
     default FormBuilder form() {
         return uiBuilder().form();
     }

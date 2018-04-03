@@ -1,10 +1,12 @@
 package org.nibiru.ui.core.impl.ioc;
 
+import org.nibiru.ui.core.api.FramePanel;
 import org.nibiru.ui.core.api.GridPanel;
 import org.nibiru.ui.core.api.HorizontalPanel;
 import org.nibiru.ui.core.api.ListWidget;
 import org.nibiru.ui.core.api.RelativePanel;
 import org.nibiru.ui.core.api.VerticalPanel;
+import org.nibiru.ui.core.impl.FramePanelImpl;
 import org.nibiru.ui.core.impl.GridPanelImpl;
 import org.nibiru.ui.core.impl.HorizontalPanelImpl;
 import org.nibiru.ui.core.impl.ListWidgetImpl;
@@ -42,6 +44,11 @@ public class CoreModule {
     @Provides
     public GridPanel getGridPanel(GridPanelImpl gridPanel) {
         return gridPanel;
+    }
+
+    @Provides
+    public FramePanel getFramePanel(FramePanelImpl framePanel) {
+        return framePanel;
     }
 
     @Provides

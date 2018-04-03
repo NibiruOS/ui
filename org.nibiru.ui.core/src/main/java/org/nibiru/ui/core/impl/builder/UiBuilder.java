@@ -9,6 +9,8 @@ public interface UiBuilder {
 
     <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass);
 
+    FramePanelBuilder framePanel();
+
     FormBuilder form();
 
     GridPanelBuilder gridPanel();

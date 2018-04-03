@@ -12,79 +12,80 @@ import org.nibiru.ui.core.api.layout.MeasureSpec;
 import javax.inject.Inject;
 
 public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
-	private int columns = 1;
-	private int maxHeights[];
-	private int maxWidths[];
-	
-	@Inject
-	public GridPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
-		super(panel, viewport, looper);
-	}
+    private int columns = 1;
+    private int maxHeights[];
+    private int maxWidths[];
 
-	@Override
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
+    @Inject
+    public GridPanelImpl(AbsolutePanel panel, Viewport viewport, Looper looper) {
+        super(panel, viewport, looper);
+    }
+
+    @Override
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
 
     @Override
     protected void onMeasure(MeasureSpec widthSpec, MeasureSpec heightSpec) {
         int column = 0;
         int row = 0;
         int height = 0;
-        int rows = (Iterables.size(getChildren()) + columns - 1) / columns;
+        int rows = (Iterables.size(getVisibleChildren()) + columns - 1) / columns;
         maxWidths = new int[columns];
         maxHeights = new int[rows];
-        
-        for (Widget child : getChildren()) {
+
+        for (Widget child : getVisibleChildren()) {
 
             measureChild(child, widthSpec, heightSpec);
 
-        	maxHeights[row] = Math.max(child.getMeasuredHeight(), maxHeights[row]);
-        	maxWidths[column] = Math.max(child.getMeasuredWidth(), maxWidths[column]);
+            maxHeights[row] = Math.max(child.getFullMeasuredHeight(), maxHeights[row]);
+            maxWidths[column] = Math.max(child.getFullMeasuredWidth(), maxWidths[column]);
 
             column++;
 
             if (column == columns) {
-            	height += maxHeights[row];
-            	column = 0;
-            	row++;
+                height += maxHeights[row];
+                column = 0;
+                row++;
             }
-            
-        }
-        
-        int maxWidth = 0;
-        
-        for (int n : maxWidths) {
-        	maxWidth += n;
-        }
-        
-        updateSize(maxWidth, height);
-    }
-	
-	
-	@Override
-	public void onLayout() {
-		int column = 0;
-		int row = 0;
-		int currentWidth = 0;
-		int currentHeight = 0;
-		for (Widget child : getChildren()) {
-			child.layout();
-			panel.getPosition(child)
-			.setX(currentWidth)
-			.setY(currentHeight);
 
-			currentWidth += maxWidths[column];
-	
-			column++;
-			if (column >= this.columns) {
-				currentWidth = 0;
-				currentHeight += maxHeights[row];
-				column = 0;
-				row++;
-			}
-		}
-		super.onLayout();
-	}
+        }
+
+        int maxWidth = 0;
+
+        for (int n : maxWidths) {
+            maxWidth += n;
+        }
+
+        updateSize(resolveWidth(maxWidth, widthSpec),
+                resolveHeight(height, heightSpec));
+    }
+
+
+    @Override
+    public void onLayout() {
+        int column = 0;
+        int row = 0;
+        int currentWidth = 0;
+        int currentHeight = 0;
+        for (Widget child : getVisibleChildren()) {
+            child.layout();
+            panel.getPosition(child)
+                    .setX(currentWidth)
+                    .setY(currentHeight);
+
+            currentWidth += maxWidths[column];
+
+            column++;
+            if (column >= this.columns) {
+                currentWidth = 0;
+                currentHeight += maxHeights[row];
+                column = 0;
+                row++;
+            }
+        }
+        super.onLayout();
+    }
 
 }
