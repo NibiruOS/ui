@@ -13,6 +13,7 @@ public class ButtonBuilder
         implements
         FocusableBuilder<Button, ButtonBuilder>,
         HasClickHandlerBuilder<Button, ButtonBuilder>,
+        HasEnabledBuilder<Button, ButtonBuilder>,
         ValueWidgetBuilder<Button, String, ButtonBuilder> {
 
     @Inject
@@ -23,10 +24,5 @@ public class ButtonBuilder
     public Button build(@Nullable String text, ClickHandler clickHandler) {
         checkNotNull(clickHandler);
         return value(text).onClick(clickHandler).build();
-    }
-
-    public ButtonBuilder enabled(boolean enabled) {
-        object.getEnabled().set(enabled);
-        return this;
     }
 }
