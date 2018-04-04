@@ -2,6 +2,7 @@ package org.nibiru.ui.ios.ioc;
 
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.Canvas;
 import org.nibiru.ui.core.api.CheckBox;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
@@ -21,6 +22,7 @@ import org.nibiru.ui.ios.builder.IOSComboBoxBuilderFactory;
 import org.nibiru.ui.ios.builder.IOSRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.ios.widget.IOSAbsolutePanel;
 import org.nibiru.ui.ios.widget.IOSButton;
+import org.nibiru.ui.ios.widget.IOSCanvas;
 import org.nibiru.ui.ios.widget.IOSCheckBox;
 import org.nibiru.ui.ios.widget.IOSImage;
 import org.nibiru.ui.ios.widget.IOSLabel;
@@ -38,8 +40,8 @@ import dagger.Provides;
 @Module
 public class IOSModule {
     @Provides
-    public Viewport getViewport(IOSViewport viewport) {
-        return viewport;
+    public AbsolutePanel getAbsolutePanel(IOSAbsolutePanel absolutePanel) {
+        return absolutePanel;
     }
 
     @Provides
@@ -48,27 +50,27 @@ public class IOSModule {
     }
 
     @Provides
-    public Label getLabel(IOSLabel label) {
-        return label;
+    public Canvas getCanvas(IOSCanvas canvas) {
+        return canvas;
     }
 
     @Provides
-    public TextBox getTextBox(IOSTextBox textBox) {
-        return textBox;
+    public CheckBox getCheckbox(IOSCheckBox checkbox) {
+        return checkbox;
     }
 
     @Provides
-    public PasswordBox getPasswordBox(IOSPasswordBox passwordBox) {
-        return passwordBox;
+    public ComboBoxBuilderFactory getComboBoxBuilderFactory(IOSComboBoxBuilderFactory factory) {
+        return factory;
+    }
+
+    @Provides
+    public FormatFactory getFormatFactory(JavaFormatFactory factory) {
+        return factory;
     }
 
     @Provides
     public HorizontalScrollPanel getHorizontalScrollPanel(IOSScrollPanel scrollPanel) {
-        return scrollPanel;
-    }
-
-    @Provides
-    public VerticalScrollPanel getVerticalScrollPanel(IOSScrollPanel scrollPanel) {
         return scrollPanel;
     }
 
@@ -78,18 +80,18 @@ public class IOSModule {
     }
 
     @Provides
+    public Label getLabel(IOSLabel label) {
+        return label;
+    }
+
+    @Provides
     public Popup getPopup(IOSPopup popup) {
         return popup;
     }
 
     @Provides
-    public Spinner getSpinner(IOSSpinner spinner) {
-        return spinner;
-    }
-
-    @Provides
-    public CheckBox getCheckbox(IOSCheckBox checkbox) {
-        return checkbox;
+    public PasswordBox getPasswordBox(IOSPasswordBox passwordBox) {
+        return passwordBox;
     }
 
     @Provides
@@ -98,8 +100,13 @@ public class IOSModule {
     }
 
     @Provides
-    public ComboBoxBuilderFactory getComboBoxBuilderFactory(IOSComboBoxBuilderFactory factory) {
-        return factory;
+    public Spinner getSpinner(IOSSpinner spinner) {
+        return spinner;
+    }
+
+    @Provides
+    public TextBox getTextBox(IOSTextBox textBox) {
+        return textBox;
     }
 
     @Provides
@@ -108,12 +115,12 @@ public class IOSModule {
     }
 
     @Provides
-    public AbsolutePanel getAbsolutePanel(IOSAbsolutePanel absolutePanel) {
-        return absolutePanel;
+    public VerticalScrollPanel getVerticalScrollPanel(IOSScrollPanel scrollPanel) {
+        return scrollPanel;
     }
 
     @Provides
-    public FormatFactory getFormatFactory(JavaFormatFactory factory) {
-        return factory;
+    public Viewport getViewport(IOSViewport viewport) {
+        return viewport;
     }
 }

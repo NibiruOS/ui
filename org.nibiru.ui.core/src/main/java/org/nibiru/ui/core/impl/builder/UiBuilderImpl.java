@@ -1,6 +1,5 @@
 package org.nibiru.ui.core.impl.builder;
 
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 
@@ -10,7 +9,8 @@ public class UiBuilderImpl
         implements UiBuilder {
     private final Provider<AbsolutePanelBuilder> absolutePanel;
     private final Provider<ButtonBuilder> button;
-    private final Provider<CheckBoxBuilder> checkbox;
+    private final Provider<CanvasBuilder> canvas;
+    private final Provider<CheckBoxBuilder> checkBox;
     private final ComboBoxBuilderFactory comboBox;
     private final Provider<FramePanelBuilder> framePanel;
     private final Provider<FormBuilder> form;
@@ -34,11 +34,11 @@ public class UiBuilderImpl
     private final Provider<VerticalPanelBuilder> verticalPanel;
     private final Provider<VerticalScrollPanelBuilder> verticalScrollPanel;
 
-
     @Inject
     public UiBuilderImpl(Provider<AbsolutePanelBuilder> absolutePanel,
                          Provider<ButtonBuilder> button,
-                         Provider<CheckBoxBuilder> checkbox,
+                         Provider<CanvasBuilder> canvas,
+                         Provider<CheckBoxBuilder> checkBox,
                          ComboBoxBuilderFactory comboBox,
                          Provider<FramePanelBuilder> framePanel,
                          Provider<FormBuilder> form,
@@ -63,7 +63,8 @@ public class UiBuilderImpl
                          Provider<VerticalScrollPanelBuilder> verticalScrollPanel) {
         this.absolutePanel = checkNotNull(absolutePanel);
         this.button = checkNotNull(button);
-        this.checkbox = checkNotNull(checkbox);
+        this.canvas = checkNotNull(canvas);
+        this.checkBox = checkNotNull(checkBox);
         this.comboBox = checkNotNull(comboBox);
         this.framePanel = checkNotNull(framePanel);
         this.form = checkNotNull(form);
@@ -99,8 +100,13 @@ public class UiBuilderImpl
     }
 
     @Override
+    public CanvasBuilder canvas() {
+        return canvas.get();
+    }
+
+    @Override
     public CheckBoxBuilder checkbox() {
-        return checkbox.get();
+        return checkBox.get();
     }
 
     @Override

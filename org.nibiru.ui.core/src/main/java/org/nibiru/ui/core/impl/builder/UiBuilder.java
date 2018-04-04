@@ -5,6 +5,8 @@ public interface UiBuilder {
 
     ButtonBuilder button();
 
+    CanvasBuilder canvas();
+
     CheckBoxBuilder checkbox();
 
     <T> ComboBoxBuilder<T> comboBox(Class<T> valueClass);

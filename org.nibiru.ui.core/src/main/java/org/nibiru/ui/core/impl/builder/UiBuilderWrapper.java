@@ -15,6 +15,11 @@ public interface UiBuilderWrapper
     }
 
     @Override
+    default CanvasBuilder canvas() {
+        return uiBuilder().canvas();
+    }
+
+    @Override
     default CheckBoxBuilder checkbox() {
         return uiBuilder().checkbox();
     }

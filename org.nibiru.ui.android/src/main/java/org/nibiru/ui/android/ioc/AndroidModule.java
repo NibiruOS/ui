@@ -4,6 +4,7 @@ import org.nibiru.ui.android.builder.AndroidComboBoxBuilderFactory;
 import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
+import org.nibiru.ui.android.widget.AndroidCanvas;
 import org.nibiru.ui.android.widget.AndroidCheckBox;
 import org.nibiru.ui.android.widget.AndroidHorizontalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidImage;
@@ -17,6 +18,7 @@ import org.nibiru.ui.android.widget.AndroidVerticalScrollPanel;
 import org.nibiru.ui.android.widget.AndroidViewport;
 import org.nibiru.ui.core.api.AbsolutePanel;
 import org.nibiru.ui.core.api.Button;
+import org.nibiru.ui.core.api.Canvas;
 import org.nibiru.ui.core.api.CheckBox;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Image;
@@ -38,84 +40,89 @@ import dagger.Provides;
 
 @Module
 public class AndroidModule {
-	@Provides
-	public Viewport getViewport(AndroidViewport viewport) {
-		return viewport;
-	}
+    @Provides
+    public AbsolutePanel getAbsolutePanel(AndroidAbsolutePanel absolutePanel) {
+        return absolutePanel;
+    }
 
-	@Provides
-	public Button getButton(AndroidButton button) {
-		return button;
-	}
+    @Provides
+    public Button getButton(AndroidButton button) {
+        return button;
+    }
 
-	@Provides
-	public Label getLabel(AndroidLabel label) {
-		return label;
-	}
+    @Provides
+    public Canvas getCanvas(AndroidCanvas canvas) {
+        return canvas;
+    }
 
-	@Provides
-	public TextBox getTextBox(AndroidTextBox textBox) {
-		return textBox;
-	}
+    @Provides
+    public CheckBox getCheckbox(AndroidCheckBox checkbox) {
+        return checkbox;
+    }
 
-	@Provides
-	public PasswordBox getPasswordBox(AndroidPasswordBox passwordBox) {
-		return passwordBox;
-	}
+    @Provides
+    public ComboBoxBuilderFactory getComboBoxBuilderFactory(AndroidComboBoxBuilderFactory factory) {
+        return factory;
+    }
 
-	@Provides
-	public HorizontalScrollPanel getHorizontalScrollPanel(AndroidHorizontalScrollPanel scrollPanel) {
-		return scrollPanel;
-	}
+    @Provides
+    public FormatFactory getFormatFactory(JavaFormatFactory factory) {
+        return factory;
+    }
 
-	@Provides
-	public VerticalScrollPanel getVerticalScrollPanel(AndroidVerticalScrollPanel scrollPanel) {
-		return scrollPanel;
-	}
+    @Provides
+    public HorizontalScrollPanel getHorizontalScrollPanel(AndroidHorizontalScrollPanel scrollPanel) {
+        return scrollPanel;
+    }
 
-	@Provides
-	public Image getImage(AndroidImage image) {
-		return image;
-	}
+    @Provides
+    public Image getImage(AndroidImage image) {
+        return image;
+    }
 
-	@Provides
-	public Popup getPopup(AndroidPopup popup) {
-		return popup;
-	}
+    @Provides
+    public Label getLabel(AndroidLabel label) {
+        return label;
+    }
 
-	@Provides
-	public Spinner getSpinner(AndroidSpinner spinner) {
-		return spinner;
-	}
+    @Provides
+    public PasswordBox getPasswordBox(AndroidPasswordBox passwordBox) {
+        return passwordBox;
+    }
 
-	@Provides
-	public CheckBox getCheckbox(AndroidCheckBox checkbox) {
-		return checkbox;
-	}
+    @Provides
+    public Popup getPopup(AndroidPopup popup) {
+        return popup;
+    }
 
-	@Provides
-	public RadioButtonGroupBuilderFactory getRadioButtonGroupBuilderFactory(
-			AndroidRadioButtonGroupBuilderFactory factory) {
-		return factory;
-	}
+    @Provides
+    public RadioButtonGroupBuilderFactory getRadioButtonGroupBuilderFactory(
+            AndroidRadioButtonGroupBuilderFactory factory) {
+        return factory;
+    }
 
-	@Provides
-	public ComboBoxBuilderFactory getComboBoxBuilderFactory(AndroidComboBoxBuilderFactory factory) {
-		return factory;
-	}
+    @Provides
+    public Spinner getSpinner(AndroidSpinner spinner) {
+        return spinner;
+    }
 
-	@Provides
-	public TreeView getTreeView(AndroidTreeView treeView) {
-		return treeView;
-	}
+    @Provides
+    public TreeView getTreeView(AndroidTreeView treeView) {
+        return treeView;
+    }
 
-	@Provides
-	public AbsolutePanel getAbsolutePanel(AndroidAbsolutePanel absolutePanel) {
-		return absolutePanel;
-	}
+    @Provides
+    public TextBox getTextBox(AndroidTextBox textBox) {
+        return textBox;
+    }
 
-	@Provides
-	public FormatFactory getFormatFactory(JavaFormatFactory factory) {
-		return factory;
-	}
+    @Provides
+    public VerticalScrollPanel getVerticalScrollPanel(AndroidVerticalScrollPanel scrollPanel) {
+        return scrollPanel;
+    }
+
+    @Provides
+    public Viewport getViewport(AndroidViewport viewport) {
+        return viewport;
+    }
 }
