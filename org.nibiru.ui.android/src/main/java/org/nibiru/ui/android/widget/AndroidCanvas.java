@@ -35,11 +35,11 @@ public class AndroidCanvas
         int cX = dpToPx(x);
         int cY = dpToPx(y);
 
-        float half = dpToPx(radius) / 2f;
-        path.addArc(new RectF(cX - half,
-                        cY - half,
-                        cX + half,
-                        cY + half),
+        int cRadius = dpToPx(radius);
+        path.addArc(new RectF(cX - cRadius,
+                        cY - cRadius,
+                        cX + cRadius,
+                        cY + cRadius),
                 (float) Math.toDegrees(startAngle),
                 (float) Math.toDegrees(endAngle - startAngle)
         );
