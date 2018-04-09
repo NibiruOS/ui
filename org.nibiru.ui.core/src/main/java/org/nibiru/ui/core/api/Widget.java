@@ -21,6 +21,8 @@ public interface Widget {
 
 	void layout();
 
+	void requestLayout();
+
 	@Nullable
 	IsParent getParent();
 

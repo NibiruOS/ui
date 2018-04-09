@@ -57,6 +57,11 @@ public abstract class CompositeWidget<T extends Widget> implements Widget {
         widget.layout();
     }
 
+    @Override
+    public void requestLayout() {
+        widget.requestLayout();
+    }
+
     @Nullable
     @Override
     public IsParent getParent() {

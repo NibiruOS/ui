@@ -132,6 +132,13 @@ public abstract class BaseWidget implements Widget {
         onLayout();
     }
 
+    @Override
+    public void requestLayout() {
+        if (parent != null) {
+            parent.requestLayout();
+        }
+    }
+
     protected void onLayout() {
     }
 
