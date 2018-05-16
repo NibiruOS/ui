@@ -76,6 +76,7 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
             getParent().scheduleLayout();
             isLayoutScheduled = false;
         } else if (!isLayoutScheduled) {
+            isLayoutScheduled = true;
             looper.post(() -> {
                 isLayoutScheduled = false;
                 if (getParent() != null) {
