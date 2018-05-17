@@ -1,15 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.Label;
 
 import org.nibiru.model.core.api.Value;
-import org.nibiru.ui.core.api.style.TextStyle;
 
 import javax.inject.Inject;
-
-import static org.nibiru.ui.gwt.widget.WidgetUtils.alignmentToTextAlign;
-import static org.nibiru.ui.gwt.widget.WidgetUtils.colorToNative;
 
 public class GwtLabel extends GwtClickableValueWidget<Label, String>
         implements org.nibiru.ui.core.api.Label {
