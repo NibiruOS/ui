@@ -10,11 +10,21 @@ import org.nibiru.ui.core.impl.BaseScrollPanel;
 
 import javax.inject.Inject;
 
-public class AndroidVerticalScrollPanel extends BaseScrollPanel<ScrollView, View> implements VerticalScrollPanel {
+import static org.nibiru.ui.android.widget.WidgetUtils.dpToPx;
+import static org.nibiru.ui.android.widget.WidgetUtils.pxToDp;
+
+public class AndroidVerticalScrollPanel
+        extends BaseScrollPanel<ScrollView, View>
+        implements VerticalScrollPanel {
     @Inject
     public AndroidVerticalScrollPanel(Context context, Viewport viewport) {
         this(new ScrollView(context), viewport);
         WidgetUtils.bindVisible(this, control);
+        control.getViewTreeObserver()
+                .addOnScrollChangedListener(() ->
+                        scrollPosition.set(pxToDp(Math.max(control.getScrollY(), 0), context)));
+        scrollPosition.addObserver(() ->
+                control.setScrollY(dpToPx(scrollPosition.get(), context)));
     }
 
     public AndroidVerticalScrollPanel(ScrollView control, Viewport viewport) {

@@ -21,7 +21,9 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
     private boolean isLayoutScheduled;
     private boolean isLayoutDirty;
 
-    BaseLayoutPanel(AbsolutePanel panel, Viewport viewport, Looper looper) {
+    BaseLayoutPanel(AbsolutePanel panel,
+                    Viewport viewport,
+                    Looper looper) {
         this.panel = checkNotNull(panel);
         this.viewport = checkNotNull(viewport);
         this.looper = checkNotNull(looper);
@@ -34,8 +36,17 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
 
     @Override
     public void add(Widget child) {
+        checkNotNull(child);
         panel.add(child);
         child.setParent(this);
+        scheduleLayout();
+    }
+
+    @Override
+    public void remove(Widget child) {
+        checkNotNull(child);
+        panel.remove(child);
+        child.setParent(null);
         scheduleLayout();
     }
 

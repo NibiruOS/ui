@@ -10,11 +10,21 @@ import org.nibiru.ui.core.impl.BaseScrollPanel;
 
 import javax.inject.Inject;
 
-public class AndroidHorizontalScrollPanel extends BaseScrollPanel<HorizontalScrollView, View> implements HorizontalScrollPanel {
+import static org.nibiru.ui.android.widget.WidgetUtils.dpToPx;
+import static org.nibiru.ui.android.widget.WidgetUtils.pxToDp;
+
+public class AndroidHorizontalScrollPanel
+        extends BaseScrollPanel<HorizontalScrollView, View>
+        implements HorizontalScrollPanel {
     @Inject
     public AndroidHorizontalScrollPanel(Context context, Viewport viewport) {
         this(new HorizontalScrollView(context), viewport);
         WidgetUtils.bindVisible(this, control);
+        control.getViewTreeObserver()
+                .addOnScrollChangedListener(() ->
+                        scrollPosition.set(pxToDp(Math.max(control.getScrollX(), 0), context)));
+        scrollPosition.addObserver(() ->
+                control.setScrollX(dpToPx(scrollPosition.get(), context)));
     }
 
     public AndroidHorizontalScrollPanel(HorizontalScrollView control, Viewport viewport) {

@@ -16,6 +16,12 @@ public abstract class CompositeContainer<T extends Container>
     }
 
     @Override
+    public void remove(Widget child) {
+        checkNotNull(child);
+        widget.remove(child);
+    }
+
+    @Override
     public void clear() {
         widget.clear();
     }

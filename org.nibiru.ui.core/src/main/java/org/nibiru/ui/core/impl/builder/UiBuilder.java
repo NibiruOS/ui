@@ -1,5 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
+import org.nibiru.ui.core.api.ListWidget;
+import org.nibiru.ui.core.api.ListWidget.DefaultRowType;
+import org.nibiru.ui.core.api.Widget;
+
 public interface UiBuilder {
     AbsolutePanelBuilder absolutePanel();
 
@@ -27,7 +31,24 @@ public interface UiBuilder {
 
     LabelBuilder label();
 
-    ListWidgetBuilder list();
+    <ModelType,
+            RowType extends Enum<?>,
+            ViewType extends Widget>
+    ListWidgetBuilder<ModelType,
+            RowType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<RowType> rowTypeEnum,
+         Class<ViewType> viewType,
+         ListWidget.RowTypeHandler<RowType> rowTypeHandler);
+
+    <ModelType,
+            ViewType extends Widget>
+    DefaultRowTypeListWidgetBuilder<ModelType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<ViewType> viewType,
+         ListWidget.DefaultRowTypeHandler rowTypeHandler);
 
     PasswordBoxBuilder passwordBox();
 

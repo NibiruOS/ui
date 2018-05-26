@@ -1,6 +1,7 @@
 package org.nibiru.ui.android.widget;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import org.nibiru.model.core.api.Value;

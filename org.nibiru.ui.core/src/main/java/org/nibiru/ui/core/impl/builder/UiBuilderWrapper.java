@@ -1,5 +1,9 @@
 package org.nibiru.ui.core.impl.builder;
 
+import org.nibiru.ui.core.api.ListWidget;
+import org.nibiru.ui.core.api.ListWidget.DefaultRowTypeHandler;
+import org.nibiru.ui.core.api.Widget;
+
 public interface UiBuilderWrapper
         extends UiBuilder {
     UiBuilder uiBuilder();
@@ -69,9 +73,27 @@ public interface UiBuilderWrapper
         return uiBuilder().label();
     }
 
+    default <ModelType, RowType extends Enum<?>,
+            ViewType extends Widget>
+    ListWidgetBuilder<ModelType,
+            RowType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<RowType> rowTypeEnum,
+         Class<ViewType> viewType,
+         ListWidget.RowTypeHandler<RowType> rowTypeHandler) {
+        return uiBuilder().list(modelType, rowTypeEnum, viewType, rowTypeHandler);
+    }
+
     @Override
-    default ListWidgetBuilder list() {
-        return uiBuilder().list();
+    default <ModelType,
+            ViewType extends Widget>
+    DefaultRowTypeListWidgetBuilder<ModelType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<ViewType> viewType,
+         DefaultRowTypeHandler rowTypeHandler) {
+        return uiBuilder().list(modelType, viewType, rowTypeHandler);
     }
 
     @Override

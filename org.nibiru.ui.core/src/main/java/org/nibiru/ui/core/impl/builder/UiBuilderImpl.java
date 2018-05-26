@@ -1,5 +1,10 @@
 package org.nibiru.ui.core.impl.builder;
 
+import org.nibiru.ui.core.api.ListWidget;
+import org.nibiru.ui.core.api.ListWidget.DefaultRowType;
+import org.nibiru.ui.core.api.ListWidget.DefaultRowTypeHandler;
+import org.nibiru.ui.core.api.Widget;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 
@@ -20,7 +25,7 @@ public class UiBuilderImpl
     private final Provider<ImageBuilder> image;
     private final Provider<ImageStyleBuilder> imageStyle;
     private final Provider<LabelBuilder> label;
-    private final Provider<ListWidgetBuilder> listWidget;
+    private final ListWidgetBuilderFactory listWidget;
     private final Provider<PasswordBoxBuilder> passwordBox;
     private final Provider<PopupBuilder> popup;
     private final RadioButtonGroupBuilderFactory radioButtonGroup;
@@ -48,7 +53,7 @@ public class UiBuilderImpl
                          Provider<ImageBuilder> image,
                          Provider<ImageStyleBuilder> imageStyle,
                          Provider<LabelBuilder> label,
-                         Provider<ListWidgetBuilder> listWidget,
+                         ListWidgetBuilderFactory listWidget,
                          Provider<PasswordBoxBuilder> passwordBox,
                          Provider<PopupBuilder> popup,
                          RadioButtonGroupBuilderFactory radioButtonGroup,
@@ -155,8 +160,27 @@ public class UiBuilderImpl
     }
 
     @Override
-    public ListWidgetBuilder list() {
-        return listWidget.get();
+    public <ModelType, RowType extends Enum<?>,
+            ViewType extends Widget>
+    ListWidgetBuilder<ModelType,
+            RowType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<RowType> rowTypeEnum,
+         Class<ViewType> viewType,
+         ListWidget.RowTypeHandler<RowType> rowTypeHandler) {
+        return listWidget.create(modelType, rowTypeEnum, viewType, rowTypeHandler);
+    }
+
+    @Override
+    public <ModelType,
+            ViewType extends Widget>
+    DefaultRowTypeListWidgetBuilder<ModelType,
+            ViewType>
+    list(Class<ModelType> modelType,
+         Class<ViewType> viewType,
+         DefaultRowTypeHandler rowTypeHandler) {
+        return listWidget.create(modelType, viewType, rowTypeHandler);
     }
 
     @Override

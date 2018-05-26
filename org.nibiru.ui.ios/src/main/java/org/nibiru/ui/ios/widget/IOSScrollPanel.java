@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.model.core.impl.java.JavaValue;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
@@ -10,7 +11,8 @@ import javax.inject.Inject;
 import apple.uikit.UIScrollView;
 import apple.uikit.UIView;
 
-public class IOSScrollPanel extends BaseScrollPanel<UIScrollView, UIView>
+public class IOSScrollPanel
+        extends BaseScrollPanel<UIScrollView, UIView>
         implements VerticalScrollPanel, HorizontalScrollPanel {
 
     @Inject
@@ -21,6 +23,7 @@ public class IOSScrollPanel extends BaseScrollPanel<UIScrollView, UIView>
     public IOSScrollPanel(UIScrollView control, Viewport viewport) {
         super(control, viewport);
         WidgetUtils.bindVisible(this, control);
+        // TODO: Add listeners for scroll position
     }
 
     @Override
