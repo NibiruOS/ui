@@ -1,6 +1,5 @@
 package org.nibiru.ui.core.impl;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -54,6 +53,7 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
         scrollPanel.getScrollPosition()
                 .addObserver(this::onLayout);
         visibleRows = Lists.newLinkedList();
+        value.addObserver(this::requestLayout);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
 
             int rowHeight;
             rowHeight = rowTypeHandler.getRowHeight(0);
-            while (y + rowHeight -1 < scrollPos) {
+            while (y + rowHeight - 1 < scrollPos) {
                 y += rowHeight;
                 row++;
                 rowHeight = rowTypeHandler.getRowHeight(row);
