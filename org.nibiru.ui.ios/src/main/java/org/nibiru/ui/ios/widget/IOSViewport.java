@@ -21,7 +21,7 @@ public class IOSViewport implements Viewport {
 
     @Override
     public int getHeight() {
-        return (int) (getSize().height() - UIApplication.sharedApplication().statusBarFrame().size().height());
+        return (int) (getSize().height());
     }
 
     private CGSize getSize() {

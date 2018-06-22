@@ -1,6 +1,5 @@
 package org.nibiru.ui.ios.widget;
 
-import org.nibiru.model.core.impl.java.JavaValue;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;

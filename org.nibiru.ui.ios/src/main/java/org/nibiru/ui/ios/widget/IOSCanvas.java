@@ -14,7 +14,7 @@ public class IOSCanvas
 
     @Inject
     public IOSCanvas() {
-        this(UIView.alloc());
+        this(UIView.alloc().init());
     }
 
     public IOSCanvas(UIView canvas) {

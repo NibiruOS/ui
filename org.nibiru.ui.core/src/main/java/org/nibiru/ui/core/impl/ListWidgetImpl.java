@@ -88,6 +88,12 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
     }
 
     @Override
+    public void layout() {
+        super.layout();
+        scrollPanel.layout();
+    }
+
+    @Override
     protected void onLayout() {
         List<ModelType> modelList = getValue().get();
         if (modelList != null) {
