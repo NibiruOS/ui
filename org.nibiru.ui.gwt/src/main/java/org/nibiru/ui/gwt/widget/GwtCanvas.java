@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class GwtCanvas
         extends GwtWidget<com.google.gwt.canvas.client.Canvas>
         implements Canvas {
@@ -52,6 +54,7 @@ public class GwtCanvas
 
     @Override
     public Canvas clear() {
+        operations.clear();
         addOperation(() -> context2d.clearRect(0,
                 0,
                 control.getOffsetWidth(),
@@ -90,6 +93,7 @@ public class GwtCanvas
 
     @Override
     public Canvas setFillStyle(Color color) {
+        checkNotNull(color);
         addOperation(() -> context2d.setFillStyle(color.asCss()));
         return this;
     }
@@ -102,6 +106,7 @@ public class GwtCanvas
 
     @Override
     public Canvas setStrokeStyle(Color color) {
+        checkNotNull(color);
         addOperation(() -> context2d.setStrokeStyle(color.asCss()));
         return this;
     }
