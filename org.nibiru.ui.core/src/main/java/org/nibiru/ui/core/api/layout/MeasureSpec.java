@@ -7,7 +7,7 @@ public class MeasureSpec {
 	 * EXACTLY -> The parent imposed an exact size on the child
 	 * UNSPECIFIED -> The parent let the child determine its desired dimension
 	 */
-	public static enum Type {
+	public enum Type {
 		AT_MOST, UNSPECIFIED, EXACTLY
 	}
 
@@ -24,7 +24,8 @@ public class MeasureSpec {
 	private final Type type;
 	private final int value;
 
-	private MeasureSpec(Type type, int value) {
+	private MeasureSpec(Type type,
+						int value) {
 		this.type = type;
 		this.value = value;
 	}

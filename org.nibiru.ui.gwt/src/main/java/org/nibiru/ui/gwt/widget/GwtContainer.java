@@ -24,6 +24,7 @@ abstract class GwtContainer<T extends Panel> extends GwtWidget<T> implements Con
         control.add((com.google.gwt.user.client.ui.Widget) child.asNative());
         children.add(child);
         child.setParent(this);
+        requestLayout();
     }
 
     @Override
@@ -32,6 +33,7 @@ abstract class GwtContainer<T extends Panel> extends GwtWidget<T> implements Con
         ((com.google.gwt.user.client.ui.Widget) child.asNative()).removeFromParent();
         children.remove(child);
         child.setParent(null);
+        requestLayout();
     }
 
     @Override

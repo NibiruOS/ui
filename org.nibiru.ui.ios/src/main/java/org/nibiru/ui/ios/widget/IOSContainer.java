@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import org.nibiru.ui.core.api.Container;
@@ -24,6 +25,7 @@ abstract class IOSContainer extends IOSWidget<UIView> implements Container {
         control.addSubview((UIView) child.asNative());
         children.add(child);
         child.setParent(this);
+        requestLayout();
     }
 
     @Override
@@ -32,11 +34,16 @@ abstract class IOSContainer extends IOSWidget<UIView> implements Container {
         ((UIView) child.asNative()).removeFromSuperview();
         children.remove(child);
         child.setParent(null);
+        requestLayout();
     }
 
     @Override
     public Iterable<Widget> getChildren() {
         return children;
+    }
+
+    Iterable<Widget> getVisibleChildren() {
+        return Iterables.filter(children, (w) -> w.getVisible().get());
     }
 
     @Override

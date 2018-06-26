@@ -5,24 +5,17 @@ import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BaseScrollPanel;
 
-import javax.inject.Inject;
-
 import apple.uikit.UIScrollView;
 import apple.uikit.UIView;
 
-public class IOSScrollPanel
+class IOSScrollPanel
         extends BaseScrollPanel<UIScrollView, UIView>
         implements VerticalScrollPanel, HorizontalScrollPanel {
 
-    @Inject
-    public IOSScrollPanel(Viewport viewport) {
-        this(UIScrollView.alloc().init(), viewport);
-    }
-
-    public IOSScrollPanel(UIScrollView control, Viewport viewport) {
+    IOSScrollPanel(UIScrollView control,
+                   Viewport viewport) {
         super(control, viewport);
         WidgetUtils.bindVisible(this, control);
-        // TODO: Add listeners for scroll position
     }
 
     @Override

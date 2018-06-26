@@ -24,14 +24,15 @@ import org.nibiru.ui.ios.widget.IOSAbsolutePanel;
 import org.nibiru.ui.ios.widget.IOSButton;
 import org.nibiru.ui.ios.widget.IOSCanvas;
 import org.nibiru.ui.ios.widget.IOSCheckBox;
+import org.nibiru.ui.ios.widget.IOSHorizontalScrollPanel;
 import org.nibiru.ui.ios.widget.IOSImage;
 import org.nibiru.ui.ios.widget.IOSLabel;
 import org.nibiru.ui.ios.widget.IOSPasswordBox;
 import org.nibiru.ui.ios.widget.IOSPopup;
-import org.nibiru.ui.ios.widget.IOSScrollPanel;
 import org.nibiru.ui.ios.widget.IOSSpinner;
 import org.nibiru.ui.ios.widget.IOSTextBox;
 import org.nibiru.ui.ios.widget.IOSTreeView;
+import org.nibiru.ui.ios.widget.IOSVerticalScrollPanel;
 import org.nibiru.ui.ios.widget.IOSViewport;
 
 import dagger.Module;
@@ -70,7 +71,7 @@ public class IOSModule {
     }
 
     @Provides
-    public HorizontalScrollPanel getHorizontalScrollPanel(IOSScrollPanel scrollPanel) {
+    public HorizontalScrollPanel getHorizontalScrollPanel(IOSHorizontalScrollPanel scrollPanel) {
         return scrollPanel;
     }
 
@@ -115,7 +116,7 @@ public class IOSModule {
     }
 
     @Provides
-    public VerticalScrollPanel getVerticalScrollPanel(IOSScrollPanel scrollPanel) {
+    public VerticalScrollPanel getVerticalScrollPanel(IOSVerticalScrollPanel scrollPanel) {
         return scrollPanel;
     }
 

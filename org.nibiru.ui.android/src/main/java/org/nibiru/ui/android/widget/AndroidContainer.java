@@ -26,6 +26,7 @@ abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T> im
         control.addView((View) child.asNative());
         children.add(child);
         child.setParent(this);
+        requestLayout();
     }
 
     @Override
@@ -34,6 +35,7 @@ abstract class AndroidContainer<T extends ViewGroup> extends AndroidWidget<T> im
         control.removeView((View) child.asNative());
         children.remove(child);
         child.setParent(null);
+        requestLayout();
     }
 
     @Override
