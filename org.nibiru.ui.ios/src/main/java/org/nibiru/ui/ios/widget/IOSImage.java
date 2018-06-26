@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteSource;
 
 import org.moe.natj.general.ptr.impl.PtrFactory;
@@ -48,7 +49,8 @@ public class IOSImage
     public void setBase64Content(Format format, String content) {
         checkNotNull(format);
         checkNotNull(content);
-        setBinaryContent(Base64.decode(content));
+        setBinaryContent(BaseEncoding.base64()
+                .decode(content));
     }
 
     @Override
