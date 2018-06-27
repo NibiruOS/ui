@@ -46,7 +46,6 @@ public class IOSVerticalScrollPanel
         if (getContent() != null) {
             control.setContentSize(new CGSize(0,
                     getContent().getFullMeasuredHeight()));
-            System.out.println("KCKKC "+getContent().getFullMeasuredHeight());
         }
     }
 }
