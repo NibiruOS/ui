@@ -3,6 +3,7 @@ package org.nibiru.ui.gwt.widget;
 import com.google.common.collect.Lists;
 import com.google.gwt.canvas.dom.client.Context2d;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.Canvas;
 import org.nibiru.ui.core.api.style.Color;
 
@@ -15,17 +16,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class GwtCanvas
         extends GwtWidget<com.google.gwt.canvas.client.Canvas>
         implements Canvas {
-
     private final Context2d context2d;
+    private final Looper looper;
     private final List<Runnable> operations;
+    private boolean redrawRequested;
 
     @Inject
-    public GwtCanvas() {
-        this(com.google.gwt.canvas.client.Canvas.createIfSupported());
+    public GwtCanvas(Looper looper) {
+        this(com.google.gwt.canvas.client.Canvas.createIfSupported(),
+                looper);
     }
 
-    public GwtCanvas(com.google.gwt.canvas.client.Canvas canvas) {
+    public GwtCanvas(com.google.gwt.canvas.client.Canvas canvas,
+                     Looper looper) {
         super(canvas);
+        this.looper = checkNotNull(looper);
         context2d = control.getContext2d();
         operations = Lists.newArrayList();
     }
@@ -127,10 +132,21 @@ public class GwtCanvas
     @Override
     public void onLayout() {
         super.onLayout();
+        redraw();
+    }
+
+    private void redraw() {
         operations.forEach(Runnable::run);
     }
 
     private void addOperation(Runnable operation) {
         operations.add(operation);
+        redrawRequested = true;
+        looper.post(() -> {
+            if (redrawRequested) {
+                redrawRequested = false;
+                redraw();
+            }
+        });
     }
 }
