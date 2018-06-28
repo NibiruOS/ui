@@ -1,33 +1,63 @@
 package org.nibiru.ui.android.widget;
 
-import javax.inject.Inject;
-
-import org.nibiru.model.core.api.Value;
-import org.nibiru.ui.android.style.StyleResolver;
-import org.nibiru.ui.core.api.Label;
-
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.TextView;
 
-public class AndroidLabel extends AndroidValueWidget<TextView, String> implements Label {
-	@Inject
-	public AndroidLabel(Context context, StyleResolver styleResolver) {
-		super(context, styleResolver);
-	}
+import org.nibiru.model.core.api.Value;
+import org.nibiru.ui.core.api.Label;
+import org.nibiru.ui.core.api.style.TextStyle;
 
-	public AndroidLabel(TextView textView, StyleResolver styleResolver) {
-		super(textView, styleResolver);
-	}
+import javax.inject.Inject;
 
-	@Override
-	TextView buildControl(Context context, int styleResource) {
-		return styleResource == StyleResolver.NO_STYLE
-				? new TextView(context)
-				: new TextView(context, null, styleResource);
-	}
+import static android.text.TextUtils.TruncateAt.END;
+import static org.nibiru.ui.android.widget.WidgetUtils.alignmentToHorizontalGravity;
+import static org.nibiru.ui.android.widget.WidgetUtils.colorToNative;
 
-	@Override
-	Value<String> buildValue() {
-		return new LabelValue(control());
-	}
+public class AndroidLabel
+        extends AndroidHasEnabledWidget<TextView, String>
+        implements Label {
+    // TODO: Fix this "magic".
+    private static int MAGIC_PADDING = 2;
+
+    @Inject
+    public AndroidLabel(Context context) {
+        this(new TextView(context));
+        control.setEllipsize(END);
+    }
+
+    public AndroidLabel(TextView textView) {
+        super(textView);
+    }
+
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) getStyle();
+            control.setTextColor(colorToNative(textStyle.getTextColor()));
+            control.setGravity(alignmentToHorizontalGravity(textStyle.getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setTextSize(fontSize);
+            }
+            control.setAllCaps(textStyle.getAllCaps());
+        }
+    }
+
+    @Override
+    public void setNativeSize(int measuredWidth, int measuredHeight) {
+        super.setNativeSize(measuredWidth, measuredHeight);
+        control.setMaxLines(Math.max(measuredHeight / pxToDp(control.getLineHeight()), 1));
+    }
+
+    @Override
+    Value<String> buildValue() {
+        return new LabelValue(control);
+    }
+
+    @Override
+    protected int getNativeWidth() {
+        return super.getNativeWidth() + MAGIC_PADDING;
+    }
 }

@@ -1,17 +1,16 @@
 package org.nibiru.ui.core.impl.builder;
 
-import java.util.List;
-
 import org.nibiru.ui.core.api.ComboBox;
 
-public class ComboBoxBuilder<T> extends BaseValueBuilder<ComboBox<T>, T, ComboBoxBuilder<T>> {
-	public ComboBoxBuilder(ComboBox<T> control) {
-		super(control);
-	}
+public class ComboBoxBuilder<T>
+        extends BaseBuilder<ComboBox<T>>
+        implements
+        FocusableBuilder<ComboBox<T>, ComboBoxBuilder<T>>,
+        HasEnabledBuilder<ComboBox<T>, ComboBoxBuilder<T>>,
+        HasItemsBuilder<ComboBox<T>, T, ComboBoxBuilder<T>>,
+        ValueWidgetBuilder<ComboBox<T>, T, ComboBoxBuilder<T>> {
 
-	public ComboBoxBuilder<T> items(List<T> items) {
-		object.getItems().set(items);
-		return getThis();
-	}
-
+    public ComboBoxBuilder(ComboBox<T> control) {
+        super(control);
+    }
 }

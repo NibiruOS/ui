@@ -1,50 +1,62 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+import org.nibiru.ui.core.api.Popup;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BasePopup;
+import org.nibiru.ui.gwt.resource.Resources;
 
 import javax.inject.Inject;
 
-import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.gwt.resource.Resources;
+public class GwtPopup extends BasePopup<PopupPanel, Widget>
+        implements Popup {
+    @Inject
+    public GwtPopup(Resources resources, Viewport viewport) {
+        this(new PopupPanel(), viewport);
+        control.setGlassEnabled(true);
+        resources.css().ensureInjected();
+        control.setGlassStyleName(resources.css().popupGlass());
+    }
 
-import com.google.gwt.user.client.ui.PopupPanel;
+    public GwtPopup(PopupPanel control, Viewport viewport) {
+        super(control, viewport);
+    }
 
-public class GwtPopup implements Popup {
-	private final PopupPanel popup;
+    @Override
+    public void show() {
+        control.show();
+        requestLayout();
+    }
 
-	@Inject
-	public GwtPopup(Resources resources) {
-		this(new PopupPanel());
-		popup.setGlassEnabled(true);
-		resources.css().ensureInjected();
-		popup.setGlassStyleName(resources.css().popupGlass());
-	}
+    @Override
+    public void onLayout() {
+        super.onLayout();
+        control.center();
+    }
 
-	public GwtPopup(PopupPanel popup) {
-		this.popup = checkNotNull(popup);
-	}
+    @Override
+    public void hide() {
+        control.hide();
+    }
 
-	@Override
-	public void setContent(Widget content) {
-		checkNotNull(content);
-		popup.clear();
-		popup.add((com.google.gwt.user.client.ui.Widget) content.asNative());
-	}
+    @Override
+    public void setAutoHide(boolean autoHide) {
+        control.setAutoHideEnabled(autoHide);
+    }
 
-	@Override
-	public void show() {
-		popup.center();
-		popup.show();
-	}
+    @Override
+    protected void setNativeContent(com.google.gwt.user.client.ui.Widget nativeContent) {
+        control.clear();
+        control.add(nativeContent);
+    }
 
-	@Override
-	public void hide() {
-		popup.hide();
-	}
-
-	@Override
-	public void setAutoHide(boolean autoHide) {
-		popup.setAutoHideEnabled(autoHide);
-	}
+    @Override
+    protected void setNativeSize(int width, int height) {
+        if (getContent() != null) {
+            WidgetUtils.setNativeSize((Widget) getContent().asNative(), width, height);
+        }
+        WidgetUtils.setNativeSize(control, width, height);
+    }
 }

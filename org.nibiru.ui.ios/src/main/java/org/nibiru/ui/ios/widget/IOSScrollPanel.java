@@ -1,26 +1,39 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
+import org.nibiru.ui.core.api.HorizontalScrollPanel;
+import org.nibiru.ui.core.api.VerticalScrollPanel;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BaseScrollPanel;
 
-import org.nibiru.ui.core.api.ScrollPanel;
-import org.nibiru.ui.core.api.Widget;
+import apple.uikit.UIScrollView;
+import apple.uikit.UIView;
 
-public class IOSScrollPanel extends IOSContainer implements ScrollPanel {
-	@Inject
-	public IOSScrollPanel() {
-	}
+class IOSScrollPanel
+        extends BaseScrollPanel<UIScrollView, UIView>
+        implements VerticalScrollPanel, HorizontalScrollPanel {
 
-	@Override
-	public void setContent(Widget content) {
-		final IOSWidget<?> widget = (IOSWidget<?>) content;
-		// TODO Remove all subviews
-		control.addSubview(widget.control);
+    IOSScrollPanel(UIScrollView control,
+                   Viewport viewport) {
+        super(control, viewport);
+        WidgetUtils.bindVisible(this, control);
+    }
 
-	}
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        WidgetUtils.applyStyle(control, getStyle());
+    }
 
-	@Override
-	void layout() {
+    @Override
+    protected void setNativeContent(UIView nativeContent) {
+        if (getContent() != null) {
+            ((UIView) getContent().asNative()).removeFromSuperview();
+        }
+        control.addSubview(nativeContent);
+    }
 
-	}
-
+    @Override
+    protected void setNativeSize(int width, int height) {
+        WidgetUtils.setNativeSize(control, width, height);
+    }
 }

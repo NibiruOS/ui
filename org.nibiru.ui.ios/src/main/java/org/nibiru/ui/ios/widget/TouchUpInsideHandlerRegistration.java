@@ -1,41 +1,52 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import org.moe.natj.general.Pointer;
+import org.moe.natj.objc.ann.Selector;
 import org.nibiru.model.core.api.Registration;
 import org.nibiru.ui.core.api.ClickHandler;
 
-import com.intel.moe.natj.objc.SEL;
-import com.intel.moe.natj.objc.ann.Selector;
+import apple.NSObject;
+import apple.foundation.c.Foundation;
+import apple.uikit.UIGestureRecognizer;
+import apple.uikit.UITapGestureRecognizer;
+import apple.uikit.UIView;
 
-import ios.uikit.UIControl;
-import ios.uikit.UIGestureRecognizer;
-import ios.uikit.UITapGestureRecognizer;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public class TouchUpInsideHandlerRegistration implements Registration {
-	private final UIControl control;
-	private final UIGestureRecognizer gestureRecognizer;
-	private final ClickHandler clickHandler;
 
-	public TouchUpInsideHandlerRegistration(UIControl control, ClickHandler clickHandler) {
+class TouchUpInsideHandlerRegistration extends NSObject implements Registration {
+	private static final String ON_CLICK_SELECTOR = "onClick";
+
+	@Selector("alloc")
+	public static native TouchUpInsideHandlerRegistration alloc();
+
+	private UIView control;
+	private UIGestureRecognizer gestureRecognizer;
+	private ClickHandler clickHandler;
+
+	protected TouchUpInsideHandlerRegistration(Pointer peer) {
+		super(peer);
+	}
+
+	public TouchUpInsideHandlerRegistration initWithControlAndClickHandler(UIView control,
+			ClickHandler clickHandler) {
+		init();
 		this.control = checkNotNull(control);
 		this.clickHandler = checkNotNull(clickHandler);
-		try {			
-			gestureRecognizer = UITapGestureRecognizer.alloc().init();
-			gestureRecognizer.initWithTargetAction(this, new SEL(TouchUpInsideHandlerRegistration.class.getMethod("onClick")));
-			control.addGestureRecognizer(gestureRecognizer);
-		} catch (NoSuchMethodException e) {
-			throw new RuntimeException(e);
-		}
+		control.setUserInteractionEnabled(true);
+		gestureRecognizer = UITapGestureRecognizer.alloc().initWithTargetAction(this,
+				Foundation.NSSelectorFromString(ON_CLICK_SELECTOR));
+		control.addGestureRecognizer(gestureRecognizer);
+		return this;
 	}
 
 	@Override
 	public void remove() {
 		control.removeGestureRecognizer(gestureRecognizer);
 	}
-	
-    @Selector("onClick")
+
+	@Selector(ON_CLICK_SELECTOR)
 	public void onClick() {
-    	clickHandler.onClick();
-    }
+		clickHandler.onClick();
+	}
 }

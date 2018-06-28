@@ -1,7 +1,9 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.annotation.Nullable;
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.HasTreeItems;
+import com.google.gwt.user.client.ui.Tree;
+import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.Widget;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
@@ -10,10 +12,8 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.TreeView.Item;
 
-import com.google.gwt.user.client.ui.HasTreeItems;
-import com.google.gwt.user.client.ui.Tree;
-import com.google.gwt.user.client.ui.TreeItem;
-import com.google.gwt.user.client.ui.Widget;
+import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class GwtTreeView extends GwtValueWidget<Tree, Iterable<Item>>implements TreeView {
 	@Inject

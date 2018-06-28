@@ -1,7 +1,7 @@
 package org.nibiru.ui.core.api;
 
 public interface AbsolutePanel extends Container {
-	public interface Position {
+	interface Position {
 		int getX();
 
 		Position setX(int x);
@@ -11,5 +11,7 @@ public interface AbsolutePanel extends Container {
 		Position setY(int y);
 	}
 	
-	public Position getPosition(Widget child);
+	Position getPosition(Widget child);
+	
+	void setNativeSize(int measuredWidth, int measuredHeight);
 }

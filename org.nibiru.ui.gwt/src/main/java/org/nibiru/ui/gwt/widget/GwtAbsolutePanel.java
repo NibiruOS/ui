@@ -1,71 +1,70 @@
 package org.nibiru.ui.gwt.widget;
 
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import javax.inject.Inject;
+import com.google.common.collect.Maps;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.user.client.ui.AbsolutePanel;
+import java.util.Map;
 
-public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel>implements org.nibiru.ui.core.api.AbsolutePanel {
-	private final Scheduler scheduler;
+import javax.inject.Inject;
 
-	@Inject
-	public GwtAbsolutePanel(Scheduler scheduler) {
-		this(new AbsolutePanel(), scheduler);
-	}
+import static com.google.common.base.Preconditions.checkNotNull;
 
-	public GwtAbsolutePanel(AbsolutePanel panel, Scheduler scheduler) {
-		super(panel);
-		this.scheduler = checkNotNull(scheduler);
-	}
+public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel> implements org.nibiru.ui.core.api.AbsolutePanel {
+    private static Map<Widget, Position> positions;
 
-	@Override
-	public Position getPosition(Widget child) {
-		checkNotNull(child);
-		final com.google.gwt.user.client.ui.Widget gwtWidget = (com.google.gwt.user.client.ui.Widget) child.asNative();
-		return new Position() {
-			private int x;
-			private int y;
+    @Inject
+    public GwtAbsolutePanel() {
+        this(new AbsolutePanel());
+    }
 
-			@Override
-			public int getX() {
-				return x;
-			}
+    public GwtAbsolutePanel(AbsolutePanel panel) {
+        super(panel);
+        positions = Maps.newHashMap();
+    }
 
-			@Override
-			public Position setX(int x) {
-				this.x = x;
-				control.setWidgetPosition(gwtWidget, x, y);
-				scheduler.scheduleDeferred(() -> {
-					int right = x + gwtWidget.getOffsetWidth();
-					if (control.getOffsetWidth() < right) {
-						control.setWidth(right + "px");
-					}
-				});
-				return this;
-			}
+    @Override
+    public Position getPosition(Widget child) {
+        checkNotNull(child);
+        return positions.computeIfAbsent(child,
+                (key) -> new GwtPosition(key));
+    }
 
-			@Override
-			public int getY() {
-				return y;
-			}
+    // This class caches X and Y coordinates because getWidgetLeft()
+    // and getWidgetTop() return 0 if the widget is hiden.
+    private class GwtPosition implements Position {
+        private final com.google.gwt.user.client.ui.Widget gwtWidget;
+        private int x;
+        private int y;
 
-			@Override
-			public Position setY(int y) {
-				this.y = y;
-				control.setWidgetPosition(gwtWidget, x, y);
-				Scheduler.get().scheduleDeferred(() -> {
-					int bottom = y + gwtWidget.getOffsetHeight();
-					if (control.getOffsetHeight() < bottom) {
-						control.setHeight(bottom + "px");
-					}
-				});
-				return this;
-			}
-		};
-	}
+        private GwtPosition(Widget child) {
+            this.gwtWidget = (com.google.gwt.user.client.ui.Widget) child.asNative();
+        }
+
+        @Override
+        public int getX() {
+            return x;
+        }
+
+        @Override
+        public Position setX(int x) {
+            this.x = x;
+            control.setWidgetPosition(gwtWidget, x, getY());
+            return this;
+        }
+
+        @Override
+        public int getY() {
+            return y;
+        }
+
+        @Override
+        public Position setY(int y) {
+            this.y = y;
+            control.setWidgetPosition(gwtWidget, getX(), y);
+            return this;
+        }
+    }
 }

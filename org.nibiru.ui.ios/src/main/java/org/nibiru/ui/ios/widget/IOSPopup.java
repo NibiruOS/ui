@@ -1,38 +1,52 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.ui.core.api.Popup;
+import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.impl.BasePopup;
+
 import javax.inject.Inject;
 
-import org.nibiru.ui.core.api.Popup;
-import org.nibiru.ui.core.api.Widget;
+import apple.uikit.UIView;
 
-public class IOSPopup implements Popup {
-	@Inject
-	public IOSPopup() {
-	}
+public class IOSPopup extends BasePopup<Overlay, UIView> implements Popup {
 
+    @Inject
+    public IOSPopup(Viewport viewport) {
+        super(Overlay.create(), viewport);
+    }
 
-	@Override
-	public void setContent(Widget content) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void show() {
+        control.show();
+        requestLayout();
+    }
 
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void hide() {
+        control.hide();
+    }
 
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void setAutoHide(boolean autoHide) {
+        control.setAutoHide(autoHide);
+    }
 
-	@Override
-	public void setAutoHide(boolean autoHide) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void requestLayout() {
+        super.requestLayout();
+        control.centerContent();
+    }
 
+    @Override
+    protected void setNativeContent(UIView nativeContent) {
+        control.setContent(nativeContent);
+        control.centerContent();
+    }
+
+    @Override
+    protected void setNativeSize(int width, int height) {
+        if (getContent() != null) {
+            WidgetUtils.setNativeSize((UIView) getContent().asNative(), width, height);
+        }
+    }
 }

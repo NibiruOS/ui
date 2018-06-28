@@ -1,25 +1,52 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.collect.Lists;
+import com.google.gwt.user.client.ui.Panel;
 
 import org.nibiru.ui.core.api.Container;
 import org.nibiru.ui.core.api.Widget;
 
-import com.google.gwt.user.client.ui.Panel;
+import java.util.List;
 
-class GwtContainer<T extends Panel> extends GwtWidget<T>implements Container {
-	GwtContainer(T panel) {
-		super(panel);
-	}
+import static com.google.common.base.Preconditions.checkNotNull;
 
-	@Override
-	public void add(Widget child) {
-		checkNotNull(child);
-		control.add((com.google.gwt.user.client.ui.Widget) child.asNative());
-	}
+abstract class GwtContainer<T extends Panel> extends GwtWidget<T> implements Container {
+    private final List<Widget> children;
 
-	@Override
-	public void clear() {
-		control.clear();
-	}
+    GwtContainer(T panel) {
+        super(panel);
+        children = Lists.newArrayList();
+    }
+
+    @Override
+    public void add(Widget child) {
+        checkNotNull(child);
+        control.add((com.google.gwt.user.client.ui.Widget) child.asNative());
+        children.add(child);
+        child.setParent(this);
+        requestLayout();
+    }
+
+    @Override
+    public void remove(Widget child) {
+        checkNotNull(child);
+        ((com.google.gwt.user.client.ui.Widget) child.asNative()).removeFromParent();
+        children.remove(child);
+        child.setParent(null);
+        requestLayout();
+    }
+
+    @Override
+    public Iterable<Widget> getChildren() {
+        return children;
+    }
+
+    @Override
+    public void clear() {
+        control.clear();
+        for (Widget child : children) {
+            child.setParent(null);
+        }
+        children.clear();
+    }
 }

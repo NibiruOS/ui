@@ -1,78 +1,122 @@
 package org.nibiru.ui.android.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Base64;
+import android.widget.ImageView;
 
-import java.io.IOException;
-
-import javax.inject.Inject;
+import com.google.common.io.Closer;
 
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.android.style.StyleResolver;
 import org.nibiru.ui.core.api.Image;
 import org.nibiru.ui.core.api.ResourcesBasePath;
+import org.nibiru.ui.core.api.style.ImageStyle;
+import org.nibiru.ui.core.api.style.ImageStyle.ScaleType;
 
-import com.google.common.io.Closer;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
-import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
+import javax.inject.Inject;
 
-public class AndroidImage extends AndroidValueWidget<ImageView, String> implements Image {
-	private final String basePath;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-	@Inject
-	public AndroidImage(Context context, StyleResolver styleResolver, @ResourcesBasePath String basePath) {
-		super(context, styleResolver);
-		this.basePath = checkNotNull(basePath);
-	}
+public class AndroidImage
+        extends AndroidHasEnabledWidget<ImageView, String>
+        implements Image {
 
-	public AndroidImage(final ImageView view, StyleResolver styleResolver, final String basePath) {
-		super(view, styleResolver);
-		this.basePath = checkNotNull(basePath);
-	}
+    private final String basePath;
 
-	@Override
-	ImageView buildControl(Context context, int styleResource) {
-		return styleResource == StyleResolver.NO_STYLE
-				? new ImageView(context)
-				: new ImageView(context, null, styleResource);
-	}
+    @Inject
+    public AndroidImage(Context context, @ResourcesBasePath String basePath) {
+        this(new ImageView(context), basePath);
+    }
 
-	@Override
-	Value<String> buildValue() {
-		return new BaseValue<String>() {
-			private String imagePath;
+    public AndroidImage(ImageView view, final String basePath) {
+        super(view);
+        this.basePath = checkNotNull(basePath);
+    }
 
-			@Override
-			public String get() {
-				return imagePath;
-			}
+    @Override
+    public void setBinaryContent(Format format, byte[] content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        control.setImageDrawable(new BitmapDrawable(control.getContext().getResources(),
+                new ByteArrayInputStream(content)));
+    }
 
-			@Override
-			public Type<String> getType() {
-				return JavaType.STRING;
-			}
+    @Override
+    public void setBase64Content(Format format, String content) {
+        checkNotNull(format);
+        checkNotNull(content);
+        setBinaryContent(format, Base64.decode(content, Base64.DEFAULT));
+    }
 
-			@Override
-			protected void setValue(String value) {
-				imagePath = checkNotNull(value);
-				Closer closer = Closer.create();
-				try {
-					try {
-						control().setImageBitmap(BitmapFactory.decodeStream(
-								closer.register(getClass().getClassLoader().getResourceAsStream(basePath + value))));
-					} catch (Throwable e) { // must catch Throwable
-						throw closer.rethrow(e);
-					} finally {
-						closer.close();
-					}
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		};
-	}
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof ImageStyle) {
+            ImageStyle imageStyle = (ImageStyle) getStyle();
+            control.setScaleType(scaleToNative(imageStyle.getScaleType()));
+        }
+    }
+
+    @Override
+    Value<String> buildValue() {
+        return new BaseValue<String>() {
+            private String imagePath;
+
+            @Override
+            public String get() {
+                return imagePath;
+            }
+
+            @Override
+            public Type<String> getType() {
+                return JavaType.STRING;
+            }
+
+            @Override
+            protected void setValue(String value) {
+                imagePath = checkNotNull(value);
+                Closer closer = Closer.create();
+                try {
+                    try {
+                        control.setImageBitmap(BitmapFactory.decodeStream(
+                                closer.register(getClass().getClassLoader().getResourceAsStream(basePath + value))));
+                    } catch (Throwable e) { // must catch Throwable
+                        throw closer.rethrow(e);
+                    } finally {
+                        closer.close();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+    }
+
+    @Override
+    protected int getNativeHeight() {
+        return dpToPx(super.getNativeHeight());
+    }
+
+    @Override
+    protected int getNativeWidth() {
+        return dpToPx(super.getNativeWidth());
+    }
+
+    private static ImageView.ScaleType scaleToNative(ScaleType scaleType) {
+        switch (scaleType) {
+            case FIT_CENTER:
+                return ImageView.ScaleType.FIT_CENTER;
+            case FIT_XY:
+                return ImageView.ScaleType.FIT_XY;
+            default:
+                return null;
+        }
+    }
 }

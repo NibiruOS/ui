@@ -1,45 +1,37 @@
 package org.nibiru.ui.ios.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.nibiru.model.core.api.Registration;
+import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.api.Focusable;
+import org.nibiru.ui.core.impl.BaseControlWidget;
 
-import org.nibiru.ui.core.api.Widget;
+import apple.uikit.UIApplication;
+import apple.uikit.UIView;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.uikit.UIView;
+abstract class IOSWidget<T extends UIView>
+        extends BaseControlWidget<T>
+        implements Focusable {
+    IOSWidget(T control) {
+        super(control);
+        WidgetUtils.bindVisible(this, control);
+    }
 
-abstract class IOSWidget<T extends UIView> implements Widget {
-	final T control;
-	private IOSContainer parent;
+    @Override
+    public void applyStyle() {
+        WidgetUtils.applyStyle(control, getStyle());
+    }
 
-	IOSWidget(T control) {
-		this.control = checkNotNull(control);
-	}
+    @Override
+    public void setNativeSize(int width, int height) {
+        WidgetUtils.setNativeSize(control, width, height);
+    }
 
-	@Override
-	public Object asNative() {
-		return control;
-	}
+    @Override
+    public void requestFocus() {
+        control.becomeFirstResponder();
+    }
 
-	@Override
-	public void setStyleName(Enum<?> styleName) {
-		// TODO Auto-generated method stub
-	}
-
-	void setParent(IOSContainer parent) {
-		this.parent = parent;
-	}
-
-	void layoutParent() {
-		if (parent != null) {
-			parent.layout();
-		}
-	}
-
-	void updateSize(double width, double height) {
-		control.setFrame(new CGRect(new CGPoint(control.frame().origin().x(), control.frame().origin().y()),
-				new CGSize(width, height)));
-		layoutParent();
-	}
+    public Registration setClickHandler(ClickHandler clickHandler) {
+        return TouchUpInsideHandlerRegistration.alloc().initWithControlAndClickHandler(control, clickHandler);
+    }
 }

@@ -1,9 +1,42 @@
 package org.nibiru.ui.core.api;
 
-public interface Widget {
-	String STYLE_NAME_PREFIX = "nibiru_";
+import org.nibiru.model.core.api.Value;
+import org.nibiru.ui.core.api.layout.MeasureSpec;
+import org.nibiru.ui.core.api.style.Style;
 
+import javax.annotation.Nullable;
+
+public interface Widget {
 	Object asNative();
 
-	void setStyleName(Enum<?> styleName);
+	void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec);
+
+	int getMeasuredHeight();
+
+	int getMeasuredWidth();
+
+	int getFullMeasuredHeight();
+
+	int getFullMeasuredWidth();
+
+	void layout();
+
+	void requestLayout();
+
+	@Nullable
+	IsParent getParent();
+
+	void setParent(@Nullable IsParent parent);
+
+	void setStyle(Style style);
+
+	Style getStyle();
+
+	void applyStyle();
+
+	Value<Boolean> getVisible();
+
+	Object getTag();
+
+	void setTag(@Nullable Object tag);
 }

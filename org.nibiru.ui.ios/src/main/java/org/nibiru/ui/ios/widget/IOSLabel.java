@@ -1,62 +1,71 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
-import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
-import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Label;
+import org.nibiru.ui.core.api.style.TextStyle;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.foundation.NSString;
-import ios.uikit.UILabel;
+import javax.inject.Inject;
 
-public class IOSLabel extends IOSValueWidget<UILabel, String> implements Label {
-	@Inject
-	public IOSLabel() {
-		this(buildLabel());
-	}
+import apple.coregraphics.struct.CGSize;
+import apple.uikit.UIFont;
+import apple.uikit.UILabel;
+import apple.uikit.enums.UIControlState;
 
-	private static UILabel buildLabel() {
-		UILabel label = UILabel.alloc().init();
-		label.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
-		return label;
-	}
+import static org.nibiru.ui.ios.widget.WidgetUtils.alignmentToTextAlignment;
+import static org.nibiru.ui.ios.widget.WidgetUtils.colorToNative;
+import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-	public IOSLabel(UILabel label) {
-		super(label);
-	}
+public class IOSLabel
+        extends IOSHasEnabledWidget<UILabel, String>
+        implements Label {
 
-	@Override
-	Value<String> buildValue() {
-		return new BaseValue<String>() {
-			@Override
-			public String get() {
-				return control.text();
-			}
+    @Inject
+    public IOSLabel() {
+        this(UILabel.alloc().init());
+    }
 
-			@Override
-			protected void setValue(String value) {
-				control.setText(value);
-				CGSize size = NSString.stringWithString(value).sizeWithFont(control.font());
-				updateSize(size.width(), size.height());
-			}
+    public IOSLabel(UILabel label) {
+        super(label);
+    }
 
-			@Override
-			public Type<String> getType() {
-				return JavaType.STRING;
-			}
-		};
-	}
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) getStyle();
+            control.setTextColor(colorToNative(textStyle.getTextColor()));
+            control.setTextAlignment(alignmentToTextAlignment(textStyle.getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setFont(UIFont.systemFontOfSize(fontSize));
+            }
+        }
+    }
 
-	@Override
-	public Registration setClickHandler(ClickHandler clickHandler) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    Value<String> buildValue() {
+        return new TextValue(this) {
+            @Override
+            protected void setNativeText(String text) {
+                control.setText(text);
+            }
+        };
+    }
+
+    @Override
+    protected int getNativeHeight() {
+        return (int) size().height();
+    }
+
+    @Override
+    protected int getNativeWidth() {
+        return (int) size().width();
+    }
+
+    private CGSize size() {
+        return sizeFromText(control.text(), control.font());
+    }
 }

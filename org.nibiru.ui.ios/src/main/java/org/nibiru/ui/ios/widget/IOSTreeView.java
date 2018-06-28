@@ -1,7 +1,5 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
@@ -9,7 +7,9 @@ import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.TreeView.Item;
 
-import ios.uikit.UIView;
+import javax.inject.Inject;
+
+import apple.uikit.UIView;
 
 public class IOSTreeView extends IOSValueWidget<UIView, Iterable<Item>> implements TreeView {
 	@Inject
@@ -40,4 +40,15 @@ public class IOSTreeView extends IOSValueWidget<UIView, Iterable<Item>> implemen
 		};
 	}
 
+	@Override
+	protected int getNativeHeight() {
+		// TODO Fix value - add size computation
+		return 480;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		// TODO Fix value - add size computation
+		return 320;
+	}
 }

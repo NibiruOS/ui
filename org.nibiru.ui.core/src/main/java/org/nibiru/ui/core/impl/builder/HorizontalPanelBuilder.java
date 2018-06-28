@@ -1,12 +1,14 @@
 package org.nibiru.ui.core.impl.builder;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.HorizontalPanel;
 
-public class HorizontalPanelBuilder extends BaseContainerBuilder<HorizontalPanel, HorizontalPanelBuilder> {
-	@Inject
-	public HorizontalPanelBuilder(HorizontalPanel horizontalPanel) {
-		super(horizontalPanel);
-	}
+import javax.inject.Inject;
+
+public class HorizontalPanelBuilder
+        extends BaseBuilder<HorizontalPanel>
+        implements ContainerBuilder<HorizontalPanel, HorizontalPanelBuilder> {
+    @Inject
+    public HorizontalPanelBuilder(HorizontalPanel horizontalPanel) {
+        super(horizontalPanel);
+    }
 }

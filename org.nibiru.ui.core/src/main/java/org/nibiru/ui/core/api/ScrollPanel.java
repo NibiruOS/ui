@@ -1,5 +1,7 @@
 package org.nibiru.ui.core.api;
 
-public interface ScrollPanel extends Widget, HasContent {
+import org.nibiru.model.core.api.Value;
 
+public interface ScrollPanel {
+    Value<Integer> getScrollPosition();
 }

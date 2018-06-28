@@ -1,14 +1,26 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
 import org.nibiru.ui.core.api.Spinner;
 
-import ios.uikit.UIView;
+import javax.inject.Inject;
 
-public class IOSSpinner extends IOSWidget<UIView> implements Spinner {
+import apple.uikit.UIActivityIndicatorView;
+import apple.uikit.enums.UIActivityIndicatorViewStyle;
+
+public class IOSSpinner extends IOSWidget<UIActivityIndicatorView> implements Spinner {
 	@Inject
 	public IOSSpinner() {
-		super(UIView.alloc().init());
+		super(UIActivityIndicatorView.alloc().initWithActivityIndicatorStyle(UIActivityIndicatorViewStyle.Gray));
+		control.startAnimating();
+	}
+
+	@Override
+	protected int getNativeHeight() {
+		return 32;
+	}
+
+	@Override
+	protected int getNativeWidth() {
+		return 32;
 	}
 }

@@ -1,9 +1,9 @@
 package org.nibiru.ui.core.impl;
 
-import org.nibiru.ui.core.api.Widget;
-import org.nibiru.ui.core.api.TreeView.Item;
-
 import com.google.common.collect.ImmutableList;
+
+import org.nibiru.ui.core.api.TreeView.Item;
+import org.nibiru.ui.core.api.Widget;
 
 public class SimpleTreeViewItem implements Item {
 	private Widget widget;

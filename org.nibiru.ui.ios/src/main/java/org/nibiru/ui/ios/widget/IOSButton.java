@@ -1,69 +1,87 @@
 package org.nibiru.ui.ios.widget;
 
-import javax.inject.Inject;
-
-import org.nibiru.model.core.api.Registration;
 import org.nibiru.model.core.api.Type;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.Button;
-import org.nibiru.ui.core.api.ClickHandler;
+import org.nibiru.ui.core.api.style.TextStyle;
 
-import ios.coregraphics.struct.CGPoint;
-import ios.coregraphics.struct.CGRect;
-import ios.coregraphics.struct.CGSize;
-import ios.foundation.NSString;
-import ios.uikit.UIButton;
-import ios.uikit.UIColor;
-import ios.uikit.enums.UIButtonType;
-import ios.uikit.enums.UIControlState;
+import javax.inject.Inject;
 
-public class IOSButton extends IOSValueWidget<UIButton, String> implements Button {
-	private static final int MARGIN = 10;
+import apple.coregraphics.struct.CGPoint;
+import apple.coregraphics.struct.CGRect;
+import apple.coregraphics.struct.CGSize;
+import apple.uikit.UIButton;
+import apple.uikit.UIColor;
+import apple.uikit.UIFont;
+import apple.uikit.enums.UIButtonType;
+import apple.uikit.enums.UIControlState;
 
-	@Inject
-	public IOSButton() {
-		this(buildButton());
-	}
-	
-	private static UIButton buildButton() {
-		UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
-		button.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
-		button.setTitleColorForState(UIColor.blackColor(), UIControlState.Normal);
-		button.setBackgroundColor(UIColor.grayColor());
-		return button;
-	}
+import static org.nibiru.ui.ios.widget.WidgetUtils.alignmentToTextAlignment;
+import static org.nibiru.ui.ios.widget.WidgetUtils.colorToNative;
+import static org.nibiru.ui.ios.widget.WidgetUtils.sizeFromText;
 
-	public IOSButton(UIButton button) {
-		super(button);
+public class IOSButton
+        extends IOSHasEnabledWidget<UIButton, String>
+        implements Button {
 
-	}
+    private static final int MARGIN = 10;
 
-	@Override
-	public Registration setClickHandler(ClickHandler clickHandler) {
-		return new TouchUpInsideHandlerRegistration(control, clickHandler);
-	}	
+    @Inject
+    public IOSButton() {
+        this(buildButton());
+    }
 
-	@Override
-	Value<String> buildValue() {
-		return new BaseValue<String>() {
-			@Override
-			public String get() {
-				return control.titleForState(UIControlState.Normal);
-			}
+    private static UIButton buildButton() {
+        UIButton button = UIButton.buttonWithType(UIButtonType.RoundedRect);
+        button.setFrame(new CGRect(new CGPoint(0, 0), new CGSize(120, 30)));
+        button.setTitleColorForState(UIColor.blackColor(), UIControlState.Normal);
+        button.setBackgroundColor(UIColor.grayColor());
+        return button;
+    }
 
-			@Override
-			protected void setValue(String value) {
-				control.setTitleForState(value, UIControlState.Normal);
-				CGSize size = NSString.stringWithString(value).sizeWithFont(control.titleLabel().font());
-				updateSize(size.width() + MARGIN, size.height() + MARGIN);
-			}
+    public IOSButton(UIButton button) {
+        super(button);
+    }
 
-			@Override
-			public Type<String> getType() {
-				return JavaType.STRING;
-			}
-		};
-	}
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) getStyle();
+            control.setTitleColorForState(colorToNative(textStyle.getTextColor()),
+                    UIControlState.Normal);
+            control.setContentHorizontalAlignment(alignmentToTextAlignment(textStyle
+                    .getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize > 0) {
+                control.setFont(UIFont.systemFontOfSize(fontSize));
+            }
+        }
+    }
+
+    @Override
+    Value<String> buildValue() {
+        return new TextValue(this) {
+            @Override
+            protected void setNativeText(String text) {
+                control.setTitleForState(text, UIControlState.Normal);
+            }
+        };
+    }
+
+    @Override
+    protected int getNativeHeight() {
+        return (int) (control.titleForState(UIControlState.Normal) != null ? size().height() : 0) + MARGIN;
+    }
+
+    @Override
+    protected int getNativeWidth() {
+        return (int) (control.titleForState(UIControlState.Normal) != null ? size().width() : 0) + MARGIN;
+    }
+
+    private CGSize size() {
+        return sizeFromText(control.titleForState(UIControlState.Normal), control.font());
+    }
 }

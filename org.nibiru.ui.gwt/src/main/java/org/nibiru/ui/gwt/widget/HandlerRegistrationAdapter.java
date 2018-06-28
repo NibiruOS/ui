@@ -1,10 +1,10 @@
 package org.nibiru.ui.gwt.widget;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import org.nibiru.model.core.api.Registration;
 
-import com.google.web.bindery.event.shared.HandlerRegistration;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class HandlerRegistrationAdapter implements Registration {
 	private final HandlerRegistration handlerRegistration;

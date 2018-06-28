@@ -1,11 +1,11 @@
 package org.nibiru.ui.gwt.widget;
 
-import javax.inject.Inject;
+import com.google.gwt.user.client.ui.Image;
 
 import org.nibiru.ui.core.api.Spinner;
 import org.nibiru.ui.gwt.resource.Resources;
 
-import com.google.gwt.user.client.ui.Image;
+import javax.inject.Inject;
 
 public class GwtSpinner extends GwtWidget<Image> implements Spinner {
 	@Inject
