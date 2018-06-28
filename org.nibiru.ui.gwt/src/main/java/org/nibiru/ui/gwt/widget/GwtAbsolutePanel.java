@@ -32,10 +32,6 @@ public class GwtAbsolutePanel extends GwtContainer<AbsolutePanel> implements org
                 (key) -> new GwtPosition(key));
     }
 
-    @Override
-    public void requestLayout() {
-    }
-
     // This class caches X and Y coordinates because getWidgetLeft()
     // and getWidgetTop() return 0 if the widget is hiden.
     private class GwtPosition implements Position {

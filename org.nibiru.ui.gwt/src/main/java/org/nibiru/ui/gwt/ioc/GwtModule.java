@@ -28,14 +28,15 @@ import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
 import org.nibiru.ui.gwt.widget.GwtButton;
 import org.nibiru.ui.gwt.widget.GwtCanvas;
 import org.nibiru.ui.gwt.widget.GwtCheckBox;
+import org.nibiru.ui.gwt.widget.GwtHorizontalScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtImage;
 import org.nibiru.ui.gwt.widget.GwtLabel;
 import org.nibiru.ui.gwt.widget.GwtPasswordBox;
 import org.nibiru.ui.gwt.widget.GwtPopup;
-import org.nibiru.ui.gwt.widget.GwtScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtSpinner;
 import org.nibiru.ui.gwt.widget.GwtTextBox;
 import org.nibiru.ui.gwt.widget.GwtTreeView;
+import org.nibiru.ui.gwt.widget.GwtVerticalScrollPanel;
 import org.nibiru.ui.gwt.widget.GwtViewport;
 
 import dagger.Module;
@@ -74,7 +75,7 @@ public class GwtModule {
     }
 
     @Provides
-    public HorizontalScrollPanel getHorizontalScrollPanel(GwtScrollPanel scrollPanel) {
+    public HorizontalScrollPanel getHorizontalScrollPanel(GwtHorizontalScrollPanel scrollPanel) {
         return scrollPanel;
     }
 
@@ -129,7 +130,7 @@ public class GwtModule {
     }
 
     @Provides
-    public VerticalScrollPanel getVerticalScrollPanel(GwtScrollPanel scrollPanel) {
+    public VerticalScrollPanel getVerticalScrollPanel(GwtVerticalScrollPanel scrollPanel) {
         return scrollPanel;
     }
 

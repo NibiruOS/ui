@@ -3,33 +3,23 @@ package org.nibiru.ui.gwt.widget;
 import com.google.gwt.user.client.ui.CustomScrollPanel;
 import com.google.gwt.user.client.ui.NativeHorizontalScrollbar;
 import com.google.gwt.user.client.ui.NativeVerticalScrollbar;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.java.JavaValue;
-import org.nibiru.ui.core.api.HorizontalScrollPanel;
-import org.nibiru.ui.core.api.VerticalScrollPanel;
+import org.nibiru.ui.core.api.ScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.impl.BaseContentWidget;
-import org.nibiru.ui.core.impl.BaseScrollPanel;
 
-import javax.inject.Inject;
-
-public class GwtScrollPanel
+class GwtScrollPanel
         extends BaseContentWidget<CustomScrollPanel, Widget>
-        implements VerticalScrollPanel, HorizontalScrollPanel {
+        implements ScrollPanel {
     private final HorizontalScrollbar horizontalScrollbar;
     private final VerticalScrollbar verticalScrollbar;
     private final Value<Integer> scrollPosition;
 
-    @Inject
-    public GwtScrollPanel(Viewport viewport) {
-        this(new CustomScrollPanel(), viewport);
-    }
-
-    public GwtScrollPanel(CustomScrollPanel control, Viewport viewport) {
+    GwtScrollPanel(CustomScrollPanel control, Viewport viewport) {
         super(control, viewport);
         horizontalScrollbar = new HorizontalScrollbar();
         verticalScrollbar = new VerticalScrollbar();
@@ -37,7 +27,6 @@ public class GwtScrollPanel
         control.setVerticalScrollbar(verticalScrollbar, verticalScrollbar.getNativeWidth());
         WidgetUtils.bindVisible(this, control);
         scrollPosition = JavaValue.of(0);
-        // TODO: Add listeners for scroll position
     }
 
     @Override
