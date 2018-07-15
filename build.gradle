@@ -5,11 +5,11 @@ project.ext {
     guavaVersion = '20.0'
     gwtVersion = '2.8.0'
     androidVersion = '4.0.1.2'
-    daggerVersion = '2.7'
+    daggerVersion = '2.16'
 }
 
 allprojects {
-    version = '1.0.0'
+    version = '1.0.1'
     group = 'io.github.nibiruos.ui'
 
     repositories {
@@ -112,6 +112,8 @@ subprojects {
             compileClasspath += configurations.provided
         }
     }
+
+    javadoc.classpath = sourceSets.main.compileClasspath
 
     dependencies {
         testCompile "junit:junit:4.12"
