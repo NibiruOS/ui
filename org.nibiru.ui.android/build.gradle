@@ -1,4 +1,4 @@
 dependencies {
 	compile project(":org.nibiru.ui.core")
-    provided "com.google.android:android:${androidVersion}"
+    compileOnly "com.google.android:android:${androidVersion}"
 }

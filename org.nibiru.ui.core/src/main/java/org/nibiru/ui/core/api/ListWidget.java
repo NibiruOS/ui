@@ -19,13 +19,39 @@ public interface ListWidget<ModelType, RowType extends Enum<?>, ViewType extends
         }
     }
 
-    interface RowHandler<ModelType, ViewType> {
+    interface RowViewCreator<ViewType> {
         ViewType createView();
+    }
 
+    interface RowViewPopulator<ModelType, ViewType> {
         void populateView(ModelType data, ViewType view);
+    }
+
+    interface RowHandler<ModelType, ViewType>
+            extends RowViewCreator<ViewType>,
+            RowViewPopulator<ModelType, ViewType> {
     }
 
     <RowModelType extends ModelType, RowViewType extends ViewType>
     void addRowHandler(RowType rowType,
                        RowHandler<RowModelType, RowViewType> rowHandler);
+
+
+    default <RowModelType extends ModelType, RowViewType extends ViewType>
+    void addRowHandler(RowType rowType,
+                       RowViewCreator<RowViewType> rowViewCreator,
+                       RowViewPopulator<RowModelType, RowViewType> rowViewPopulator) {
+        addRowHandler(rowType,
+                new RowHandler<RowModelType, RowViewType>() {
+                    @Override
+                    public RowViewType createView() {
+                        return rowViewCreator.createView();
+                    }
+
+                    @Override
+                    public void populateView(RowModelType data, RowViewType view) {
+                        rowViewPopulator.populateView(data, view);
+                    }
+                });
+    }
 }

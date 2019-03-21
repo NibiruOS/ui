@@ -1,7 +1,5 @@
 package org.nibiru.ui.core.api.style;
 
-import com.google.common.base.Preconditions;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Color {
@@ -56,7 +54,7 @@ public class Color {
         return Integer.parseInt(spec.substring(start, start + 2), 16);
     }
 
-    public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
+    public static final Color TRANSPARENT = new Color(0xFF, 0xFF, 0xFF, 0);
     public static final Color WHITE = new Color(0xFF, 0xFF, 0xFF);
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color RED = new Color(0xFF, 0, 0);

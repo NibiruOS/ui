@@ -14,19 +14,15 @@ import org.nibiru.ui.core.api.style.Style;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public abstract class BaseLayoutPanel extends BaseWidget implements Container {
+public abstract class BaseLayoutPanel extends BaseParentWidget implements Container {
     protected final AbsolutePanel panel;
-    private final Viewport viewport;
-    private final Looper looper;
-    private boolean isLayoutScheduled;
-    private boolean isLayoutDirty;
 
     BaseLayoutPanel(AbsolutePanel panel,
                     Viewport viewport,
                     Looper looper) {
+        super(viewport, looper);
         this.panel = checkNotNull(panel);
-        this.viewport = checkNotNull(viewport);
-        this.looper = checkNotNull(looper);
+        panel.setParent(this);
     }
 
     @Override
@@ -65,42 +61,6 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
         scheduleLayout();
     }
 
-    /**
-     * Method to request the measure and layout of the panel and all its children.
-     * For the measure phase the MeasureSpec with the restrictions to its children should be passed.
-     */
-    @Override
-    public void requestLayout() {
-        requestLayout(viewport);
-    }
-
-    @Override
-    public void layout() {
-        super.layout();
-        isLayoutDirty = false;
-    }
-
-    @Override
-    public void scheduleLayout() {
-        isLayoutDirty = true;
-        if (getParent() != null) {
-            getParent().scheduleLayout();
-            isLayoutScheduled = false;
-        } else if (!isLayoutScheduled) {
-            isLayoutScheduled = true;
-            looper.post(() -> {
-                isLayoutScheduled = false;
-                if (getParent() != null) {
-                    getParent().scheduleLayout();
-                } else {
-                    if (isLayoutDirty) {
-                        requestLayout();
-                    }
-                }
-            });
-        }
-    }
-
     @Override
     public void onLayout() {
         panel.setNativeSize(getMeasuredWidth(), getMeasuredHeight());
@@ -120,5 +80,33 @@ public abstract class BaseLayoutPanel extends BaseWidget implements Container {
     @Override
     public Value<Boolean> getVisible() {
         return panel.getVisible();
+    }
+
+    protected int computeChildX(Widget child, int containerWidth) {
+        switch (child.getStyle().getHorizontalAlignment()) {
+            case START:
+                return child.getStyle().getMarginLeft();
+            case CENTER:
+                return (containerWidth - child.getMeasuredWidth()) / 2;
+            case END:
+                return containerWidth - child.getMeasuredWidth() - child.getStyle().getMarginRight();
+            default:
+                throw new IllegalStateException("Invalid horizontal alignment: "
+                        + child.getStyle().getHorizontalAlignment());
+        }
+    }
+
+    protected int computeChildY(Widget child, int containerHeight) {
+        switch (child.getStyle().getVerticalAlignment()) {
+            case START:
+                return child.getStyle().getMarginTop();
+            case CENTER:
+                return (containerHeight - child.getMeasuredHeight()) / 2;
+            case END:
+                return containerHeight - child.getMeasuredHeight() - child.getStyle().getMarginTop();
+            default:
+                throw new IllegalStateException("Invalid vertic alignment: "
+                        + child.getStyle().getHorizontalAlignment());
+        }
     }
 }

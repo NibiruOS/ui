@@ -13,6 +13,6 @@ public class GwtRadioButtonGroupBuilderFactory implements RadioButtonGroupBuilde
 
 	@Override
 	public <T> RadioButtonGroupBuilder<T> create(Class<T> valueClass) {
-		return new RadioButtonGroupBuilder<T>(new GwtRadioButtonGroup<T>());
+		return new RadioButtonGroupBuilder<>(new GwtRadioButtonGroup<>());
 	}
 }

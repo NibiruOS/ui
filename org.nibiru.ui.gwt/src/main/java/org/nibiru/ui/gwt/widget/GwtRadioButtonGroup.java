@@ -11,6 +11,7 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.RadioButtonGroup;
+import org.nibiru.ui.core.api.style.RadioButtonStyle;
 
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class GwtRadioButtonGroup<V>
                 rb.setEnabled(enabled.get());
             }
         });
+        setStyle(RadioButtonStyle.DEFAULT);
     }
 
     @Override

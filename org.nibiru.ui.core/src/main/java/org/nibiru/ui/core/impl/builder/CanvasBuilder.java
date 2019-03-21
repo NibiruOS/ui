@@ -5,6 +5,8 @@ import org.nibiru.ui.core.api.style.Color;
 
 import javax.inject.Inject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class CanvasBuilder extends BaseBuilder<Canvas>
         implements WidgetBuilder<Canvas, CanvasBuilder> {
 
@@ -54,16 +56,22 @@ public class CanvasBuilder extends BaseBuilder<Canvas>
     }
 
     public CanvasBuilder rect(int x,
-                int y,
-                int width,
-                int height){
+                              int y,
+                              int width,
+                              int height) {
         object.rect(x, y, width, height);
         return this;
     }
 
     public CanvasBuilder setFillStyle(Color color) {
+        checkNotNull(color);
         object.setFillStyle(color);
         return this;
+    }
+
+    public CanvasBuilder setFillStyle(Builder<? extends Color> color) {
+        checkNotNull(color);
+        return setFillStyle(color.build());
     }
 
     public CanvasBuilder setLineWidth(int width) {
@@ -72,8 +80,14 @@ public class CanvasBuilder extends BaseBuilder<Canvas>
     }
 
     public CanvasBuilder setStrokeStyle(Color color) {
+        checkNotNull(color);
         object.setStrokeStyle(color);
         return this;
+    }
+
+    public CanvasBuilder setStrokeStyle(Builder<? extends Color> color) {
+        checkNotNull(color);
+        return setStrokeStyle(color.build());
     }
 
     public CanvasBuilder stroke() {

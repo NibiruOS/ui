@@ -3,6 +3,7 @@ package org.nibiru.ui.gwt.widget;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BasePopup;
@@ -13,15 +14,19 @@ import javax.inject.Inject;
 public class GwtPopup extends BasePopup<PopupPanel, Widget>
         implements Popup {
     @Inject
-    public GwtPopup(Resources resources, Viewport viewport) {
-        this(new PopupPanel(), viewport);
+    public GwtPopup(Resources resources,
+                    Viewport viewport,
+                    Looper looper) {
+        this(new PopupPanel(), viewport, looper);
         control.setGlassEnabled(true);
         resources.css().ensureInjected();
         control.setGlassStyleName(resources.css().popupGlass());
     }
 
-    public GwtPopup(PopupPanel control, Viewport viewport) {
-        super(control, viewport);
+    public GwtPopup(PopupPanel control,
+                    Viewport viewport,
+                    Looper looper) {
+        super(control, viewport, looper);
     }
 
     @Override

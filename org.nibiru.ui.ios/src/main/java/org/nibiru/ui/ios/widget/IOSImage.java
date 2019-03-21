@@ -69,7 +69,7 @@ public class IOSImage
                 try {
                     byte[] data = new ByteSource() {
                         @Override
-                        public InputStream openStream() throws IOException {
+                        public InputStream openStream() {
                             return getClass().getClassLoader().getResourceAsStream(basePath + value);
                         }
                     }.read();

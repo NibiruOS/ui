@@ -14,7 +14,18 @@ public interface HasContentBuilder<T extends HasContent, B extends HasContentBui
         return getThis();
     }
 
+    default B content(Builder<? extends Widget> content) {
+        checkNotNull(content);
+        return content(content.build());
+    }
+
     default T build(Widget content) {
+        checkNotNull(content);
         return content(content).build();
+    }
+
+    default T build(Builder<? extends Widget> content) {
+        checkNotNull(content);
+        return build(content.build());
     }
 }

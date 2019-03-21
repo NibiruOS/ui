@@ -13,6 +13,6 @@ public class GwtComboBoxBuilderFactory implements ComboBoxBuilderFactory {
 
     @Override
     public <T> ComboBoxBuilder<T> create(Class<T> valueClass) {
-        return new ComboBoxBuilder<T>(new GwtComboBox<T>());
+        return new ComboBoxBuilder<>(new GwtComboBox<>());
     }
 }

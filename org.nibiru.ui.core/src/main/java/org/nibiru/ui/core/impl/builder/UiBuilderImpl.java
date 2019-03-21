@@ -29,6 +29,7 @@ public class UiBuilderImpl
     private final Provider<PasswordBoxBuilder> passwordBox;
     private final Provider<PopupBuilder> popup;
     private final RadioButtonGroupBuilderFactory radioButtonGroup;
+    private final Provider<RadioButtonStyleBuilder> radioButtonStyle;
     private final Provider<RelativePanelBuilder> relativePanel;
     private final Provider<SpinnerBuilder> spinner;
     private final Provider<StyleBuilder> style;
@@ -57,6 +58,7 @@ public class UiBuilderImpl
                          Provider<PasswordBoxBuilder> passwordBox,
                          Provider<PopupBuilder> popup,
                          RadioButtonGroupBuilderFactory radioButtonGroup,
+                         Provider<RadioButtonStyleBuilder> radioButtonStyle,
                          Provider<RelativePanelBuilder> relativePanel,
                          Provider<SpinnerBuilder> spinner,
                          Provider<StyleBuilder> style,
@@ -83,6 +85,7 @@ public class UiBuilderImpl
         this.passwordBox = checkNotNull(passwordBox);
         this.popup = checkNotNull(popup);
         this.radioButtonGroup = checkNotNull(radioButtonGroup);
+        this.radioButtonStyle = checkNotNull(radioButtonStyle);
         this.relativePanel = checkNotNull(relativePanel);
         this.spinner = checkNotNull(spinner);
         this.style = checkNotNull(style);
@@ -196,6 +199,11 @@ public class UiBuilderImpl
     @Override
     public <T> RadioButtonGroupBuilder<T> radioButtonGroup(Class<T> valueClass) {
         return radioButtonGroup.create(valueClass);
+    }
+
+    @Override
+    public RadioButtonStyleBuilder radioButtonStyle() {
+        return radioButtonStyle.get();
     }
 
     @Override

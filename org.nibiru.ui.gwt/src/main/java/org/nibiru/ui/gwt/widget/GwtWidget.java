@@ -7,9 +7,19 @@ import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Widget;
 
+import org.nibiru.ui.core.api.style.Style;
+import org.nibiru.ui.core.api.style.TextStyle;
 import org.nibiru.ui.core.impl.BaseControlWidget;
 
+import static com.google.gwt.dom.client.Style.TextTransform.UPPERCASE;
+import static com.google.gwt.dom.client.Style.Unit.PX;
+import static org.nibiru.ui.gwt.widget.WidgetUtils.alignmentToTextAlign;
+import static org.nibiru.ui.gwt.widget.WidgetUtils.colorToNative;
+
 abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
+    private int fontSize = TextStyle.DEFAULT_FONT_SIZE;
+    private boolean allCaps;
+
     GwtWidget(T control) {
         super(control);
         WidgetUtils.bindVisible(this, control);
@@ -17,7 +27,31 @@ abstract class GwtWidget<T extends Widget> extends BaseControlWidget<T> {
 
     @Override
     public void applyStyle() {
-        WidgetUtils.applyStyle(control, getStyle());
+        Style style = getStyle();
+        if (style instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) style;
+            control.getElement()
+                    .getStyle()
+                    .setColor(colorToNative(textStyle.getTextColor()));
+            control.getElement()
+                    .getStyle()
+                    .setTextAlign(alignmentToTextAlign(textStyle.getHorizontalTextAlignment()));
+            int fontSize = textStyle.getFontSize();
+            if (fontSize != TextStyle.DEFAULT_FONT_SIZE && fontSize != this.fontSize) {
+                this.fontSize = fontSize;
+                control.getElement()
+                        .getStyle()
+                        .setFontSize(fontSize, PX);
+                scheduleLayout();
+            }
+            if (textStyle.getAllCaps() != allCaps) {
+                allCaps = textStyle.getAllCaps();
+                control.getElement()
+                        .getStyle()
+                        .setTextTransform(UPPERCASE);
+                scheduleLayout();
+            }
+        }
     }
 
     @Override

@@ -83,6 +83,7 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         scrollPanel.getStyle().setWidth(Size.exactly(getFullMeasuredWidth()));
         scrollPanel.getStyle().setHeight(Size.exactly(getFullMeasuredHeight()));
+        panel.getStyle().setWidth(Size.exactly(getFullMeasuredWidth()));
         measureChild(scrollPanel, MeasureSpec.exactly(getFullMeasuredWidth()),
                 MeasureSpec.exactly(getFullMeasuredHeight()));
     }

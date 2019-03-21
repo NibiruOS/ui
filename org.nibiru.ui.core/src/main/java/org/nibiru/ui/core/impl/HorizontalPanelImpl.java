@@ -63,18 +63,7 @@ public class HorizontalPanelImpl extends BaseLayoutPanel implements HorizontalPa
     public void onLayout() {
         int currentX = 0;
         for (Widget child : getVisibleChildren()) {
-            int y = 0;
-            switch (child.getStyle().getVerticalAlignment()) {
-                case START:
-                    y = child.getStyle().getMarginTop();
-                    break;
-                case CENTER:
-                    y = (getMeasuredHeight() - child.getMeasuredHeight()) / 2;
-                    break;
-                case END:
-                    y = getMeasuredHeight() - child.getMeasuredHeight() - child.getStyle().getMarginTop();
-                    break;
-            }
+            int y = computeChildY(child, getMeasuredHeight());
             child.layout();
             panel.getPosition(child)
                     .setX(currentX + child.getStyle().getMarginLeft())

@@ -17,26 +17,6 @@ class WidgetUtils {
         control.getElement()
                 .getStyle()
                 .setBackgroundColor(colorToNative(style.getBackgroundColor()));
-        if (style instanceof TextStyle) {
-            TextStyle textStyle = (TextStyle) style;
-            control.getElement()
-                    .getStyle()
-                    .setColor(colorToNative(textStyle.getTextColor()));
-            control.getElement()
-                    .getStyle()
-                    .setTextAlign(alignmentToTextAlign(textStyle.getHorizontalTextAlignment()));
-            int fontSize = textStyle.getFontSize();
-            if (fontSize > 0) {
-                control.getElement()
-                        .getStyle()
-                        .setFontSize(fontSize, com.google.gwt.dom.client.Style.Unit.PX);
-            }
-            if (textStyle.getAllCaps()) {
-                control.getElement()
-                        .getStyle()
-                        .setTextTransform(com.google.gwt.dom.client.Style.TextTransform.UPPERCASE);
-            }
-        }
     }
 
     static void setNativeSize(Widget control, int width, int height) {

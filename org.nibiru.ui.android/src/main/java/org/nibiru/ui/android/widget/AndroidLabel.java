@@ -1,7 +1,6 @@
 package org.nibiru.ui.android.widget;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 import org.nibiru.model.core.api.Value;
@@ -19,6 +18,7 @@ public class AndroidLabel
         implements Label {
     // TODO: Fix this "magic".
     private static int MAGIC_PADDING = 2;
+    private boolean allCaps;
 
     @Inject
     public AndroidLabel(Context context) {
@@ -38,10 +38,15 @@ public class AndroidLabel
             control.setTextColor(colorToNative(textStyle.getTextColor()));
             control.setGravity(alignmentToHorizontalGravity(textStyle.getHorizontalTextAlignment()));
             int fontSize = textStyle.getFontSize();
-            if (fontSize > 0) {
+            if (fontSize != TextStyle.DEFAULT_FONT_SIZE && control.getTextSize() != fontSize) {
                 control.setTextSize(fontSize);
+                scheduleLayout();
             }
-            control.setAllCaps(textStyle.getAllCaps());
+            if (textStyle.getAllCaps() != allCaps) {
+                allCaps = textStyle.getAllCaps();
+                control.setAllCaps(textStyle.getAllCaps());
+                scheduleLayout();
+            }
         }
     }
 

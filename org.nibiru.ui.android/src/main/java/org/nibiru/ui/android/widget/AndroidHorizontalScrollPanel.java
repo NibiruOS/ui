@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BaseScrollPanel;
@@ -17,8 +18,10 @@ public class AndroidHorizontalScrollPanel
         extends BaseScrollPanel<HorizontalScrollView, View>
         implements HorizontalScrollPanel {
     @Inject
-    public AndroidHorizontalScrollPanel(Context context, Viewport viewport) {
-        this(new HorizontalScrollView(context), viewport);
+    public AndroidHorizontalScrollPanel(Context context,
+                                        Viewport viewport,
+                                        Looper looper) {
+        this(new HorizontalScrollView(context), viewport, looper);
         WidgetUtils.bindVisible(this, control);
         control.getViewTreeObserver()
                 .addOnScrollChangedListener(() ->
@@ -27,8 +30,10 @@ public class AndroidHorizontalScrollPanel
                 control.setScrollX(dpToPx(scrollPosition.get(), context)));
     }
 
-    public AndroidHorizontalScrollPanel(HorizontalScrollView control, Viewport viewport) {
-        super(control, viewport);
+    public AndroidHorizontalScrollPanel(HorizontalScrollView control,
+                                        Viewport viewport,
+                                        Looper looper) {
+        super(control, viewport, looper);
     }
 
     @Override

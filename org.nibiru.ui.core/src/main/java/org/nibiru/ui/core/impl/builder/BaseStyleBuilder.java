@@ -5,17 +5,30 @@ import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.Size;
 import org.nibiru.ui.core.api.style.Style;
 
+import javax.annotation.Nullable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public interface BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T, ?>>
         extends ObjectBuilder<T>, ChainBuilder<B> {
 
-    default B parent(Style parent) {
+    default B parent(@Nullable Style parent) {
         object().setParent(parent);
         return getThis();
     }
 
-    default B backgroundColor(Color backgroundColor) {
+    default B parent(Builder<? extends Style> parent) {
+        return parent(parent.build());
+    }
+
+    default B backgroundColor(@Nullable Color backgroundColor) {
         object().setBackgroundColor(backgroundColor);
         return getThis();
+    }
+
+    default B backgroundColor(Builder<? extends Color> backgroundColor) {
+        checkNotNull(backgroundColor);
+        return backgroundColor(backgroundColor.build());
     }
 
     default B width(Size width) {

@@ -3,9 +3,9 @@ package org.nibiru.ui.core.api.layout;
 public class MeasureSpec {
 	/**
 	 * Class used to pass restriction from the parent to the children.
-	 * AT_MOST -> The parent imposed a maximum size on the child
-	 * EXACTLY -> The parent imposed an exact size on the child
-	 * UNSPECIFIED -> The parent let the child determine its desired dimension
+	 * AT_MOST -&gt; The parent imposed a maximum size on the child
+	 * EXACTLY -&gt; The parent imposed an exact size on the child
+	 * UNSPECIFIED -&gt; The parent let the child determine its desired dimension
 	 */
 	public enum Type {
 		AT_MOST, UNSPECIFIED, EXACTLY

@@ -112,6 +112,11 @@ public interface UiBuilderWrapper
     }
 
     @Override
+    default RadioButtonStyleBuilder radioButtonStyle() {
+        return uiBuilder().radioButtonStyle();
+    }
+
+    @Override
     default RelativePanelBuilder relativePanel() {
         return uiBuilder().relativePanel();
     }

@@ -3,7 +3,6 @@ package org.nibiru.ui.core.impl;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.ui.core.api.IsParent;
-import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
 import org.nibiru.ui.core.api.style.Size;
@@ -17,12 +16,6 @@ public abstract class BaseWidget implements Widget {
     // Widget size after measuring phase
     private int measuredWidth;
     private int measuredHeight;
-
-    private boolean needsMeasureAgain = false;
-
-    private MeasureSpec mOldWidthMeasureSpec = MeasureSpec.exactly(Integer.MIN_VALUE);
-
-    private MeasureSpec mOldHeightMeasureSpec = MeasureSpec.exactly(Integer.MIN_VALUE);
 
     private Style style = Style.DEFAULT;
     private IsParent parent;
@@ -56,7 +49,9 @@ public abstract class BaseWidget implements Widget {
         return visible;
     }
 
+    @Override
     public final void measure(MeasureSpec widthMeasureSpec, MeasureSpec heightMeasureSpec) {
+        applyStyle();
         onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -122,13 +117,6 @@ public abstract class BaseWidget implements Widget {
 
     @Override
     public void layout() {
-        applyStyle();
-        //TODO this is in case the children violates the parent size
-        if (needsMeasureAgain) {
-            onMeasure(mOldWidthMeasureSpec, mOldHeightMeasureSpec);
-            needsMeasureAgain = false;
-        }
-
         onLayout();
     }
 
@@ -142,21 +130,8 @@ public abstract class BaseWidget implements Widget {
     protected void onLayout() {
     }
 
-    // Convenience method for perfroming common layout request operation
-    // from different subcasses with different viewport references.
-    public void requestLayout(Viewport viewport) {
-        if (getParent() != null) {
-            getParent().requestLayout();
-        } else {
-            MeasureSpec widthSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getWidth()), getStyle().getWidth());
-            MeasureSpec heightSpec = getChildMeasureSpec(MeasureSpec.atMost(viewport.getHeight()), getStyle().getHeight());
-            measure(widthSpec, heightSpec);
-            layout();
-        }
-    }
-
     protected void measureChild(Widget child, MeasureSpec parentWidthMeasureSpec,
-                                       MeasureSpec parentHeightMeasureSpec) {
+                                MeasureSpec parentHeightMeasureSpec) {
         MeasureSpec childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec, child.getStyle().getWidth());
         MeasureSpec childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec, child.getStyle().getHeight());
 

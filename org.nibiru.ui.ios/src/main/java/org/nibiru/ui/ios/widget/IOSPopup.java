@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BasePopup;
@@ -11,8 +12,9 @@ import apple.uikit.UIView;
 public class IOSPopup extends BasePopup<Overlay, UIView> implements Popup {
 
     @Inject
-    public IOSPopup(Viewport viewport) {
-        super(Overlay.create(), viewport);
+    public IOSPopup(Viewport viewport,
+                    Looper looper) {
+        super(Overlay.create(), viewport, looper);
     }
 
     @Override

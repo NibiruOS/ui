@@ -11,6 +11,9 @@ import org.nibiru.ui.core.api.layout.MeasureSpec;
 
 import javax.inject.Inject;
 
+import static org.nibiru.ui.core.api.layout.MeasureSpec.Type.AT_MOST;
+import static org.nibiru.ui.core.api.layout.MeasureSpec.Type.EXACTLY;
+
 public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
     private int columns = 1;
     private int maxHeights[];
@@ -52,13 +55,28 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
 
         }
 
-        int maxWidth = 0;
+        int width = 0;
 
         for (int n : maxWidths) {
-            maxWidth += n;
+            width += n;
         }
 
-        updateSize(resolveWidth(maxWidth, widthSpec),
+        if (widthSpec.getType() == EXACTLY ||
+                (widthSpec.getType() == AT_MOST && width > widthSpec.getValue())) {
+            int averageWidth = widthSpec.getValue() / columns;
+            for (int n = 0; n < maxWidths.length; n++) {
+                maxWidths[n] = averageWidth;
+            }
+        }
+        if (heightSpec.getType() == EXACTLY ||
+                (heightSpec.getType() == AT_MOST && height > heightSpec.getValue())) {
+            int averageHeight = heightSpec.getValue() / columns;
+            for (int n = 0; n < maxHeights.length; n++) {
+                maxHeights[n] = averageHeight;
+            }
+        }
+
+        updateSize(resolveWidth(width, widthSpec),
                 resolveHeight(height, heightSpec));
     }
 
@@ -72,8 +90,8 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
         for (Widget child : getVisibleChildren()) {
             child.layout();
             panel.getPosition(child)
-                    .setX(currentWidth)
-                    .setY(currentHeight);
+                    .setX(currentWidth + computeChildX(child, maxWidths[column]))
+                    .setY(currentHeight + computeChildY(child, maxHeights[row]));
 
             currentWidth += maxWidths[column];
 

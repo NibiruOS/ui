@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.NativeHorizontalScrollbar;
 import com.google.gwt.user.client.ui.NativeVerticalScrollbar;
 import com.google.gwt.user.client.ui.Widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.java.JavaValue;
 import org.nibiru.ui.core.api.ScrollPanel;
@@ -19,8 +20,10 @@ class GwtScrollPanel
     private final VerticalScrollbar verticalScrollbar;
     private final Value<Integer> scrollPosition;
 
-    GwtScrollPanel(CustomScrollPanel control, Viewport viewport) {
-        super(control, viewport);
+    GwtScrollPanel(CustomScrollPanel control,
+                   Viewport viewport,
+                   Looper looper) {
+        super(control, viewport, looper);
         horizontalScrollbar = new HorizontalScrollbar();
         verticalScrollbar = new VerticalScrollbar();
         control.setHorizontalScrollbar(horizontalScrollbar, horizontalScrollbar.getNativeHeight());

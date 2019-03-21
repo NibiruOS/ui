@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ScrollView;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BaseScrollPanel;
@@ -17,8 +18,10 @@ public class AndroidVerticalScrollPanel
         extends BaseScrollPanel<ScrollView, View>
         implements VerticalScrollPanel {
     @Inject
-    public AndroidVerticalScrollPanel(Context context, Viewport viewport) {
-        this(new ScrollView(context), viewport);
+    public AndroidVerticalScrollPanel(Context context,
+                                      Viewport viewport,
+                                      Looper looper) {
+        this(new ScrollView(context), viewport, looper);
         WidgetUtils.bindVisible(this, control);
         control.getViewTreeObserver()
                 .addOnScrollChangedListener(() ->
@@ -27,8 +30,10 @@ public class AndroidVerticalScrollPanel
                 control.setScrollY(dpToPx(scrollPosition.get(), context)));
     }
 
-    public AndroidVerticalScrollPanel(ScrollView control, Viewport viewport) {
-        super(control, viewport);
+    public AndroidVerticalScrollPanel(ScrollView control,
+                                      Viewport viewport,
+                                      Looper looper) {
+        super(control, viewport, looper);
     }
 
     @Override

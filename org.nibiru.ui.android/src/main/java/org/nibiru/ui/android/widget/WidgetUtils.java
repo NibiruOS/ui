@@ -6,10 +6,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 
 import org.nibiru.ui.core.api.Widget;
 import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
+import org.nibiru.ui.core.api.style.Orientation;
 import org.nibiru.ui.core.api.style.Style;
 
 class WidgetUtils {
@@ -64,5 +66,11 @@ class WidgetUtils {
             default:
                 return Gravity.LEFT;
         }
+    }
+
+    static int orientationToNative(Orientation orientation) {
+        return orientation == Orientation.VERTICAL
+                ? LinearLayout.VERTICAL
+                : LinearLayout.HORIZONTAL;
     }
 }

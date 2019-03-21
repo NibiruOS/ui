@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
@@ -17,20 +18,23 @@ public class IOSVerticalScrollPanel
         extends IOSScrollPanel
         implements VerticalScrollPanel {
     @Inject
-    public IOSVerticalScrollPanel(Viewport viewport) {
-        this(UIScrollView.alloc().init(), viewport);
+    public IOSVerticalScrollPanel(Viewport viewport,
+                                  Looper looper) {
+        this(UIScrollView.alloc().init(), viewport, looper);
         control.setShowsHorizontalScrollIndicator(false);
         control.setAlwaysBounceVertical(true);
     }
 
     public IOSVerticalScrollPanel(UIScrollView control,
-                                  Viewport viewport) {
-        super(control, viewport);
+                                  Viewport viewport,
+                                  Looper looper) {
+        super(control, viewport, looper);
         // TODO: Should existing delegate (if any) be wrapped?
         control.setDelegate(new UIScrollViewDelegate() {
             @Override
             public void scrollViewDidEndDecelerating(UIScrollView scrollView) {
             }
+
             @Override
             public void scrollViewDidScroll(UIScrollView scrollView) {
                 scrollPosition.set((int) scrollView.contentOffset().y());

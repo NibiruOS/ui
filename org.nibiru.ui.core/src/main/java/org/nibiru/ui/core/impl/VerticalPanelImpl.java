@@ -63,18 +63,7 @@ public class VerticalPanelImpl extends BaseLayoutPanel implements VerticalPanel 
     public void onLayout() {
         int currentY = 0;
         for (Widget child : getVisibleChildren()) {
-            int x = 0;
-            switch (child.getStyle().getHorizontalAlignment()) {
-                case START:
-                    x = child.getStyle().getMarginLeft();
-                    break;
-                case CENTER:
-                    x = (getMeasuredWidth() - child.getMeasuredWidth()) / 2;
-                    break;
-                case END:
-                    x = getMeasuredWidth() - child.getMeasuredWidth() - child.getStyle().getMarginRight();
-                    break;
-            }
+            int x = computeChildX(child, getMeasuredWidth());
             child.layout();
             panel.getPosition(child)
                     .setX(x)

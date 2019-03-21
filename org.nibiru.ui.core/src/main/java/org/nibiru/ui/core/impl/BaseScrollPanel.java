@@ -1,5 +1,6 @@
 package org.nibiru.ui.core.impl;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.java.JavaValue;
 import org.nibiru.ui.core.api.ScrollPanel;
@@ -13,8 +14,9 @@ public abstract class BaseScrollPanel<T, N>
     protected final Value<Integer> scrollPosition;
 
     protected BaseScrollPanel(T control,
-                              Viewport viewport) {
-        super(control, viewport);
+                              Viewport viewport,
+                              Looper looper) {
+        super(control, viewport, looper);
         scrollPosition = JavaValue.of(0);
     }
 

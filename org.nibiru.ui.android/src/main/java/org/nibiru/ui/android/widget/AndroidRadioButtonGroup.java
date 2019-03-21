@@ -13,8 +13,12 @@ import org.nibiru.model.core.api.Value;
 import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.RadioButtonGroup;
+import org.nibiru.ui.core.api.style.RadioButtonStyle;
+import org.nibiru.ui.core.api.style.TextStyle;
 
 import java.util.Map;
+
+import javax.swing.text.View;
 
 public class AndroidRadioButtonGroup<V>
         extends AndroidHasEnabledWidget<RadioGroup, V>
@@ -30,6 +34,17 @@ public class AndroidRadioButtonGroup<V>
 
     public AndroidRadioButtonGroup(RadioGroup control) {
         super(control);
+        setStyle(RadioButtonStyle.DEFAULT);
+    }
+
+    @Override
+    public void applyStyle() {
+        super.applyStyle();
+        if (getStyle() instanceof RadioButtonStyle) {
+            RadioButtonStyle radioButtonStyle = (RadioButtonStyle) getStyle();
+            control.setOrientation(WidgetUtils
+                    .orientationToNative(radioButtonStyle.getOrientation()));
+        }
     }
 
     @Override

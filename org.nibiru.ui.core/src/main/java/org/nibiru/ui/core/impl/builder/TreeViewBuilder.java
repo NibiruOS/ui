@@ -11,6 +11,8 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class TreeViewBuilder
         extends BaseBuilder<TreeView>
         implements ValueWidgetBuilder<TreeView, Iterable<Item>, TreeViewBuilder> {
@@ -22,15 +24,22 @@ public class TreeViewBuilder
     }
 
     public TreeViewBuilder add(Item item) {
+        checkNotNull(item);
         items.add(item);
         return this;
     }
 
     public TreeViewBuilder add(Widget widget) {
+        checkNotNull(widget);
         SimpleTreeViewItem item = new SimpleTreeViewItem();
         item.setWidget(widget);
         items.add(item);
         return this;
+    }
+
+    public TreeViewBuilder add(Builder<? extends Widget> widget) {
+        checkNotNull(widget);
+        return add(widget.build());
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.nibiru.ui.core.api.style.Alignment;
 import org.nibiru.ui.core.api.style.Color;
 import org.nibiru.ui.core.api.style.TextStyle;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 public class TextStyleBuilder
@@ -15,12 +16,12 @@ public class TextStyleBuilder
         super(new TextStyle());
     }
 
-    public TextStyleBuilder textColor(Color textColor) {
+    public TextStyleBuilder textColor(@Nullable Color textColor) {
         object.setTextColor(textColor);
         return this;
     }
 
-    public TextStyleBuilder horizontalTextAlignment(Alignment horizontalTextAlignment) {
+    public TextStyleBuilder horizontalTextAlignment(@Nullable Alignment horizontalTextAlignment) {
         object.setHorizontalTextAlignment(horizontalTextAlignment);
         return this;
     }

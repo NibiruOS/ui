@@ -27,6 +27,11 @@ public class RelativePanelBuilder
         return new RuleBuilder(widget);
     }
 
+    public RuleBuilder prepare(Builder<? extends Widget> widget) {
+        checkNotNull(widget);
+        return prepare(widget.build());
+    }
+
     public interface RuleProvider {
         Rule getRule(Widget target, RelativePanel container);
     }

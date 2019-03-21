@@ -13,6 +13,6 @@ public class IOSRadioButtonGroupBuilderFactory implements RadioButtonGroupBuilde
 
 	@Override
 	public <T> RadioButtonGroupBuilder<T> create(Class<T> valueClass) {
-		return new RadioButtonGroupBuilder<T>(new IOSRadioButtonGroup<T>());
+		return new RadioButtonGroupBuilder<>(new IOSRadioButtonGroup<>());
 	}
 }

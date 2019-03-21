@@ -20,6 +20,6 @@ public class AndroidComboBoxBuilderFactory implements ComboBoxBuilderFactory {
 
     @Override
     public <T> ComboBoxBuilder<T> create(Class<T> valueClass) {
-        return new ComboBoxBuilder<T>(new AndroidComboBox<T>(context));
+        return new ComboBoxBuilder<>(new AndroidComboBox<>(context));
     }
 }

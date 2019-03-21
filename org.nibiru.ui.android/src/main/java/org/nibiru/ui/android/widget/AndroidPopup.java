@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.Window;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.Popup;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.impl.BasePopup;
@@ -15,14 +16,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class AndroidPopup extends BasePopup<Dialog, View> implements Popup {
     @Inject
-    public AndroidPopup(Context context, Viewport viewport) {
-        this(new Dialog(checkNotNull(context)), viewport);
+    public AndroidPopup(Context context,
+                        Viewport viewport,
+                        Looper looper) {
+        this(new Dialog(checkNotNull(context)), viewport, looper);
         control.requestWindowFeature(Window.FEATURE_NO_TITLE);
         control.setCanceledOnTouchOutside(false);
     }
 
-    public AndroidPopup(Dialog control, Viewport viewport) {
-        super(control, viewport);
+    public AndroidPopup(Dialog control,
+                        Viewport viewport,
+                        Looper looper) {
+        super(control, viewport, looper);
     }
 
     @Override

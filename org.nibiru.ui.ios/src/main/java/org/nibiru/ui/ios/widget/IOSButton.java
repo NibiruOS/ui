@@ -55,8 +55,9 @@ public class IOSButton
             control.setContentHorizontalAlignment(alignmentToTextAlignment(textStyle
                     .getHorizontalTextAlignment()));
             int fontSize = textStyle.getFontSize();
-            if (fontSize > 0) {
+            if (fontSize != TextStyle.DEFAULT_FONT_SIZE && control.font().pointSize() != fontSize) {
                 control.setFont(UIFont.systemFontOfSize(fontSize));
+                scheduleLayout();
             }
         }
     }

@@ -26,6 +26,10 @@ public class ListWidgetBuilderFactory {
                                                            Class<RowType> rowTypeEnum,
                                                            Class<ViewType> viewType,
                                                            RowTypeHandler<RowType> rowTypeHandler) {
+        checkNotNull(modelType);
+        checkNotNull(rowTypeEnum);
+        checkNotNull(viewType);
+        checkNotNull(rowTypeHandler);
         return new ListWidgetBuilder<>(new ListWidgetImpl<>(rowTypeHandler,
                 verticalScrollPanel,
                 absolutePanel));

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 public class TextStyle extends Style {
     public static final TextStyle DEFAULT = new TextStyle();
+    public static final int DEFAULT_FONT_SIZE = 0;
 
     private Color textColor;
     private Alignment horizontalTextAlignment;
@@ -27,7 +28,7 @@ public class TextStyle extends Style {
     }
 
     public Integer getFontSize() {
-        return property(fontSize, TextStyle::getFontSize, 0);
+        return property(fontSize, TextStyle::getFontSize, DEFAULT_FONT_SIZE);
     }
 
     public void setFontSize(Integer fontSize) {

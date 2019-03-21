@@ -5,6 +5,8 @@ import org.nibiru.ui.core.api.Widget;
 
 import javax.inject.Inject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class AbsolutePanelBuilder
         extends BaseBuilder<AbsolutePanel>
         implements WidgetBuilder<AbsolutePanel, AbsolutePanelBuilder> {
@@ -14,9 +16,19 @@ public class AbsolutePanelBuilder
         super(control);
     }
 
-    public AbsolutePanelBuilder add(int x, int y, Widget child) {
+    public AbsolutePanelBuilder add(int x,
+                                    int y,
+                                    Widget child) {
+        checkNotNull(child);
         object.add(child);
         object.getPosition(child).setX(x).setY(y);
         return this;
+    }
+
+    public AbsolutePanelBuilder add(int x,
+                                    int y,
+                                    Builder<? extends Widget> child) {
+        checkNotNull(child);
+        return add(x, y, child.build());
     }
 }

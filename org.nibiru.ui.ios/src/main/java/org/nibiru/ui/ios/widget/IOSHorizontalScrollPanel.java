@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
 import org.nibiru.ui.core.api.layout.MeasureSpec;
@@ -16,15 +17,17 @@ public class IOSHorizontalScrollPanel
         extends IOSScrollPanel
         implements HorizontalScrollPanel {
     @Inject
-    public IOSHorizontalScrollPanel(Viewport viewport) {
-        this(UIScrollView.alloc().init(), viewport);
+    public IOSHorizontalScrollPanel(Viewport viewport,
+                                    Looper looper) {
+        this(UIScrollView.alloc().init(), viewport, looper);
         control.setShowsVerticalScrollIndicator(false);
         control.setBounces(false);
     }
 
     public IOSHorizontalScrollPanel(UIScrollView control,
-                                    Viewport viewport) {
-        super(control, viewport);
+                                    Viewport viewport,
+                                    Looper looper) {
+        super(control, viewport, looper);
         // TODO: Should existing delegate (if any) be wrapped?
         control.setDelegate(new UIScrollViewDelegate() {
             @Override

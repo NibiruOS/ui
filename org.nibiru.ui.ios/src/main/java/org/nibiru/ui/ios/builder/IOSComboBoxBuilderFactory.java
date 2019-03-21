@@ -13,6 +13,6 @@ public class IOSComboBoxBuilderFactory implements ComboBoxBuilderFactory {
 
 	@Override
 	public <T> ComboBoxBuilder<T> create(Class<T> valueClass) {
-		return new ComboBoxBuilder<T>(new IOSComboBox<T>());
+		return new ComboBoxBuilder<>(new IOSComboBox<>());
 	}
 }

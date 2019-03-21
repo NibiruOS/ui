@@ -1,5 +1,6 @@
 package org.nibiru.ui.ios.widget;
 
+import org.nibiru.async.core.api.loop.Looper;
 import org.nibiru.ui.core.api.HorizontalScrollPanel;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
@@ -13,8 +14,9 @@ class IOSScrollPanel
         implements VerticalScrollPanel, HorizontalScrollPanel {
 
     IOSScrollPanel(UIScrollView control,
-                   Viewport viewport) {
-        super(control, viewport);
+                   Viewport viewport,
+                   Looper looper) {
+        super(control, viewport, looper);
         WidgetUtils.bindVisible(this, control);
     }
 
