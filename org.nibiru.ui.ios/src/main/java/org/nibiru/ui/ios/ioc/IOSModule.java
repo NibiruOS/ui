@@ -14,12 +14,14 @@ import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.api.clipboard.Clipboard;
 import org.nibiru.ui.core.api.format.FormatFactory;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.core.impl.format.JavaFormatFactory;
 import org.nibiru.ui.ios.builder.IOSComboBoxBuilderFactory;
 import org.nibiru.ui.ios.builder.IOSRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.ios.clipboard.IOSClipboard;
 import org.nibiru.ui.ios.widget.IOSAbsolutePanel;
 import org.nibiru.ui.ios.widget.IOSButton;
 import org.nibiru.ui.ios.widget.IOSCanvas;
@@ -58,6 +60,11 @@ public class IOSModule {
     @Provides
     public CheckBox getCheckbox(IOSCheckBox checkbox) {
         return checkbox;
+    }
+
+    @Provides
+    public Clipboard getClipboard(IOSClipboard clipboard) {
+        return clipboard;
     }
 
     @Provides

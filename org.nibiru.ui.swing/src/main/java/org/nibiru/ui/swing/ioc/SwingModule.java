@@ -14,12 +14,14 @@ import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.api.clipboard.Clipboard;
 import org.nibiru.ui.core.api.format.FormatFactory;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.core.impl.format.JavaFormatFactory;
 import org.nibiru.ui.swing.builder.SwingComboBoxBuilderFactory;
 import org.nibiru.ui.swing.builder.SwingRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.swing.clipboard.SwingClipboard;
 import org.nibiru.ui.swing.widget.SwingAbsolutePanel;
 import org.nibiru.ui.swing.widget.SwingButton;
 import org.nibiru.ui.swing.widget.SwingCanvas;
@@ -58,6 +60,11 @@ public class SwingModule {
     @Provides
     public CheckBox getCheckbox(SwingCheckBox checkbox) {
         return checkbox;
+    }
+
+    @Provides
+    public Clipboard getClipboard(SwingClipboard clipboard) {
+        return clipboard;
     }
 
     @Provides

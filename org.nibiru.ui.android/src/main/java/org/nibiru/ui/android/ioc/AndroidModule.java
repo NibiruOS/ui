@@ -2,6 +2,7 @@ package org.nibiru.ui.android.ioc;
 
 import org.nibiru.ui.android.builder.AndroidComboBoxBuilderFactory;
 import org.nibiru.ui.android.builder.AndroidRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.android.clipboard.AndroidClipboard;
 import org.nibiru.ui.android.widget.AndroidAbsolutePanel;
 import org.nibiru.ui.android.widget.AndroidButton;
 import org.nibiru.ui.android.widget.AndroidCanvas;
@@ -30,6 +31,7 @@ import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.api.clipboard.Clipboard;
 import org.nibiru.ui.core.api.format.FormatFactory;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
@@ -58,6 +60,11 @@ public class AndroidModule {
     @Provides
     public CheckBox getCheckbox(AndroidCheckBox checkbox) {
         return checkbox;
+    }
+
+    @Provides
+    public Clipboard getClipboard(AndroidClipboard clipboard) {
+        return clipboard;
     }
 
     @Provides

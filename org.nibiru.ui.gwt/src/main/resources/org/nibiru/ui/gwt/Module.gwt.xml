@@ -5,6 +5,7 @@
 	<inherits name="org.nibiru.ui.core.Module" />
 	<inherits name="org.nibiru.async.gwt.Module" />
 	<source path="builder" />
+	<source path="clipboard" />
 	<source path="format" />
 	<source path="ioc" />
 	<source path="loop" />

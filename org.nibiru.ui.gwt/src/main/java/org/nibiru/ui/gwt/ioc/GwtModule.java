@@ -17,11 +17,13 @@ import org.nibiru.ui.core.api.TextBox;
 import org.nibiru.ui.core.api.TreeView;
 import org.nibiru.ui.core.api.VerticalScrollPanel;
 import org.nibiru.ui.core.api.Viewport;
+import org.nibiru.ui.core.api.clipboard.Clipboard;
 import org.nibiru.ui.core.api.format.FormatFactory;
 import org.nibiru.ui.core.impl.builder.ComboBoxBuilderFactory;
 import org.nibiru.ui.core.impl.builder.RadioButtonGroupBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtComboBoxBuilderFactory;
 import org.nibiru.ui.gwt.builder.GwtRadioButtonGroupBuilderFactory;
+import org.nibiru.ui.gwt.clipboard.GwtClipboard;
 import org.nibiru.ui.gwt.format.GwtFormatFactory;
 import org.nibiru.ui.gwt.resource.Resources;
 import org.nibiru.ui.gwt.widget.GwtAbsolutePanel;
@@ -62,6 +64,11 @@ public class GwtModule {
     @Provides
     public CheckBox getCheckbox(GwtCheckBox checkbox) {
         return checkbox;
+    }
+
+    @Provides
+    public Clipboard getClipboard(GwtClipboard clipboard) {
+        return clipboard;
     }
 
     @Provides
