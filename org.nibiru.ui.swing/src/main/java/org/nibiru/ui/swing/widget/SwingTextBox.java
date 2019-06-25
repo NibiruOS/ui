@@ -10,6 +10,7 @@ import org.nibiru.ui.core.api.TextBox;
 
 import javax.inject.Inject;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -40,7 +41,7 @@ public class SwingTextBox
             }
 
             private void notifyObservers() {
-                getValue().notifyObservers();
+                SwingUtilities.invokeLater(() -> getValue().notifyObservers());
             }
         });
     }

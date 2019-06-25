@@ -6,8 +6,12 @@ import org.nibiru.model.core.impl.BaseValue;
 import org.nibiru.model.core.impl.java.JavaType;
 import org.nibiru.ui.core.api.CheckBox;
 
+import java.awt.event.ActionEvent;
+
 import javax.inject.Inject;
+import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
+import javax.swing.SwingUtilities;
 
 public class SwingCheckBox
         extends SwingHasEnabledWidget<JCheckBox, Boolean>
@@ -39,6 +43,13 @@ public class SwingCheckBox
                 return JavaType.STRING;
             }
         };
+        checkBox.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SwingUtilities.invokeLater(() -> SwingCheckBox.this.getValue()
+                        .notifyObservers());
+            }
+        });
     }
 
     @Override
