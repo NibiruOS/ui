@@ -13,7 +13,7 @@ public interface BaseStyleBuilder<T extends Style, B extends BaseStyleBuilder<T,
         extends ObjectBuilder<T>, ChainBuilder<B> {
 
     default B parent(@Nullable Style parent) {
-        object().setParent(parent);
+        object().addParent(parent);
         return getThis();
     }
 

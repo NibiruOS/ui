@@ -1,7 +1,10 @@
 package org.nibiru.ui.core.api.style;
 
 import com.google.common.base.Function;
-import com.google.common.base.MoreObjects;
+import com.google.common.collect.Lists;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -10,7 +13,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Style {
     public static final Style DEFAULT = new Style();
 
-    private Style parent;
+    private List<Style> parents = Lists.newArrayListWithCapacity(1);
     private Color backgroundColor;
     private Size width;
     private Size height;
@@ -23,17 +26,16 @@ public class Style {
     private Integer marginLeft;
     private Integer marginBottom;
 
-    @Nullable
-    public Style getParent() {
-        return parent;
-    }
-
-    public void setParent(@Nullable Style parent) {
-        this.parent = parent;
+    public void addParent(Style parent) {
+        parents.add(checkNotNull(parent));
     }
 
     public Color getBackgroundColor() {
-        return property(backgroundColor, Style::getBackgroundColor, Color.TRANSPARENT);
+        return breadthFirstProperty(Style::backgroundColor, Color.TRANSPARENT);
+    }
+
+    Color backgroundColor() {
+        return backgroundColor;
     }
 
     public void setBackgroundColor(@Nullable Color backgroundColor) {
@@ -41,7 +43,11 @@ public class Style {
     }
 
     public Size getWidth() {
-        return property(width, Style::getWidth, Size.WRAP_CONTENT);
+        return breadthFirstProperty(Style::width, Size.WRAP_CONTENT);
+    }
+
+    Size width() {
+        return width;
     }
 
     public void setWidth(@Nullable Size width) {
@@ -49,7 +55,11 @@ public class Style {
     }
 
     public Size getHeight() {
-        return property(height, Style::getHeight, Size.WRAP_CONTENT);
+        return breadthFirstProperty(Style::height, Size.WRAP_CONTENT);
+    }
+
+    Size height() {
+        return height;
     }
 
     public void setHeight(@Nullable Size height) {
@@ -57,7 +67,11 @@ public class Style {
     }
 
     public Integer getMaxWidth() {
-        return property(maxWidth, Style::getMaxWidth, Integer.MAX_VALUE);
+        return breadthFirstProperty(Style::maxWidth, Integer.MAX_VALUE);
+    }
+
+    Integer maxWidth() {
+        return maxWidth;
     }
 
     public void setMaxWidth(Integer maxWidth) {
@@ -65,7 +79,11 @@ public class Style {
     }
 
     public Integer getMaxHeight() {
-        return property(maxHeight, Style::getMaxHeight, Integer.MAX_VALUE);
+        return breadthFirstProperty(Style::maxHeight, Integer.MAX_VALUE);
+    }
+
+    Integer maxHeight() {
+        return maxHeight;
     }
 
     public void setMaxHeight(Integer maxHeight) {
@@ -73,7 +91,11 @@ public class Style {
     }
 
     public Alignment getHorizontalAlignment() {
-        return property(horizontalAlignment, Style::getHorizontalAlignment, Alignment.START);
+        return breadthFirstProperty(Style::horizontalAlignment, Alignment.START);
+    }
+
+    Alignment horizontalAlignment() {
+        return horizontalAlignment;
     }
 
     public void setHorizontalAlignment(@Nullable Alignment horizontalAlignment) {
@@ -81,7 +103,11 @@ public class Style {
     }
 
     public Alignment getVerticalAlignment() {
-        return property(verticalAlignment, Style::getVerticalAlignment, Alignment.START);
+        return breadthFirstProperty(Style::verticalAlignment, Alignment.START);
+    }
+
+    Alignment verticalAlignment() {
+        return verticalAlignment;
     }
 
     public void setVerticalAlignment(@Nullable Alignment verticalAlignment) {
@@ -89,7 +115,11 @@ public class Style {
     }
 
     public int getMarginTop() {
-        return property(marginTop, Style::getMarginTop, 0);
+        return breadthFirstProperty(Style::marginTop, 0);
+    }
+
+    Integer marginTop() {
+        return marginTop;
     }
 
     public void setMarginTop(@Nullable Integer marginTop) {
@@ -97,7 +127,11 @@ public class Style {
     }
 
     public int getMarginRight() {
-        return property(marginRight, Style::getMarginRight, 0);
+        return breadthFirstProperty(Style::marginRight, 0);
+    }
+
+    public Integer marginRight() {
+        return marginRight;
     }
 
     public void setMarginRight(@Nullable Integer marginRight) {
@@ -105,7 +139,11 @@ public class Style {
     }
 
     public int getMarginLeft() {
-        return property(marginLeft, Style::getMarginLeft, 0);
+        return breadthFirstProperty(Style::marginLeft, 0);
+    }
+
+    Integer marginLeft() {
+        return marginLeft;
     }
 
     public void setMarginLeft(@Nullable Integer marginLeft) {
@@ -113,26 +151,47 @@ public class Style {
     }
 
     public int getMarginBottom() {
-        return property(marginBottom, Style::getMarginBottom, 0);
+        return breadthFirstProperty(Style::marginBottom, 0);
+    }
+
+    public Integer marginBottom() {
+        return marginBottom;
     }
 
     public void setMarginBottom(@Nullable Integer marginBottom) {
         this.marginBottom = marginBottom;
     }
 
-    protected <T, S extends Style> T property(T value,
-                                              Function<S, T> parentValueFunction,
-                                              T defaultValue) {
-        if (value != null) {
-            return value;
+    protected <T, S extends Style> T breadthFirstProperty(Function<S, T> valueGetter,
+                                                          T defaultValue) {
+
+        T currentValue = getValue(valueGetter, this);
+        if (currentValue != null) {
+            return currentValue;
         }
-        if (parent != null) {
-            try {
-                return parentValueFunction.apply((S) parent);
-            } catch (ClassCastException e) {
-                // Parent has not the expected type.
+
+        LinkedList<Style> pending = Lists.newLinkedList();
+        pending.addAll(parents);
+
+        while (!pending.isEmpty()) {
+            Style parent = pending.remove();
+            currentValue = getValue(valueGetter, parent);
+            if (currentValue != null) {
+                return currentValue;
             }
+            pending.addAll(parent.parents);
         }
+
         return defaultValue;
+    }
+
+    protected <T, S extends Style> T getValue(Function<S, T> valueGetter,
+                                              Style target) {
+        try {
+            return valueGetter.apply((S) target);
+        } catch (ClassCastException e) {
+            // Not expected type - value not defined
+            return null;
+        }
     }
 }

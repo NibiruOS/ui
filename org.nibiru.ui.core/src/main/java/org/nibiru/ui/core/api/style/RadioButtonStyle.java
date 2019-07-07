@@ -8,7 +8,11 @@ public class RadioButtonStyle extends Style {
     private Orientation orientation;
 
     public Orientation getOrientation() {
-        return property(orientation, RadioButtonStyle::getOrientation, Orientation.VERTICAL);
+        return breadthFirstProperty(RadioButtonStyle::orientation, Orientation.VERTICAL);
+    }
+
+    Orientation orientation() {
+        return orientation;
     }
 
     public void setOrientation(@Nullable Orientation orientation) {

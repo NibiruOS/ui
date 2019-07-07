@@ -10,7 +10,11 @@ public class ImageStyle extends Style {
     private ScaleType scaleType;
 
     public ScaleType getScaleType() {
-        return property(scaleType, ImageStyle::getScaleType, ScaleType.FIT_CENTER);
+        return breadthFirstProperty(ImageStyle::scaleType, ScaleType.FIT_CENTER);
+    }
+
+    ScaleType scaleType() {
+        return scaleType;
     }
 
     public void setScaleType(@Nullable ScaleType scaleType) {

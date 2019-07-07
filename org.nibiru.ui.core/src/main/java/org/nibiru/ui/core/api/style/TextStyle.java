@@ -12,7 +12,11 @@ public class TextStyle extends Style {
     private Boolean allCaps;
 
     public Color getTextColor() {
-        return property(textColor, TextStyle::getTextColor, Color.BLACK);
+        return breadthFirstProperty(TextStyle::textColor, Color.BLACK);
+    }
+
+    Color textColor() {
+        return textColor;
     }
 
     public void setTextColor(@Nullable Color textColor) {
@@ -20,23 +24,35 @@ public class TextStyle extends Style {
     }
 
     public Alignment getHorizontalTextAlignment() {
-        return property(horizontalTextAlignment, TextStyle::getHorizontalTextAlignment, Alignment.START);
+        return breadthFirstProperty(TextStyle::horizontalTextAlignment, Alignment.START);
+    }
+
+    Alignment horizontalTextAlignment() {
+        return horizontalTextAlignment;
     }
 
     public void setHorizontalTextAlignment(@Nullable Alignment horizontalTextAlignment) {
         this.horizontalTextAlignment = horizontalTextAlignment;
     }
 
-    public Integer getFontSize() {
-        return property(fontSize, TextStyle::getFontSize, DEFAULT_FONT_SIZE);
+    public int getFontSize() {
+        return breadthFirstProperty(TextStyle::fontSize, DEFAULT_FONT_SIZE);
+    }
+
+    public Integer fontSize() {
+        return fontSize;
     }
 
     public void setFontSize(Integer fontSize) {
         this.fontSize = fontSize;
     }
 
-    public Boolean getAllCaps() {
-        return property(allCaps, TextStyle::getAllCaps, false);
+    public boolean getAllCaps() {
+        return breadthFirstProperty(TextStyle::allCaps, false);
+    }
+
+    public Boolean allCaps() {
+        return allCaps;
     }
 
     public void setAllCaps(Boolean allCaps) {
