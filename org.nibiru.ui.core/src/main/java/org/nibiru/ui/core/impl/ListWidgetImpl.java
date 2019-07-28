@@ -53,7 +53,14 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
         scrollPanel.getScrollPosition()
                 .addObserver(this::onLayout);
         visibleRows = Lists.newLinkedList();
-        value.addObserver(this::requestLayout);
+        value.addObserver(() -> {
+            panel.clear();
+            rowPools.clear();
+            visibleRows.clear();
+            firstVisibleRow = 0;
+            scrollPanel.getScrollPosition().set(0);
+            requestLayout();
+        });
     }
 
     @Override
@@ -106,13 +113,14 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
             int scrollPos = scrollPanel.getScrollPosition().get();
             int scrollEnd = scrollPos + scrollPanel.getFullMeasuredHeight();
 
-            // Calculo alto del contenido del scroll panel
+            // Panel height measuring
             for (int n = 0; n < modelList.size(); n++) {
                 y += rowTypeHandler.getRowHeight(n);
             }
             panel.getStyle().setHeight(Size.exactly(y));
             panel.getStyle().setWidth(Size.exactly(getMeasuredWidth()));
 
+            // Y offset measuring and initial/final row computation
             y = 0;
 
             int rowHeight;
@@ -133,6 +141,7 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
 
             finalRow = row;
 
+            // Row view processing
             int lastVisibleRow = firstVisibleRow + visibleRows.size() - 1;
             if (initialRow != firstVisibleRow || finalRow != lastVisibleRow) {
                 // Remove hidden rows at the beginning
@@ -170,7 +179,6 @@ public class ListWidgetImpl<ModelType, RowType extends Enum<?>, ViewType extends
                             style.setWidth(Size.MATCH_PARENT);
                             view.setStyle(style);
                         }
-
 
                         rowHandler.populateView(modelList.get(n),
                                 view);
