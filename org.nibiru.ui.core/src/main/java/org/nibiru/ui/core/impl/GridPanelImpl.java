@@ -61,18 +61,38 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
             width += n;
         }
 
-        if (widthSpec.getType() == EXACTLY ||
-                (widthSpec.getType() == AT_MOST && width > widthSpec.getValue())) {
+        boolean recomputeWidth = widthSpec.getType() == EXACTLY ||
+                (widthSpec.getType() == AT_MOST && width > widthSpec.getValue());
+        if (recomputeWidth) {
             int averageWidth = widthSpec.getValue() / columns;
             for (int n = 0; n < maxWidths.length; n++) {
                 maxWidths[n] = averageWidth;
             }
         }
-        if (heightSpec.getType() == EXACTLY ||
-                (heightSpec.getType() == AT_MOST && height > heightSpec.getValue())) {
+        boolean recomputeHeight = heightSpec.getType() == EXACTLY ||
+                (heightSpec.getType() == AT_MOST && height > heightSpec.getValue());
+        if (recomputeHeight) {
             int averageHeight = heightSpec.getValue() / columns;
             for (int n = 0; n < maxHeights.length; n++) {
                 maxHeights[n] = averageHeight;
+            }
+        }
+
+        if (recomputeWidth || recomputeWidth) {
+            column = 0;
+            row = 0;
+
+            for (Widget child : getVisibleChildren()) {
+                measureChild(child,
+                        MeasureSpec.atMost(maxWidths[column]),
+                        MeasureSpec.atMost(maxHeights[row]));
+
+                column++;
+
+                if (column == columns) {
+                    column = 0;
+                    row++;
+                }
             }
         }
 

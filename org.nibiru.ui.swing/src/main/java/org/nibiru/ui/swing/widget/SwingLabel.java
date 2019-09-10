@@ -6,7 +6,6 @@ import org.nibiru.ui.core.api.ClickHandler;
 import org.nibiru.ui.core.api.Label;
 import org.nibiru.ui.core.api.style.TextStyle;
 
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,7 +15,6 @@ import javax.swing.JLabel;
 
 import static org.nibiru.ui.swing.widget.WidgetUtils.alignmentToSwingConstant;
 import static org.nibiru.ui.swing.widget.WidgetUtils.colorToNative;
-
 
 public class SwingLabel
         extends SwingHasEnabledWidget<JLabel, String>

@@ -23,12 +23,12 @@ class WidgetUtils {
     }
 
     static void applyStyle(JComponent control, Style style) {
+        control.setOpaque(true);
         control.setBackground(colorToNative(style.getBackgroundColor()));
     }
 
     static void setNativeSize(JComponent control, int width, int height) {
         control.setSize(width, height);
-        control.setPreferredSize(new Dimension(width, height));
     }
 
     static java.awt.Color colorToNative(Color color) {
