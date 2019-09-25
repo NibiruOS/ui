@@ -1,3 +1,7 @@
+jar {
+	from sourceSets.main.java.srcDirs, file("${buildDir}/generated/sources/annotationProcessor/java/main")
+}
+
 dependencies {
 	compile project(":org.nibiru.ui.gwt")
 	compile "com.googlecode.mgwt:mgwt:2.0.0"
