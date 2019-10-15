@@ -11,6 +11,8 @@ import org.nibiru.ui.core.api.layout.MeasureSpec;
 
 import javax.inject.Inject;
 
+import java.util.Arrays;
+
 import static org.nibiru.ui.core.api.layout.MeasureSpec.Type.AT_MOST;
 import static org.nibiru.ui.core.api.layout.MeasureSpec.Type.EXACTLY;
 
@@ -33,7 +35,6 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
     protected void onMeasure(MeasureSpec widthSpec, MeasureSpec heightSpec) {
         int column = 0;
         int row = 0;
-        int height = 0;
         int rows = (Iterables.size(getVisibleChildren()) + columns - 1) / columns;
         maxWidths = new int[columns];
         maxHeights = new int[rows];
@@ -48,15 +49,18 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
             column++;
 
             if (column == columns) {
-                height += maxHeights[row];
                 column = 0;
                 row++;
             }
 
         }
 
-        int width = 0;
+        int height = 0;
+        for (int n : maxHeights) {
+            height += n;
+        }
 
+        int width = 0;
         for (int n : maxWidths) {
             width += n;
         }
@@ -65,20 +69,16 @@ public class GridPanelImpl extends BaseLayoutPanel implements GridPanel {
                 (widthSpec.getType() == AT_MOST && width > widthSpec.getValue());
         if (recomputeWidth) {
             int averageWidth = widthSpec.getValue() / columns;
-            for (int n = 0; n < maxWidths.length; n++) {
-                maxWidths[n] = averageWidth;
-            }
+            Arrays.fill(maxWidths, averageWidth);
         }
         boolean recomputeHeight = heightSpec.getType() == EXACTLY ||
                 (heightSpec.getType() == AT_MOST && height > heightSpec.getValue());
         if (recomputeHeight) {
             int averageHeight = heightSpec.getValue() / columns;
-            for (int n = 0; n < maxHeights.length; n++) {
-                maxHeights[n] = averageHeight;
-            }
+            Arrays.fill(maxHeights, averageHeight);
         }
 
-        if (recomputeWidth || recomputeWidth) {
+        if (recomputeWidth || recomputeHeight) {
             column = 0;
             row = 0;
 
