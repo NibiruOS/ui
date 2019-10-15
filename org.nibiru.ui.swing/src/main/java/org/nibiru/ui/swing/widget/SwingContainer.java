@@ -23,12 +23,14 @@ abstract class SwingContainer extends SwingWidget<JPanel> implements Container {
         super(new JPanel());
         control.addComponentListener(new ComponentAdapter() {
             private Dimension lastSize = control.getSize();
+            private long lastLayoutTimestamp = System.currentTimeMillis();
 
             @Override
             public void componentResized(ComponentEvent componentEvent) {
-
-                if (!control.getSize().equals(lastSize)) {
+                long now = System.currentTimeMillis();
+                if (!control.getSize().equals(lastSize) && now - lastLayoutTimestamp > 10) {
                     lastSize = control.getSize();
+                    lastLayoutTimestamp = now;
                     scheduleLayout();
                 }
             }
