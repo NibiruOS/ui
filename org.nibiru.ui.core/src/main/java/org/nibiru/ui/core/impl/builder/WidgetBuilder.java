@@ -5,6 +5,8 @@ import org.nibiru.ui.core.api.style.Style;
 
 import javax.annotation.Nullable;
 
+import java.util.Arrays;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public interface WidgetBuilder<T extends Widget, B extends WidgetBuilder<T, ?>>
@@ -30,4 +32,26 @@ public interface WidgetBuilder<T extends Widget, B extends WidgetBuilder<T, ?>>
         object().setTag(tag);
         return getThis();
     }
+
+    default <I> B forEach(Iterable<I> items,
+                          ForEachCallback<I, B> callback) {
+        checkNotNull(items);
+        checkNotNull(callback);
+        for (I item : items) {
+            callback.apply(item, getThis());
+        }
+        return getThis();
+    }
+
+    default <I> B forEach(I[] items,
+                          ForEachCallback<I, B> callback) {
+        checkNotNull(items);
+        checkNotNull(callback);
+        return forEach(Arrays.asList(items), callback);
+    }
+
+    interface ForEachCallback<I, B> {
+        void apply(I item, B builder);
+    }
+
 }
